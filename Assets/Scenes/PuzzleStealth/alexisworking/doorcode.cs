@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class doorcode : MonoBehaviour
 {
+    public string key;
     bool touch = false;
     bool open = true;
     float movequeue = 0;
     float speed = 10;
 
     // Colider
+    private void start(string input)
+    {
+        var key = input;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag=="Player"){
