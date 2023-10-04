@@ -5352,7 +5352,7 @@ GameObject:
   - component: {fileID: 1787777618}
   - component: {fileID: 1787777622}
   - component: {fileID: 1787777623}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5510,7 +5510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f58ebd16d86eb40ab817de14ddf014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pro: {fileID: 1856992549}
+  projectile: {fileID: 1856992549}
 --- !u!114 &1787777623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5535,6 +5535,7 @@ GameObject:
   - component: {fileID: 1856992550}
   - component: {fileID: 1856992552}
   - component: {fileID: 1856992553}
+  - component: {fileID: 1856992554}
   m_Layer: 0
   m_Name: projectile
   m_TagString: Untagged
@@ -5603,7 +5604,7 @@ Transform:
   m_GameObject: {fileID: 1856992549}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.47, y: -1.39, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5624,7 +5625,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -5681,6 +5682,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1856992554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856992549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a72a50616056324284f51bd50271cb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &1990381496
 GameObject:
   m_ObjectHideFlags: 0

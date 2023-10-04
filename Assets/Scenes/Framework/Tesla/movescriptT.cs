@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class movescriptT : MonoBehaviour
 {
-    GameObject ind;
-    public GameObject pro;
-    Vector3 lastInp;
+    GameObject copy;
+    public GameObject projectile;
+    Vector3 lastInput;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,19 +25,18 @@ public class movescriptT : MonoBehaviour
 
         Vector3 inp = new Vector3(Input.GetAxis("Horizontal") / spd, Input.GetAxis("Vertical") / spd, 0);
         rb.MovePosition(transform.position + inp);
-
-        //Debug.Log(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0);
-        Debug.Log(inp + " " + lastInp + " " + Mathf.Abs(Input.GetAxis("Horizontal"))+ " "+ Mathf.Abs(Input.GetAxis("Vertical")));
-        
-        //if (!(Input.GetAxis("Horizontal")==0 && Input.GetAxis("Vertical")==0))
+       
         if (!(Mathf.Abs(Input.GetAxis("Horizontal"))<.3  && Mathf.Abs(Input.GetAxis("Vertical"))<.3))
-            lastInp = inp;
+            lastInput = inp*10000f;
+     
 
-        if (Input.GetKeyDown(KeyCode.E))
+        //creates a projectile moving in the same direction as last player movement
+        if (Input.GetKeyDown(KeyCode.E) && projectileT.availible > 0)
         {
-            ind = Instantiate(pro, this.gameObject.transform.position, new Quaternion());
-            var pRB = pro.GetComponent<Rigidbody2D>();
-            pRB.AddRelativeForce(lastInp);
+            projectileT.availible--;
+            copy = Instantiate(projectile, gameObject.transform.position, new Quaternion());
+            var pRB = copy.GetComponent<Rigidbody2D>();
+            pRB.AddRelativeForce(lastInput);
         }
     }
 }
