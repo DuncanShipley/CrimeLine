@@ -325,7 +325,7 @@ Rigidbody:
   m_GameObject: {fileID: 409689730}
   serializedVersion: 4
   m_Mass: 0.0000001
-  m_Drag: 0.9
+  m_Drag: 1
   m_AngularDrag: 99999
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -362,8 +362,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 6, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 6, y: 5.3704453, z: 0.2}
+  m_Center: {x: 0, y: 0.31477737, z: 0}
 --- !u!1 &1148252934
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 1505055816}
   - component: {fileID: 1505055817}
   m_Layer: 0
-  m_Name: trigger
+  m_Name: trigger? for ben
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,7 +484,7 @@ Transform:
   m_GameObject: {fileID: 1505055815}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.551575, y: 0.8950596, z: 39.303627}
+  m_LocalPosition: {x: 0.63, y: -1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -549,8 +549,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.8267484, y: 4.7038994, z: 2.7933376}
-  m_Center: {x: 0.33474004, y: 1.9174668, z: -0.8966688}
+  m_Size: {x: 6.8, y: 10.30558, z: 10}
+  m_Center: {x: -0.66725147, y: 0.6527945, z: 0}
 --- !u!23 &1510840131
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -675,7 +675,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 67.2
+  field of view: 65.6712
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -702,7 +702,7 @@ Transform:
   m_GameObject: {fileID: 2007832803}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 16.55, z: -8.51}
+  m_LocalPosition: {x: -0.5, y: 16.1, z: -8.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
