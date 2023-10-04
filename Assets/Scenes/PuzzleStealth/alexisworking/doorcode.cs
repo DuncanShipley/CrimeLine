@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class doorcode : MonoBehaviour
 {
-    public string key;
+    public int key;
     bool touch = false;
     bool open = true;
     float movequeue = 0;
     float speed = 10;
 
     // Colider
-    private void start(string input)
+    private void start()
     {
-        var key = input;
+        
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -30,8 +30,14 @@ public class doorcode : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && touch && open && movequeue == 0)
         {
-            movequeue = 55;
-            open = false;
+            keys heldKeysScript = GameObject.Find("Player").GetComponent<keys>();
+            int heldKeys = heldKeysScript.getKeys();
+
+            if (key == 0 || heldKeys >= key)
+            {
+                movequeue = 55;
+                open = false;
+            }
         }
 
         if (movequeue != 0)
@@ -40,7 +46,6 @@ public class doorcode : MonoBehaviour
             var x = 0;
             var y = 0;
 
-            Debug.Log(gameObject.tag);
             if (gameObject.tag == "leftdoor")
                 x = -1;
             if (gameObject.tag == "rightdoor")
