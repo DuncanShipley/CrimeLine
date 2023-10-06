@@ -17,11 +17,12 @@ public class projectileT : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         rb.velocity = Vector3.zero;
+        
         if (collision.collider.tag == "Player")
         {
             Debug.Log("hit");
             availible++;
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
     // Update is called once per frame
