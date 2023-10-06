@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class keycode : MonoBehaviour
 {
-
-    // Colider
-    private void start()
+    private void Start()
     {
         GameObject.Find("keycard").GetComponent<Canvas>().enabled = false;
         Debug.Log(GameObject.Find("keycard").GetComponent<Canvas>().enabled);
