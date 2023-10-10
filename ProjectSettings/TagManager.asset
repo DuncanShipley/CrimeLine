@@ -4,9 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - interact
-  - leftdoor
-  - rightdoor
   layers:
   - Default
   - TransparentFX
@@ -14,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class keycode : MonoBehaviour
+public class keycodeA : MonoBehaviour
 {
-
-    // Colider
-    private void start()
+    private void Start()
     {
         GameObject.Find("keycard").GetComponent<Canvas>().enabled = false;
         Debug.Log(GameObject.Find("keycard").GetComponent<Canvas>().enabled);
