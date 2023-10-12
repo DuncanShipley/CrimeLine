@@ -3,7 +3,11 @@ guid: c10f1e34639441148a14f36ad176aa72
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - inkJSONAsset: {fileID: 4900000, guid: 70be3f115469bef44bbad3121e4a8b7d, type: 3}
+  - canvas: {instanceID: 0}
+  - textPrefab: {instanceID: 0}
+  - buttonPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

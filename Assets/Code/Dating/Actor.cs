@@ -8,18 +8,18 @@ public class Actor : MonoBehaviour
     public Sprite[] emotionSprite;
     SpriteRenderer spRend;
     public int ID; // left = 0. right = 1
-   public enum CharcterEmotions
+   public enum CharacterEmotions
     {
         happy,sad,nuetral,angry
     }
 
     [SerializeField]
-    CharcterEmotions Mystate;
+    CharacterEmotions Mystate;
       
    
     void Awake()
     {
-        Mystate = CharcterEmotions.nuetral;
+        Mystate = CharacterEmotions.nuetral;
         spRend = GetComponent<SpriteRenderer>();
     }
     public void changestate(string emotionName)
@@ -29,23 +29,25 @@ public class Actor : MonoBehaviour
     IEnumerator NuetralState()
     {
         spRend.sprite = emotionSprite[0];
-        myState = CharacterEmotion
+        Mystate = CharacterEmotions.nuetral;
         yield return null;
     }
     IEnumerator HappyState()
     {
         spRend.sprite = emotionSprite[1];
+        Mystate = CharacterEmotions.happy;
         yield return null;
     }
     IEnumerator AngryState()
     {
         spRend.sprite = emotionSprite[2];
+        Mystate = CharacterEmotions.angry;
         yield return null;
     }
     IEnumerator SadState()
     {
         spRend.sprite = emotionSprite[3];
+        Mystate = CharacterEmotions.sad;
         yield return null;
     }
-
 }
