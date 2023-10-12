@@ -44,6 +44,8 @@ public class Actor : MonoBehaviour
         Mystate = CharacterEmotions.angry;
         yield return null;
     }
+
+    // Mandell note
     IEnumerator SadState()
     {
         spRend.sprite = emotionSprite[3];
