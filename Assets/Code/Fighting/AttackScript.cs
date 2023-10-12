@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,10 @@ public class AttackScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void Punch()
+    {
+
     }
 }
