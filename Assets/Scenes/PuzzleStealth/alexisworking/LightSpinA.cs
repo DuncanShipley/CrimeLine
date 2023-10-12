@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightSpin : MonoBehaviour
+public class LightSpinA : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

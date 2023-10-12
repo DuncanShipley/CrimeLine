@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movescript : MonoBehaviour
+public class movescriptA : MonoBehaviour
 {
     GameObject copy;
     public GameObject projectile;
@@ -10,7 +10,7 @@ public class movescript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // SetTilemapShadows.UpdateShadows();
     }
 
     // Update is called once per frame
