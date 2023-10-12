@@ -29,7 +29,7 @@ public class Actor : MonoBehaviour
     IEnumerator NuetralState()
     {
         spRend.sprite = emotionSprite[0];
-        myState = CharacterEmotion
+        myState = CharacterEmotion;
         yield return null;
     }
     IEnumerator HappyState()
