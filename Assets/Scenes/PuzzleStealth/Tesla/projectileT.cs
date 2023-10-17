@@ -12,6 +12,7 @@ public class projectileT : MonoBehaviour
 
     void Start()
     {
+        gameObject.name = "proj";
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -22,12 +23,11 @@ public class projectileT : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (shot)
+        if (collision.gameObject.name != "proj" && collision.gameObject.tag != "Player")
             rb.velocity = Vector3.zero;
         
         if (collision.tag == "Player" && shot)
         {
-            //Debug.Log("hit");
             availible++;
             Destroy(gameObject);
         }
