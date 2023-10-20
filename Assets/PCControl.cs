@@ -48,7 +48,7 @@ public class PCControl : MonoBehaviour
         else
         {
             inp = false;
-            gonk.velocity = Vector3.Scale(gonk.velocity , new Vector3(0, 1, 0));
+            gonk.velocity = Vector3.Scale(gonk.velocity , new Vector3(1, 1, 1));
            
         }
 
