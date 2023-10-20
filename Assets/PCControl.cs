@@ -28,10 +28,10 @@ public class PCControl : MonoBehaviour
         Vector3 vec = Vector3.one;
         bool inp = true;
         
-        if (Input.GetKeyDown(KeyCode.W) && canJump)
+        if (Input.GetKey(KeyCode.W) && canJump)
         {
             print("guh");
-            gonk.AddForce(new Vector3(0,700,0));
+            gonk.AddForce(Vector3.up * 300);
             canJump = false;
 
         }
@@ -48,7 +48,7 @@ public class PCControl : MonoBehaviour
         else
         {
             inp = false;
-            gonk.velocity = Vector3.Scale(gonk.velocity , new Vector3(0, 1, 0));
+            gonk.velocity = Vector3.Scale(gonk.velocity , new Vector3(1, 1, 1));
            
         }
 
