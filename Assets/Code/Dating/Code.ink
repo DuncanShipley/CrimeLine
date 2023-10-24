@@ -4,5 +4,3 @@ EXTERNAL change_emotion(emotion,ID)
 {place_actors("Actor","Actor 1")}
 {change_emotion("Angry",0)}
 {change_emotion("Happy",1)}
-Hello cuties!!
-    -> END
