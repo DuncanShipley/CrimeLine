@@ -29,6 +29,5 @@ public class LightSpinT : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 270);
         }
-        //Debug.Log(WaypointFollowerT.currentWaypointIndex);
     }
 }
