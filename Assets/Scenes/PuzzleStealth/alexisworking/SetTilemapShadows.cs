@@ -15,7 +15,6 @@ public class SetTilemapShadows : MonoBehaviour
     private List<UnityEngine.Rendering.Universal.ShadowCaster2D> shadowCasterComponents = new List<UnityEngine.Rendering.Universal.ShadowCaster2D>();
     private GameObject sc;
     private Tilemap tilemap;
-    private bool doReset = true, doCleanup = false;
 
     public void Start()
     {
