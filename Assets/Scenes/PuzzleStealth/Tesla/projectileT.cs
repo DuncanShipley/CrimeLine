@@ -8,7 +8,7 @@ public class projectileT : MonoBehaviour
     Rigidbody2D rb;
     public static int availible = 5;
     bool shot = false;
-    // Start is called before the first frame update
+    bool landed = false;
 
     void Start()
     {
@@ -23,14 +23,19 @@ public class projectileT : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name != "proj" && collision.gameObject.tag != "Player")
-            rb.velocity = Vector3.zero;
-        
         if (collision.tag == "Player" && shot)
         {
             availible++;
             Destroy(gameObject);
         }
+        if (collision.gameObject.name != "proj" && collision.gameObject.tag != "Player" && !landed)
+        {
+            landed = true;
+            rb.velocity = Vector3.zero;
+            gameObject.transform.SetParent(collision.gameObject.transform);
+        }
+        
+        
     }
     // Update is called once per frame
     void Update()
