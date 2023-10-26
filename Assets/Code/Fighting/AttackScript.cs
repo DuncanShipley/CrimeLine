@@ -19,6 +19,6 @@ public class AttackScript : MonoBehaviour
 
     void Punch()
     {
-        if (collision.)
+        
     }
 }
