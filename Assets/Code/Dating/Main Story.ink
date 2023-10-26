@@ -1,9 +1,10 @@
 INCLUDE Code.ink
 
-
+-> Intro
+==Intro==
 Macedonia, 2023
 Komercijalna Banka
--> Bank
+->Bank 
 == Bank ==
 You: Hey cutie! You got some time to spare?
 Guard: No

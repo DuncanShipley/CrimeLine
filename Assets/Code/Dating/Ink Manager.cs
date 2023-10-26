@@ -42,6 +42,7 @@ public class InkManager : MonoBehaviour
 
         // Read all the content until we can't continue any more
         while (story.canContinue)
+
         {
             // Continue gets the next line of the story
             string text = story.Continue();
@@ -89,6 +90,15 @@ public class InkManager : MonoBehaviour
         Text storyText = Instantiate(textPrefab) as Text;
         storyText.text = text;
         storyText.transform.SetParent(canvas.transform, false);
+
+    }
+
+    void CreateContentView(string text, Transform transform) 
+    {
+        Text storyText = Instantiate(textPrefab) as Text;
+        storyText.text = text;
+        //storyText.transform.SetParent(panel.transform, false);
+
     }
 
     // Creates a button showing the choice text
