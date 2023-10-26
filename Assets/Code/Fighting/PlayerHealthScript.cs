@@ -7,7 +7,7 @@ public class PlayerHealthScript : MonoBehaviour
 {
     public Slider slider;
 
-    public SetMaxHealth(int health)
+    public void SetMaxHealth(int health)
     {
         slider.maxValue = health;
         slider.value = health;
