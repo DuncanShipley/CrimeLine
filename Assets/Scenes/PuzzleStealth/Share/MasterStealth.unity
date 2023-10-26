@@ -1610,6 +1610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 784177750}
+  - component: {fileID: 784177751}
   m_Layer: 0
   m_Name: Waypoint 1
   m_TagString: Untagged
@@ -1632,6 +1633,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2085067795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &784177751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784177749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9f53ad48ec93b49b75c834a7a9781a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  startingPosition: {x: 0, y: 0, z: 0}
 --- !u!213 &791613631
 Sprite:
   m_ObjectHideFlags: 0
@@ -6520,7 +6535,12 @@ MonoBehaviour:
   - {fileID: 1859792016}
   - {fileID: 1704256755}
   - {fileID: 182484615}
+  oldWaypointIndex: 0
+  leftDetectEdge: 0
+  rightDetectEdge: 0
+  relAngle: 0
   speed: 2
+  Player: {fileID: 0}
 --- !u!114 &1515194564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6658,6 +6678,7 @@ GameObject:
   - component: {fileID: 1708197433}
   - component: {fileID: 1708197435}
   - component: {fileID: 1708197436}
+  - component: {fileID: 1708197437}
   m_Layer: 0
   m_Name: Light 2D (8)
   m_TagString: Untagged
@@ -6740,6 +6761,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfc756e5f1168a2419c5a2e0b9364f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1708197437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708197432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 571d2af3a9bfb604daed540f00a10267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1787777617
