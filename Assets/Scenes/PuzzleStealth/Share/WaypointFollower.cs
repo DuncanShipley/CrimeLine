@@ -13,24 +13,27 @@ public class WaypointFollower : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f && guardWait <= 1) // if you're close and you haven't waited
+        if (guardHealth.alive)
         {
-            guardWait = guardWait + Time.deltaTime; // wait
-            
-        }
-        else if (guardWait >= 1) // once you've waited (and are still close)
-        {
-            currentWaypointIndex++; // look towards the next waypoint
-            if (currentWaypointIndex >= waypoints.Length)
+            if (Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f && guardWait <= 1) // if you're close and you haven't waited
             {
-                currentWaypointIndex = 0;
+                guardWait = guardWait + Time.deltaTime; // wait
+
             }
-            guardWait = 0; // reset wait timer
-            transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed);
-        }
-        else
-        {
-            transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed);
+            else if (guardWait >= 1) // once you've waited (and are still close)
+            {
+                currentWaypointIndex++; // look towards the next waypoint
+                if (currentWaypointIndex >= waypoints.Length)
+                {
+                    currentWaypointIndex = 0;
+                }
+                guardWait = 0; // reset wait timer
+                transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed);
+            }
         }
     }
 }
