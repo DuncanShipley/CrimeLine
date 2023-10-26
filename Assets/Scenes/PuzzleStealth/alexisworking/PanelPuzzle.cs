@@ -3,69 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelPuzzle : MonoBehaviour
+public class Puzzlescript : MonoBehaviour
 {
-    bool activated = false;
-    public GameObject sc;
-    public GameObject container;
-    private List<GameObject> tiles = new List<GameObject>(9);
-    int x = 1;
-    int y = 1;
+    // PUBLIC VARS
+    public GameObject pfInteracts ;  // Sets the prefab to use for interactables
+    public GameObject container;    // Sets the container for any created objects
 
-    // Start is called before the first frame update
-    public void Start()
+    // PRIVATE VARS
+
+    // General
+    private bool activated = false; // Is puzzle activated? Default false
+    private List<GameObject> interacts = new List<GameObject>(); // Interactable objects. All must be "on" to complete the
+
+    // REFRENCES
+    Cursor cursor;
+
+    void Start()
     {
-        GameObject.Find("Panel").GetComponent<Image>().enabled = false;
-        GameObject.Find("Cursor").GetComponent<Image>().enabled = false;
+        cursor = GameObject.Find("Cursor").GetComponent<Cursor>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if(isActivated())
+        if(activated)
         {
-            GameObject cursor = GameObject.Find("Cursor");
-            if (Input.GetKeyDown(KeyCode.RightArrow) && cursor.transform.position.x <= 562)
-            {
-                cursor.transform.position = new Vector3(cursor.transform.position.x + 30, cursor.transform.position.y, cursor.transform.position.z);
-                x++;
-            }
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && cursor.transform.position.x >= 562)
-            {
-                cursor.transform.position = new Vector3(cursor.transform.position.x - 30, cursor.transform.position.y, cursor.transform.position.z);
-                x--;
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow) && cursor.transform.position.y <= 306)
-            {
-                cursor.transform.position = new Vector3(cursor.transform.position.x, cursor.transform.position.y + 30, cursor.transform.position.z);
-                y++;
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow) && cursor.transform.position.y >= 306)
-            {
-                cursor.transform.position = new Vector3(cursor.transform.position.x, cursor.transform.position.y - 30, cursor.transform.position.z);
-                y--;
-            }
-
+            cursor.listen();
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                tiles[y * 3 + x].GetComponent<panelTileScript>().toggleState();
-                if(x - 1 >= 0)
+                int gridPos = cursor.gridPos();
+
+                interacts[cursor.gridPos()].GetComponent<panelTileScript>().toggleState();
+                if(cursor.cx - 1 >= 0)
                 {
-                    tiles[y * 3 + (x - 1)].GetComponent<panelTileScript>().toggleState();
+                    interacts[cursor.gridPos() - 1].GetComponent<panelTileScript>().toggleState();
                 }
-                if (x + 1 <= 2)
+                if (cursor.cx + 1 <= 2)
                 {
-                    tiles[y * 3 + (x + 1)].GetComponent<panelTileScript>().toggleState();
+                    interacts[cursor.gridPos() + 1].GetComponent<panelTileScript>().toggleState();
                 }
-                if (y - 1 >= 0)
+                if (cursor.cy - 1 >= 0)
                 {
-                    tiles[(y - 1) * 3 + x].GetComponent<panelTileScript>().toggleState();
+                    interacts[cursor.gridPos() - 3].GetComponent<panelTileScript>().toggleState();
                 }
-                if (y + 1 <= 2)
+                if (cursor.cy + 1 <= 2)
                 {
-                    tiles[(y + 1) * 3 + x].GetComponent<panelTileScript>().toggleState();
+                    interacts[cursor.gridPos() + 3].GetComponent<panelTileScript>().toggleState();
                 }
             }
+            
+
             if (allOn())
             {
                 activated = false;
@@ -73,7 +59,7 @@ public class PanelPuzzle : MonoBehaviour
                 GameObject.Find("Cursor").GetComponent<Image>().enabled = false;
                 for (int i = 0; i < 9; i++)
                 {
-                    GameObject.Destroy(tiles[i]);
+                    GameObject.Destroy(interacts[i]);
                 }
             }
         }
@@ -84,17 +70,16 @@ public class PanelPuzzle : MonoBehaviour
         activated = true;
         GameObject.Find("Panel").GetComponent<Image>().enabled = true;
 
-        GameObject.Find("Cursor").GetComponent<Image>().enabled = true;
-        GameObject.Find("Cursor").transform.position = new Vector3(562, 306, 0);
+        cursor.setup(562, 306, 2, 2, 30, 30);
 
         for (int i = 0; i < 9; i++)
         {
-            GameObject puzzlesprite = GameObject.Instantiate(sc, container.transform);
+            GameObject puzzlesprite = GameObject.Instantiate(pfInteracts, container.transform);
 
             puzzlesprite.transform.position = new Vector3((i % 3 + 1) * 30 + 502, (i / 3 + 1) * 30 + 246, 0);
             puzzlesprite.name = "puzzlesprite" + i;
 
-            tiles.Add(puzzlesprite);
+            interacts.Add(puzzlesprite);
         }
         Debug.Log("hi");
     }
@@ -102,11 +87,12 @@ public class PanelPuzzle : MonoBehaviour
     {
         return activated;
     }
+
     public bool allOn()
     {
         for(int i = 0; i < 9; i++)
         {
-            if(!tiles[i].GetComponent<panelTileScript>().getState())
+            if(!interacts[i].GetComponent<panelTileScript>().getState())
             {
                 return false;
             }
