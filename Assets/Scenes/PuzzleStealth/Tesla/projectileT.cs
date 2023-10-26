@@ -7,23 +7,35 @@ public class projectileT : MonoBehaviour
     public GameObject player;
     Rigidbody2D rb;
     public static int availible = 5;
-    // Start is called before the first frame update
+    bool shot = false;
+    bool landed = false;
 
     void Start()
     {
+        gameObject.name = "proj";
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        rb.velocity = Vector3.zero;
-        
-        if (collision.collider.tag == "Player")
+        shot = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player" && shot)
         {
-            Debug.Log("hit");
             availible++;
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
+        if (collision.gameObject.name != "proj" && collision.gameObject.tag != "Player" && !landed)
+        {
+            landed = true;
+            rb.velocity = Vector3.zero;
+            gameObject.transform.SetParent(collision.gameObject.transform);
+        }
+        
+        
     }
     // Update is called once per frame
     void Update()
