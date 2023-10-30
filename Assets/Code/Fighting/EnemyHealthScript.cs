@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthScript : MonoBehaviour
+public class EnemyHealthScript : MonoBehaviour
 {
     public Slider slider;
 
-    public SetMaxHealth(int health)
+    public void SetMaxHealth(int health)
     {
         slider.maxValue = health;
         slider.value = health;
