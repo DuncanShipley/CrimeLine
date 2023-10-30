@@ -22,27 +22,46 @@ public class PanelPuzzle : MonoBehaviour
     {
         if(isActivated())
         {
-            Cursor cursor = GameObject.Find("Cursor").GetComponent<Cursor>();
-            cursor.listen();
+            GameObject cursor = GameObject.Find("Cursor");
+            if (Input.GetKeyDown(KeyCode.RightArrow) && cursor.transform.position.x <= 562)
+            {
+                cursor.transform.position = new Vector3(cursor.transform.position.x + 30, cursor.transform.position.y, cursor.transform.position.z);
+                x++;
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && cursor.transform.position.x >= 562)
+            {
+                cursor.transform.position = new Vector3(cursor.transform.position.x - 30, cursor.transform.position.y, cursor.transform.position.z);
+                x--;
+            }
+            if (Input.GetKeyDown(KeyCode.UpArrow) && cursor.transform.position.y <= 306)
+            {
+                cursor.transform.position = new Vector3(cursor.transform.position.x, cursor.transform.position.y + 30, cursor.transform.position.z);
+                y++;
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow) && cursor.transform.position.y >= 306)
+            {
+                cursor.transform.position = new Vector3(cursor.transform.position.x, cursor.transform.position.y - 30, cursor.transform.position.z);
+                y--;
+            }
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                tiles[cursor.gridPos()].GetComponent<panelTileScript>().toggleState();
-                if(cursor.cx - 1 > 0)
+                tiles[y * 3 + x].GetComponent<panelTileScript>().toggleState();
+                if(x - 1 >= 0)
                 {
-                    tiles[cursor.gridPos() - 1].GetComponent<panelTileScript>().toggleState();
+                    tiles[y * 3 + (x - 1)].GetComponent<panelTileScript>().toggleState();
                 }
-                if (cursor.cx + 1 <= 2)
+                if (x + 1 <= 2)
                 {
-                    tiles[cursor.gridPos() + 1].GetComponent<panelTileScript>().toggleState();
+                    tiles[y * 3 + (x + 1)].GetComponent<panelTileScript>().toggleState();
                 }
-                if (cursor.cy - 1 > 0)
+                if (y - 1 >= 0)
                 {
-                    tiles[cursor.gridPos() - 3].GetComponent<panelTileScript>().toggleState();
+                    tiles[(y - 1) * 3 + x].GetComponent<panelTileScript>().toggleState();
                 }
-                if (cursor.cy + 1 <= 2)
+                if (y + 1 <= 2)
                 {
-                    tiles[cursor.gridPos() + 3].GetComponent<panelTileScript>().toggleState();
+                    tiles[(y + 1) * 3 + x].GetComponent<panelTileScript>().toggleState();
                 }
             }
             if (allOn())
@@ -61,7 +80,10 @@ public class PanelPuzzle : MonoBehaviour
     public void activate()
     {
         activated = true;
-        GameObject.Find("Cursor").GetComponent<Cursor>().setup(1, 1, 2, 2, 30, 30);
+        GameObject.Find("Panel").GetComponent<Image>().enabled = true;
+
+        GameObject.Find("Cursor").GetComponent<Image>().enabled = true;
+        GameObject.Find("Cursor").transform.position = new Vector3(562, 306, 0);
 
         for (int i = 0; i < 9; i++)
         {

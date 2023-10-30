@@ -11,16 +11,14 @@ public class SetTilemapShadows : MonoBehaviour
     private CompositeCollider2D tilemapCollider;
     private GameObject shadowCasterContainer;
     private List<GameObject> shadowCasters = new List<GameObject>(), toDelete = new List<GameObject>();
-    private List<PolygonCollider2D> shadowPolygons = new List<PolygonCollider2D>();
-    private List<UnityEngine.Rendering.Universal.ShadowCaster2D> shadowCasterComponents = new List<UnityEngine.Rendering.Universal.ShadowCaster2D>();
     private GameObject sc;
     private Tilemap tilemap;
 
     public void Start()
     {
+        Instance = this;
         sc = GameObject.Find("tilemapshadow");
         tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
-        Instance = this;
         tilemapCollider = GetComponent<CompositeCollider2D>();
         shadowCasterContainer = GameObject.Find("shadow_casters");
         int i = 0;
