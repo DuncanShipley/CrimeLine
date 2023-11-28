@@ -239,13 +239,14 @@ GameObject:
   m_Component:
   - component: {fileID: 214173119}
   - component: {fileID: 214173120}
+  - component: {fileID: 214173121}
   m_Layer: 0
   m_Name: PunchArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &214173119
 Transform:
   m_ObjectHideFlags: 0
@@ -282,6 +283,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 1, z: 0.1}
   m_Center: {x: -2, y: 0, z: 0}
+--- !u!114 &214173121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214173118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1271c5e9354b1ac45ab2c6dfc81fbaa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &398650982
 GameObject:
   m_ObjectHideFlags: 0

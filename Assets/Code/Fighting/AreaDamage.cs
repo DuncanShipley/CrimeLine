@@ -1,12 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AreaDamage : MonoBehaviour
 {
-    private float damage;
+    private int damage;
 
-    private void SetDamage(float damage)
+    private void SetDamage(int damage)
     {
         this.damage = damage;
     }
@@ -16,7 +17,7 @@ public class AreaDamage : MonoBehaviour
         if(collider.GetComponent<EnemyHealthScript>() != null)
         {
             EnemyHealthScript health = collider.GetComponent<EnemyHealthScript>();
-            int newHealth = health.slider.value-damage;
+            int newHealth = (int)(health.slider.value)-damage;
             health.SetHealth(newHealth);
         }
     }
