@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealthScript : MonoBehaviour
+public class HealthScript : MonoBehaviour
 {
     public Slider slider;
 
@@ -18,3 +18,4 @@ public class EnemyHealthScript : MonoBehaviour
         slider.value = health;
     }
 }
+

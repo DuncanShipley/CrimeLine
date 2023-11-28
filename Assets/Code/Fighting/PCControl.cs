@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PC2Control : MonoBehaviour
+
+public class PCControl : MonoBehaviour
 {
+
     Rigidbody gonk;
     bool canJump = false;
     // Start is called before the first frame update
@@ -28,19 +30,19 @@ public class PC2Control : MonoBehaviour
         Vector3 vec = Vector3.one;
         bool inp = true;
         
-        if (Input.GetKeyDown(KeyCode.UpArrow) && canJump)
+        if (Input.GetKeyDown(KeyCode.W) && canJump)
         {
             print("guh");
             gonk.AddForce(new Vector3(0,700,0));
             canJump = false;
 
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             vec = Vector3.Scale(vec, new Vector3(-8, 1, 1));
             
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D))
         {
 
             vec = Vector3.Scale(vec, new Vector3(8, 1, 1));
@@ -60,3 +62,4 @@ public class PC2Control : MonoBehaviour
         
     }
 }
+
