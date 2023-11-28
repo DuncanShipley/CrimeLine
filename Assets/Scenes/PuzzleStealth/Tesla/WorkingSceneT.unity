@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 18159573}
   - component: {fileID: 18159572}
   - component: {fileID: 18159571}
+  - component: {fileID: 18159574}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -4210,6 +4211,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &18159574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18159569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11aad303637de0d4586db9ac09052a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &128167196
 GameObject:
   m_ObjectHideFlags: 0
@@ -5277,7 +5290,12 @@ MonoBehaviour:
   - {fileID: 2056751193}
   - {fileID: 273065465}
   - {fileID: 1588071222}
+  oldWaypointIndex: 0
+  leftDetectEdge: 0
+  rightDetectEdge: 0
+  relAngle: 0
   speed: 2
+  Player: {fileID: 0}
 --- !u!61 &578955365
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class projectileT : MonoBehaviour
     public static int availible = 5;
     bool shot = false;
     bool landed = false;
+    // Start is called before the first frame update
 
     void Start()
     {
@@ -34,8 +35,6 @@ public class projectileT : MonoBehaviour
             rb.velocity = Vector3.zero;
             gameObject.transform.SetParent(collision.gameObject.transform);
         }
-        
-        
     }
     // Update is called once per frame
     void Update()
