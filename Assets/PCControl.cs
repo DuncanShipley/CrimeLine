@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PCControl : MonoBehaviour
 {
+    public GameObject Hitbox;
     Rigidbody gonk;
     bool canJump = false;
     // Start is called before the first frame update
@@ -18,7 +19,10 @@ public class PCControl : MonoBehaviour
         canJump = true;
     }
 
+    private void Punch()
+    {
 
+    }
 
     // Update is called once per frame
     void Update()
@@ -56,6 +60,11 @@ public class PCControl : MonoBehaviour
         {
       
             gonk.velocity = new Vector3(vec.x, gonk.velocity.y, vec.z);
+        }
+
+        if (Input.GetKey(KeyCode.H))
+        {
+
         }
         
     }
