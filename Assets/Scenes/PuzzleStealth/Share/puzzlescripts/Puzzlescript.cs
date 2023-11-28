@@ -23,12 +23,12 @@ public class PanelPuzzle : MonoBehaviour
         if(isActivated())
         {
             GameObject cursor = GameObject.Find("Cursor");
-            if (Input.GetKeyDown(KeyCode.RightArrow) && cursor.transform.position.x <= 562)
+            if (Input.GetKeyDown(KeyCode.RightArrow) && cursor.transform.position.x <= 557)
             {
                 cursor.transform.position = new Vector3(cursor.transform.position.x + 30, cursor.transform.position.y, cursor.transform.position.z);
                 x++;
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && cursor.transform.position.x >= 562)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && cursor.transform.position.x >= 557)
             {
                 cursor.transform.position = new Vector3(cursor.transform.position.x - 30, cursor.transform.position.y, cursor.transform.position.z);
                 x--;
@@ -83,13 +83,13 @@ public class PanelPuzzle : MonoBehaviour
         GameObject.Find("Panel").GetComponent<Image>().enabled = true;
 
         GameObject.Find("Cursor").GetComponent<Image>().enabled = true;
-        GameObject.Find("Cursor").transform.position = new Vector3(562, 306, 0);
+        GameObject.Find("Cursor").transform.position = new Vector3(557, 306, 0);
 
         for (int i = 0; i < 9; i++)
         {
             GameObject puzzlesprite = GameObject.Instantiate(sc, container.transform);
 
-            puzzlesprite.transform.position = new Vector3((i % 3 + 1) * 30 + 502, (i / 3 + 1) * 30 + 246, 0);
+            puzzlesprite.transform.position = new Vector3((i % 3 + 1) * 30 + 497, (i / 3 + 1) * 30 + 246, 0);
             puzzlesprite.name = "puzzlesprite" + i;
 
             tiles.Add(puzzlesprite);
