@@ -85,7 +85,7 @@ public class WaypointFollowerBK : MonoBehaviour
         {
             rightDetectEdge = rightDetectEdge + 360;
         } // establish the radii within which the guard can detect the player
-        if (Vector2.Distance(transform.position, Player.transform.position) < detectRadius && leftDetectEdge < relAngle && relAngle < rightDetectEdge) // if the player is within the guard's light
+        if (Vector2.Distance(transform.position, Player.transform.position) < detectRadius/7 && leftDetectEdge < relAngle && relAngle < rightDetectEdge) // if the player is within the guard's light
         {
             if (suspicious < 1) // and the guard isn't suspicious
             {
