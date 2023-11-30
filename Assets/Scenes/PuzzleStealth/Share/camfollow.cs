@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class camfollow : MonoBehaviour
+public class Camfollow : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
