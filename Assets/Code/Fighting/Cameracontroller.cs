@@ -9,6 +9,7 @@ public class Cameracontroller : MonoBehaviour
     Transform cam;
     Transform t1;
     Transform t2;
+    private float camypos = 0;
     void Start()
     {
         t1 = p1.GetComponent<Transform>();
@@ -19,6 +20,18 @@ public class Cameracontroller : MonoBehaviour
     
     void Update()
     {
-        cam.position = new Vector3((t1.position.x+t2.position.x)/2,cam.position.y,cam.position.z);
+        if (t1.position.x + t2.position.x > 5.6f)
+        {
+            camypos = 5.6f;
+        }
+        else if (t1.position.x + t2.position.x < -5.6f)
+        {
+            camypos = -5.6f;
+        }
+        else
+        {
+            camypos = t1.position.x + t2.position.x;
+        }
+        cam.position = new Vector3(camypos, 8.4f + (t1.position.y-3.7f)/10+(t2.position.y-3.7f)/10, cam.position.z);
     }
 }
