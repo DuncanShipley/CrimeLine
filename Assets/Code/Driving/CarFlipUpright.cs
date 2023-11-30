@@ -26,6 +26,7 @@ public class CarFlipUpright : MonoBehaviour
 
             if ((eulerAngX >= 135f && eulerAngX <= 225f) || (eulerAngZ <= -135f && eulerAngZ >= -225f) || (eulerAngX <= -135f && eulerAngX >= -225f) || (eulerAngZ >= 135f && eulerAngZ <= 225f))
             {
+                this.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
                 Car.transform.Rotate(0, 0, 180, Space.Self);
                 print("1");
                 print(eulerAngX);
@@ -33,16 +34,19 @@ public class CarFlipUpright : MonoBehaviour
             }
             else if ((eulerAngZ <= -45f && eulerAngZ >= -135f) || (eulerAngZ >= 45f && eulerAngZ <= 135f))
             {
+                this.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
                 Car.transform.Rotate(0, 0, -90, Space.Self);
                 print("2");
             }
             else if ((eulerAngZ >= 45f && eulerAngZ <= 135f) || (eulerAngZ <= -45f && eulerAngZ >= -135f))
             {
+                this.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
                 Car.transform.Rotate(0, 0, -90, Space.Self);
                 print("3");
             }
             else if ((eulerAngZ >= 225f && eulerAngZ <= 315f) || (eulerAngZ <= -225f && eulerAngZ >= -315f))
             {
+                this.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
                 Car.transform.Rotate(0, 0, 90, Space.Self);
                 print("4");
             }
