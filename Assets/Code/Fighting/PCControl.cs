@@ -5,12 +5,17 @@ using UnityEngine;
 public class PCControl : MonoBehaviour
 {
     public GameObject Hitbox;
-    Rigidbody gonk;
+    Rigidbody body;
     bool canJump = false;
+    Animator anim;
+
+    private GameObject CurrentAttack;
+    
     // Start is called before the first frame update
     void Start()
     {
-        gonk = GetComponent<Rigidbody>();
+        body = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     private void OnTriggerStay(Collider other)
@@ -19,9 +24,17 @@ public class PCControl : MonoBehaviour
         canJump = true;
     }
 
-    private void Punch()
-    {
 
+
+
+    private void Attack()
+    {
+        Instantiate(CurrentAttack, gameObject.transform, false);
+    }
+
+    private void DelAttack()
+    {
+        gameObject.GetComponentInChildren<Attack>().DeleteSelf();
     }
 
     // Update is called once per frame
@@ -35,7 +48,7 @@ public class PCControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && canJump)
         {
             print("guh");
-            gonk.AddForce(new Vector3(0,700,0));
+            body.AddForce(new Vector3(0,700,0));
             canJump = false;
 
         }
@@ -52,19 +65,20 @@ public class PCControl : MonoBehaviour
         else
         {
             inp = false;
-            gonk.velocity = Vector3.Scale(gonk.velocity , new Vector3(0, 1, 0));
+            body    .velocity = Vector3.Scale(body.velocity , new Vector3(0, 1, 0));
            
         }
 
         if (inp)
         {
       
-            gonk.velocity = new Vector3(vec.x, gonk.velocity.y, vec.z);
+            body.velocity = new Vector3(vec.x, body.velocity.y, vec.z);
         }
 
         if (Input.GetKey(KeyCode.H))
         {
-
+            CurrentAttack = Hitbox;
+            anim.SetTrigger("punch");
         }
         
     }
