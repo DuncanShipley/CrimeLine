@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PCControl : MonoBehaviour
 {
-    public GameObject Hitbox;
+    public GameObject Punch;
     Rigidbody body;
     bool canJump = false;
     Animator anim;
+    bool stunned = false;
 
     private GameObject CurrentAttack;
     
@@ -35,6 +36,11 @@ public class PCControl : MonoBehaviour
     private void DelAttack()
     {
         gameObject.GetComponentInChildren<Attack>().DeleteSelf();
+    }
+
+    private void UnStun()
+    {
+        stunned = false;
     }
 
     // Update is called once per frame
@@ -75,11 +81,15 @@ public class PCControl : MonoBehaviour
             body.velocity = new Vector3(vec.x, body.velocity.y, vec.z);
         }
 
-        if (Input.GetKey(KeyCode.H))
+        if (Input.GetKey(KeyCode.H) && !stunned)
         {
-            CurrentAttack = Hitbox;
+            CurrentAttack = Punch;
             anim.SetTrigger("punch");
+            stunned = true;
+            Invoke("UnStun" , 0.5f);
         }
+
         
     }
+
 }
