@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &76251701
 RectTransform:
   m_ObjectHideFlags: 0
@@ -228,12 +228,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1677448602}
+  m_Father: {fileID: 95864538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 480, y: -229.6}
-  m_SizeDelta: {x: 960, y: 459.21}
+  m_AnchoredPosition: {x: 25, y: 6.474167}
+  m_SizeDelta: {x: 1870, y: 931.3584}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76251702
 MonoBehaviour:
@@ -422,7 +422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &95864538
 RectTransform:
   m_ObjectHideFlags: 0
@@ -435,6 +435,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 76251701}
   - {fileID: 594912218}
   - {fileID: 1776991365}
   - {fileID: 1320804516}
@@ -1898,6 +1899,7 @@ GameObject:
   - component: {fileID: 642146431}
   - component: {fileID: 642146430}
   - component: {fileID: 642146437}
+  - component: {fileID: 642146438}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Untagged
@@ -2070,6 +2072,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 907622109}
+--- !u!114 &642146438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642146429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b29616e329ef2245a611af50f72e2c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Punch: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
 --- !u!1 &642503411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,6 +3313,7 @@ GameObject:
   - component: {fileID: 1106189732}
   - component: {fileID: 1106189731}
   - component: {fileID: 1106189738}
+  - component: {fileID: 1106189739}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -3471,6 +3487,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Punch: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
+--- !u!114 &1106189739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106189730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef02ba1c825134c4987d8538a6cd4bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1737767607}
 --- !u!1 &1157236048
 GameObject:
   m_ObjectHideFlags: 0
@@ -4532,7 +4561,6 @@ RectTransform:
   - {fileID: 1908185035}
   - {fileID: 2003471514}
   - {fileID: 1157236049}
-  - {fileID: 76251701}
   - {fileID: 95864538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
