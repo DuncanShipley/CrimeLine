@@ -20,7 +20,7 @@ public class movescript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!GameObject.Find("Panel").GetComponent<PanelPuzzle>().isActivated())
+        if(!GameObject.Find("Panel").GetComponent<PanelPuzzleA>().isActivated())
         {
 
             h = Input.GetAxis("Horizontal");

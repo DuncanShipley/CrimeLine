@@ -26,6 +26,9 @@ public class SetTilemapShadowsA : MonoBehaviour
         {
             if (tilemap.GetTile(position) == null)
                 continue;
+            Debug.Log(tilemap.GetColliderType(position) != Tile.ColliderType.Grid);
+            if (tilemap.GetColliderType(position) != Tile.ColliderType.Grid)
+                continue;
             if (position.x != 0 || position.x != 0)
             {
             GameObject shadowCaster = GameObject.Instantiate(sc, shadowCasterContainer.transform);
