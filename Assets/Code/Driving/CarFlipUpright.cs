@@ -31,24 +31,28 @@ public class CarFlipUpright : MonoBehaviour
                 print("1");
                 print(eulerAngX);
                 print(eulerAngZ);
+                EventManager.OnTimerUpdate(-5);
             }
             else if ((eulerAngZ <= -45f && eulerAngZ >= -135f) || (eulerAngZ >= 45f && eulerAngZ <= 135f))
             {
                 this.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
                 Car.transform.Rotate(0, 0, -90, Space.Self);
                 print("2");
+                EventManager.OnTimerUpdate(-5);
             }
             else if ((eulerAngZ >= 45f && eulerAngZ <= 135f) || (eulerAngZ <= -45f && eulerAngZ >= -135f))
             {
                 this.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
                 Car.transform.Rotate(0, 0, -90, Space.Self);
                 print("3");
+                EventManager.OnTimerUpdate(-5);
             }
             else if ((eulerAngZ >= 225f && eulerAngZ <= 315f) || (eulerAngZ <= -225f && eulerAngZ >= -315f))
             {
                 this.gameObject.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
                 Car.transform.Rotate(0, 0, 90, Space.Self);
                 print("4");
+                EventManager.OnTimerUpdate(-5);
             }
         }
 

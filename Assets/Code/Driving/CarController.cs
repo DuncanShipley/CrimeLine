@@ -52,8 +52,8 @@ public class CarController : MonoBehaviour
 
     private void ApplyBreaking()
     {
-        frontRightWheelCollider.brakeTorque = currentbreakForce * 2;
-        frontLeftWheelCollider.brakeTorque = currentbreakForce * 2;
+        //frontRightWheelCollider.brakeTorque = currentbreakForce * 2;
+        //frontLeftWheelCollider.brakeTorque = currentbreakForce * 2;
         rearLeftWheelCollider.brakeTorque = currentbreakForce * 2;
         rearRightWheelCollider.brakeTorque = currentbreakForce * 2;
     }
