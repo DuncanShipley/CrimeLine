@@ -106,7 +106,7 @@ public class PanelPuzzleT : MonoBehaviour
     {
         for(int i = 0; i < 9; i++)
         {
-            if(!tiles[i].GetComponent<panelTileScript>().getState())
+            if(!tiles[i].GetComponent<panelTileScriptT>().getState())
             {
                 return false;
             }

@@ -38,18 +38,10 @@ public class movescriptT : MonoBehaviour
             rb.MovePosition(transform.position + inp);
 
 
-            //rotation
-            var rot = 0f;
-            var quad = 0f;
-            if (h != 0)
-                rot = (Mathf.Abs(180 * ((float)(Math.Atan(v / h))) / (float)Math.PI)) % 90;
-            else
-                h = 0;
-
             
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, rot);
+            
 
-            //projectiles
+            // last movement
             if ((Mathf.Abs(h) > 0) || (Mathf.Abs(v) > 0))
             {
                 if (Mathf.Abs(h) > 0)
@@ -63,6 +55,7 @@ public class movescriptT : MonoBehaviour
                     lastInput.y = 0;
             }
             throwPause += Time.deltaTime;
+
 
             //creates a projectile moving in the same direction as last player movement
             if (Input.GetKeyDown(KeyCode.E) && projectileT.availible > 0 && throwPause >= 1)

@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class projectileBK : MonoBehaviour
+public class guardSightBK : MonoBehaviour
 {
     public GameObject player;
     Rigidbody2D rb;
-    public static int availible = 5;
     bool shot = false;
     bool landed = false;
     // Start is called before the first frame update
 
     void Start()
     {
-        gameObject.name = "proj";
-        Debug.Log(gameObject.name + " spawned @ " + gameObject.transform.position);
+        gameObject.name = "guardSightProj";
+        Debug.Log(gameObject.name + " spawned");
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -27,7 +26,6 @@ public class projectileBK : MonoBehaviour
     {
         if (collision.tag == "Player" && shot)
         {
-            availible++;
             Destroy(gameObject);
         }
         if (collision.gameObject.name != "proj" && collision.gameObject.tag != "Player" && !landed)
