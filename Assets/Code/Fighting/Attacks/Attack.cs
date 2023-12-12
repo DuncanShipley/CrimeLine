@@ -8,7 +8,9 @@ public abstract class Attack : MonoBehaviour
 {
     public virtual int damage { get; set;}
 
-    
+    public virtual Vector3 knockback { get; set; }
+
+
 
 
     private void OnTriggerEnter(Collider collider)
@@ -18,6 +20,7 @@ public abstract class Attack : MonoBehaviour
             HealthScript health = collider.GetComponent<HealthScript>();
             int newHealth = (int)(health.slider.value) - damage;
             health.SetHealth(newHealth);
+            health.TakeKnockback(knockback);
             DeleteSelf();
         }
     }

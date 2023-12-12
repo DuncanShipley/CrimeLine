@@ -7,10 +7,12 @@ public class HealthScript : MonoBehaviour
 {
     public Slider slider;
     Animator anim;
+    Rigidbody body;
 
     public void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        body = gameObject.GetComponent<Rigidbody>();
     }
     public void SetMaxHealth(int health)
     {
@@ -25,6 +27,15 @@ public class HealthScript : MonoBehaviour
         {
             anim.SetTrigger("die");
         }
+        else
+        {
+            anim.SetTrigger("hurt");
+        }
+    }
+
+    public void TakeKnockback(Vector3 vec)
+    {
+        body.AddForce(vec);
     }
 }
 

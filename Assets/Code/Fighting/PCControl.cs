@@ -5,6 +5,7 @@ using UnityEngine;
 public class PCControl : MonoBehaviour
 {
     public GameObject Punch;
+    public GameObject Hadukenm;
     Rigidbody body;
     bool canJump = false;
     Animator anim;
@@ -22,26 +23,38 @@ public class PCControl : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         print("hih");
-        canJump = true;
+        if (body.velocity.y < 2)
+        {
+            canJump = true;
+        }    
     }
 
 
 
 
-    private void Attack()
+    private void Uppercut()
+    {
+        Instantiate(CurrentAttack, gameObject.transform, false);
+    }
+
+    private void Haduken()
     {
         Instantiate(CurrentAttack, gameObject.transform, false);
     }
 
     private void DelAttack()
     {
+        stunned = false;
         gameObject.GetComponentInChildren<Attack>().DeleteSelf();
+        
     }
 
-    private void UnStun()
+    private void Unstun()
     {
         stunned = false;
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -71,7 +84,7 @@ public class PCControl : MonoBehaviour
         else
         {
             inp = false;
-            body    .velocity = Vector3.Scale(body.velocity , new Vector3(0, 1, 0));
+            body.velocity = Vector3.Scale(body.velocity , new Vector3(0, 1, 0));
            
         }
 
@@ -86,10 +99,18 @@ public class PCControl : MonoBehaviour
             CurrentAttack = Punch;
             anim.SetTrigger("punch");
             stunned = true;
-            Invoke("UnStun" , 0.5f);
+            
         }
 
-        
+        if (Input.GetKey(KeyCode.J) && !stunned)
+        {
+            CurrentAttack = Hadukenm;
+            anim.SetTrigger("punch");
+            stunned = true;
+        }
+
+
+
     }
 
 }
