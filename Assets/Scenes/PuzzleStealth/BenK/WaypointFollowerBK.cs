@@ -17,12 +17,22 @@ public class WaypointFollowerBK : MonoBehaviour
     public float leftDetectEdge;
     public float rightDetectEdge;
     public double relAngle;
+    public float zrotation = 0;
+    
+    GameObject sightCopy;
+    public GameObject guardSight;
+    Vector3 lastDirection;
+    float h = 0f;
+    float v = 0f;
 
     [SerializeField] private float speed = 2f;
     public GameObject Player;
 
+    public Rigidbody2D rb;
+
      public void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         wpref = waypoints;
         movingLeft = 0;
     }
@@ -30,87 +40,114 @@ public class WaypointFollowerBK : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f && guardWait <= 1 && !chase) // if you're close and you haven't waited
+        h = rb.velocity.x;
+        v = rb.velocity.y;
+        if (guardHealthBK.alive && !guardHealthBK.dying)
         {
-            guardWait = guardWait + Time.deltaTime; // wait
-            
-        }
-        else if (guardWait >= 1) // once you've waited (and are still close)
-        {
-            currentWaypointIndex++; // look towards the next waypoint
-            if (currentWaypointIndex >= waypoints.Length)
+            if ((Mathf.Abs(h) > 0) || (Mathf.Abs(v) > 0))
             {
-                currentWaypointIndex = 0;
+                if (Mathf.Abs(h) > 0)
+                    lastDirection.x = (h / Mathf.Abs(h)) * 100;
+                else if (Mathf.Abs(v) - Mathf.Abs(h) > .1)
+                    lastDirection.x = 0;
+
+                if (Mathf.Abs(v) > 0)
+                    lastDirection.y = (v / Mathf.Abs(v)) * 100;
+                else if (Mathf.Abs(h) - Mathf.Abs(v) > .1)
+                    lastDirection.y = 0;
             }
-            guardWait = 0; // reset wait timer
-            if (suspicious == 0 || suspicious == 1)
+            sightCopy = Instantiate(guardSight, gameObject.transform.position, new Quaternion());
+            Debug.Log("GUARD SHOT " + sightCopy.gameObject.name);
+            var pRB = sightCopy.GetComponent<Rigidbody2D>();
+            pRB.AddRelativeForce(lastDirection);
+            if (Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f && guardWait <= 1 && !chase) // if you're close and you haven't waited
             {
-                transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed);
+                guardWait = guardWait + Time.deltaTime; // wait
 
             }
-        }
-        else if (suspicious == 0 || suspicious == 1)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed); // move towards waypoint
-        }
-        if ((float)(wpref[currentWaypointIndex].transform.position.x - transform.position.x) < 0f) // are moving left?
-        {
-             movingLeft = 180;
-        }
-        else
-        {
-            movingLeft = 0;
-        }
-        if (Player.transform.position.y > transform.position.y && Player.transform.position.x > transform.position.x) // if the player is up and to the right of us
-        {
-            relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI;
-        }
-        else if (Player.transform.position.x < transform.position.x) // if they're to the left of us
-        {
-            relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI + 180;
-        }
-        else // if they're down and to the right of us
-        {
-            relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI + 360;
-        }
-        // ^^ these are to take the inverse tangent of the correct 'triangle' ^^
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(Math.Atan((wpref[currentWaypointIndex].transform.position.y - transform.position.y) / (wpref[currentWaypointIndex].transform.position.x - transform.position.x)) * 180 / Math.PI) - 90 + movingLeft); // point towards current waypoint
-        leftDetectEdge = transform.eulerAngles.z - 270 - detectRadius / 2; 
-        rightDetectEdge = transform.eulerAngles.z - 270 + detectRadius / 2; 
-        if (leftDetectEdge < -detectRadius/2)
-        {
-            leftDetectEdge = leftDetectEdge + 360;
-        }
-        if (rightDetectEdge < detectRadius/2)
-        {
-            rightDetectEdge = rightDetectEdge + 360;
-        } // establish the radii within which the guard can detect the player
-        if (Vector2.Distance(transform.position, Player.transform.position) < Math.Sqrt(detectRadius) && leftDetectEdge < relAngle && relAngle < rightDetectEdge) // if the player is within the guard's light
-        {
-            if (suspicious < 1) // and the guard isn't suspicious
+            else if (guardWait >= 1) // once you've waited (and are still close)
             {
-                suspicious = suspicious + 10*Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position); // increase the guard's suspicion
+                currentWaypointIndex++; // look towards the next waypoint
+                if (currentWaypointIndex >= waypoints.Length)
+                {
+                    currentWaypointIndex = 0;
+                }
+                guardWait = 0; // reset wait timer
+                if (suspicious == 0 || suspicious == 1)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed);
+
+                }
             }
-            else // if they are suspicious, begin chasing the player
+            else if (suspicious == 0 || suspicious == 1)
             {
-                chase = true;
-                oldWaypointIndex = currentWaypointIndex;
-                currentWaypointIndex = 0;
-                detectRadius = 121;
-                speed = 6f;
-                suspicious = 1;
+                transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed); // move towards waypoint
             }
+            if ((float)(wpref[currentWaypointIndex].transform.position.x - transform.position.x) < 0f) // are moving left?
+            {
+                movingLeft = 180;
+            }
+            else
+            {
+                movingLeft = 0;
+            }
+            if (Player.transform.position.y > transform.position.y && Player.transform.position.x > transform.position.x) // if the player is up and to the right of us
+            {
+                relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI;
+            }
+            else if (Player.transform.position.x < transform.position.x) // if they're to the left of us
+            {
+                relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI + 180;
+            }
+            else // if they're down and to the right of us
+            {
+                relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI + 360;
+            }
+            // ^^ these are to take the inverse tangent of the correct 'triangle' ^^
+            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(Math.Atan((wpref[currentWaypointIndex].transform.position.y - transform.position.y) / (wpref[currentWaypointIndex].transform.position.x - transform.position.x)) * 180 / Math.PI) - 90 + movingLeft); // point towards current waypoint
+            leftDetectEdge = transform.eulerAngles.z - 270f - (detectRadius / 2f);
+            rightDetectEdge = transform.eulerAngles.z - 270f + detectRadius / 2f;
+            if (leftDetectEdge < -detectRadius / 2)
+            {
+                leftDetectEdge = leftDetectEdge + 360;
+            }
+            if (rightDetectEdge < detectRadius / 2)
+            {
+                rightDetectEdge = rightDetectEdge + 360;
+            } // establish the radii within which the guard can detect the player
+            if (Vector2.Distance(transform.position, Player.transform.position) < detectRadius / 7 && leftDetectEdge < relAngle && relAngle < rightDetectEdge) // if the player is within the guard's light
+            {
+                if (suspicious < 1) // and the guard isn't suspicious
+                {
+                    suspicious = suspicious + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position); // increase the guard's suspicion
+                }
+                else // if they are suspicious, begin chasing the player
+                {
+                    chase = true;
+                    oldWaypointIndex = currentWaypointIndex;
+                    currentWaypointIndex = 0;
+                    detectRadius = 121;
+                    speed = 6f;
+                    suspicious = 1;
+                }
+            }
+            else if (suspicious > 0) // if they're suspicious and the player isn't within their light, decrease their suspicion
+            {
+                suspicious = suspicious - 0.5f * Time.deltaTime;
+            }
+            else // if none of those are true, end the chase
+            {
+                chase = false;
+                detectRadius = 81;
+                speed = 2f;
+                suspicious = 0;
+            }
+            zrotation = transform.eulerAngles.z;
         }
-        else if (suspicious > 0) // if they're suspicious and the player isn't within their light, decrease their suspicion
+        else if (guardHealthBK.dying)
         {
-            suspicious = suspicious - 0.5f*Time.deltaTime;
-        }
-        else // if none of those are true, end the chase
-        {
-            chase = false;
-            detectRadius = 81;
-            speed = 2f;
-            suspicious = 0;
+            zrotation = zrotation + 360 * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, zrotation);
         }
     }
 }
