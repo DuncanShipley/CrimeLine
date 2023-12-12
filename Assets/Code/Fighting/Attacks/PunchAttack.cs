@@ -11,4 +11,10 @@ public class PunchAttack : Attack
         get { return 10; }
 
     }
+
+    public override Vector3 knockback
+    {
+        get { return new Vector3(-500,200,0); }
+
+    }
 }
