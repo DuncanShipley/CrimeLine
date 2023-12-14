@@ -9,8 +9,6 @@ public class FadeScript : MonoBehaviour
     [SerializeField] private CanvasGroup blackBackground;
     [SerializeField] private CanvasGroup round;
     [SerializeField] private CanvasGroup fight;
-    public GameObject youWinMain;
-    public GameObject youWinGhost;
 
     [SerializeField] private bool fadeInIntro = false;
     [SerializeField] private bool fadeOutIntro = false;
@@ -20,8 +18,6 @@ public class FadeScript : MonoBehaviour
     [SerializeField] private bool fadeOutRound = false;
     [SerializeField] private bool fadeInFight = false;
     [SerializeField] private bool fadeOutFight = false;
-    public Slider playerHealthSlider;
-    public Slider enemyHealthSlider;
 
     public bool ShowUI(CanvasGroup canvy, bool fadeIn, float speed)
     {
@@ -76,16 +72,6 @@ public class FadeScript : MonoBehaviour
 
     void Update()
     {
-        if (playerHealthSlider.value <= 0)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                youWinMain.SetActive(true);
-                youWinMain.SetActive(false);
-                youWinGhost.SetActive(true);
-                youWinGhost.SetActive(false);
-            }
-        }
         if (fadeInIntro)
         {
             fadeInIntro = ShowUI(intro, fadeInIntro, 2);

@@ -32,6 +32,6 @@ public class Cameracontroller : MonoBehaviour
         {
             camypos = t1.position.x + t2.position.x;
         }
-        cam.position = new Vector3(camypos, 8.4f + (t1.position.y-3.7f)/10+(t2.position.y-3.7f)/10, cam.position.z);
+        cam.position = new Vector3(camypos, 8.2f + (t1.position.y-3.7f)/10+(t2.position.y-3.7f)/10, cam.position.z);
     }
 }
