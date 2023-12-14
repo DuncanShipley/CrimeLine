@@ -14,7 +14,7 @@ public class PunchAttack : Attack
 
     public override Vector3 knockback
     {
-        get { return new Vector3(-500,200,0); }
+        get { return new Vector3(-200,800,0); }
 
     }
 }

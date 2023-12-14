@@ -11,8 +11,6 @@ public abstract class Attack : MonoBehaviour
     public virtual Vector3 knockback { get; set; }
 
 
-
-
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.GetComponent<HealthScript>() != null)
@@ -24,7 +22,6 @@ public abstract class Attack : MonoBehaviour
             DeleteSelf();
         }
     }
-
     public void DeleteSelf()
     {
         Destroy(gameObject);

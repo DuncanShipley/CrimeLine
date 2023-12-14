@@ -105,7 +105,7 @@ public class PCControl : MonoBehaviour
         if (Input.GetKey(KeyCode.J) && !stunned)
         {
             CurrentAttack = Hadukenm;
-            anim.SetTrigger("punch");
+            anim.SetTrigger("Hadook");
             stunned = true;
         }
 
