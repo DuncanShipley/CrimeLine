@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class FadeScript : MonoBehaviour
 {
+    [SerializeField] private GameObject blackBackgroundObject;
+    [SerializeField] private GameObject introObject;
+    [SerializeField] private GameObject roundObject;
+    [SerializeField] private GameObject fightObject;
+
     [SerializeField] private CanvasGroup intro;
     [SerializeField] private CanvasGroup blackBackground;
     [SerializeField] private CanvasGroup round;
@@ -67,6 +72,10 @@ public class FadeScript : MonoBehaviour
 
     void Start()
     {
+        blackBackgroundObject.SetActive(true);
+        introObject.SetActive(true);
+        roundObject.SetActive(true);
+        fightObject.SetActive(true);
         StartCoroutine(SpawnDelay());
     }
 
