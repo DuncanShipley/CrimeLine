@@ -5,19 +5,15 @@ using UnityEngine;
 public class WaypointFollowerT : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
-    public static GameObject[] wpref;
-    static public int currentWaypointIndex = 0;
-    private float guardWait = 0f;
+    public GameObject[] wpref;
+    float guardWait = 0f;
     int movingLeft;
-    public bool chase;
-    public static float detectRadius = 75;
+    float detectRadius = 75;
     public int oldWaypointIndex;
-    public float suspicious;
     public float leftDetectEdge;
     public float rightDetectEdge;
     public double relAngle;
 
-    public static int ids = 0;
     public int id;
 
     public static List<int> currentPointIndexList = new List<int>();
@@ -29,11 +25,12 @@ public class WaypointFollowerT : MonoBehaviour
     public GameObject Player;
     public void Start()
     {
+        Player = GameObject.Find("Player");
+
         wpref = waypoints;
         movingLeft = 0;
 
-        id = ids;
-        ids++;
+
         currentPointIndexList.Add(0);
         susList.Add(0);
         chaseList.Add(false);
@@ -45,6 +42,7 @@ public class WaypointFollowerT : MonoBehaviour
     private void Update()
     {
 
+        id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
 
         if (guardHealthT.alive)
         {
