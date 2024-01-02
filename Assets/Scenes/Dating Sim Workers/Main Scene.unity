@@ -335,7 +335,6 @@ GameObject:
   - component: {fileID: 1163162323}
   - component: {fileID: 1163162325}
   - component: {fileID: 1163162324}
-  - component: {fileID: 1163162326}
   - component: {fileID: 1163162327}
   m_Layer: 5
   m_Name: Dialouge Box
@@ -402,25 +401,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163162322}
   m_CullTransparentMesh: 1
---- !u!114 &1163162326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163162322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e30d6d88b7bbe64eab8a81d27606825, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 1655829577}
-  Lines:
-  - nom
-  - nom
-  - hiiiii
-  textspeed: 0.2
-  inkJsonAsset: {fileID: 4900000, guid: 4c6b10ac8e91b82408f789c550c3d0ac, type: 3}
 --- !u!212 &1163162327
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
+using Unity.VisualScripting;
 
 public class InkManager : MonoBehaviour
 {
@@ -50,9 +51,10 @@ public class InkManager : MonoBehaviour
         RemoveChildren();
 
         // Read all the content until we can't continue any more
-        int r = 2;
+        int r = 1;
         while (r != 0)
         {
+            //bool next = .canContinue();
             // Continue gets the next line of the story
             string text = story.Continue();
             // This removes any white space from the text.
