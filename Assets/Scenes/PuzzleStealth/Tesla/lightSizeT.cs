@@ -7,8 +7,6 @@ public class lightSizeT : MonoBehaviour
     Color passiveColor;
     UnityEngine.Rendering.Universal.Light2D myLight;
 
-
-    public static int ids = 0;
     public int id;
     // Start is called before the first frame update
     void Start()
@@ -17,13 +15,13 @@ public class lightSizeT : MonoBehaviour
         passiveColor = myLight.color;
 
 
-        id = ids;
-        ids++;
     }
 
     // Update is called once per frame
     void Update()
     {
+        id = gameObject.transform.parent.parent.GetComponent<IDsT>().GetID();
+
         myLight.pointLightInnerAngle = WaypointFollowerT.susList[id] * 45 + 75;
         myLight.pointLightOuterAngle = WaypointFollowerT.susList[id] * 45 + 75;
         myLight.pointLightOuterRadius = WaypointFollowerT.susList[id] * 2 + 9;

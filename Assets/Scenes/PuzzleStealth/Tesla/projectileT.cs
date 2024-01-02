@@ -15,6 +15,7 @@ public class projectileT : MonoBehaviour
     {
         gameObject.name = "proj";
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
     }
 
     private void OnTriggerExit2D(Collider2D collision)

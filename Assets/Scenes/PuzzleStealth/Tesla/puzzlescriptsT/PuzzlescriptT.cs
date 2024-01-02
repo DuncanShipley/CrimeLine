@@ -46,7 +46,7 @@ public class PanelPuzzleT : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log(tiles[y * 3 + x]);
+                
                 
                 tiles[y * 3 + x].GetComponent<panelTileScriptT>().toggleState();
                 if(x - 1 >= 0)
@@ -96,7 +96,6 @@ public class PanelPuzzleT : MonoBehaviour
 
             tiles.Add(puzzlesprite);
         }
-        Debug.Log("hi");
     }
     public bool isActivated()
     {
