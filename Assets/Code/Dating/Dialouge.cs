@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class JonahDialouge : MonoBehaviour
+using Ink.Runtime;
+public class Dialouge : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
-    public string[] lines;
+    public string[] Lines;
     public float textspeed;
+
+    [SerializeField]
+    private TextAsset inkJsonAsset;
+    private Story story;
 
     private int index;
     // Start is called before the first frame update
     void Start()
     {
-        textComponent.text = string.Empty;
+        story = new Story(inkJsonAsset.text);
+       // textComponent.text = Lines;
         StartDialouge();
     }
 
@@ -21,14 +27,14 @@ public class JonahDialouge : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if (textComponent.text == lines[index])
+            if (textComponent.text == Lines[index])
             {
                 NextLine();
             }
              else
             {
              StopAllCoroutines();
-                textComponent.text = lines[index];
+                textComponent.text = Lines[index];
             }
         }
     }
@@ -37,11 +43,21 @@ public class JonahDialouge : MonoBehaviour
     {
         index = 0;
         StartCoroutine(TypeLine());
+
+        while (story.canContinue)
+
+        {
+            // Continue gets the next line of the story
+            string text = story.Continue();
+            // This removes any white space from the text.
+            text = text.Trim();
+            // Display the text on screen
+        }
     }
     IEnumerator TypeLine()
     {
         //Type Each Character 1 by 1
-        foreach (char c in lines[index].ToCharArray())
+        foreach (char c in Lines[index].ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textspeed);
@@ -49,7 +65,7 @@ public class JonahDialouge : MonoBehaviour
     }
     void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (index < Lines.Length - 1)
         {
             index++;
             textComponent.text = string.Empty;
@@ -57,7 +73,7 @@ public class JonahDialouge : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+           StartDialouge();
         }
     }
 }

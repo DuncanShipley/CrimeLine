@@ -17,6 +17,15 @@ public class InkManager : MonoBehaviour
         StartStory();
     }
 
+    private void Update()
+    {
+        // if (story.currentChoices ==0)
+        if (Input.GetMouseButtonDown(0))
+        {
+            RefreshView();
+        }
+    }
+
     // Creates a new Story object with the compiled story which we can then play!
     void StartStory()
     {
@@ -25,8 +34,8 @@ public class InkManager : MonoBehaviour
         {
             cm.PlaceActors(leftName, rightName);
         });
-        story.BindExternalFunction("change_emotion", (string emotion, int ID) => 
-        { 
+        story.BindExternalFunction("change_emotion", (string emotion, int ID) =>
+        {
             cm.ChangeActorEmotion(emotion, ID);
         });
         RefreshView();
@@ -41,8 +50,8 @@ public class InkManager : MonoBehaviour
         RemoveChildren();
 
         // Read all the content until we can't continue any more
-        while (story.canContinue)
-
+        int r = 2;
+        while (r != 0)
         {
             // Continue gets the next line of the story
             string text = story.Continue();
@@ -50,6 +59,7 @@ public class InkManager : MonoBehaviour
             text = text.Trim();
             // Display the text on screen!
             CreateContentView(text);
+            r--;
         }
 
         // Display all the choices, if there are any!
@@ -66,16 +76,8 @@ public class InkManager : MonoBehaviour
                 });
             }
         }
-        // If we've read all the content and there's no choices, the story is finished!
-        else
-        {
-            Button choice = CreateChoiceView("End of story.\nRestart?");
-            choice.onClick.AddListener(delegate
-            {
-                StartStory();
-            });
-        }
     }
+
 
     // When we click the choice button, tell the story to choose that choice!
     void OnClickChoiceButton(Choice choice)
@@ -87,17 +89,29 @@ public class InkManager : MonoBehaviour
     // Creates a textbox showing the the line of text
     void CreateContentView(string text)
     {
+           
         Text storyText = Instantiate(textPrefab) as Text;
         storyText.text = text;
         storyText.transform.SetParent(canvas.transform, false);
 
     }
 
-    void CreateContentView(string text, Transform transform) 
+    public static int t = 0;
+    void CreateContentView(string text, Transform transform)
     {
+        if (t == 0)
+        {
         Text storyText = Instantiate(textPrefab) as Text;
         storyText.text = text;
         //storyText.transform.SetParent(panel.transform, false);
+        t++;
+        }
+        else
+        {
+            Text storyText = Instantiate(textPrefab, new Vector3(0, -150.0f, 0), Quaternion.identity) as Text;
+            storyText.text = text;
+            t--;
+        }
 
     }
 
