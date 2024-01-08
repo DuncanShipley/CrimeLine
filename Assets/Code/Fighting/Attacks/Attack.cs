@@ -10,7 +10,14 @@ public abstract class Attack : MonoBehaviour
 
     public virtual Vector3 knockback { get; set; }
 
-
+    /*
+    public virtual float time { get; set; }
+    public void Start()
+    {
+        Invoke("DeleteSelf", time);
+    }
+    For if we want limited range projectiles
+    */
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.GetComponent<HealthScript>() != null)
