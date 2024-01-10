@@ -13,6 +13,8 @@ public class GameOver : MonoBehaviour
     public Slider enemyHealthSlider;
     private bool ran = false;
 
+    public FadeScript fadeScript;
+
     private IEnumerator gameWon()
     {
         yield return new WaitForSeconds(3.5f);
@@ -47,6 +49,7 @@ public class GameOver : MonoBehaviour
             if (!ran)
             {
                 StartCoroutine(gameWon());
+                fadeScript.allowaction = false;
                 ran = true;
             }
         }
@@ -55,6 +58,7 @@ public class GameOver : MonoBehaviour
             if (!ran)
             {
                 StartCoroutine(gameLost());
+                fadeScript.allowaction = false;
                 ran = true;
             }
         }

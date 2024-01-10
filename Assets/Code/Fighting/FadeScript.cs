@@ -15,14 +15,16 @@ public class FadeScript : MonoBehaviour
     [SerializeField] private CanvasGroup round;
     [SerializeField] private CanvasGroup fight;
 
-    [SerializeField] private bool fadeInIntro = false;
-    [SerializeField] private bool fadeOutIntro = false;
-    [SerializeField] private bool fadeInBlackBackground = false;
-    [SerializeField] private bool fadeOutBlackBackground = false;
-    [SerializeField] private bool fadeInRound = false;
-    [SerializeField] private bool fadeOutRound = false;
-    [SerializeField] private bool fadeInFight = false;
-    [SerializeField] private bool fadeOutFight = false;
+    private bool fadeInIntro = false;
+    private bool fadeOutIntro = false;
+    private bool fadeInBlackBackground = false;
+    private bool fadeOutBlackBackground = false;
+    private bool fadeInRound = false;
+    private bool fadeOutRound = false;
+    private bool fadeInFight = false;
+    private bool fadeOutFight = false;
+
+    public bool allowaction = false;
 
     public bool ShowUI(CanvasGroup canvy, bool fadeIn, float speed)
     {
@@ -68,6 +70,7 @@ public class FadeScript : MonoBehaviour
         fadeInFight = true;
         yield return new WaitForSeconds(1f);
         fadeOutFight = true;
+        allowaction = true;
     }
 
     void Start()
