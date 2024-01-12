@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
     #region Variables
 
-    private TMP_Text _timerText;
+    public static string currentTime;
+    public TMP_Text _timerText;
     enum TimerType { Countdown, Stopwatch }
     [SerializeField] private TimerType timerType;
 
@@ -42,6 +44,8 @@ public class Timer : MonoBehaviour
         if (timerType == TimerType.Countdown && timeToDisplay < 0.0f)
         {
             EventManager.OnTimerStop();
+            SceneManager.LoadScene("You Lose");
+            print("Out of time!");
             return;
         }
 
@@ -49,5 +53,6 @@ public class Timer : MonoBehaviour
 
         TimeSpan timeSpan = TimeSpan.FromSeconds(timeToDisplay);
         _timerText.text = timeSpan.ToString(@"mm\:ss\:ff");
+        currentTime = timeSpan.ToString(@"mm\:ss\:ff");
     }
 }
