@@ -6,6 +6,9 @@ public class guardHealthT : MonoBehaviour
 {
     public static bool alive = true;
     public int health;
+
+    public static List<int> healthList = new List<int>();
+    public static List<bool> aliveList = new List<bool>();
     // Start is called before the first frame update
     void Start()
     {
