@@ -14,7 +14,6 @@ public class projectileBK : MonoBehaviour
     void Start()
     {
         gameObject.name = "proj";
-        Debug.Log(gameObject.name + " spawned @ " + gameObject.transform.position);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -36,7 +35,6 @@ public class projectileBK : MonoBehaviour
             rb.velocity = Vector3.zero;
             gameObject.transform.SetParent(collision.gameObject.transform);
         }
-        Debug.Log(gameObject.name + " impacted " + collision.gameObject.name);
     }
     // Update is called once per frame
     void Update()

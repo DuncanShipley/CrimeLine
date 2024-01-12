@@ -18,21 +18,18 @@ public class WaypointFollowerBK : MonoBehaviour
     public float rightDetectEdge;
     public double relAngle;
     public float zrotation = 0;
+    private bool seesPlayer;
+    private float atan;
     
-    GameObject sightCopy;
-    public GameObject guardSight;
-    Vector3 lastDirection;
-    float h = 0f;
-    float v = 0f;
-
     [SerializeField] private float speed = 2f;
     public GameObject Player;
 
     public Rigidbody2D rb;
 
-     public void Start()
+    RaycastHit2D seeing;
+    public void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = this.GetComponent<Rigidbody2D>();
         wpref = waypoints;
         movingLeft = 0;
     }
@@ -40,26 +37,9 @@ public class WaypointFollowerBK : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        h = rb.velocity.x;
-        v = rb.velocity.y;
+        seesPlayer = CheckFor(Player);
         if (guardHealthBK.alive && !guardHealthBK.dying)
         {
-            if ((Mathf.Abs(h) > 0) || (Mathf.Abs(v) > 0))
-            {
-                if (Mathf.Abs(h) > 0)
-                    lastDirection.x = (h / Mathf.Abs(h)) * 100;
-                else if (Mathf.Abs(v) - Mathf.Abs(h) > .1)
-                    lastDirection.x = 0;
-
-                if (Mathf.Abs(v) > 0)
-                    lastDirection.y = (v / Mathf.Abs(v)) * 100;
-                else if (Mathf.Abs(h) - Mathf.Abs(v) > .1)
-                    lastDirection.y = 0;
-            }
-            sightCopy = Instantiate(guardSight, gameObject.transform.position, new Quaternion());
-            Debug.Log("GUARD SHOT " + sightCopy.gameObject.name);
-            var pRB = sightCopy.GetComponent<Rigidbody2D>();
-            pRB.AddRelativeForce(lastDirection);
             if (Vector2.Distance(waypoints[currentWaypointIndex].transform.position, transform.position) < .1f && guardWait <= 1 && !chase) // if you're close and you haven't waited
             {
                 guardWait = guardWait + Time.deltaTime; // wait
@@ -68,6 +48,7 @@ public class WaypointFollowerBK : MonoBehaviour
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
                 currentWaypointIndex++; // look towards the next waypoint
+                guardChaseBK.resetWaypoints();
                 if (currentWaypointIndex >= waypoints.Length)
                 {
                     currentWaypointIndex = 0;
@@ -104,9 +85,21 @@ public class WaypointFollowerBK : MonoBehaviour
                 relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI + 360;
             }
             // ^^ these are to take the inverse tangent of the correct 'triangle' ^^
-            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(Math.Atan((wpref[currentWaypointIndex].transform.position.y - transform.position.y) / (wpref[currentWaypointIndex].transform.position.x - transform.position.x)) * 180 / Math.PI) - 90 + movingLeft); // point towards current waypoint
-            leftDetectEdge = transform.eulerAngles.z - 270f - (detectRadius / 2f);
-            rightDetectEdge = transform.eulerAngles.z - 270f + detectRadius / 2f;
+            if(Mathf.Abs(wpref[currentWaypointIndex].transform.position.x - transform.position.x) > 0.01f)
+            {
+                atan = (float)Math.Atan((wpref[currentWaypointIndex].transform.position.y - transform.position.y) / (wpref[currentWaypointIndex].transform.position.x - transform.position.x));
+            }
+            else if (Mathf.Abs(wpref[currentWaypointIndex].transform.position.x - transform.position.x) > 0)
+            {
+                atan = (float)Math.PI / 2;
+            }
+            else
+            {
+                atan = (float)-Math.PI / 2;
+            }
+            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(atan * 180 / Math.PI) - 90 + movingLeft); // point towards current waypoint
+            leftDetectEdge = transform.eulerAngles.z + (suspicious*22.5f+37.5f);
+            rightDetectEdge = transform.eulerAngles.z - (suspicious * 22.5f + 37.5f);
             if (leftDetectEdge < -detectRadius / 2)
             {
                 leftDetectEdge = leftDetectEdge + 360;
@@ -115,7 +108,7 @@ public class WaypointFollowerBK : MonoBehaviour
             {
                 rightDetectEdge = rightDetectEdge + 360;
             } // establish the radii within which the guard can detect the player
-            if (Vector2.Distance(transform.position, Player.transform.position) < detectRadius / 7 && leftDetectEdge < relAngle && relAngle < rightDetectEdge) // if the player is within the guard's light
+            if (Vector2.Distance(transform.position, Player.transform.position) < detectRadius / 7 && seesPlayer) // if the player is within the guard's light
             {
                 if (suspicious < 1) // and the guard isn't suspicious
                 {
@@ -144,10 +137,48 @@ public class WaypointFollowerBK : MonoBehaviour
             }
             zrotation = transform.eulerAngles.z;
         }
-        else if (guardHealthBK.dying)
+        else if (guardHealthBK.dying) // plat our cute little death animation when the guard dies
         {
             zrotation = zrotation + 360 * Time.deltaTime;
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, zrotation);
         }
+        else
+        {
+            rb.velocity = rb.velocity / 1.02f;
+            rb.angularVelocity = rb.angularVelocity / 1.02f;
+        }
+    }
+
+    private bool CheckFor(GameObject cf)
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            seeing = Physics2D.Raycast(transform.position, new Vector3((float)-Math.Sin((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), 0), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
+            if(seeing.collider != null)
+            {
+                if (seeing.collider.gameObject == cf)
+                {
+                    guardChaseBK.putWaypoint(seeing.collider.gameObject.transform.position);
+                    return true;
+                }
+            }
+            if (movingLeft == 180)
+            {
+                seeing = Physics2D.Raycast(transform.position, new Vector3((float)-Math.Sin(((i * rightDetectEdge * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * rightDetectEdge * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), 0), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
+            }
+            else
+            {
+                seeing = Physics2D.Raycast(transform.position, new Vector3((float)-Math.Sin((((50 - i) * rightDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * rightDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), 0), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
+            }
+            if (seeing.collider != null)
+            {
+                if (seeing.collider.gameObject == cf)
+                {
+                    guardChaseBK.putWaypoint(seeing.collider.gameObject.transform.position);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

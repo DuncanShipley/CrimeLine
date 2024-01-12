@@ -5,23 +5,26 @@ using UnityEngine;
 public class guardChaseBK : MonoBehaviour
 {
     public GameObject Player;
-    public Vector3 startingPosition;
+    public static Vector3 position;
+    public static Vector3 startPosition;
     // Start is called before the first frame update
     void Start()
     {
-        startingPosition = transform.position; // saves the guard's starting position to return the waypoint to it later
+        position = transform.position; // saves the guard's starting position to return the waypoint to it later
+        startPosition = position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (WaypointFollowerBK.chase) // while the guard is chasing the player,
-        {
-            transform.position = Player.transform.position; // put this waypoint on the player.
-        }
-        else // whey they stop,
-        {
-            transform.position = startingPosition; // return this waypoint to its starting position.
-        }
+        transform.position = position;
+    }
+    public static void putWaypoint(Vector3 wpLocation)
+    {
+        position = wpLocation;
+    }
+    public static void resetWaypoints()
+    {
+        position = startPosition;
     }
 }

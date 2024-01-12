@@ -19,7 +19,6 @@ public class guardHealthBK : MonoBehaviour
         {
             health--;
         }
-        Debug.Log("guard hit by " + other.gameObject.name);
     }
 
     // Update is called once per frame
