@@ -7,7 +7,7 @@ public class PCControl : MonoBehaviour
     public GameObject Uppercut;
     public GameObject Hadukenm;
     Rigidbody body;
-    bool canJump = false;
+    public bool canJump = false;
     Animator anim;
     bool stunned = false;
     
@@ -31,9 +31,6 @@ public class PCControl : MonoBehaviour
         }    
     }
 
-
-
-
     private void Attack()
     {
         Instantiate(CurrentAttack, gameObject.transform, false);
@@ -51,52 +48,52 @@ public class PCControl : MonoBehaviour
         stunned = false;
     }
 
-    
-
-    // Update is called once per frame
-    void Update()
+    private void Movement()
     {
-
-
         Vector3 vec = Vector3.one;
         bool inp = true;
-        
+
         if (Input.GetKeyDown(KeyCode.W) && canJump)
         {
             print("guh");
-            body.AddForce(new Vector3(0,700,0));
+            body.AddForce(new Vector3(0, 700, 0));
             canJump = false;
 
         }
         if (Input.GetKey(KeyCode.A))
         {
             vec = Vector3.Scale(vec, new Vector3(-8, 1, 1));
-            transform.localScale = new Vector3(-1*(Mathf.Abs(transform.localScale.x)), 7, 1);
+            transform.localScale = new Vector3(-1 * (Mathf.Abs(transform.localScale.x)), 7, 1);
 
         }
         else if (Input.GetKey(KeyCode.D))
         {
 
             vec = Vector3.Scale(vec, new Vector3(8, 1, 1));
-            transform.localScale = new Vector3 (Mathf.Abs(transform.localScale.x),7 ,1 );
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), 7, 1);
         }
         else
         {
             inp = false;
-            body.velocity = Vector3.Scale(body.velocity , new Vector3(0, 1, 0));
-           
+            body.velocity = Vector3.Scale(body.velocity, new Vector3(0, 1, 0));
+
         }
 
         if (inp)
         {
-      
+
             body.velocity = new Vector3(vec.x, body.velocity.y, vec.z);
         }
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        Movement();
         if (Input.GetKey(KeyCode.H) && !stunned)
         {
             CurrentAttack = Uppercut;
-            anim.SetTrigger("uppercoot");
+            anim.SetTrigger("meleup");
             stunned = true;
             
         }
@@ -104,7 +101,7 @@ public class PCControl : MonoBehaviour
         if (Input.GetKey(KeyCode.J) && !stunned)
         {
             CurrentAttack = Hadukenm;
-            anim.SetTrigger("Hadook");
+            anim.SetTrigger("rangeup");
             stunned = true;
         }
 
