@@ -13,8 +13,6 @@ public class lightSizeT : MonoBehaviour
     {
         myLight = GetComponent<UnityEngine.Rendering.Universal.Light2D>();
         passiveColor = myLight.color;
-
-
     }
 
     // Update is called once per frame
@@ -22,10 +20,10 @@ public class lightSizeT : MonoBehaviour
     {
         id = gameObject.transform.parent.parent.GetComponent<IDsT>().GetID();
 
-        myLight.pointLightInnerAngle = WaypointFollowerT.susList[id] * 45 + 75;
-        myLight.pointLightOuterAngle = WaypointFollowerT.susList[id] * 45 + 75;
-        myLight.pointLightOuterRadius = WaypointFollowerT.susList[id] * 2 + 9;
-        myLight.color = Color.Lerp(passiveColor, Color.red, WaypointFollowerT.susList[id]);
+        myLight.pointLightInnerAngle = WaypointFollowerT.sus[id] * 45 + 75;
+        myLight.pointLightOuterAngle = WaypointFollowerT.sus[id] * 45 + 75;
+        myLight.pointLightOuterRadius = WaypointFollowerT.sus[id] * 2 + 9;
+        myLight.color = Color.Lerp(passiveColor, Color.red, WaypointFollowerT.sus[id]);
         // these change the light's radius, angle, and color based on the guard's suspicion.
     }
 }

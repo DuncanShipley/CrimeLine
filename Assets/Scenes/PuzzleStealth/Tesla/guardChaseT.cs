@@ -13,9 +13,7 @@ public class guardChaseT : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
-        startingPosition = transform.position; // saves the guard's starting position to return the waypoint to it later
-
-
+        startingPosition = transform.position; // saves the guard's starting position to return the waypoint to it later=
     }
 
     // Update is called once per frame
@@ -23,11 +21,16 @@ public class guardChaseT : MonoBehaviour
     {
         id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
 
-        if (WaypointFollowerT.chaseList[id]) // while the guard is chasing the player,
+        if (WaypointFollowerT.chase[id]) // while the guard is chasing the player
         {
             transform.position = Player.transform.position; // put this waypoint on the player.
         }
-        else // whey they stop,
+        if (AlertT.alerted[id] > -1) // while the guard is alerted
+        {
+            transform.position = AlertT.guards[AlertT.alerted[id]].transform.position; // put this waypoint on the alerting guard.
+        }
+        
+        if (!WaypointFollowerT.chase[id] && AlertT.alerted[id] == -1) // whey they stop,
         {
             transform.position = startingPosition; // return this waypoint to its starting position.
         }
