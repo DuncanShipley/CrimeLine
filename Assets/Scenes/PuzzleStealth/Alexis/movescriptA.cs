@@ -11,10 +11,11 @@ public class movescriptA : MonoBehaviour
     float h = 0f;
     float v = 0f;
     float throwPause = 0;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,41 +38,31 @@ public class movescriptA : MonoBehaviour
             Vector3 inp = new Vector3(h / spd, v / spd, 0);
             rb.MovePosition(transform.position + inp);
 
-
-            //rotation
-            var rot = 0f;
-            var quad = 0f;
-            if (h != 0)
-                rot = (Mathf.Abs(180 * ((float)(Math.Atan(v / h))) / (float)Math.PI)) % 90;
-            else
-                h = 0;
-
-            
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, rot);
-
-            //projectiles
-            if ((Mathf.Abs(h) > 0) || (Mathf.Abs(v) > 0))
+            if (Math.Abs(h) > Math.Abs(v))
             {
-                if (Mathf.Abs(h) > 0)
-                    lastInput.x = (h / Mathf.Abs(h)) * 100;
-                else if (Mathf.Abs(v) - Mathf.Abs(h) > .1)
-                    lastInput.x = 0;
-
-                if (Mathf.Abs(v) > 0)
-                    lastInput.y = (v / Mathf.Abs(v)) * 100;
-                else if (Mathf.Abs(h) - Mathf.Abs(v) > .1)
-                    lastInput.y = 0;
+                if (h > 0)
+                {
+                    anim.SetInteger("playerDir", 2);
+                }
+                else if(h < 0)
+                {
+                    anim.SetInteger("playerDir", 4);
+                }
             }
-            throwPause += Time.deltaTime;
-
-            //creates a projectile moving in the same direction as last player movement
-            if (Input.GetKeyDown(KeyCode.E) && projectileT.availible > 0 && throwPause >= 1)
+            else if ((Math.Abs(v) >= Math.Abs(h)) && (Math.Abs(v) != 0))
             {
-                throwPause = 0;
-                projectileT.availible--;
-                copy = Instantiate(projectile, gameObject.transform.position, new Quaternion());
-                var pRB = copy.GetComponent<Rigidbody2D>();
-                pRB.AddRelativeForce(lastInput);
+                if (v > 0)
+                {
+                    anim.SetInteger("playerDir", 1);
+                }
+                else if (v < 0)
+                {
+                    anim.SetInteger("playerDir", 3);
+                }
+            }
+            else
+            {
+                anim.SetInteger("playerDir", 0);
             }
         }
         

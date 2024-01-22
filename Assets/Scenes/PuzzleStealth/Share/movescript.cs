@@ -5,23 +5,26 @@ using System;
 
 public class movescript : MonoBehaviour
 {
-    GameObject copy;
     public GameObject projectile;
-    Vector3 lastInput;
     float h = 0f;
     float v = 0f;
+<<<<<<< HEAD
+=======
     float throwPause = 0;
+    string dir;
+>>>>>>> main
     // Start is called before the first frame update
     void Start()
     {
-        
+        projectile = GameObject.Find("projectile");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!GameObject.Find("Panel").GetComponent<PanelPuzzleA>().isActivated())
+        if(true)
         {
+
 
             h = Input.GetAxis("Horizontal");
             v = Input.GetAxis("Vertical");
@@ -33,21 +36,12 @@ public class movescript : MonoBehaviour
             {
                 spd = 12;
             }
-
             Vector3 inp = new Vector3(h / spd, v / spd, 0);
             rb.MovePosition(transform.position + inp);
 
-
-            //rotation
-            var rot = 0f;
-            var quad = 0f;
-            if (h != 0)
-                rot = (Mathf.Abs(180 * ((float)(Math.Atan(v / h))) / (float)Math.PI)) % 90;
-            else
-                h = 0;
-
-            
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, rot);
+<<<<<<< HEAD
+=======
+            gameObject.GetComponent<Animation>().Play("walk" + makeAnimDir());
 
             //projectiles
             if ((Mathf.Abs(h) > 0) || (Mathf.Abs(v) > 0))
@@ -73,7 +67,38 @@ public class movescript : MonoBehaviour
                 var pRB = copy.GetComponent<Rigidbody2D>();
                 pRB.AddRelativeForce(lastInput);
             }
+>>>>>>> main
         }
-        
+
+    }
+
+    string makeAnimDir()
+    {
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+
+        if (Math.Abs(h) > Math.Abs(v))
+        {
+            if (h > 0)
+            {
+                return "left";
+            }
+            else if (h < 0)
+            {
+                return "right";
+            }
+        }
+        else if (Math.Abs(h) < Math.Abs(v))
+        {
+            if (v > 0)
+            {
+                return "up";
+            }
+            else if (v < 0)
+            {
+                return "down";
+            }
+        }
+        return null;
     }
 }
