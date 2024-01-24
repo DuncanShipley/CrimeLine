@@ -10,8 +10,6 @@ public class PCControl : MonoBehaviour
     bool canJump = false;
     Animator anim;
     bool stunned = false;
-    
-
 
     private GameObject CurrentAttack;
 
@@ -112,7 +110,7 @@ public class PCControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.H) && !stunned)
             {
-                CurrentAttack = Punch;
+                CurrentAttack = Uppercut;
                 anim.SetTrigger("punch");
                 stunned = true;
 
