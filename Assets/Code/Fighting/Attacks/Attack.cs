@@ -6,6 +6,8 @@ using UnityEngine;
 
 public abstract class Attack : MonoBehaviour
 {
+    protected float dir;
+    float num;
     public virtual int damage { get; set;}
 
     public virtual Vector3 knockback { get; set; }
@@ -18,6 +20,12 @@ public abstract class Attack : MonoBehaviour
     }
     For if we want limited range projectiles
     */
+
+    public void Start()
+    {
+        float num = gameObject.transform.parent.localScale.x;
+        float dir = num / Mathf.Abs(num);
+    }
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.GetComponent<HealthScript>() != null)

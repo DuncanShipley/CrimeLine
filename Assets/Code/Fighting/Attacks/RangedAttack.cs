@@ -9,13 +9,22 @@ public abstract class RangedAttack : Attack
     protected float dir;
     float num;
     public virtual int speed { get; set; }
+    public virtual int height { get; set; }
+    public virtual bool limited { get; set; }
+    public virtual float time { get; set; }
+
+
     public void Start()
     {
+        if (limited)
+        {
+            Invoke("DeleteSelf", time);
+        }
         float num = gameObject.transform.parent.localScale.x;
         float dir = num / Mathf.Abs(num);
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        rb.velocity = new Vector3(speed*dir, 0, 0);
+        rb.velocity = new Vector3(speed*dir, height, 0);
         gameObject.transform.parent = null;
     }
     private void OnTriggerEnter(Collider collider)
