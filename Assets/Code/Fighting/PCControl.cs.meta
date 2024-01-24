@@ -3,7 +3,10 @@ guid: 8b29616e329ef2245a611af50f72e2c6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Punch: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
+  - Hadukenm: {fileID: 489237643490484244, guid: 1e1c9db7b415f054297de743d9492685, type: 3}
+  - ranger: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
