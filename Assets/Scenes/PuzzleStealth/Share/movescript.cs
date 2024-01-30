@@ -5,24 +5,26 @@ using System;
 
 public class movescript : MonoBehaviour
 {
-    GameObject copy;
     public GameObject projectile;
-    Vector3 lastInput;
     float h = 0f;
     float v = 0f;
+<<<<<<< HEAD
+=======
     float throwPause = 0;
     string dir;
+>>>>>>> main
     // Start is called before the first frame update
     void Start()
     {
-        
+        projectile = GameObject.Find("projectile");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!GameObject.Find("Panel").GetComponent<PanelPuzzleA>().isActivated())
+        if(true)
         {
+
 
             h = Input.GetAxis("Horizontal");
             v = Input.GetAxis("Vertical");
@@ -37,6 +39,8 @@ public class movescript : MonoBehaviour
             Vector3 inp = new Vector3(h / spd, v / spd, 0);
             rb.MovePosition(transform.position + inp);
 
+<<<<<<< HEAD
+=======
             gameObject.GetComponent<Animation>().Play("walk" + makeAnimDir());
 
             //projectiles
@@ -63,8 +67,9 @@ public class movescript : MonoBehaviour
                 var pRB = copy.GetComponent<Rigidbody2D>();
                 pRB.AddRelativeForce(lastInput);
             }
+>>>>>>> main
         }
-        
+
     }
 
     string makeAnimDir()

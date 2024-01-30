@@ -7,6 +7,7 @@ TagManager:
   - rightdoor
   - leftdoor
   - Guard
+  - GuardSensor
   layers:
   - Default
   - TransparentFX
