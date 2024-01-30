@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class guardHealthT : MonoBehaviour
 {
-    public static bool alive = true;
-    public int health;
-    // Start is called before the first frame update
+    public int id;
+    public static List<int> healthList = new List<int>();
+    public static List<bool> aliveList = new List<bool>();
+
     void Start()
     {
-
+        aliveList.Add(true);
+        healthList.Add(2);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "proj")
         {
-            health--;
-        }
+            healthList[id]--;
+        } // if it's hit by a projectile, decrease health
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
+        id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
+        if (healthList[id] <= 0)
         {
-            alive = false;
-        }
+            aliveList[id] = false;
+        } // if it's health drops below 1, die
     }
 }

@@ -8,7 +8,6 @@ public class keycodeT : MonoBehaviour
     private void Start()
     {
         GameObject.Find("keycardSprite").GetComponent<Image>().enabled = false;
-        Debug.Log(GameObject.Find("keycardSprite").GetComponent<Image>().enabled);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

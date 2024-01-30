@@ -13,7 +13,6 @@ public class doorcodeA : MonoBehaviour
     // Colider
     private void start()
     {
-        
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,16 +27,11 @@ public class doorcodeA : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKey(KeyCode.Space) && touch && open && movequeue == 0)
         {
-            keysA heldKeysScript = GameObject.Find("Player").GetComponent<keysA>();
-            int heldKeys = heldKeysScript.getKeys();
-
-            if (key == 0 || heldKeys >= key)
-            {
                 movequeue = 55;
                 open = false;
-            }
         }
 
         if (movequeue != 0)

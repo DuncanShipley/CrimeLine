@@ -9,6 +9,9 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
 
+    public Rigidbody target;
+    private float speed;
+
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
 
@@ -81,4 +84,10 @@ public class CarController : MonoBehaviour
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
+
+
+    //speed = target.velocity.magnitude * 3.6f;
+    //print(speed);
+        //if (speed !> 200)
+        
 }
