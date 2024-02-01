@@ -49,7 +49,7 @@ public class GameOver : MonoBehaviour
             if (!ran)
             {
                 StartCoroutine(gameWon());
-                fadeScript.allowaction = false;
+                fadeScript.allowAction = false;
                 ran = true;
             }
         }
@@ -58,7 +58,7 @@ public class GameOver : MonoBehaviour
             if (!ran)
             {
                 StartCoroutine(gameLost());
-                fadeScript.allowaction = false;
+                fadeScript.allowAction = false;
                 ran = true;
             }
         }

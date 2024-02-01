@@ -20,13 +20,13 @@ public class Cameracontroller : MonoBehaviour
     
     void Update()
     {
-        if (t1.position.x + t2.position.x > 10.57f)
+        if (t1.position.x + t2.position.x > 6.2f)
         {
-            camypos = 10.57f;
+            camypos = 6.2f;
         }
-        else if (t1.position.x + t2.position.x < -10.57f)
+        else if (t1.position.x + t2.position.x < -6.2f)
         {
-            camypos = -10.57f;
+            camypos = -6.2f;
         }
         else
         {

@@ -28,7 +28,7 @@ public class FadeScript : MonoBehaviour
     private bool fadeInCharSelect = false;
     private bool fadeOutCharSelect = false;
 
-    public bool allowaction = false;
+    public bool allowAction = false;
 
     public CharacterSelect characterSelect;
 
@@ -78,7 +78,7 @@ public class FadeScript : MonoBehaviour
         fadeInFight = true;
         yield return new WaitForSeconds(1f);
         fadeOutFight = true;
-        allowaction = true;
+        allowAction = true;
     }
 
     void Start()
