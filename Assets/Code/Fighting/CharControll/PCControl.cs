@@ -84,6 +84,7 @@ public class PCControl : MonoBehaviour
         }
         else
         {
+
             inp = false;
             body.velocity = Vector3.Scale(body.velocity, new Vector3(0, 1, 0));
 
