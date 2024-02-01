@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class PCControl : MonoBehaviour
 {
-    public GameObject Uppercut;
-    public GameObject Hadukenm;
+    public GameObject AH;
+    public GameObject SH;
+    public GameObject DH;
+    public GameObject WH;
+    public GameObject AJ;
+    public GameObject SJ;
+    public GameObject DJ;
+    public GameObject WJ;
+
     Rigidbody body;
-    public bool canJump = false;
     Animator anim;
     bool stunned = false;
-    
-
-
+    public bool canJump = false;
+    /*
+    for if we want diff movement per char
+    public virtual int speed { get; set; }
+    public virtual int jump_height { get; set; }
+    public virtual int defence { get; set; }
+    */
     private GameObject CurrentAttack;
-    
-    // Start is called before the first frame update
+
     void Start()
     {
         body = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
     }
-
     private void OnTriggerStay(Collider other)
     {
         print("hih");
@@ -34,11 +42,13 @@ public class PCControl : MonoBehaviour
     private void Attack()
     {
         Instantiate(CurrentAttack, gameObject.transform, false);
+        Debug.Log("plac");
     }
 
     private void DelAttack()
     {
         stunned = false;
+        Debug.Log("pluh");
         gameObject.GetComponentInChildren<Attack>().DeleteSelf();
         
     }
@@ -85,27 +95,58 @@ public class PCControl : MonoBehaviour
             body.velocity = new Vector3(vec.x, body.velocity.y, vec.z);
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
         Movement();
-        if (Input.GetKey(KeyCode.H) && !stunned)
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.H) && !stunned)
         {
-            CurrentAttack = Uppercut;
-            anim.SetTrigger("meleup");
-            stunned = true;
-            
-        }
-
-        if (Input.GetKey(KeyCode.J) && !stunned)
-        {
-            CurrentAttack = Hadukenm;
-            anim.SetTrigger("rangeup");
+            CurrentAttack = AH;
+            anim.SetTrigger("AH");
             stunned = true;
         }
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.H) && !stunned)
+        {
+            CurrentAttack = SH;
+            anim.SetTrigger("SH");
+            stunned = true;
+        }
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.H) && !stunned)
+        {
+            CurrentAttack = DH;
+            anim.SetTrigger("DH");
+            stunned = true;
+        }
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.H) && !stunned)
+        {
+            CurrentAttack = WH;
+            anim.SetTrigger("WH");
+            stunned = true;
+        }
 
-
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.J) && !stunned)
+        {
+            CurrentAttack = AJ;
+            anim.SetTrigger("AJ");
+            stunned = true;
+        }
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.J) && !stunned)
+        {
+            CurrentAttack = SJ;
+            anim.SetTrigger("SJ");
+            stunned = true;
+        }
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.J) && !stunned)
+        {
+            CurrentAttack = DJ;
+            anim.SetTrigger("DJ");
+            stunned = true;
+        }
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.J) && !stunned)
+        {
+            CurrentAttack = WJ;
+            anim.SetTrigger("WJ");
+            stunned = true;
+        }
 
     }
 

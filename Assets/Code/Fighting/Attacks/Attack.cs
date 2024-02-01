@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class Attack : MonoBehaviour
 {
-    protected float dir;
+    public float dir;
     float num;
     public virtual int damage { get; set;}
 
@@ -34,7 +34,8 @@ public abstract class Attack : MonoBehaviour
             int newHealth = (int)(health.slider.value) - damage;
             health.SetHealth(newHealth);
             health.TakeKnockback(knockback);
-            DeleteSelf();
+            //maybe need to delete here - romoved it bc it was causeing error. 
+            Debug.Log("uhohoh");
         }
     }
     public void DeleteSelf()
