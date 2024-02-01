@@ -3371,8 +3371,8 @@ GameObject:
   - component: {fileID: 1106189734}
   - component: {fileID: 1106189732}
   - component: {fileID: 1106189731}
-  - component: {fileID: 1106189738}
   - component: {fileID: 1106189739}
+  - component: {fileID: 1106189740}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -3533,21 +3533,6 @@ Transform:
   - {fileID: 214173119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1106189738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106189730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b29616e329ef2245a611af50f72e2c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Uppercut: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
-  Hadukenm: {fileID: 489237643490484244, guid: 1e1c9db7b415f054297de743d9492685, type: 3}
-  canJump: 0
 --- !u!114 &1106189739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3561,6 +3546,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1737767607}
+--- !u!114 &1106189740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106189730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f515f103539c67348beb078438b58983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AH: {fileID: 0}
+  SH: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
+  DH: {fileID: 0}
+  WH: {fileID: 0}
+  AJ: {fileID: 489237643490484244, guid: 1e1c9db7b415f054297de743d9492685, type: 3}
+  SJ: {fileID: 0}
+  DJ: {fileID: 0}
+  WJ: {fileID: 0}
+  canJump: 0
 --- !u!1 &1157236048
 GameObject:
   m_ObjectHideFlags: 0
@@ -4545,7 +4551,6 @@ GameObject:
   - component: {fileID: 1467687694}
   - component: {fileID: 1467687693}
   - component: {fileID: 1467687692}
-  - component: {fileID: 1467687691}
   - component: {fileID: 1467687690}
   - component: {fileID: 1467687698}
   m_Layer: 0
@@ -4568,21 +4573,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1737767607}
---- !u!114 &1467687691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467687689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b29616e329ef2245a611af50f72e2c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Uppercut: {fileID: 2200565641159838218, guid: 16ae2d8b1dcb9b64180e26220ff7033f, type: 3}
-  Hadukenm: {fileID: 4140813505544937889, guid: b0082b1a1e45d164cb160535d771b2f9, type: 3}
-  canJump: 0
 --- !u!111 &1467687692
 Animation:
   m_ObjectHideFlags: 0
@@ -4747,8 +4737,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d3fe85c9a66b242b10ae0977899827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Uppercut: {fileID: 0}
-  Hadukenm: {fileID: 0}
+  AH: {fileID: 0}
+  SH: {fileID: 2200565641159838218, guid: 16ae2d8b1dcb9b64180e26220ff7033f, type: 3}
+  DH: {fileID: 0}
+  WH: {fileID: 0}
+  AJ: {fileID: 0}
+  SJ: {fileID: 0}
+  DJ: {fileID: 4140813505544937889, guid: b0082b1a1e45d164cb160535d771b2f9, type: 3}
+  WJ: {fileID: 0}
   canJump: 0
 --- !u!1 &1563244479
 GameObject:

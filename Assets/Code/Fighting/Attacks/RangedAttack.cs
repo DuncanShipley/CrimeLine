@@ -6,8 +6,6 @@ public abstract class RangedAttack : Attack
 {
     private Rigidbody rb;
     private Animator anim;
-    protected float dir;
-    float num;
     public virtual int speed { get; set; }
     public virtual int height { get; set; }
     public virtual bool limited { get; set; }
@@ -20,8 +18,6 @@ public abstract class RangedAttack : Attack
         {
             Invoke("DeleteSelf", time);
         }
-        float num = gameObject.transform.parent.localScale.x;
-        float dir = num / Mathf.Abs(num);
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         rb.velocity = new Vector3(speed*dir, height, 0);
