@@ -8,6 +8,7 @@ TagManager:
   - leftdoor
   - Guard
   - GuardSensor
+  - DamagePlayer
   layers:
   - Default
   - TransparentFX

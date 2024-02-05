@@ -26,6 +26,8 @@ public class WaypointFollowerT : MonoBehaviour
     [SerializeField] private float speed = 2f;
     public GameObject Player;
 
+    //public bool chaseVar;
+
 
     public void Start()
     {
@@ -49,6 +51,7 @@ public class WaypointFollowerT : MonoBehaviour
     {
 
         id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
+        //chaseVar = chase[id];
 
         if (guardHealthT.aliveList[id])
         {
