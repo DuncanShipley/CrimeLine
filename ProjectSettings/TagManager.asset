@@ -4,11 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - rightdoor
+  - leftdoor
+  - Guard
+  - GuardSensor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - terrain
   - Water
   - UI
   - Player

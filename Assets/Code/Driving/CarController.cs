@@ -9,6 +9,9 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
 
+    public Rigidbody target;
+    private float speed;
+
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
 
@@ -44,16 +47,18 @@ public class CarController : MonoBehaviour
     {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
+        rearRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentbreakForce = isBreaking ? breakForce : 0f;
         ApplyBreaking();
     }
 
     private void ApplyBreaking()
     {
-        frontRightWheelCollider.brakeTorque = currentbreakForce;
-        frontLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearRightWheelCollider.brakeTorque = currentbreakForce;
+        //frontRightWheelCollider.brakeTorque = currentbreakForce * 2;
+        //frontLeftWheelCollider.brakeTorque = currentbreakForce * 2;
+        rearLeftWheelCollider.brakeTorque = currentbreakForce * 2;
+        rearRightWheelCollider.brakeTorque = currentbreakForce * 2;
     }
 
     private void HandleSteering()
@@ -79,4 +84,10 @@ public class CarController : MonoBehaviour
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
+
+
+    //speed = target.velocity.magnitude * 3.6f;
+    //print(speed);
+        //if (speed !> 200)
+        
 }

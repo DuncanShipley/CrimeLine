@@ -65,11 +65,12 @@ public class movescriptBK : MonoBehaviour
             throwPause += Time.deltaTime;
 
             //creates a projectile moving in the same direction as last player movement
-            if (Input.GetKeyDown(KeyCode.E) && projectileT.availible > 0 && throwPause >= 1)
+            if (Input.GetKeyDown(KeyCode.E) && projectileBK.availible > 0 && throwPause >= 1)
             {
                 throwPause = 0;
-                projectileT.availible--;
+                projectileBK.availible--;
                 copy = Instantiate(projectile, gameObject.transform.position, new Quaternion());
+                Debug.Log("PLAYER SHOT " + copy.gameObject.name);
                 var pRB = copy.GetComponent<Rigidbody2D>();
                 pRB.AddRelativeForce(lastInput);
             }
