@@ -34,12 +34,12 @@ public abstract class Attack : MonoBehaviour
             int newHealth = (int)(health.slider.value) - damage;
             health.SetHealth(newHealth);
             health.TakeKnockback(knockback);
-            //maybe need to delete here - romoved it bc it was causeing error. 
-            Debug.Log("uhohoh");
+            
         }
     }
     public void DeleteSelf()
     {
+        Debug.Log("uhohoh");
         Destroy(gameObject);
     }
 }
