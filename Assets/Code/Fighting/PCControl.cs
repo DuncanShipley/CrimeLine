@@ -15,7 +15,7 @@ public class PCControl : MonoBehaviour
 
     Rigidbody body;
     Animator anim;
-    bool stunned = false;
+    public bool stunned = false;
     public bool canJump = false;
     /*
     for if we want diff movement per char

@@ -60,25 +60,30 @@ public class FadeScript : MonoBehaviour
 
     private IEnumerator SpawnDelay()
     {
+        Debug.Log("P");
         fadeOutRound = true;
         fadeOutFight = true;
         fadeOutCharSelect = true;
         charSelectObject.SetActive(false);
         yield return new WaitForSeconds(2);
+        Debug.Log("Pl");
         fadeOutIntro = true;
         yield return new WaitForSeconds(0.3f);
         introObject.SetActive(false);
         fadeOutBlackBackground = true;
         yield return new WaitForSeconds(0.3f);
+        Debug.Log("Plu");
         blackBackgroundObject.SetActive(false);
         fadeInRound = true;
         yield return new WaitForSeconds(1f);
         fadeOutRound = true;
         yield return new WaitForSeconds(0.1f);
+        Debug.Log("Pluh");
         fadeInFight = true;
         yield return new WaitForSeconds(1f);
         fadeOutFight = true;
         allowAction = true;
+        Debug.Log("Pluh!");
     }
 
     void Start()
