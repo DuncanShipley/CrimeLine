@@ -10,54 +10,54 @@ public class playerHealthT : MonoBehaviour
      */
 
     public Image endScreen;
+    public GameObject endText;
+    public GameObject test;
 
     public int health;
     bool dead = false;
+    
 
     void Start()
     {
         health = 5;
         endScreen = GameObject.Find("End Screen").GetComponent<Image>();
+        endText = GameObject.Find("Game Over");
         endScreen.enabled = false;
+        endText.SetActive(false);
         Debug.Log("hide");
     }
     public void Awake()
     {
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.tag == "DamagePlayer")
+        if (collision.tag == "DamagePlayer")
         {
             health--;
-        }
+        } // if it's hit by something damaging, decrease health
     }
 
-    //IEnumerator Death()
-    //{
-    //    dead = true;
-    //    for (float i = 1; i >= 0.1; i -= .01f)
-    //    {
-    //        Time.timeScale = i;
-    //        Time.fixedDeltaTime = .02f * Time.timeScale;
-    //        yield return new WaitForSecondsRealtime(.05f);
-    //        Debug.Log(i);
-    //    }
-    //    Time.timeScale = 0;
-    //    endScreen.enabled = true;
-    //    Debug.Log("dead");
-    //}
+    IEnumerator Death()
+    {
+        dead = true; 
+        for (float i = 1; i >= 0; i -= .02f)
+        {
+            Time.timeScale = i;
+            Time.fixedDeltaTime = .02f * Time.timeScale;
+            yield return new WaitForSecondsRealtime(.05f);
+        }
+        Time.timeScale = 0; // gradually slow time to a stop
+        endScreen.enabled = true;
+        endText.SetActive(true); // make the endscreen appear
+    }
 
     void Update()
     {
         if (health <= 0 && !dead)
         {
-            //StartCoroutine(Death());
-            dead = true;
-            Time.timeScale = 0;
-            endScreen.enabled = true;
-            Debug.Log("dead");
+            StartCoroutine(Death());
 
-        } // if it's health drops below 1, stop moving and make endscreen appear
+        } // if it's health drops below 1 and it hasn't done it before, run the death function
     }
 }

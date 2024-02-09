@@ -31,7 +31,7 @@ public class movescriptT : MonoBehaviour
                 spd = 12;
             }
 
-            Vector3 inp = new Vector3(h / spd, v / spd, 0);
+            Vector3 inp = new Vector3(h / spd * Time.timeScale, v / spd * Time.timeScale, 0);
             rb.MovePosition(transform.position + inp);
 
         }
