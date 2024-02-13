@@ -11,7 +11,7 @@ public class pickpocketing : MonoBehaviour
     private int pickProgress = 0;
     private Image textbox;
     private TextMeshProUGUI text;
-    private keysA keychain;
+    private keys keychain;
     private bool touch;
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class pickpocketing : MonoBehaviour
     {
         textbox = GameObject.Find("playerTextbox").GetComponent<Image>();
         text = GameObject.Find("playerText").GetComponent<TextMeshProUGUI>();
-        keychain = GameObject.Find("Player").GetComponent<keysA>();
+        keychain = GameObject.Find("Player").GetComponent<keys>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

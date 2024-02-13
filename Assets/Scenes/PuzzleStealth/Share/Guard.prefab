@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3788169351622908800}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Waypoint 3
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5945362445147238384}
   - component: {fileID: 7419678537183987696}
-  - component: {fileID: 8489382618614005995}
   - component: {fileID: 2846041561142293091}
-  m_Layer: 0
+  - component: {fileID: 2021453450270142204}
+  m_Layer: 2
   m_Name: Sensor Range
   m_TagString: GuardSensor
   m_Icon: {fileID: 0}
@@ -100,19 +100,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 10
---- !u!114 &8489382618614005995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4630442268617346213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e6cea8b5e557c440bb33993e671128d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
 --- !u!50 &2846041561142293091
 Rigidbody2D:
   serializedVersion: 4
@@ -140,6 +127,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2021453450270142204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4630442268617346213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48a8b5be598ba6428f67805ea34b4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  alert: 0
 --- !u!1 &4645302721874928888
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5143911173404499557}
   - component: {fileID: 2093551860619024494}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Guard Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,10 +233,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1884867120094375619}
   - component: {fileID: 668435506426713967}
-  - component: {fileID: 7639996786826816748}
-  - component: {fileID: 6673728498950165926}
   - component: {fileID: 2616301274672080652}
-  m_Layer: 0
+  - component: {fileID: 6288633593503823034}
+  - component: {fileID: 2402303060321238787}
+  - component: {fileID: 7256538010822500421}
+  m_Layer: 2
   m_Name: Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,44 +314,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7639996786826816748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4963367268244224560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98df122791b38f64880db377a3a24862, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 7674905096276641158}
-  - {fileID: 6379318685077126908}
-  - {fileID: 964578808346541918}
-  - {fileID: 8287346377835657006}
-  wpref: []
-  oldWaypointIndex: 0
-  leftDetectEdge: 0
-  rightDetectEdge: 0
-  relAngle: 0
-  id: 0
-  speed: 2
-  Player: {fileID: 0}
---- !u!114 &6673728498950165926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4963367268244224560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e404dc7f6aa8c49b6a702810964f9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2
 --- !u!61 &2616301274672080652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -395,6 +359,71 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6288633593503823034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963367268244224560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac3cdaa87defcf459792269f76e8137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 7674905096276641158}
+  - {fileID: 6379318685077126908}
+  - {fileID: 964578808346541918}
+  - {fileID: 8287346377835657006}
+  leftDetectEdge: 0
+  rightDetectEdge: 0
+  relAngle: 0
+  zrotation: 0
+  id: 0
+  speed: 2
+  Player: {fileID: 0}
+  rb: {fileID: 0}
+--- !u!114 &2402303060321238787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963367268244224560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5947f5252a9f3914c92b03feca1bebe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+--- !u!50 &7256538010822500421
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963367268244224560}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6379318685077126908
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2921190837430181155}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Waypoint 2
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -435,8 +464,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7459191875886613762}
-  - component: {fileID: 1448438058731680970}
-  m_Layer: 0
+  - component: {fileID: 8066573348106088969}
+  m_Layer: 2
   m_Name: Guard
   m_TagString: Guard
   m_Icon: {fileID: 0}
@@ -463,7 +492,7 @@ Transform:
   - {fileID: 8289147299426729783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1448438058731680970
+--- !u!114 &8066573348106088969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -472,7 +501,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7331019455399242599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44d6801aa6f9ec408d2a6eb1ffffd49, type: 3}
+  m_Script: {fileID: 11500000, guid: 157e20e16e5ffb144a10449a93e8c1e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   publicId: 0
@@ -485,8 +514,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9208622136490275828}
-  - component: {fileID: 5430442222470773045}
-  m_Layer: 0
+  - component: {fileID: 6746332175963885568}
+  m_Layer: 2
   m_Name: Waypoint 1
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -508,7 +537,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7459191875886613762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5430442222470773045
+--- !u!114 &6746332175963885568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -517,7 +546,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7674905096276641158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c54acec1f57cc444d8acb5765775b678, type: 3}
+  m_Script: {fileID: 11500000, guid: dc9f53ad48ec93b49b75c834a7a9781a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
@@ -531,7 +560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8289147299426729783}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Waypoint 4
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -563,8 +592,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5085372169094861714}
   - component: {fileID: 2673896601392964612}
-  - component: {fileID: 1485080721329685006}
-  m_Layer: 0
+  - component: {fileID: 961645911912493951}
+  m_Layer: 2
   m_Name: Guard Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +665,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &1485080721329685006
+--- !u!114 &961645911912493951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -645,7 +674,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8417534527786615383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01db6f9e20999f049a6e7d0228aac66f, type: 3}
+  m_Script: {fileID: 11500000, guid: 571d2af3a9bfb604daed540f00a10267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
