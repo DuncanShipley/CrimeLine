@@ -65,6 +65,7 @@ public class PCControl : MonoBehaviour
         bool inp = true;
         if (fadeScript.allowAction)
         {
+            Debug.Log("Allow Action is true in PCControl");
             if (Input.GetKeyDown(KeyCode.W) && canJump)
             {
                 print("guh");
