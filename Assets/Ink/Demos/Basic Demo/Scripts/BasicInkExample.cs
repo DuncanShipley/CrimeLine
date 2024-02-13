@@ -2,12 +2,14 @@
 using Ink.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // This is a super bare bones example of how to play and display a ink story in Unity.
 public class BasicInkExample : MonoBehaviour {
     public static event Action<Story> OnCreateStory;
 	
-    void Awake () {
+	    void Awake () 
+	{
 		// Remove the default message
 		RemoveChildren();
 		StartStory();

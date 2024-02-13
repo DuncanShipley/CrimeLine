@@ -5,17 +5,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
 using Unity.VisualScripting;
+using TMPro;
 
 public class InkManager : MonoBehaviour
 {
     public static event Action<Story> OnCreateStory;
-
+    //private TextMeshProUGUI TextBox;
+    
     void Start()
     {
         // Remove the default message
         cm = GetComponent<CharacterManager>();
         gm = GetComponent<GameManager>();
+        TextBox = gameObject.GetComponent<TextMeshProUGUI>();
         StartStory();
+       
+       
     }
 
     private void Update()
@@ -35,7 +40,8 @@ public class InkManager : MonoBehaviour
     // Creates a new Story object with the compiled story which we can then play!
     void StartStory()
     {
-        story = new Story(inkJSONAsset.text);
+        story = new Story(inkJSONAsset.text); 
+      
         if (OnCreateStory != null) OnCreateStory(story);
             story.BindExternalFunction("place_actors", (string leftName, string rightName) =>
         {
@@ -63,14 +69,14 @@ public class InkManager : MonoBehaviour
         while (LD != 0)
         {
            
-            if (story.canContinue==true) { 
-               // Continue gets the next line of the story
-                string text = story.Continue();
-                // This removes any white space from the text.
-                text = text.Trim();
-                // Display the text on screen!
-                CreateContentView(text);
-                LD --;
+            if (story.canContinue==true) {
+                // Continue gets the next line of the story
+                 string text = story.Continue();
+                 // This removes any white space from the text.
+                 text = text.Trim();
+                 // Display the text on screen!
+                 CreateContentView(text);
+               LD --;
             }
         }
 
@@ -108,18 +114,10 @@ public class InkManager : MonoBehaviour
     // Creates a textbox showing the the line of text
     void CreateContentView(string text)
     {
-           
-        Text storyText = Instantiate(textPrefab) as Text;
+        TextMeshProUGUI storyText = Instantiate(textPrefab) as TextMeshProUGUI;
         storyText.text = text;
         storyText.transform.SetParent(canvas.transform, false);
-
-    }
-
-    
-    void CreateContentView(string text, Transform transform)
-    {
-        Text storyText = Instantiate(textPrefab) as Text;
-        storyText.text = text;
+        print(storyText.text);
     }
 
     //moves the button down 35 units on the y axis
@@ -130,17 +128,19 @@ public class InkManager : MonoBehaviour
     Button CreateChoiceView(string text)
     {
      // Creates the button from a prefab
-     Button choice = Instantiate(buttonPrefab, new Vector3(0, -80.0f-(BP*TR), 0), Quaternion.identity) as Button;
+     Button choice = Instantiate(buttonPrefab, new Vector3(330, -160.0f-(BP*TR), 0), Quaternion.identity) as Button;
      choice.transform.SetParent(canvas.transform, false);
 
-     // Gets the text from the button prefab
-     Text choiceText = choice.GetComponentInChildren<Text>();
-     choiceText.text = text;
+        // Gets the text from the button prefab
+        
+        Text choiceText = choice.GetComponentInChildren<Text>();
+        choiceText.text = text;
+        choiceText.color = Color.white; 
 
      // Make the button expand to fit the text
      HorizontalLayoutGroup layoutGroup = choice.GetComponent<HorizontalLayoutGroup>();
      layoutGroup.childForceExpandHeight = false;
-     BP=35;
+     BP=30;
      TR++;
 
      return choice;
@@ -161,11 +161,15 @@ public class InkManager : MonoBehaviour
     public Story story;
 
     [SerializeField]
+    private TextMeshProUGUI TextBox;
+
+    [SerializeField]
     private Canvas canvas;
+
 
     // UI Prefabs
     [SerializeField]
-    private Text textPrefab;
+    private TextMeshProUGUI textPrefab;
     [SerializeField]
     private Button buttonPrefab;
     GameManager gm;

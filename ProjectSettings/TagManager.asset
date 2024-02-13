@@ -41,6 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1168855943
+    locked: 0
+  - name: Character
+    uniqueID: 3842415757
+    locked: 0
   - name: Dialouge box
     uniqueID: 4293662571
+    locked: 0
+  - name: Text
+    uniqueID: 2274157811
+    locked: 0
+  - name: Buttons
+    uniqueID: 1322822235
     locked: 0
