@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class RyuController : PCControl
 {
-    public GameObject AH
+    public GameObject SideH
     { set; get; }
     public GameObject SH
     { set; get; }
-    public GameObject DH
-    { set; get; }
     public GameObject WH
     { set; get; }
-    public GameObject AJ
+    public GameObject SideJ
     { set; get; }
     public GameObject SJ
-    { set; get; }
-    public GameObject DJ
     { set; get; }
     public GameObject WJ
     { set; get; }
