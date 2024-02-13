@@ -14,6 +14,7 @@ public abstract class RangedAttack : Attack
 
     public void Start()
     {
+        base.Start();
         if (limited)
         {
             Invoke("DeleteSelf", time);
@@ -29,7 +30,7 @@ public abstract class RangedAttack : Attack
         {
             anim.SetTrigger("hit");
             HealthScript health = collider.GetComponent<HealthScript>();
-            int newHealth = (int)(health.slider.value) - damage;
+            int newHealth = (int) health.slider.value - damage;
             health.SetHealth(newHealth);
             health.TakeKnockback(knockback);
             DeleteSelf();

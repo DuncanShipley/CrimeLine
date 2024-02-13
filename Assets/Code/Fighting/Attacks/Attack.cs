@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class Attack : MonoBehaviour
 {
-    public float dir;
+    protected float dir;
     float num;
     public virtual int damage { get; set;}
 
@@ -23,8 +23,8 @@ public abstract class Attack : MonoBehaviour
 
     public void Start()
     {
-        float num = gameObject.transform.parent.localScale.x;
-        float dir = num / Mathf.Abs(num);
+        this.num = gameObject.transform.parent.localScale.x;
+        this.dir = num / Mathf.Abs(num);
     }
     private void OnTriggerEnter(Collider collider)
     {

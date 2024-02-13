@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class PCControl : MonoBehaviour
 {
-    public GameObject AH;
+    public GameObject SideH;
     public GameObject SH;
-    public GameObject DH;
     public GameObject WH;
-    public GameObject AJ;
+    public GameObject SideJ;
     public GameObject SJ;
-    public GameObject DJ;
     public GameObject WJ;
 
     Rigidbody body;
     Animator anim;
     public bool stunned = false;
     public bool canJump = false;
+    public bool blocking = false;
     /*
     for if we want diff movement per char
     public virtual int speed { get; set; }
@@ -101,57 +100,69 @@ public class PCControl : MonoBehaviour
     }
     void Update()
     {
-        Movement();
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.H) && !stunned)
+        if (fadeScript.allowAction)
         {
-            CurrentAttack = AH;
-            anim.SetTrigger("AH");
-            stunned = true;
-        }
-        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.H) && !stunned)
-        {
-            CurrentAttack = SH;
-            anim.SetTrigger("SH");
-            stunned = true;
-        }
-        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.H) && !stunned)
-        {
-            CurrentAttack = DH;
-            anim.SetTrigger("DH");
-            stunned = true;
-        }
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.H) && !stunned)
-        {
-            CurrentAttack = WH;
-            anim.SetTrigger("WH");
-            stunned = true;
-        }
+            Movement();
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.H) && !stunned)
+            {
+                CurrentAttack = SideH;
+                anim.SetTrigger("SideH");
+                stunned = true;
+            }
+            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.H) && !stunned)
+            {
+                CurrentAttack = SH;
+                anim.SetTrigger("SH");
+                stunned = true;
+            }
+            if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.H) && !stunned)
+            {
+                CurrentAttack = SideH;
+                anim.SetTrigger("SideH");
+                stunned = true;
+            }
+            if (Input.GetKey(KeyCode.H) && !stunned)
+            {
+                CurrentAttack = WH;
+                anim.SetTrigger("WH");
+                stunned = true;
+            }
 
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.J) && !stunned)
-        {
-            CurrentAttack = AJ;
-            anim.SetTrigger("AJ");
-            stunned = true;
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.J) && !stunned)
+            {
+                CurrentAttack = SideJ;
+                anim.SetTrigger("SideJ");
+                stunned = true;
+            }
+            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.J) && !stunned)
+            {
+                CurrentAttack = SJ;
+                anim.SetTrigger("SJ");
+                stunned = true;
+            }
+            if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.J) && !stunned)
+            {
+                CurrentAttack = SideJ;
+                anim.SetTrigger("SideJ");
+                stunned = true;
+            }
+            if (Input.GetKey(KeyCode.J) && !stunned)
+            {
+                CurrentAttack = WJ;
+                anim.SetTrigger("WJ");
+                stunned = true;
+            }
+            if (Input.GetKeyDown("space") && !blocking)
+            {
+                blocking = true;
+                stunned = true;
+            }
+            if (blocking && Input.GetKeyUp("space"))
+            {
+                blocking = false;
+                stunned = false;
+            }
         }
-        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.J) && !stunned)
-        {
-            CurrentAttack = SJ;
-            anim.SetTrigger("SJ");
-            stunned = true;
-        }
-        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.J) && !stunned)
-        {
-            CurrentAttack = DJ;
-            anim.SetTrigger("DJ");
-            stunned = true;
-        }
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.J) && !stunned)
-        {
-            CurrentAttack = WJ;
-            anim.SetTrigger("WJ");
-            stunned = true;
-        }
-
     }
 
 }

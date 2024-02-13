@@ -5153,14 +5153,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f515f103539c67348beb078438b58983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AH: {fileID: 0}
+  SideH: {fileID: 0}
   SH: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
-  DH: {fileID: 0}
   WH: {fileID: 0}
-  AJ: {fileID: 489237643490484244, guid: 1e1c9db7b415f054297de743d9492685, type: 3}
+  SideJ: {fileID: 0}
   SJ: {fileID: 0}
-  DJ: {fileID: 0}
   WJ: {fileID: 0}
+  stunned: 0
   canJump: 0
   fadeScript: {fileID: 815886854}
 --- !u!1 &1140407210
@@ -6781,14 +6780,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d3fe85c9a66b242b10ae0977899827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AH: {fileID: 0}
-  SH: {fileID: 2200565641159838218, guid: 16ae2d8b1dcb9b64180e26220ff7033f, type: 3}
-  DH: {fileID: 0}
-  WH: {fileID: 0}
-  AJ: {fileID: 0}
-  SJ: {fileID: 0}
-  DJ: {fileID: 4140813505544937889, guid: b0082b1a1e45d164cb160535d771b2f9, type: 3}
-  WJ: {fileID: 0}
+  SideH: {fileID: 2200565641159838218, guid: 16ae2d8b1dcb9b64180e26220ff7033f, type: 3}
+  SH: {fileID: 949740253307702744, guid: 7950976499fe481409c299625cc1ee10, type: 3}
+  WH: {fileID: 3711211749649877176, guid: 8e85f448a7a697c49b92f643e6a6cdf9, type: 3}
+  SideJ: {fileID: 6030688806231460762, guid: 4aa8cebf583428c43b1a679509920f85, type: 3}
+  SJ: {fileID: 7865235013050372989, guid: 77ced886d9026a34788d280c15d48966, type: 3}
+  WJ: {fileID: 4140813505544937889, guid: b0082b1a1e45d164cb160535d771b2f9, type: 3}
+  stunned: 0
   canJump: 0
   fadeScript: {fileID: 815886854}
 --- !u!1 &1475678738
