@@ -8,21 +8,18 @@ namespace Assets.Code.Fighting.EnemyManagers
     public class KenActionManager : EnemyActionScript, EnemyActionManager
     {
 
-        private GameObject punch;
-        private GameObject hadouken;
-
         public void TryAction(EnemyAction action)
         {
             switch (action)
             {
                 case EnemyAction.KenHadouken:
-                    animator.SetTrigger("hadouken");
+                    Hadouken();
                     break;
                 case EnemyAction.KenUppercut:
-                    animator.SetTrigger("punch");
+                    Punch();
                     break;
                 case EnemyAction.KenPunch:
-
+                    Punch();
                     break;
             }
 
@@ -30,14 +27,14 @@ namespace Assets.Code.Fighting.EnemyManagers
 
         public void TryMoveAction(EnemyMoveAction[] movement)
         {
-
+            body.AddForce(manager.GetVector(movement));
         }
 
 
 
         void Hadouken()
         {
-            
+            animator.SetTrigger("hadook");
         }
 
         void Punch()

@@ -1,9 +1,10 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using System.Collections.Immutable;
 
 namespace Assets.Code.Fighting
 {
-    public class MathUtils
+    public static class MathUtils
     {
         
         public static float EuclideanNorm3(Vector3 vec1, Vector3 vec2)
@@ -18,5 +19,25 @@ namespace Assets.Code.Fighting
              );
         }
 
+        /**
+         * Check if transform is currently colliding with any collider of the specified type
+         * 
+         */
+
+        public static bool isTouching(this Component component)
+        {
+            return Physics.OverlapBox(component.transform.position, component.GetComponents<BoxCollider>()[0].size, component.transform.rotation, 0).ToImmutableList().Count > 0;
+        }
+
+
+        public static bool isTouching(this Component component, string tag)
+        {
+            return Physics.OverlapBox(component.transform.position, component.GetComponents<BoxCollider>()[0].size, component.transform.rotation, 0)
+                .ToImmutableList()
+                .FindAll(i => i.CompareTag(tag)).Count > 0;
+        }
+
     }
+
+    
 }

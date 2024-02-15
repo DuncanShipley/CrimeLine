@@ -32,6 +32,11 @@ public class FadeScript : MonoBehaviour
 
     public CharacterSelect characterSelect;
 
+    [SerializeField] private AudioClip menuMusic;
+    [SerializeField] private AudioClip spookyLoop;
+    [SerializeField] private AudioClip charSelectBeep;
+    private GameObject instantiatedSong;
+
     public bool ShowUI(CanvasGroup canvy, bool fadeIn, float speed)
     {
         if (canvy.alpha < 1)
@@ -60,34 +65,33 @@ public class FadeScript : MonoBehaviour
 
     private IEnumerator SpawnDelay()
     {
-        Debug.Log("P");
+        MusicManager.instance.EndSong();
+        SFXManager.instance.PlaySFXClip(charSelectBeep, transform, 1f);
         fadeOutRound = true;
         fadeOutFight = true;
         fadeOutCharSelect = true;
         charSelectObject.SetActive(false);
         yield return new WaitForSeconds(2);
-        Debug.Log("Pl");
         fadeOutIntro = true;
         yield return new WaitForSeconds(0.3f);
         introObject.SetActive(false);
         fadeOutBlackBackground = true;
         yield return new WaitForSeconds(0.3f);
-        Debug.Log("Plu");
         blackBackgroundObject.SetActive(false);
         fadeInRound = true;
+        MusicManager.instance.PlaySong(spookyLoop, transform, 0.35f);
         yield return new WaitForSeconds(1f);
         fadeOutRound = true;
         yield return new WaitForSeconds(0.1f);
-        Debug.Log("Pluh");
         fadeInFight = true;
         yield return new WaitForSeconds(1f);
         fadeOutFight = true;
         allowAction = true;
-        Debug.Log("Pluh!");
     }
 
     void Start()
     {
+        MusicManager.instance.PlaySong(menuMusic, transform, 0.08f);
         blackBackgroundObject.SetActive(true);
         introObject.SetActive(true);
         roundObject.SetActive(true);
