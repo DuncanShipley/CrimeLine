@@ -36,12 +36,12 @@ public class bigTextbox : MonoBehaviour
             if(enabled)
             {
                 enabled = false;
-                GameObject.Find("Main Camera").GetComponent<camfollowA>().enable();
+                GameObject.Find("Main Camera").GetComponent<camfollow>().enable();
             }
             else
             {
                 enabled = true;
-                GameObject.Find("Main Camera").GetComponent<camfollowA>().disable();
+                GameObject.Find("Main Camera").GetComponent<camfollow>().disable();
             }
 
             keyDown = true;
