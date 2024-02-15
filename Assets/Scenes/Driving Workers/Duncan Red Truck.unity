@@ -2728,6 +2728,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: -4968196284255407975, guid: 50e55819dff1131449e3f20e77c99e86, type: 3}
+      propertyPath: m_Name
+      value: Wheel Front Left
+      objectReference: {fileID: 0}
+    - target: {fileID: -4878988839274955131, guid: 50e55819dff1131449e3f20e77c99e86, type: 3}
+      propertyPath: m_Name
+      value: Wheel Back Left
+      objectReference: {fileID: 0}
+    - target: {fileID: -2660139963538978837, guid: 50e55819dff1131449e3f20e77c99e86, type: 3}
+      propertyPath: m_Name
+      value: Wheel Front Right
+      objectReference: {fileID: 0}
     - target: {fileID: 529881195364821077, guid: 50e55819dff1131449e3f20e77c99e86, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -2803,6 +2815,10 @@ PrefabInstance:
     - target: {fileID: 8677156704096194776, guid: 50e55819dff1131449e3f20e77c99e86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9039528846215465433, guid: 50e55819dff1131449e3f20e77c99e86, type: 3}
+      propertyPath: m_Name
+      value: Wheel Back Right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2903,7 +2919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889d0ed483aaa1a4c88245a905cf6cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 801685361}
+  speedTarget: {fileID: 801685361}
   motorForce: 1000
   breakForce: 3000
   maxSteerAngle: 30
@@ -2911,10 +2927,10 @@ MonoBehaviour:
   frontRightWheelCollider: {fileID: 965767790}
   rearLeftWheelCollider: {fileID: 813017139}
   rearRightWheelCollider: {fileID: 1078410136}
-  frontLeftWheelTransform: {fileID: 801685355}
-  frontRightWheelTransform: {fileID: 801685354}
-  rearLeftWheelTransform: {fileID: 801685353}
-  rearRightWheelTransform: {fileID: 801685352}
+  frontLeftWheelTransform: {fileID: 801685354}
+  frontRightWheelTransform: {fileID: 801685355}
+  rearLeftWheelTransform: {fileID: 801685352}
+  rearRightWheelTransform: {fileID: 801685353}
 --- !u!4 &801685360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 50e55819dff1131449e3f20e77c99e86, type: 3}
@@ -2958,7 +2974,7 @@ GameObject:
   - component: {fileID: 813017140}
   - component: {fileID: 813017139}
   m_Layer: 0
-  m_Name: RearLeftWheelCollider
+  m_Name: RearRightWheelCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3440,7 +3456,7 @@ GameObject:
   - component: {fileID: 965767791}
   - component: {fileID: 965767790}
   m_Layer: 0
-  m_Name: FrontRightWheelCollider
+  m_Name: FrontLeftWheelCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4264,7 +4280,7 @@ GameObject:
   - component: {fileID: 1078410137}
   - component: {fileID: 1078410136}
   m_Layer: 0
-  m_Name: RearRightWheelCollider
+  m_Name: RearLeftWheelCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7804,7 +7820,7 @@ GameObject:
   - component: {fileID: 2111377343}
   - component: {fileID: 2111377342}
   m_Layer: 0
-  m_Name: FrontLeftWheelCollider
+  m_Name: FrontRightWheelCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

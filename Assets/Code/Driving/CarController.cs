@@ -9,8 +9,7 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
 
-    public Rigidbody target;
-    private float speed;
+    public Rigidbody speedTarget;
 
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
@@ -22,6 +21,11 @@ public class CarController : MonoBehaviour
     // Wheels
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
+
+    private void Start()
+    {
+        
+    }
 
     private void FixedUpdate()
     {
@@ -37,7 +41,12 @@ public class CarController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
 
         // Acceleration Input
-        verticalInput = Input.GetAxis("Vertical");
+        if ((speedTarget.velocity.magnitude * 3.6f) <= 200)
+            verticalInput = Input.GetAxis("Vertical");
+        else if (Input.GetAxis("Vertical") == -1)
+            verticalInput = -1;
+        else
+            verticalInput = 0;
 
         // Breaking Input
         isBreaking = Input.GetKey(KeyCode.Space);
@@ -84,10 +93,5 @@ public class CarController : MonoBehaviour
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
-
-
-    //speed = target.velocity.magnitude * 3.6f;
-    //print(speed);
-        //if (speed !> 200)
         
 }
