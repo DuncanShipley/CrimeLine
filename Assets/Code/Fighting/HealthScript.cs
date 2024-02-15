@@ -8,11 +8,6 @@ public class HealthScript : MonoBehaviour
     public Slider slider;
     Animator anim;
     Rigidbody body;
-    public bool blocking
-    {
-        get;  set;
-    }
-
     public void Start()
     {
         anim = gameObject.GetComponent<Animator>();

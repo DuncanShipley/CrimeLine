@@ -1,28 +1,17 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using Assets.Code.Fighting.EnemyManagers;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 namespace Assets.Code.Fighting.EnemyManagers
 {
 
     public class KenActionManager : EnemyActionScript, EnemyActionManager
     {
-
+        
         public void TryAction(EnemyAction action)
         {
-            switch (action)
-            {
-                case EnemyAction.KenHadouken:
-                    Hadouken();
-                    break;
-                case EnemyAction.KenUppercut:
-                    Punch();
-                    break;
-                case EnemyAction.KenPunch:
-                    Punch();
-                    break;
-            }
-
+            Instantiate(EnemyConstants.AttackPrefabs.TryGetValue(action));
         }
 
         public void TryMoveAction(EnemyMoveAction[] movement)
@@ -31,16 +20,7 @@ namespace Assets.Code.Fighting.EnemyManagers
         }
 
 
-
-        void Hadouken()
-        {
-            animator.SetTrigger("hadook");
-        }
-
-        void Punch()
-        {
-            animator.SetTrigger("punch");
-        }
+       
 
     }
 }

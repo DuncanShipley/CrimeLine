@@ -5163,6 +5163,7 @@ MonoBehaviour:
   canJump: 0
   blocking: 0
   fadeScript: {fileID: 815886854}
+  healthScript: {fileID: 0}
 --- !u!1 &1140407210
 GameObject:
   m_ObjectHideFlags: 0
@@ -6791,6 +6792,7 @@ MonoBehaviour:
   canJump: 0
   blocking: 0
   fadeScript: {fileID: 815886854}
+  healthScript: {fileID: 0}
 --- !u!1 &1475678738
 GameObject:
   m_ObjectHideFlags: 0

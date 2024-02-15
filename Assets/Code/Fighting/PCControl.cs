@@ -61,10 +61,7 @@ public class PCControl : MonoBehaviour
         stunned = false;
     }
 
-    private void ToggleBlock()
-    {
-        healthScript.blocking = !healthScript.blocking;
-    }
+
 
     private void Movement()
     {
@@ -159,16 +156,6 @@ public class PCControl : MonoBehaviour
                 CurrentAttack = WJ;
                 anim.SetTrigger("WJ");
                 stunned = true;
-            }
-            if (Input.GetKeyDown("space") && !blocking)
-            {
-                ToggleBlock();
-                stunned = true;
-            }
-            if (blocking && Input.GetKeyUp("space"))
-            {
-                ToggleBlock();
-                stunned = false;
             }
         }
     }
