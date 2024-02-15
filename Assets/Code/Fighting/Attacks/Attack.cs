@@ -23,8 +23,8 @@ public abstract class Attack : MonoBehaviour
 
     public void Start()
     {
-        float num = gameObject.transform.parent.localScale.x;
-        float dir = num / Mathf.Abs(num);
+        this.num = gameObject.transform.parent.localScale.x;
+        this.dir = num / Mathf.Abs(num);
     }
     private void OnTriggerEnter(Collider collider)
     {
@@ -34,11 +34,12 @@ public abstract class Attack : MonoBehaviour
             int newHealth = (int)(health.slider.value) - damage;
             health.SetHealth(newHealth);
             health.TakeKnockback(knockback);
-            DeleteSelf();
+            
         }
     }
     public void DeleteSelf()
     {
+        Debug.Log("uhohoh");
         Destroy(gameObject);
     }
 }
