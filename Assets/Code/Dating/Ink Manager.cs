@@ -17,7 +17,7 @@ public class InkManager : MonoBehaviour
         // Remove the default message
         cm = GetComponent<CharacterManager>();
         gm = GetComponent<GameManager>();
-        TextBox = gameObject.GetComponent<TextMeshProUGUI>();
+        TextRectTransform = textPrefab.GetComponent<RectTransform>();
         StartStory();
        
        
@@ -114,11 +114,12 @@ public class InkManager : MonoBehaviour
     // Creates a textbox showing the the line of text
     void CreateContentView(string text)
     {
-        TextMeshProUGUI storyText = Instantiate(textPrefab) as TextMeshProUGUI;
+        TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(9.399994f, 66.44179f, 0), Quaternion.identity) as TextMeshProUGUI;
         storyText.text = text;
         storyText.transform.SetParent(canvas.transform, false);
         print(storyText.text);
     }
+
 
     //moves the button down 35 units on the y axis
     public static int BP = 0;
@@ -128,7 +129,7 @@ public class InkManager : MonoBehaviour
     Button CreateChoiceView(string text)
     {
      // Creates the button from a prefab
-     Button choice = Instantiate(buttonPrefab, new Vector3(330, -160.0f-(BP*TR), 0), Quaternion.identity) as Button;
+     Button choice = Instantiate(buttonPrefab, new Vector3(330, -160-(BP*TR), 0), Quaternion.identity) as Button;
      choice.transform.SetParent(canvas.transform, false);
 
         // Gets the text from the button prefab
@@ -161,11 +162,10 @@ public class InkManager : MonoBehaviour
     public Story story;
 
     [SerializeField]
-    private TextMeshProUGUI TextBox;
-
-    [SerializeField]
     private Canvas canvas;
 
+    [SerializeField]
+    private RectTransform TextRectTransform;
 
     // UI Prefabs
     [SerializeField]
