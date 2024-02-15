@@ -8,9 +8,6 @@ namespace Assets.Code.Fighting.EnemyManagers
     public class RyuActionManager : EnemyActionScript, EnemyActionManager
     {
 
-        private GameObject punch;
-        private GameObject hadouken;
-
         public void TryAction(EnemyAction action)
         {
             switch (action)
@@ -31,15 +28,14 @@ namespace Assets.Code.Fighting.EnemyManagers
 
         }
 
-        void Hadouken()
+        private void Hadouken()
         {
-            animator.SetTrigger("hadook");
-
+            Instantiate(EnemyConstants.instance.Hadouken);
         }
 
-        void Punch()
+        private void Punch()
         {
-            animator.SetTrigger("uppdercoot");
+            Instantiate(EnemyConstants.instance.RyuPunch);
         }
 
     }

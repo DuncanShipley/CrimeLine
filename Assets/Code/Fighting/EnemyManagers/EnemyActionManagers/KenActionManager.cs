@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 using Assets.Code.Fighting.EnemyManagers;
 using Unity.VisualScripting.Antlr3.Runtime;
@@ -11,7 +11,19 @@ namespace Assets.Code.Fighting.EnemyManagers
         
         public void TryAction(EnemyAction action)
         {
-            Instantiate(EnemyConstants.AttackPrefabs.TryGetValue(action));
+            switch (action)
+            {
+                case EnemyAction.KenHadouken:
+                    animator.SetTrigger("RangeSide");
+                    break;
+                case EnemyAction.KenUppercut:
+                    Punch();
+                    break;
+                case EnemyAction.KenPunch:
+                    Punch();
+                    break;
+            }
+
         }
 
         public void TryMoveAction(EnemyMoveAction[] movement)
@@ -21,6 +33,16 @@ namespace Assets.Code.Fighting.EnemyManagers
 
 
        
+
+        void Hadouken()
+        {
+            Instantiate(EnemyConstants.instance.Hadouken);
+        }
+
+        void Punch()
+        {
+            Instantiate(EnemyConstants.instance.KenPunch);
+        }
 
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6381250691281993639}
   - component: {fileID: 1603354494321324986}
   - component: {fileID: 5017471932793999927}
-  - component: {fileID: 3776980061282087886}
+  - component: {fileID: 3596704246077270730}
   m_Layer: 0
   m_Name: KenEnemy
   m_TagString: Untagged
@@ -174,7 +174,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &3776980061282087886
+--- !u!114 &3596704246077270730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3512347847830118260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef02ba1c825134c4987d8538a6cd4bc3, type: 3}
+  m_Script: {fileID: 11500000, guid: ea576855d80d8fd4f8966a3de8f79ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
