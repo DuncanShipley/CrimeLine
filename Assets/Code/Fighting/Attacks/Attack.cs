@@ -28,7 +28,7 @@ public abstract class Attack : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.GetComponent<HealthScript>() != null)
+        if (collider.GetComponent<HealthScript>() != null && !collider.GetComponent<HealthScript>().blocking)
         {
             HealthScript health = collider.GetComponent<HealthScript>();
             int newHealth = (int)(health.slider.value) - damage;

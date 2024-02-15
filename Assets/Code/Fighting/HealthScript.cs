@@ -8,6 +8,10 @@ public class HealthScript : MonoBehaviour
     public Slider slider;
     Animator anim;
     Rigidbody body;
+    public bool blocking
+    {
+        get;  set;
+    }
 
     public void Start()
     {
@@ -19,7 +23,6 @@ public class HealthScript : MonoBehaviour
         slider.maxValue = health;
         slider.value = health;
     }
-
     public void SetHealth(int health)
     {
         slider.value = health;

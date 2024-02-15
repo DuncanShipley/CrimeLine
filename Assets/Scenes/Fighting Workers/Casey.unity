@@ -5140,7 +5140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef02ba1c825134c4987d8538a6cd4bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 1485589506}
 --- !u!114 &1106189740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5161,6 +5161,7 @@ MonoBehaviour:
   WJ: {fileID: 0}
   stunned: 0
   canJump: 0
+  blocking: 0
   fadeScript: {fileID: 815886854}
 --- !u!1 &1140407210
 GameObject:
@@ -6615,7 +6616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef02ba1c825134c4987d8538a6cd4bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 1485589506}
 --- !u!111 &1467687692
 Animation:
   m_ObjectHideFlags: 0
@@ -6788,6 +6789,7 @@ MonoBehaviour:
   WJ: {fileID: 4140813505544937889, guid: b0082b1a1e45d164cb160535d771b2f9, type: 3}
   stunned: 0
   canJump: 0
+  blocking: 0
   fadeScript: {fileID: 815886854}
 --- !u!1 &1475678738
 GameObject:
@@ -6879,9 +6881,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1485589503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d258efd1213e54a48a9a712bb4748a73, type: 3}
+  m_Script: {fileID: 11500000, guid: ef02ba1c825134c4987d8538a6cd4bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 0}
 --- !u!114 &1485589506
 MonoBehaviour:
   m_ObjectHideFlags: 0

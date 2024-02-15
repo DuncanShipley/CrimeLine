@@ -26,6 +26,8 @@ public class PCControl : MonoBehaviour
 
     public FadeScript fadeScript;
 
+    public HealthScript healthScript;
+
     void Start()
     {
         body = GetComponent<Rigidbody>();
@@ -57,6 +59,11 @@ public class PCControl : MonoBehaviour
     private void Unstun()
     {
         stunned = false;
+    }
+
+    private void ToggleBlock()
+    {
+        healthScript.blocking = !healthScript.blocking;
     }
 
     private void Movement()
@@ -155,15 +162,16 @@ public class PCControl : MonoBehaviour
             }
             if (Input.GetKeyDown("space") && !blocking)
             {
-                blocking = true;
+                ToggleBlock();
                 stunned = true;
             }
             if (blocking && Input.GetKeyUp("space"))
             {
-                blocking = false;
+                ToggleBlock();
                 stunned = false;
             }
         }
     }
+
 
 }
