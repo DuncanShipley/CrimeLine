@@ -13,7 +13,7 @@ namespace Assets.Code.Fighting.EnemyManagers
             switch (action)
             {
                 case EnemyAction.KenHadouken:
-                    Hadouken();
+                    animator.SetTrigger("RangeSide");
                     break;
                 case EnemyAction.KenUppercut:
                     Punch();
@@ -34,12 +34,12 @@ namespace Assets.Code.Fighting.EnemyManagers
 
         void Hadouken()
         {
-            animator.SetTrigger("hadook");
+            Instantiate(EnemyConstants.instance.Hadouken);
         }
 
         void Punch()
         {
-            animator.SetTrigger("punch");
+            Instantiate(EnemyConstants.instance.KenPunch);
         }
 
     }

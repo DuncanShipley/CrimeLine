@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using Assets.Code.Fighting.EnemyManagers.EnemyAis;
 
+
 namespace Assets.Code.Fighting.EnemyManagers {
     public class EnemyManager : MonoBehaviour
     {
@@ -67,8 +68,11 @@ namespace Assets.Code.Fighting.EnemyManagers {
 
         public void SpawnEnemies(EnemyType[] enemies)
         {
+
+            
+           
             foreach (EnemyType enemy in enemies) {
-                if (enemyPrefabs.TryGetValue(enemy, out GameObject result))
+                if (EnemyConstants.instance.enemyPrefabs.TryGetValue(enemy, out GameObject result))
                 {
                     ActiveChildren.Add(new Enemy(
                         enemy,
@@ -102,7 +106,7 @@ namespace Assets.Code.Fighting.EnemyManagers {
         {
             this.type = type;
             this.actor = actor;
-            this.brain = EnemyManager.enemyBrains.TryGetValue(type, out brain) ? brain : null;
+            this.brain = EnemyConstants.instance.enemyBrains.TryGetValue(type, out brain) ? brain : null;
             
         }
     }

@@ -6,7 +6,7 @@ namespace Assets.Code.Fighting.EnemyManagers
     public class SpawnKen : EnemyManager
     {
 
-        SpawnKen() : base(EnemyType.Ryu) { }
+        SpawnKen() : base(EnemyType.Ken) { }
 
         
     }
