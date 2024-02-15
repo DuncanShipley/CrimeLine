@@ -9,7 +9,8 @@ namespace Assets.Code.Fighting.EnemyManagers.EnemyAis
 
         public override (EnemyAction, EnemyMoveAction[]) Output(EnemyAiInput input)
         {
-            EnemyMoveAction[] movement = { EnemyMoveAction.Right };
+            EnemyMoveAction[] movement = input.TouchingGround ? new EnemyMoveAction[] { EnemyMoveAction.Jump} : new EnemyMoveAction[] { };
+            
             return (EnemyAction.KenHadouken, movement);
         }
 

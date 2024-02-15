@@ -7,6 +7,8 @@ namespace Assets.Code.Fighting.EnemyManagers
 
     public interface EnemyActionManager
     {
+
+        
         public  void TryAction(EnemyAction action);
 
         public void TryMoveAction(EnemyMoveAction[] movement);
@@ -17,6 +19,7 @@ namespace Assets.Code.Fighting.EnemyManagers
 
         protected Animator animator;
         protected Rigidbody body;
+        protected MovementManager manager;
         protected bool stunned = false;
         protected void Start()
         {
