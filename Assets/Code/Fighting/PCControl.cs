@@ -34,6 +34,8 @@ public class PCControl : MonoBehaviour
 
     public FadeScript fadeScript;
 
+    public HealthScript healthScript;
+
     void Start()
     {
         body = GetComponent<Rigidbody>();
@@ -66,6 +68,8 @@ public class PCControl : MonoBehaviour
     {
         stunned = false;
     }
+
+
 
     private void Movement()
     {
@@ -169,17 +173,8 @@ public class PCControl : MonoBehaviour
                 anim.SetTrigger("WJ");
                 stunned = true;
             }
-            if (Input.GetKeyDown("space") && !blocking)
-            {
-                blocking = true;
-                stunned = true;
-            }
-            if (blocking && Input.GetKeyUp("space"))
-            {
-                blocking = false;
-                stunned = false;
-            }
         }
     }
+
 
 }

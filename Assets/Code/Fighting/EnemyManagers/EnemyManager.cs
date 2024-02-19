@@ -4,38 +4,31 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using Assets.Code.Fighting.EnemyManagers.EnemyAis;
 
+
 namespace Assets.Code.Fighting.EnemyManagers {
     public class EnemyManager : MonoBehaviour
     {
-        [SerializeField] private static readonly Transform SPAWNING_LOCATION = new GameObject().transform;
-        [SerializeField] private static GameObject KenPrefab;
-        [SerializeField] private static GameObject RyuPrefab;
+        [SerializeField] private readonly Transform SPAWNING_LOCATION = new GameObject().transform;
+        [SerializeField] public static GameObject KenPrefab;
+        [SerializeField] public static GameObject RyuPrefab;
+
 
         private List<Enemy> ActiveChildren;
         private EnemyType[] InitialEnemies;
 
-        public static readonly ImmutableDictionary<EnemyType, GameObject> enemyPrefabs = new Dictionary<EnemyType, GameObject>
-        {
-            {EnemyType.Ken, KenPrefab },
-            {EnemyType.Ryu, RyuPrefab }
-        }.ToImmutableDictionary<EnemyType, GameObject>();
 
-        public static readonly ImmutableDictionary<EnemyType, EnemyAI> enemyBrains = new Dictionary<EnemyType, EnemyAI>
-        {
-            {EnemyType.Ken, new KenAI() },
-            {EnemyType.Ryu, new RyuAI() }
-        }.ToImmutableDictionary<EnemyType, EnemyAI>();
 
 
         public EnemyManager(params EnemyType[] InitialEnemies)
         {
             this.InitialEnemies = InitialEnemies;
-            SpawnEnemies(InitialEnemies);
+            
         }
 
 
         private void Start()
         {
+            SpawnEnemies(InitialEnemies);
 
         }
 
@@ -54,21 +47,32 @@ namespace Assets.Code.Fighting.EnemyManagers {
         private EnemyAiInput BuildInputs(GameObject enemy, Transform playerPosition)
         {
             float distanceToPC = MathUtils.EuclideanNorm3(enemy.transform.position, playerPosition.position);
-            bool PCTouchingGround;
-            bool touchingGround;
+            bool playerTouchingGround = playerPosition.isTouching("ground");
+            bool touchingGround = enemy.transform.isTouching("ground");
             AnimatorStateInfo animation = enemy.TryGetComponent<Animator>(out Animator comp) ? comp.GetCurrentAnimatorStateInfo(0) : throw new MissingComponentException("Enemy animator component not found");
-            float PCPosition;
+            Vector3 PCPosition = playerPosition.position;
   
-            return new EnemyAiInput();
-            
+            return new EnemyAiInput
+                (
+                    distanceToPC, 
+                    playerTouchingGround,
+                    touchingGround,
+                    animation,
+                    PCPosition
+                );
         }
+
+     
 
 
 
         public void SpawnEnemies(EnemyType[] enemies)
         {
+
+            
+           
             foreach (EnemyType enemy in enemies) {
-                if (enemyPrefabs.TryGetValue(enemy, out GameObject result))
+                if (EnemyConstants.instance.enemyPrefabs.TryGetValue(enemy, out GameObject result))
                 {
                     ActiveChildren.Add(new Enemy(
                         enemy,
@@ -102,7 +106,7 @@ namespace Assets.Code.Fighting.EnemyManagers {
         {
             this.type = type;
             this.actor = actor;
-            this.brain = EnemyManager.enemyBrains.TryGetValue(type, out brain) ? brain : null;
+            this.brain = EnemyConstants.instance.enemyBrains.TryGetValue(type, out brain) ? brain : null;
             
         }
     }
@@ -126,11 +130,21 @@ namespace Assets.Code.Fighting.EnemyManagers {
     }
 
     public record EnemyAiInput    {
-        float DistanceToPC;
-        bool  PCCanJump;
-        bool  TouchingGround;
-        AnimatorStateInfo AnimationState;
-        Vector3 PCPosition;
+        public float DistanceToPC;
+        public bool  PCCanJump;
+        public bool  TouchingGround;
+        public AnimatorStateInfo AnimationState;
+        public Vector3 PCPosition;
+
+        public EnemyAiInput(float distanceToPC, bool PCCanJump, bool TouchingGround, AnimatorStateInfo animationState, Vector3 PCPosition)
+        {
+            this.DistanceToPC = distanceToPC;
+            this.PCCanJump = PCCanJump;
+            this.TouchingGround = TouchingGround;
+            this.AnimationState = animationState;
+            this.PCPosition = PCPosition;
+
+        }
     }
 
 }

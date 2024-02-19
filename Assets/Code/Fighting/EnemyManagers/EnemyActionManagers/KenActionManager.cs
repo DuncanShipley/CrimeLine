@@ -1,28 +1,26 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 using Assets.Code.Fighting.EnemyManagers;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 namespace Assets.Code.Fighting.EnemyManagers
 {
 
     public class KenActionManager : EnemyActionScript, EnemyActionManager
     {
-
-        private GameObject punch;
-        private GameObject hadouken;
-
+        
         public void TryAction(EnemyAction action)
         {
             switch (action)
             {
                 case EnemyAction.KenHadouken:
-                    animator.SetTrigger("hadouken");
+                    animator.SetTrigger("RangeSide");
                     break;
                 case EnemyAction.KenUppercut:
-                    animator.SetTrigger("punch");
+                    Punch();
                     break;
                 case EnemyAction.KenPunch:
-
+                    Punch();
                     break;
             }
 
@@ -30,19 +28,20 @@ namespace Assets.Code.Fighting.EnemyManagers
 
         public void TryMoveAction(EnemyMoveAction[] movement)
         {
-
+            body.AddForce(manager.GetVector(movement));
         }
 
 
+       
 
         void Hadouken()
         {
-            
+            Instantiate(EnemyConstants.instance.Hadouken);
         }
 
         void Punch()
         {
-            animator.SetTrigger("punch");
+            Instantiate(EnemyConstants.instance.KenPunch);
         }
 
     }
