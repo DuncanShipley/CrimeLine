@@ -16,6 +16,14 @@ public class PCControl : MonoBehaviour
     public bool stunned = false;
     public bool canJump = false;
     public bool blocking = false;
+
+    [SerializeField] private AudioClip groundSpikeSFX;
+    [SerializeField] private AudioClip uppercutSFX;
+    [SerializeField] private AudioClip whipSFX;
+    [SerializeField] private AudioClip knifeSFX;
+    [SerializeField] private AudioClip shieldPushSFX;
+    [SerializeField] private AudioClip ballSFX;
+    [SerializeField] private AudioClip jumpSFX;
     /*
     for if we want diff movement per char
     public virtual int speed { get; set; }
@@ -106,24 +114,28 @@ public class PCControl : MonoBehaviour
             Movement();
             if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.H) && !stunned)
             {
+                SFXManager.instance.PlaySFXClip(groundSpikeSFX, transform, 1f);
                 CurrentAttack = SideH;
                 anim.SetTrigger("SideH");
                 stunned = true;
             }
             if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.H) && !stunned)
             {
+                SFXManager.instance.PlaySFXClip(uppercutSFX, transform, 1f);
                 CurrentAttack = SH;
                 anim.SetTrigger("SH");
                 stunned = true;
             }
             if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.H) && !stunned)
             {
+                //ground spike
                 CurrentAttack = SideH;
                 anim.SetTrigger("SideH");
                 stunned = true;
             }
             if (Input.GetKey(KeyCode.H) && !stunned)
             {
+                //whip
                 CurrentAttack = WH;
                 anim.SetTrigger("WH");
                 stunned = true;
@@ -131,24 +143,28 @@ public class PCControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.J) && !stunned)
             {
+                //knife
                 CurrentAttack = SideJ;
                 anim.SetTrigger("SideJ");
                 stunned = true;
             }
             if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.J) && !stunned)
             {
+                //shieldpush
                 CurrentAttack = SJ;
                 anim.SetTrigger("SJ");
                 stunned = true;
             }
             if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.J) && !stunned)
             {
+                //knife
                 CurrentAttack = SideJ;
                 anim.SetTrigger("SideJ");
                 stunned = true;
             }
             if (Input.GetKey(KeyCode.J) && !stunned)
             {
+                //ball
                 CurrentAttack = WJ;
                 anim.SetTrigger("WJ");
                 stunned = true;
