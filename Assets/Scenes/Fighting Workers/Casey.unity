@@ -4001,6 +4001,9 @@ MonoBehaviour:
   fadeOutFight: 0
   allowAction: 0
   characterSelect: {fileID: 815886852}
+  menuMusic: {fileID: 0}
+  spookyLoop: {fileID: 0}
+  charSelectBeep: {fileID: 0}
 --- !u!114 &815886855
 MonoBehaviour:
   m_ObjectHideFlags: 0
