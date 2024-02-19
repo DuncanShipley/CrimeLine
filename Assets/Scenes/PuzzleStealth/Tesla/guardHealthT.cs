@@ -8,10 +8,12 @@ public class guardHealthT : MonoBehaviour
     public static List<int> healthList = new List<int>();
     public static List<bool> aliveList = new List<bool>();
 
+    public int healthVar;
+
     void Start()
     {
         aliveList.Add(true);
-        healthList.Add(2);
+        healthList.Add(transform.parent.GetComponent<GuardVariablesT>().GetHealth());
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,6 +25,7 @@ public class guardHealthT : MonoBehaviour
 
     void Update()
     {
+        healthVar = healthList[id];
         id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
         if (healthList[id] <= 0)
         {

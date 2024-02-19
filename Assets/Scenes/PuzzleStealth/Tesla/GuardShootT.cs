@@ -8,11 +8,13 @@ public class GuardShootT : MonoBehaviour
     float throwPause = 0;
     public int id;
     public GameObject projectile;
+    public float waitTime;
 
     // Start is called before the first frame update
 
     void Start()
     {
+        waitTime = transform.parent.GetComponent<GuardVariablesT>().GetShootWait();
     }
 
     void Update()
@@ -22,7 +24,7 @@ public class GuardShootT : MonoBehaviour
 
         throwPause += Time.deltaTime;
 
-        if (WaypointFollowerT.chase[id] && throwPause>.5)
+        if (WaypointFollowerT.chase[id] && throwPause > waitTime)
         {
             copy = Instantiate(projectile, transform.position, gameObject.transform.rotation); // create a projectile at the guard's location
             throwPause = 0;

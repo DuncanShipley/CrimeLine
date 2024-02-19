@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class playerHealthT : MonoBehaviour
 {
-    /*
-     * THIS IS NOTHING YET, DON'T WORRY ABOUT IT
-     */
-
     public Image endScreen;
     public GameObject endText;
     public GameObject test;
