@@ -20,7 +20,6 @@ public class playerHealthT : MonoBehaviour
         endText = GameObject.Find("Game Over");
         endScreen.enabled = false;
         endText.SetActive(false);
-        Debug.Log("hide");
     }
     public void Awake()
     {
