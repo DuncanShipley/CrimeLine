@@ -11,7 +11,7 @@ public class WaypointFollowerBK : MonoBehaviour
     private float guardWait = 0f;
     int movingLeft;
     public static bool chase;
-    public  static float detectRadius = 75;
+    public static float detectRadius = 75;
     public int oldWaypointIndex;
     public static float suspicious;
     public float leftDetectEdge;
@@ -20,7 +20,7 @@ public class WaypointFollowerBK : MonoBehaviour
     public float zrotation = 0;
     private bool seesPlayer;
     private float atan;
-    
+
     [SerializeField] private float speed = 2f;
     public GameObject Player;
 
@@ -85,7 +85,7 @@ public class WaypointFollowerBK : MonoBehaviour
                 relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI + 360;
             }
             // ^^ these are to take the inverse tangent of the correct 'triangle' ^^
-            if(Mathf.Abs(wpref[currentWaypointIndex].transform.position.x - transform.position.x) > 0.01f)
+            if (Mathf.Abs(wpref[currentWaypointIndex].transform.position.x - transform.position.x) > 0.01f)
             {
                 atan = (float)Math.Atan((wpref[currentWaypointIndex].transform.position.y - transform.position.y) / (wpref[currentWaypointIndex].transform.position.x - transform.position.x));
             }
@@ -98,7 +98,7 @@ public class WaypointFollowerBK : MonoBehaviour
                 atan = (float)-Math.PI / 2;
             }
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(atan * 180 / Math.PI) - 90 + movingLeft); // point towards current waypoint
-            leftDetectEdge = transform.eulerAngles.z + (suspicious*22.5f+37.5f);
+            leftDetectEdge = transform.eulerAngles.z + (suspicious * 22.5f + 37.5f);
             rightDetectEdge = transform.eulerAngles.z - (suspicious * 22.5f + 37.5f);
             if (leftDetectEdge < -detectRadius / 2)
             {
@@ -154,7 +154,7 @@ public class WaypointFollowerBK : MonoBehaviour
         for (int i = 0; i < 50; i++)
         {
             seeing = Physics2D.Raycast(transform.position, new Vector3((float)-Math.Sin((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), 0), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
-            if(seeing.collider != null)
+            if (seeing.collider != null)
             {
                 if (seeing.collider.gameObject == cf)
                 {
@@ -182,3 +182,5 @@ public class WaypointFollowerBK : MonoBehaviour
         return false;
     }
 }
+
+
