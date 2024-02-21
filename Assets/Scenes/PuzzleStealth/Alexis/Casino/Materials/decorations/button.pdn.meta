@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/PuzzleStealth/Alexis.meta
+guid: a7ab57ab14d913646914883c8770cbdb
+folderAsset: yes
+========
 guid: d83824476ed3444418864cf15d551d0a
+>>>>>>>> b770c3d2f1e9690c0dbb07dd0f765ce40ed6d90b:Assets/Scenes/PuzzleStealth/Alexis/Materials/decorations/button.pdn.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

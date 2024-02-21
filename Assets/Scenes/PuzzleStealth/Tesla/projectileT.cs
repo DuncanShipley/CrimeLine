@@ -38,7 +38,7 @@ public class projectileT : MonoBehaviour
             else if (Mathf.Abs(v) - Mathf.Abs(h) > .1) // if its only moving horizontally a bit and it's moving vertically, ignore horizontal movement
                 lastInput.x = 0;
 
-            if (Mathf.Abs(v) > 0)
+            if (Mathf.Abs(v) > 0) // opposite as above
                 lastInput.y = (v / Mathf.Abs(v)) * 100;
             else if (Mathf.Abs(h) - Mathf.Abs(v) > .1)
                 lastInput.y = 0;
@@ -49,13 +49,77 @@ public class projectileT : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && availible > 0 && throwPause >= 2)
         {
-            availible--;
-            //copy = Instantiate(gameObject, player.transform.position, new Quaternion(0, 0, rotationGoal, 0)); // create a projectile at the player's location
-            copy = Instantiate(gameObject, player.transform.position, new Quaternion()); // create a projectile at the player's location
-            //Debug.Log(rotationGoal);
+            //availible--;
+            copy = Instantiate(gameObject, player.transform.position, new Quaternion()); // create a projectile at the player's location\
+
+            /*
+            if (lastInput.x == 100) // right
+            {
+                copy.transform.Rotate(0, 0, 270);
+            }
+            if (lastInput.x == -100) // left
+            {
+                copy.transform.Rotate(0, 0, 90);
+            }
+
+            if (lastInput.y == 100 && lastInput.x != 0) // up
+            {
+                copy.transform.Rotate(0, 0, copy.transform.rotation.z + 45);
+            }
+            if (lastInput.y == -100 && lastInput.x == 0) // down
+            {
+                copy.transform.Rotate(0, 0, 180);
+            }
+            else if (lastInput.y == -100) // down
+            {
+                copy.transform.Rotate(0, 0, copy.transform.rotation.z - 45);
+            }
+            */
+
+            if (lastInput.x == 100)
+            {
+                if (lastInput.y == 100) // up right
+                {
+                    copy.transform.Rotate(0, 0, 315);
+                }
+                else if (lastInput.y == 0) // right
+                {
+                    copy.transform.Rotate(0, 0, 270);
+                }
+                else if (lastInput.y == -100) // down right
+                {
+                    copy.transform.Rotate(0, 0, 225);
+                }
+            }
+            else if (lastInput.x == 0)
+            {
+                if (lastInput.y == 100) // up
+                {
+                    copy.transform.Rotate(0, 0, 0);
+                }
+                else if (lastInput.y == -100) // down
+                {
+                    copy.transform.Rotate(0, 0, 180);
+                }
+            }
+            else if (lastInput.x == -100)
+            {
+                if (lastInput.y == 100) // up left
+                {
+                    copy.transform.Rotate(0, 0, 45);
+                }
+                else if (lastInput.y == 0) // left
+                {
+                    copy.transform.Rotate(0, 0, 90);
+                }
+                else if (lastInput.y == -100) // down left
+                {
+                    copy.transform.Rotate(0, 0, 135);
+                }
+            }
+
             throwPause = 0;
             var pRB = copy.GetComponent<Rigidbody2D>();
-            //pRB.AddRelativeForce(Vector3.up * 100); // move in the same direction as last player movement
             pRB.AddRelativeForce(lastInput); // move in the same direction as last player movement
         }
     }

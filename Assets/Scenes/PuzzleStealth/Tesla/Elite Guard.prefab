@@ -306,7 +306,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.764151, g: 0.39288896, b: 0.40402246, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -336,8 +336,6 @@ MonoBehaviour:
   wpref: []
   oldWaypointIndex: 0
   id: 0
-  baseSpeed: 2
-  chaseSpeed: 6
   speed: 2
   Player: {fileID: 0}
 --- !u!114 &6673728498950165926
@@ -353,6 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  healthVar: 0
 --- !u!61 &2616301274672080652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -439,7 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   projectile: {fileID: 5003787750461934991}
-  waitTime: 0.5
+  waitTime: 0.25
 --- !u!1 &5003787750461934991
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,9 +642,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7459191875886613762}
   - component: {fileID: 1448438058731680970}
-  - component: {fileID: 8513042195697670659}
+  - component: {fileID: 2812517056441009233}
   m_Layer: 0
-  m_Name: Guard
+  m_Name: Elite Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -684,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   publicId: 0
---- !u!114 &8513042195697670659
+--- !u!114 &2812517056441009233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -845,7 +844,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 75
   m_PointLightOuterAngle: 75
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 5
+  m_PointLightOuterRadius: 7
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

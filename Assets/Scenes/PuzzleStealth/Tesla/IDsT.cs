@@ -7,21 +7,14 @@ public class IDsT : MonoBehaviour
     public static int ids = 0;
     public int publicId;
 
-    // Start is called before the first frame update
     void Start()
     {
         publicId = ids;
-        ids++;
+        ids++; // each guard assigns itself an id then increases the value for the next one
     }
 
     public int GetID()
     {
-        return publicId;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return publicId; // make ID accessible from outside
     }
 }

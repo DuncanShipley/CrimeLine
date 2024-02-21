@@ -23,8 +23,13 @@ public class WaypointFollowerT : MonoBehaviour
     public static List<bool> seeing = new List<bool>();
 
 
-    [SerializeField] private float speed = 2f;
+    private float baseSpeed;
+    private float chaseSpeed;
+    [SerializeField] private float speed;
+
     public GameObject Player;
+
+    //public bool chaseVar;
 
 
     public void Start()
@@ -34,12 +39,15 @@ public class WaypointFollowerT : MonoBehaviour
         wpref = waypoints;
         movingLeft = 0;
 
-
         currentPointIndex.Add(0);
         sus.Add(0);
         chase.Add(false);
         alerting.Add(false);
         seeing.Add(false);
+
+        chaseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesT>().GetChaseSpeed();
+        baseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesT>().GetBaseSpeed();
+        speed = baseSpeed;
 
 
     }
@@ -49,6 +57,7 @@ public class WaypointFollowerT : MonoBehaviour
     {
 
         id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
+        //chaseVar = chase[id];
 
         if (guardHealthT.aliveList[id])
         {
@@ -126,7 +135,7 @@ public class WaypointFollowerT : MonoBehaviour
                 AlertT.alerted[id] = -1;
                 seeing[id] = true;
                 detectRadius = 121;
-                speed = 6f;
+                speed = chaseSpeed;
                 oldWaypointIndex = currentPointIndex[id];
                 currentPointIndex[id] = 0;
             }
@@ -135,7 +144,7 @@ public class WaypointFollowerT : MonoBehaviour
             else if (AlertT.alerted[id] > -1)
             {
                 detectRadius = 121;
-                speed = 6f;
+                speed = chaseSpeed;
                 oldWaypointIndex = currentPointIndex[id];
                 currentPointIndex[id] = 0;
             }
@@ -151,7 +160,7 @@ public class WaypointFollowerT : MonoBehaviour
             {
                 chase[id] = false;
                 detectRadius = 81;
-                speed = 2f;
+                speed = baseSpeed;
                 sus[id] = 0;
                 alerting[id] = false;
                 seeing[id] = false;
