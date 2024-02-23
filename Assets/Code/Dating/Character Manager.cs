@@ -5,10 +5,25 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public GameObject[] characters;
-    public List<GameObject> ActorsList = new List<GameObject>();
+    public List<GameObject> CharacterList = new List<GameObject>();
+    List<Emotions> EmotionalState = new List<Emotions>();
+
+    void Start()
+    {
+        for (int i = 0; i < characters.Length; i++)
+        {
+            GameObject newCharacter = Instantiate(characters[i]);
+            newCharacter.SetActive(false);
+            newCharacter.name = characters[i].name;
+            CharacterList.Add(newCharacter);
+        }
+    }
+
+    //Bad Code breaks things if commented out
+    /*public List<GameObject> ActorsList = new List<GameObject>();
     [SerializeField]
     Vector3 leftActorPosition, rightActorPosition;
-    List<Actor> activeActors = new List<Actor>(); 
+    List<Emotions> activeActors = new List<Emotions>(); 
 
     // Start is called before the first frame update
     void Start()
@@ -62,5 +77,5 @@ public class CharacterManager : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }

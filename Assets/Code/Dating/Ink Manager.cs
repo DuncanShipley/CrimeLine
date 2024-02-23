@@ -9,15 +9,12 @@ using TMPro;
 
 public class InkManager : MonoBehaviour
 {
-    public static event Action<Story> OnCreateStory;
-    //private TextMeshProUGUI TextBox;
     
     void Start()
     {
         // Remove the default message
         cm = GetComponent<CharacterManager>();
         gm = GetComponent<GameManager>();
-        TextRectTransform = textPrefab.GetComponent<RectTransform>();
         StartStory();
        
        
@@ -41,17 +38,6 @@ public class InkManager : MonoBehaviour
     void StartStory()
     {
         story = new Story(inkJSONAsset.text); 
-      
-        if (OnCreateStory != null) OnCreateStory(story);
-            story.BindExternalFunction("place_actors", (string leftName, string rightName) =>
-        {
-            cm.PlaceActors(leftName, rightName);
-        });
-        story.BindExternalFunction("change_emotion", (string emotion, int ID) =>
-        {
-            cm.ChangeActorEmotion(emotion, ID);
-        }); 
-
         RefreshView();
     }
 
@@ -99,7 +85,7 @@ public class InkManager : MonoBehaviour
         {
             if(story.currentChoices.Count == 0)
             {
-             print("No more choices :(");
+             print("No more choices");
             }
         }            
     }
@@ -133,10 +119,9 @@ public class InkManager : MonoBehaviour
      choice.transform.SetParent(canvas.transform, false);
 
         // Gets the text from the button prefab
-        
         Text choiceText = choice.GetComponentInChildren<Text>();
         choiceText.text = text;
-        choiceText.color = Color.white; 
+        choiceText.color = Color.black; 
 
      // Make the button expand to fit the text
      HorizontalLayoutGroup layoutGroup = choice.GetComponent<HorizontalLayoutGroup>();
@@ -163,9 +148,6 @@ public class InkManager : MonoBehaviour
 
     [SerializeField]
     private Canvas canvas;
-
-    [SerializeField]
-    private RectTransform TextRectTransform;
 
     // UI Prefabs
     [SerializeField]
