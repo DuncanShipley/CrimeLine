@@ -14,8 +14,12 @@ public class lasercode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        waypointIndex = 0; 
-        curWaypoint = waypoints[0];
+        if (moving)
+        {
+            waypointIndex = 0; 
+            curWaypoint = waypoints[0];
+        }
+        
     }
 
     // Update is called once per frame

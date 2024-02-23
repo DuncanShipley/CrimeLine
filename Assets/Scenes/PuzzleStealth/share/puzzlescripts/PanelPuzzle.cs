@@ -96,7 +96,6 @@ public class PanelPuzzle : MonoBehaviour
 
             tiles.Add(puzzlesprite);
         }
-        Debug.Log("hi");
     }
     public bool isActivated()
     {

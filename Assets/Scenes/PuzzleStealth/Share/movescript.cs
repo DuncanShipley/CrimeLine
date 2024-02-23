@@ -8,11 +8,7 @@ public class movescript : MonoBehaviour
     public GameObject projectile;
     float h = 0f;
     float v = 0f;
-<<<<<<< HEAD
-=======
-    float throwPause = 0;
-    string dir;
->>>>>>> main
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,43 +32,17 @@ public class movescript : MonoBehaviour
             {
                 spd = 12;
             }
-            Vector3 inp = new Vector3(h / spd, v / spd, 0);
+            Vector3 inp = new Vector3(h / spd * Time.timeScale, v / spd * Time.timeScale, 0);
             rb.MovePosition(transform.position + inp);
 
-<<<<<<< HEAD
-=======
-            gameObject.GetComponent<Animation>().Play("walk" + makeAnimDir());
+            GetComponent<Animator>().SetInteger("playerDir", makeAnimDir());
 
-            //projectiles
-            if ((Mathf.Abs(h) > 0) || (Mathf.Abs(v) > 0))
-            {
-                if (Mathf.Abs(h) > 0)
-                    lastInput.x = (h / Mathf.Abs(h)) * 100;
-                else if (Mathf.Abs(v) - Mathf.Abs(h) > .1)
-                    lastInput.x = 0;
 
-                if (Mathf.Abs(v) > 0)
-                    lastInput.y = (v / Mathf.Abs(v)) * 100;
-                else if (Mathf.Abs(h) - Mathf.Abs(v) > .1)
-                    lastInput.y = 0;
-            }
-            throwPause += Time.deltaTime;
-
-            //creates a projectile moving in the same direction as last player movement
-            if (Input.GetKeyDown(KeyCode.E) && projectileT.availible > 0 && throwPause >= 1)
-            {
-                throwPause = 0;
-                projectileT.availible--;
-                copy = Instantiate(projectile, gameObject.transform.position, new Quaternion());
-                var pRB = copy.GetComponent<Rigidbody2D>();
-                pRB.AddRelativeForce(lastInput);
-            }
->>>>>>> main
         }
 
     }
 
-    string makeAnimDir()
+    int makeAnimDir()
     {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
@@ -81,24 +51,24 @@ public class movescript : MonoBehaviour
         {
             if (h > 0)
             {
-                return "left";
+                return 2;
             }
             else if (h < 0)
             {
-                return "right";
+                return 4;
             }
         }
         else if (Math.Abs(h) < Math.Abs(v))
         {
             if (v > 0)
             {
-                return "up";
+                return 1;
             }
             else if (v < 0)
             {
-                return "down";
+                return 3;
             }
         }
-        return null;
+        return 0;
     }
 }

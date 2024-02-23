@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8362330989084927865}
   - component: {fileID: 7564408678361414319}
   - component: {fileID: 8473606996334696187}
-  - component: {fileID: -2170425475304047760}
+  - component: {fileID: 7423580662628798066}
   m_Layer: 5
   m_Name: puzzletilesprite
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-2170425475304047760
+--- !u!114 &7423580662628798066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,8 +85,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 51937334782304075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4f51b6ac6c10341ae77a0b5fe6cb5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 09c8b12528b3b8c4b884d0e9fbb733e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: {fileID: 21300000, guid: 6a7e686c3e8e5d74c9ff14c33c2a58f0, type: 3}
-  off: {fileID: 21300000, guid: f973aeb8e1a26e34fbda773c457517cc, type: 3}
+  on: {fileID: 21300000, guid: f53404562d7c3944b80493eb31c98601, type: 3}
+  off: {fileID: 21300000, guid: 31ac4e9bc2e0ddd44992a2b48b7f7cda, type: 3}

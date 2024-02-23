@@ -4,34 +4,32 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 
-public class SetTilemapShadowsT : MonoBehaviour
+public class tilemapShadowCasterT : MonoBehaviour
 {
-    public static SetTilemapShadowsT Instance;
+    public static tilemapShadowCasterT Instance;
 
-    private CompositeCollider2D tilemapCollider;
-    private GameObject shadowCasterContainer;
+    public GameObject sc;
+    public Tilemap tilemap;
+
     private List<GameObject> shadowCasters = new List<GameObject>(), toDelete = new List<GameObject>();
-    private GameObject sc;
-    private Tilemap tilemap;
 
     public void Start()
     {
         Instance = this;
-        sc = GameObject.Find("tilemapshadow");
-        tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
-        tilemapCollider = GetComponent<CompositeCollider2D>();
-        shadowCasterContainer = GameObject.Find("shadow_casters");
+
         int i = 0;
         foreach (var position in tilemap.cellBounds.allPositionsWithin)
         {
             if (tilemap.GetTile(position) == null)
                 continue;
+            if (tilemap.GetColliderType(position) != Tile.ColliderType.Grid)
+                continue;
             if (position.x != 0 || position.x != 0)
             {
-            GameObject shadowCaster = GameObject.Instantiate(sc, shadowCasterContainer.transform);
-            shadowCaster.transform.position = new Vector3((position.x + 0.5f), (position.y + 0.5f), 0);
-            shadowCaster.name = "shadow_caster_" + i;
-            i++;
+                GameObject shadowCaster = GameObject.Instantiate(sc, gameObject.transform);
+                shadowCaster.transform.position = new Vector3((position.x + 0.5f), (position.y + 0.5f), 0);
+                shadowCaster.name = "shadow_caster_" + i;
+                i++;
             }
         }
     }
