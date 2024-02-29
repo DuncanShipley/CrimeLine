@@ -1,15 +1,18 @@
-
+EXTERNAL SetCharacter(CurrentSpeaker)
+EXTERNAL ChangeEmotion(CurrentEmotion)
 
 Skopje Macedonia, 2023 <br>Komercijalna Bank
 -> Bank
 
 == Bank ==
+~ SetCharacter("guard")
 You: Hey mister! You got some time to spare?
 Guard: No
 *[Nag him] -> Nag
 *[Elude to more] -> Elude
 
 == Nag ==
+~ChangeEmotion("annoyed")
 You: Oh come on, not even 5 minutes? Theres other gaurds here, nothing is going to happen.
 Guard: Excuse me if you aren’t here for buisness, I'm gonna have to ask you to leave.
 *[Nag him] -> Nag2
@@ -96,5 +99,3 @@ lorum ispm
 You: You look quite handsome today mister
 Manager: Thank you, you too look very nice 
 ->END
-
-INCLUDE Code.ink

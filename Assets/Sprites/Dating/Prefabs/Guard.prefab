@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 12c8546dc9252354fa7ea983ee689a43, type: 3}
   - {fileID: 21300000, guid: ac4c27098017b8a43b78504bdb2ca884, type: 3}
   - {fileID: 21300000, guid: 3f35adc4bf56e40468812c316949d355, type: 3}
-  Mystate: 0
+  Mystate: 2
 --- !u!212 &1001536968652420331
 SpriteRenderer:
   m_ObjectHideFlags: 0

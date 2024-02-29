@@ -6,15 +6,17 @@ using UnityEngine.UI;
 using Ink.Runtime;
 using Unity.VisualScripting;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 public class InkManager : MonoBehaviour
 {
-    
-    void Start()
+    private InkExternalFunctions InkExternalFunctions;
+    void awake()
     {
         // Remove the default message
         cm = GetComponent<CharacterManager>();
         gm = GetComponent<GameManager>();
+        InkExternalFunctions = new InkExternalFunctions();
         StartStory();
        
        
@@ -37,7 +39,8 @@ public class InkManager : MonoBehaviour
     // Creates a new Story object with the compiled story which we can then play!
     void StartStory()
     {
-        story = new Story(inkJSONAsset.text); 
+        story = new Story(inkJSONAsset.text);
+        InkExternalFunctions.Bind(story);
         RefreshView();
     }
 

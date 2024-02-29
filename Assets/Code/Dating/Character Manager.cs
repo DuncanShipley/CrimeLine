@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    [SerializeField]
     public GameObject[] characters;
     public List<GameObject> CharacterList = new List<GameObject>();
-    List<Emotions> EmotionalState = new List<Emotions>();
-
+    private List<Emotions> EmotionalState = new List<Emotions>();
+    private List<GameObject> ActiveCharcters = new List<GameObject>();
     void Start()
     {
+       
         for (int i = 0; i < characters.Length; i++)
         {
             GameObject newCharacter = Instantiate(characters[i]);
@@ -19,7 +21,9 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-    //Bad Code breaks things if commented out
+
+
+  
     /*public List<GameObject> ActorsList = new List<GameObject>();
     [SerializeField]
     Vector3 leftActorPosition, rightActorPosition;
