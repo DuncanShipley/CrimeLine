@@ -33,6 +33,7 @@ public class AlertT : MonoBehaviour
             if (WaypointFollowerT.alerting[otherID] && !WaypointFollowerT.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
             {
                 alerted[id] = otherID; // set alerted for the non-suspicious guard to the id of the sus one
+                guardChaseT.putWaypoint(collision.gameObject.transform.parent.position, id);
             }
             else if (!WaypointFollowerT.alerting[otherID]) // if the other guard is no longer suspicious
             {
