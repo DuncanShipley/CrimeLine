@@ -2,10 +2,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using Assets.Code.Fighting.EnemyManagers.EnemyAis;
+using Assets.Code.Fighting.CharacterControl;
+using Assets.Code.Fighting.CharacterControl.EnemyManagement.EnemyAis;
 
 
-namespace Assets.Code.Fighting.EnemyManagers {
+namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
     public class EnemyManager : MonoBehaviour
     {
         [SerializeField] private readonly Transform SPAWNING_LOCATION = new GameObject().transform;
@@ -37,9 +38,10 @@ namespace Assets.Code.Fighting.EnemyManagers {
             foreach (Enemy enemy in ActiveChildren)
             {
                 EnemyAiInput input = BuildInputs(enemy.actor, FindObjectOfType<PCControl>().gameObject.transform);
-                (EnemyAction, EnemyMoveAction[]) action = enemy.brain.Output(input);
-                enemy.actor.GetComponent<EnemyActionManager>().TryAction(action.Item1);
-                enemy.actor.GetComponent<EnemyActionManager>().TryMoveAction(action.Item2);
+                (AttackAction, MovementAction[]) action = enemy.brain.Output(input);
+                //applly the movements
+                enemy.actor.GetComponent<ActionManager>().TryAction(action.Item1);
+                enemy.actor.GetComponent<ActionManager>().TryMoveAction(action.Item2);
 
             }
         }
@@ -69,10 +71,9 @@ namespace Assets.Code.Fighting.EnemyManagers {
         public void SpawnEnemies(EnemyType[] enemies)
         {
 
-            
-           
+          
             foreach (EnemyType enemy in enemies) {
-                if (EnemyConstants.instance.enemyPrefabs.TryGetValue(enemy, out GameObject result))
+                if (Constants.instance.enemyPrefabs.TryGetValue(enemy, out GameObject result))
                 {
                     ActiveChildren.Add(new Enemy(
                         enemy,
@@ -106,27 +107,9 @@ namespace Assets.Code.Fighting.EnemyManagers {
         {
             this.type = type;
             this.actor = actor;
-            this.brain = EnemyConstants.instance.enemyBrains.TryGetValue(type, out brain) ? brain : null;
+            this.brain = Constants.instance.enemyBrains.TryGetValue(type, out brain) ? brain : null;
             
         }
-    }
-
-    //TODO make a better action management system
-    public enum EnemyAction
-    {
-        KenHadouken,
-        KenPunch,
-        KenUppercut,
-        RyuPunch,
-        RyuUppercut,
-        RyuHadouken,
-    }
-
-    public enum EnemyMoveAction
-    {
-        Right,
-        Left,
-        Jump,
     }
 
     public record EnemyAiInput    {

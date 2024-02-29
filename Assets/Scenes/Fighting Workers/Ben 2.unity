@@ -1630,7 +1630,8 @@ Transform:
   m_LocalPosition: {x: 3.1293907, y: 6.8734207, z: 2.3656578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1955519771}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &567952854
@@ -1686,50 +1687,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.75119317, y: 0.2616194, z: 0.7838839}
   m_Center: {x: -0.0052320957, y: -0.3157544, z: 0.108058035}
---- !u!1 &568420141
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 568420143}
-  - component: {fileID: 568420142}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!114 &568420142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568420141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35213c3e951c2be4ba33b08445542c27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &568420143
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568420141}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.7733436, y: 5.417664, z: 2.283411}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &576996317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,9 +2763,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b29616e329ef2245a611af50f72e2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Uppercut: {fileID: 0}
-  Hadukenm: {fileID: 0}
+  SideH: {fileID: 0}
+  SH: {fileID: 0}
+  WH: {fileID: 0}
+  SideJ: {fileID: 0}
+  SJ: {fileID: 0}
+  WJ: {fileID: 0}
+  stunned: 0
   canJump: 0
+  blocking: 0
+  fadeScript: {fileID: 0}
+  healthScript: {fileID: 0}
 --- !u!111 &1022924814
 Animation:
   m_ObjectHideFlags: 0
@@ -5163,6 +5128,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950277281}
   m_CullTransparentMesh: 1
+--- !u!1 &1955519770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1955519771}
+  - component: {fileID: 1955519772}
+  m_Layer: 0
+  m_Name: Constants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1955519771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955519770}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 506032256}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1955519772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955519770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17dc5dd68c8d10744887d591d9b903db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hadouken: {fileID: 489237643490484244, guid: 1e1c9db7b415f054297de743d9492685, type: 3}
+  RyuPunch: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
+  KenPunch: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
+  KenPrefab: {fileID: 3512347847830118260, guid: ad4e816e42b4af7499b68dd5f405286e, type: 3}
+  RyuPrefab: {fileID: 0}
+  EnemySlider: {fileID: 1086121087}
 --- !u!1 &2069713102
 GameObject:
   m_ObjectHideFlags: 0
@@ -5277,4 +5292,3 @@ SceneRoots:
   - {fileID: 1022924819}
   - {fileID: 1918622051}
   - {fileID: 506032256}
-  - {fileID: 568420143}
