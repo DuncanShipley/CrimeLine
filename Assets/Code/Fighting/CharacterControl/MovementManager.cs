@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets.Code.Fighting.EnemyManagers
+namespace Assets.Code.Fighting.CharacterControl
 {
     public class MovementManager
     {
@@ -17,7 +17,7 @@ namespace Assets.Code.Fighting.EnemyManagers
 
         }
 
-        public Vector3 GetVector(EnemyMoveAction[] dir)
+        public Vector3 GetVector(MovementAction[] dir)
         {
             return new Vector3(0.0f, 1.0f * JumpHeight, 0.0f);
         }
