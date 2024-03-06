@@ -7,11 +7,12 @@ using Ink.Runtime;
 using Unity.VisualScripting;
 using TMPro;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 public class InkManager : MonoBehaviour
 {
     private InkExternalFunctions InkExternalFunctions;
-    void awake()
+    void Awake()
     {
         // Remove the default message
         cm = GetComponent<CharacterManager>();
@@ -44,17 +45,17 @@ public class InkManager : MonoBehaviour
         RefreshView();
     }
 
-    // This is the main function called every time the story changes. It does a few things:
-    // Destroys all the old content and choices.
-    // Continues over all the lines of text, then displays all the choices. If there are no choices, the story is finished!
-    public static int LD = 1;
+   
+    
+   /// <summary>
+   /// Main Function, Destroys old content and choices. Creates new line of dialouge and any choices
+   /// </summary>
     void RefreshView()
     {
-        // Remove all the UI on screen
+        
         RemoveChildren();
-
         //Displays one line of text at a time
-        LD = 1;
+        int LD = 1;
         while (LD != 0)
         {
            
@@ -67,6 +68,11 @@ public class InkManager : MonoBehaviour
                  CreateContentView(text);
                LD --;
             }
+        }
+
+        if (InkExternalFunctions.CurrentSpeaker != "")
+        {
+            cm.SetSpeaker();
         }
 
         // Display all the choices, if there are any!
@@ -100,7 +106,10 @@ public class InkManager : MonoBehaviour
 		RefreshView();
 	}
 
-    // Creates a textbox showing the the line of text
+   /// <summary>
+   /// Creates a text box and displays the dialouge
+   /// </summary>
+   /// <param name="text"></param>
     void CreateContentView(string text)
     {
         TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(9.399994f, 66.44179f, 0), Quaternion.identity) as TextMeshProUGUI;
@@ -135,7 +144,9 @@ public class InkManager : MonoBehaviour
      return choice;
      }
 
-    // Destroys all the children of this gameobject (all the UI)
+    /// <summary>
+    /// Removes UI from the Ink canvas
+    /// </summary>
     void RemoveChildren()
     {
         int childCount = canvas.transform.childCount;
@@ -159,4 +170,5 @@ public class InkManager : MonoBehaviour
     private Button buttonPrefab;
     GameManager gm;
     CharacterManager cm;
+    
 }

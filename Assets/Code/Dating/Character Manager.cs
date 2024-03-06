@@ -1,14 +1,19 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
-{
-    [SerializeField]
-    public GameObject[] characters;
+{ 
+    private InkExternalFunctions InkExternalFunctions;
     public List<GameObject> CharacterList = new List<GameObject>();
     private List<Emotions> EmotionalState = new List<Emotions>();
     private List<GameObject> ActiveCharcters = new List<GameObject>();
+
+     void Awake()
+    {
+        InkExternalFunctions = new InkExternalFunctions();
+    }
     void Start()
     {
        
@@ -21,9 +26,18 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    public void SetSpeaker(){
+        if (InkExternalFunctions.CurrentSpeaker != ""){
+            Debug.Log("SetSpeaker to " + InkExternalFunctions.CurrentSpeaker);
+            Debug.Log(InkExternalFunctions.CurrentSpeaker);
+        }
+    }
 
 
-  
+    [SerializeField]
+    public GameObject[] characters;
+    
+   
     /*public List<GameObject> ActorsList = new List<GameObject>();
     [SerializeField]
     Vector3 leftActorPosition, rightActorPosition;
