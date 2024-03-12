@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 5945362445147238384}
   - component: {fileID: 7419678537183987696}
   - component: {fileID: 2846041561142293091}
-  - component: {fileID: 7982570349789348900}
+  - component: {fileID: 5558127976506417433}
   m_Layer: 2
   m_Name: Sensor Range
   m_TagString: GuardSensor
@@ -289,7 +289,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7982570349789348900
+--- !u!114 &5558127976506417433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4630442268617346213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab88affa36cf8bc4dab8be343e43b384, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e6cea8b5e557c440bb33993e671128d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0

@@ -59,7 +59,7 @@ public class WaypointFollowerT : MonoBehaviour
 
     private void Update()
     {
-        id = gameObject.transform.parent.GetComponent<IDs>().GetID();
+        id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
 
         seesPlayer = CheckFor(Player);
 
