@@ -12,6 +12,20 @@ namespace Assets.Code.Fighting.CharacterControl
         RyuPunch,
         RyuUppercut,
         Hadouken,
+        
+
+    }
+
+    public enum PlayerAction
+    {
+        Block,
+        Jump, 
+        MeleeAttack,
+        RangeAttack,
+        MoveLeft,
+        MoveRight,
+        MoveUp,
+        MoveDown,
     }
 
     public enum MovementAction

@@ -19,7 +19,7 @@ namespace Assets.Code.Fighting.CharacterControl
 
         public Vector3 GetVector(MovementAction[] dir)
         {
-            return new Vector3(0.0f, 1.0f * JumpHeight, 0.0f);
+            return new Vector3(0.0f, 1.0f * JumpHeight, 0.0f);//I dont think this works
         }
 
 

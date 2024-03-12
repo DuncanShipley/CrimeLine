@@ -1,21 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Assets.Code.Fighting.EnemyManagers;
+using Assets.Code.Fighting.CharacterControl;
 using UnityEngine;
 
 public class PlayerInputManager : MonoBehaviour
 {
-    ActionManager act;
+  
     
     
 
     private void Start()
     {
-        act = GetComponent<ActionManager>();
-
+        bool[] array = new bool[0];
+        array.Append(true);
+        array.Append(false);
     }
 
     private void Update()
@@ -33,24 +35,20 @@ public class PlayerInputManager : MonoBehaviour
         CompileActions(keys);
     }
 
-    private Action[] CompileActions(KeysPressed keys)
+    private PlayerAction[] CompileActions(KeysPressed keys)
     {
-        Action[] actions = new Action[];
+        PlayerAction[] actions = new PlayerAction[0];
         bool[] actKeys = new bool[] {keys.Z, keys.X, keys.C, keys.V};
         NegateKey(ref keys.LA, ref keys.RA);//make the bool logic here correct
         NegateKey(ref keys.UA, ref keys.DA);
         actKeys = NegateKeys(actKeys);
-        bool[] moveKeys = new bool[] {keys.RA, keys.LA, keys.DA, keys.UA};
-        actions.Append(ConvertToActions(actKeys));//
-        actions.Append(ConvertToActions(moveKeys));//do something like this that works
-        return
-            actions;
-    }
-    
-    private Action[] ConvertToActions(bool [] InpArray)
-    {
-        Action[] actions = new Action[];
-        foreach (var item in InpArray.Select((value, index) => (index, value)))
+
+        bool[] InpArray = new bool[] 
+        {}.Concat<bool>(actKeys.Concat<bool>(
+            new bool[] { keys.RA, keys.LA, keys.DA, keys.UA}
+            )) as bool[];
+
+        foreach (var item in InpArray.Select((value, index) => (value, index)))
         {
             bool key = item.value;
             int i = item.index;
@@ -59,16 +57,28 @@ public class PlayerInputManager : MonoBehaviour
                 switch (i)
                 {
                     case 1:
-                        actions.Append();
+                        actions.Append(PlayerAction.Block);
                         break;
                     case 2:
-                        actions.Append();
+                        actions.Append(PlayerAction.Jump);
                         break;
                     case 3:
-                        actions.Append();
+                        actions.Append(PlayerAction.MeleeAttack);
                         break;
                     case 4:
-                        actions.Append();
+                        actions.Append(PlayerAction.RangeAttack);
+                        break;
+                    case 5:
+                        actions.Append(PlayerAction.MoveRight);
+                        break;
+                    case 6:
+                        actions.Append(PlayerAction.MoveLeft);
+                        break;
+                    case 7:
+                        actions.Append(PlayerAction.MoveDown);
+                        break;
+                    case 8:
+                        actions.Append(PlayerAction.MoveUp);
                         break;
                 }
             }
@@ -79,8 +89,8 @@ public class PlayerInputManager : MonoBehaviour
 
     private void NegateKey(ref bool keyOne, ref bool keyTwo)
     {
-        keyOne = keyOne && !keyTwo;
-        keyTwo = !keyOne && keyTwo;
+        keyOne = keyOne && !keyTwo;///////////Ben help needed
+        keyTwo = keyOne && keyTwo;
     }
 
     static bool[] NegateKeys(params bool[] boolValues)
@@ -93,7 +103,25 @@ public class PlayerInputManager : MonoBehaviour
             .ToArray();
         return mutatedValues;
     }
+
+
+    private KeysPressed KeysPressedfromBoolArray(bool[] bools)
+    {
+        return new KeysPressed
+        (
+            bools[0],
+            bools[1],
+            bools[2],
+            bools[3],
+            bools[4],
+            bools[5],
+            bools[6],
+            bools[7]
+        );
+    }
+
 }
+
 
 record KeysPressed
 {
