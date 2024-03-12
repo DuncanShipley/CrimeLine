@@ -112,7 +112,7 @@ public class InkManager : MonoBehaviour
    /// <param name="text"></param>
     void CreateContentView(string text)
     {
-        TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(9.399994f, 66.44179f, 0), Quaternion.identity) as TextMeshProUGUI;
+        TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(120f, 150f, 0), Quaternion.identity) as TextMeshProUGUI;
         storyText.text = text;
         storyText.transform.SetParent(canvas.transform, false);
         print(storyText.text);
@@ -127,7 +127,7 @@ public class InkManager : MonoBehaviour
     Button CreateChoiceView(string text)
     {
      // Creates the button from a prefab
-     Button choice = Instantiate(buttonPrefab, new Vector3(330, -160-(BP*TR), 0), Quaternion.identity) as Button;
+     Button choice = Instantiate(buttonPrefab, new Vector3(425, -235-(BP*TR), 0), Quaternion.identity) as Button;
      choice.transform.SetParent(canvas.transform, false);
 
         // Gets the text from the button prefab
