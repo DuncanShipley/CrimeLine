@@ -8,6 +8,7 @@ public class movescript : MonoBehaviour
     public GameObject projectile;
     float h = 0f;
     float v = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +32,17 @@ public class movescript : MonoBehaviour
             {
                 spd = 12;
             }
-            Vector3 inp = new Vector3(h / spd, v / spd, 0);
+            Vector3 inp = new Vector3(h / spd * Time.timeScale, v / spd * Time.timeScale, 0);
             rb.MovePosition(transform.position + inp);
+
+            GetComponent<Animator>().SetInteger("playerDir", makeAnimDir());
+
 
         }
 
     }
 
-    string makeAnimDir()
+    int makeAnimDir()
     {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
@@ -47,24 +51,24 @@ public class movescript : MonoBehaviour
         {
             if (h > 0)
             {
-                return "left";
+                return 2;
             }
             else if (h < 0)
             {
-                return "right";
+                return 4;
             }
         }
         else if (Math.Abs(h) < Math.Abs(v))
         {
             if (v > 0)
             {
-                return "up";
+                return 1;
             }
             else if (v < 0)
             {
-                return "down";
+                return 3;
             }
         }
-        return null;
+        return 0;
     }
 }

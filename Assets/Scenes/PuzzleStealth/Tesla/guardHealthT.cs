@@ -7,13 +7,15 @@ public class guardHealthT : MonoBehaviour
     public int id;
     public static List<int> healthList = new List<int>();
     public static List<bool> aliveList = new List<bool>();
-
-    public int healthVar;
+    public static List<bool> dyingList = new List<bool>();
+    public static List<double> dyingTimer = new List<double>();
 
     void Start()
     {
         aliveList.Add(true);
-        healthList.Add(transform.parent.GetComponent<GuardVariablesT>().GetHealth());
+        healthList.Add(2);
+        dyingList.Add(false);
+        dyingTimer.Add(0);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -25,11 +27,22 @@ public class guardHealthT : MonoBehaviour
 
     void Update()
     {
-        healthVar = healthList[id];
         id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
-        if (healthList[id] <= 0)
+        if (healthList[id] <= 0 && dyingTimer[id] < 2)
         {
             aliveList[id] = false;
+            dyingList[id] = true;
+            dyingTimer[id] = dyingTimer[id] + Time.deltaTime;
         } // if it's health drops below 1, die
+        else if (dyingTimer[id] < 2)
+        {
+            aliveList[id] = true;
+            dyingList[id] = false;
+        }
+        else
+        {
+            aliveList[id] = false;
+            dyingList[id] = false;
+        }
     }
 }
