@@ -17,7 +17,7 @@ public class objectiveTrackerA : MonoBehaviour
     public int objStage = 0;
 
     // Obj refs
-    public static objectiveTracker currentObjective;
+    public static objectiveTrackerA currentObjective;
     private GameObject cloneObj;
     private GameObject cloneText;
     public GameObject thisText;
@@ -26,7 +26,7 @@ public class objectiveTrackerA : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        objectiveTracker.currentObjective = gameObject.GetComponent<objectiveTracker>();
+        objectiveTrackerA.currentObjective = gameObject.GetComponent<objectiveTrackerA>();
         input = GameObject.Find("UI").GetComponent<InputController>();
 
 

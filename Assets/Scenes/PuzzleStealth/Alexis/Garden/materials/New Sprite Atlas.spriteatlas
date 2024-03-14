@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 91de569d15f55174493ba468bd22e08b: 1260816760
+    - 91de569d15f55174493ba468bd22e08b: -648402221
+    - 91de569d15f55174493ba468bd22e08b: 1829588983
+    - 91de569d15f55174493ba468bd22e08b: 1608731499
+    - 91de569d15f55174493ba468bd22e08b: 42743413
+    - 91de569d15f55174493ba468bd22e08b: -1977472000
+    - 91de569d15f55174493ba468bd22e08b: -1189624217
+    - 91de569d15f55174493ba468bd22e08b: 1887971345
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 1260816760, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+  - {fileID: -648402221, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+  - {fileID: 1829588983, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+  - {fileID: 1608731499, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+  - {fileID: 42743413, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+  - {fileID: -1977472000, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+  - {fileID: -1189624217, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+  - {fileID: 1887971345, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - gardenTiles_2
+  - gardenTiles_3
+  - gardenTiles_0
+  - gardenTiles_1
+  - gardenTiles_6
+  - gardenTiles_7
+  - gardenTiles_4
+  - gardenTiles_5
+  m_RenderDataMap: {}
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0

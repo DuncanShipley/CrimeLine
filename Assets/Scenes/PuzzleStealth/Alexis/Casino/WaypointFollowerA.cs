@@ -59,11 +59,13 @@ public class WaypointFollowerA : MonoBehaviour
 
     private void Update()
     {
-        id = gameObject.transform.parent.GetComponent<IDs>().GetID();
+        
+        id = gameObject.transform.parent.GetComponent<IDsA>().GetID();
+        Debug.Log(currentPointIndex[0]);
 
         seesPlayer = CheckFor(Player);
 
-        if (guardHealth.aliveList[id])
+        if (guardHealthA.aliveList[id])
         {
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < .1f && guardWait <= 1 && !chase[id]) // if you're close and you haven't waited
             {
@@ -73,7 +75,7 @@ public class WaypointFollowerA : MonoBehaviour
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
                 currentPointIndex[id]++; // look towards the next waypoint
-                guardChase.putWaypoint(startingPosition, id);
+                guardChaseA.putWaypoint(startingPosition, id);
                 if (currentPointIndex[id] >= waypoints.Length)
                 {
                     currentPointIndex[id] = 0;

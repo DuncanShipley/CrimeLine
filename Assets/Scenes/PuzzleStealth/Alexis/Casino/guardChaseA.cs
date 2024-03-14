@@ -23,7 +23,7 @@ public class guardChaseA : MonoBehaviour
     {
         if (time == 0f)
         {
-            id = gameObject.transform.parent.GetComponent<IDs>().GetID();  //first, set the guard's id.
+            id = gameObject.transform.parent.GetComponent<IDsA>().GetID();  //first, set the guard's id.
         }
         if (time > 0.5f && time < 1f)
         {

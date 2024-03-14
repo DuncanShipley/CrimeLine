@@ -5,14 +5,24 @@ using UnityEngine;
 public class doorcodeA : MonoBehaviour
 {
     public int key;
+    public string dir;
+
+    private KeychainA keychain;
+    private bigTextbox textbox;
+
     bool touch = false;
-    bool open = true;
+    bool open = false;
+    bool opening = false;
     float movequeue = 0;
     float speed = 10;
+    private InputControllerA input;
 
     // Colider
-    private void start()
+    private void Start()
     {
+        input = GameObject.Find("UI").GetComponent<InputControllerA>();
+        keychain = GameObject.Find("Player").GetComponent<KeychainA>();
+        textbox = GameObject.Find("bigTextbox").GetComponent<bigTextbox>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,10 +38,25 @@ public class doorcodeA : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKey(KeyCode.Z) && touch && open && movequeue == 0)
+        if (input.GetKeyLimited("z") && touch && movequeue == 0 && !opening)
         {
-                movequeue = 10;
-                open = false;
+            if (keychain.getKeys() >= key)
+            {
+                if(open)
+                {
+                    open = false;
+                }
+                else
+                {
+                    open = true;
+                }
+                movequeue += 10;
+                opening = true;
+            } 
+            else if(!textbox.isTalking())
+            {
+                textbox.pushText(new string[] { "It's locked. You need a key to open this." });
+            }
         }
 
         if (movequeue != 0)
@@ -40,14 +65,46 @@ public class doorcodeA : MonoBehaviour
             var x = 0;
             var y = 0;
 
-            if (gameObject.tag == "leftdoor")
-                x = -1;
-            if (gameObject.tag == "rightdoor")
-                x = 1;
+            switch (dir)
+            {
+                case "up":
+                    if (open)
+                        y++;
+                    else
+                        y--;
+                    break;
+
+                case "down":
+                    if (open)
+                        y--;
+                    else
+                        y++;
+                    break;
+
+                case "right":
+                    if (open)
+                        x++;
+                    else
+                        x--;
+                    break;
+
+                case "left":
+                    if (open)
+                        x--;
+                    else
+                        x++;
+                    break;
+
+                default:
+                    break;
+            }
 
             Vector3 inp = new Vector3(x / speed, y / speed, 0);
-            rb.MovePosition(transform.position + inp);
+            transform.position = transform.position + inp;
             movequeue--;
+
+            if (movequeue == 0)
+                opening = false;
         }
     }
 }

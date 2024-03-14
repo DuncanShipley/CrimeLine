@@ -89,7 +89,7 @@ public class movescriptA : MonoBehaviour
 
     bool CanMove()
     {
-        if(!GameObject.Find("Main Camera").GetComponent<camfollow>().IsFollowingPlayer())
+        if((Input.GetKey(KeyCode.C)))
         {
             return false;
         }

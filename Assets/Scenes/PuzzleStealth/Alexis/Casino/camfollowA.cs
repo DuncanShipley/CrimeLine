@@ -18,30 +18,10 @@ public class camfollowA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (moveTick != 0)
+        if (enabled)
         {
-            transform.position = transform.position + new Vector3(0, moveTarget / 10, 0);
-            moveTick--;
+            transform.position = GameObject.Find("Player").transform.position + new Vector3(0, 0, -5);
         }
-        else if (followingPlayer)
-        {
-            transform.position = GameObject.Find("Player").transform.position + new Vector3(0, 1, -5);
-        }
-    }
-
-    public void enable()
-    {
-        moveTarget = 2;
-        moveTick = 10;
-        followingPlayer = true;
-    }
-
-    public void disable()
-    {
-        moveTarget = -2;
-        moveTick = 10;
-        followingPlayer = false;
     }
 
     public bool IsFollowingPlayer()

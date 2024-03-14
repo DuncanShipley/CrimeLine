@@ -38,7 +38,7 @@ public class pickpocketingA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Z) && touch && heldKey != 0)
+        if (Input.GetKey(KeyCode.Z) && touch)
         {
             UpdatePickProgress(); 
         }
@@ -66,30 +66,38 @@ public class pickpocketingA : MonoBehaviour
             text.enabled = true;
         }
 
-        switch (pickProgress) {
-            case 0:
-                text.SetText("Pocketing<br>key...");
-                break;
-            case 45:
-                text.SetText("Pocketing<br>key....");
-                break;
-            case 90:
-                text.SetText("Pocketing<br>key.....");
-                break;
-            case 135:
-                text.SetText("Pocketing<br>key......");
-                break;
-            case 180:
-                text.SetText("Key get!");
-                keychain.addKey();
-                objectiveTracker.currentObjective.completeObjective(1);
-                break;
-            case 300:
-                heldKey = 0;
-                pickProgress = 0;
-                break;
-        }
+        if(heldKey != 0)
+        {
+            switch (pickProgress)
+            {
+                case 0:
+                    text.SetText("Pocketing<br>key...");
+                    break;
+                case 45:
+                    text.SetText("Pocketing<br>key....");
+                    break;
+                case 90:
+                    text.SetText("Pocketing<br>key.....");
+                    break;
+                case 135:
+                    text.SetText("Pocketing<br>key......");
+                    break;
+                case 180:
+                    text.SetText("Key get!");
+                    keychain.addKey();
+                    objectiveTracker.currentObjective.completeObjective(1);
+                    break;
+                case 240:
+                    heldKey = 0;
+                    pickProgress = 0;
+                    break;
+            }
 
-        pickProgress++;
+            pickProgress++;
+        }
+        else
+        {
+            text.SetText("Nothing to steal...");
+        }
     }
 }

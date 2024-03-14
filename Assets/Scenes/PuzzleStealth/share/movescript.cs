@@ -5,95 +5,66 @@ using System;
 
 public class movescript : MonoBehaviour
 {
+    public GameObject projectile;
     float h = 0f;
     float v = 0f;
-    int spd;
-
-    Animator anim;
-
     // Start is called before the first frame update
     void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
+        projectile = GameObject.Find("projectile");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(CanMove())
+        if(true)
         {
-            // get the player's current momentum
+
+
             h = Input.GetAxis("Horizontal");
             v = Input.GetAxis("Vertical");
 
-            spd = GetSpeed();
+            //movement
+            var rb = GetComponent<Rigidbody2D>();
+            var spd = 5;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                spd = 12;
+            }
+            Vector3 inp = new Vector3(h / spd, v / spd, 0);
+            rb.MovePosition(transform.position + inp);
 
-            // movement
-            MakeMovement(h, v);
-
-            // animation
-            SetMovementAnim();
         }
-        
+
     }
 
-    void SetMovementAnim()
+    string makeAnimDir()
     {
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+
         if (Math.Abs(h) > Math.Abs(v))
         {
             if (h > 0)
             {
-                anim.SetInteger("playerDir", 2);
+                return "left";
             }
             else if (h < 0)
             {
-                anim.SetInteger("playerDir", 4);
+                return "right";
             }
         }
-        else if ((Math.Abs(v) >= Math.Abs(h)) && (Math.Abs(v) != 0))
+        else if (Math.Abs(h) < Math.Abs(v))
         {
             if (v > 0)
             {
-                anim.SetInteger("playerDir", 1);
+                return "up";
             }
             else if (v < 0)
             {
-                anim.SetInteger("playerDir", 3);
+                return "down";
             }
         }
-        else
-        {
-            anim.SetInteger("playerDir", 0);
-        }
+        return null;
     }
-
-    void MakeMovement(float hv, float vv)
-    {
-        var rb = GetComponent<Rigidbody2D>();
-        Vector3 inp = new Vector3(hv / 20 * spd, vv / 20 * spd, 0);
-        rb.MovePosition(transform.position + inp);
-    }
-
-    int GetSpeed()
-    {
-        // set speed based on if the player if Focused or not
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            return 2;
-        }
-        else
-        {
-            return 4;
-        }
-    }
-
-    bool CanMove()
-    {
-        if(!GameObject.Find("Main Camera").GetComponent<camfollow>().IsFollowingPlayer())
-        {
-            return false;
-        }
-        return true;
-    }
-
 }

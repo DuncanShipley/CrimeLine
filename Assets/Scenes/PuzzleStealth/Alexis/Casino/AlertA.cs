@@ -19,7 +19,7 @@ public class AlertA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        id = gameObject.transform.parent.parent.GetComponent<IDs>().GetID();
+        id = gameObject.transform.parent.parent.GetComponent<IDsA>().GetID();
         alert = alerted[id];
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -27,7 +27,7 @@ public class AlertA : MonoBehaviour
 
         if (collision.gameObject.tag == "GuardSensor")
         {
-            int otherID = collision.gameObject.transform.parent.parent.GetComponent<IDs>().GetID();
+            int otherID = collision.gameObject.transform.parent.parent.GetComponent<IDsA>().GetID();
 
 
             if (WaypointFollower.alerting[otherID] && !WaypointFollower.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
