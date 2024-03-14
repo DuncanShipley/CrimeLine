@@ -14,12 +14,15 @@ public class projectileT : MonoBehaviour
     float h = 0f;
     float v = 0f;
     static float throwPause = 0;
+    Renderer render;
     // Start is called before the first frame update
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
+        render = GetComponent<Renderer>();
+        if (gameObject.name == "projectile") { render.enabled = false; }
     }
 
     void Update()
@@ -52,6 +55,7 @@ public class projectileT : MonoBehaviour
             //availible--;
             copy = Instantiate(gameObject, player.transform.position, new Quaternion()); // create a projectile at the player's location
             copy.name = "proj";
+            copy.GetComponent<Renderer>().enabled = true;
 
             if (lastInput.x == 100)
             {
@@ -98,13 +102,14 @@ public class projectileT : MonoBehaviour
             throwPause = 0;
             var pRB = copy.GetComponent<Rigidbody2D>();
             pRB.AddRelativeForce(lastInput); // move in the same direction as last player movement
+
         }
     }
 
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        shot = true; // when it stops touching the player
+        if (collision.tag == "Player") { shot = true; } // when it stops touching the player
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -114,7 +119,7 @@ public class projectileT : MonoBehaviour
             availible++;
             Destroy(gameObject);
         } // if the player touches it after the initial shot, pick it up
-        if (collision.gameObject.name != "proj" && gameObject.name != "projectile" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "GuardSensor" && !landed && gameObject.name == "proj") 
+        if (collision.gameObject.name != "proj" && collision.gameObject.name != "projectile" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "GuardSensor" && !landed && gameObject.name == "proj")//collision.gameObject.tag == "Guard") 
         {
             landed = true;
             rb.velocity = Vector3.zero;
