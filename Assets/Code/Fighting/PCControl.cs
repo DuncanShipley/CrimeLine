@@ -132,14 +132,14 @@ public class PCControl : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.H) && !stunned)
             {
-                //ground spike
+                SFXManager.instance.PlaySFXClip(groundSpikeSFX, transform, 1f);
                 CurrentAttack = SideH;
                 anim.SetTrigger("SideH");
                 stunned = true;
             }
             if (Input.GetKey(KeyCode.H) && !stunned)
             {
-                //whip
+                SFXManager.instance.PlaySFXClip(whipSFX, transform, 1f);
                 CurrentAttack = WH;
                 anim.SetTrigger("WH");
                 stunned = true;
@@ -147,21 +147,21 @@ public class PCControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.J) && !stunned)
             {
-                //knife
+                SFXManager.instance.PlaySFXClip(knifeSFX, transform, 0.3f);
                 CurrentAttack = SideJ;
                 anim.SetTrigger("SideJ");
                 stunned = true;
             }
             if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.J) && !stunned)
             {
-                //shieldpush
+                SFXManager.instance.PlaySFXClip(shieldPushSFX, transform, 3f);
                 CurrentAttack = SJ;
                 anim.SetTrigger("SJ");
                 stunned = true;
             }
             if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.J) && !stunned)
             {
-                //knife
+                SFXManager.instance.PlaySFXClip(knifeSFX, transform, 0.3f);
                 CurrentAttack = SideJ;
                 anim.SetTrigger("SideJ");
                 stunned = true;
