@@ -579,11 +579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4027183570899031469, guid: 77181b55049b10f41bc38a21276a7df2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -224.99997
+      value: -225.00015
       objectReference: {fileID: 0}
     - target: {fileID: 4027183570899031469, guid: 77181b55049b10f41bc38a21276a7df2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.7999954
+      value: -0.7999878
       objectReference: {fileID: 0}
     - target: {fileID: 4027183570899031469, guid: 77181b55049b10f41bc38a21276a7df2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1076,6 +1076,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1304725
       objectReference: {fileID: 0}
+    - target: {fileID: 3499261812153328356, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1086,27 +1090,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.2542279
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.384302
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.034
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 20.2648
+      value: 892.2648
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -129.2719
+      value: 45.72809
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_LocalScale.y
@@ -1142,11 +1146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -292.59692
+      value: -20.596924
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -6
+      value: -289.5
       objectReference: {fileID: 0}
     - target: {fileID: 4965142718874512232, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1167,6 +1171,26 @@ PrefabInstance:
     - target: {fileID: 5385590809371639790, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085176800144002739, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085176800144002739, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085176800144002739, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085176800144002739, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085176800144002739, guid: 9c68ed298b9b8874d98bc11b3ce61e77, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
