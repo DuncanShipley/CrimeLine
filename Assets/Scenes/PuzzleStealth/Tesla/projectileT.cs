@@ -14,19 +14,20 @@ public class projectileT : MonoBehaviour
     float h = 0f;
     float v = 0f;
     static float throwPause = 0;
-    float rotationGoal;
     // Start is called before the first frame update
 
     void Start()
     {
-        gameObject.name = "proj";
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
     }
 
     void Update()
     {
-
+        if (gameObject.name == "projectile")
+        {
+            transform.position = player.transform.position;
+        }
 
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
@@ -44,37 +45,13 @@ public class projectileT : MonoBehaviour
                 lastInput.y = 0;
         }
 
-        rotationGoal = Mathf.Atan(lastInput.x / lastInput.y);
         throwPause += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.E) && availible > 0 && throwPause >= 2)
         {
             //availible--;
-            copy = Instantiate(gameObject, player.transform.position, new Quaternion()); // create a projectile at the player's location\
-
-            /*
-            if (lastInput.x == 100) // right
-            {
-                copy.transform.Rotate(0, 0, 270);
-            }
-            if (lastInput.x == -100) // left
-            {
-                copy.transform.Rotate(0, 0, 90);
-            }
-
-            if (lastInput.y == 100 && lastInput.x != 0) // up
-            {
-                copy.transform.Rotate(0, 0, copy.transform.rotation.z + 45);
-            }
-            if (lastInput.y == -100 && lastInput.x == 0) // down
-            {
-                copy.transform.Rotate(0, 0, 180);
-            }
-            else if (lastInput.y == -100) // down
-            {
-                copy.transform.Rotate(0, 0, copy.transform.rotation.z - 45);
-            }
-            */
+            copy = Instantiate(gameObject, player.transform.position, new Quaternion()); // create a projectile at the player's location
+            copy.name = "proj";
 
             if (lastInput.x == 100)
             {
@@ -132,17 +109,17 @@ public class projectileT : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && shot)
+        if (collision.tag == "Player" && shot && gameObject.name == "proj")
         {
             availible++;
             Destroy(gameObject);
         } // if the player touches it after the initial shot, pick it up
-        if (collision.gameObject.name != "proj" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "GuardSensor" && !landed)
+        if (collision.gameObject.name != "proj" && gameObject.name != "projectile" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "GuardSensor" && !landed && gameObject.name == "proj") 
         {
             landed = true;
             rb.velocity = Vector3.zero;
             gameObject.transform.SetParent(collision.gameObject.transform);
-        } // if it hits something real, stop moving and attatch to the item it hit
+        } // stop and stick if not another projectile, not the player, not the sensor range for the guard, it's already been shot, and its not the base
     }
     // Update is called once per frame
 }

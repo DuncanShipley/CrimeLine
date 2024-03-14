@@ -5,34 +5,39 @@ using UnityEngine;
 public class guardChaseT : MonoBehaviour
 {
     public GameObject Player;
-    Vector3 startingPosition;
-
+    public static List<Vector3> startingPosition = new List<Vector3>();
+    public static List<Vector3> position = new List<Vector3>();
 
     public int id;
+
+    float time = 0;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
-        startingPosition = transform.position; // saves the guard's starting position to return the waypoint to it later=
+        startingPosition.Add(Vector3.zero);
+        position.Add(Vector3.zero);
     }
-
     // Update is called once per frame
     void Update()
     {
-        id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
-
-        if (WaypointFollowerT.chase[id]) // while the guard is chasing the player
+        if (time == 0f)
         {
-            transform.position = Player.transform.position; // put this waypoint on the player.
+            id = gameObject.transform.parent.GetComponent<IDsT>().GetID();  //first, set the guard's id.
         }
-        if (AlertT.alerted[id] > -1) // while the guard is alerted
+        if (time > 0.5f && time < 1f)
         {
-            transform.position = AlertT.guards[AlertT.alerted[id]].transform.position; // put this waypoint on the alerting guard.
+            position[id] = transform.position;
+            startingPosition[id] = position[id]; // saves the guard's starting position to return the waypoint to it later
         }
-        
-        if (!WaypointFollowerT.chase[id] && AlertT.alerted[id] == -1) // whey they stop,
+        if (time > 1f)
         {
-            transform.position = startingPosition; // return this waypoint to its starting position.
+            transform.position = position[id]; // after enough time has passed to set everything up, go!
         }
+        time += Time.deltaTime;
+    }
+    public static void putWaypoint(Vector3 wpLocation, int GuardID)
+    {
+        position[GuardID] = wpLocation;
     }
 }
