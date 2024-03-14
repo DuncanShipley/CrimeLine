@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class doorcodeA : MonoBehaviour
 {
-    public int key;
+    public string lockType;
+    public int keyID;
     public string dir;
 
     private KeychainA keychain;
     private bigTextbox textbox;
 
+    bool faceActive = false;
     bool touch = false;
     bool open = false;
     bool opening = false;
@@ -40,23 +42,63 @@ public class doorcodeA : MonoBehaviour
 
         if (input.GetKeyLimited("z") && touch && movequeue == 0 && !opening)
         {
-            if (keychain.getKeys() >= key)
+            switch (lockType)
             {
-                if(open)
-                {
-                    open = false;
-                }
-                else
-                {
-                    open = true;
-                }
-                movequeue += 10;
-                opening = true;
-            } 
-            else if(!textbox.isTalking())
-            {
-                textbox.pushText(new string[] { "It's locked. You need a key to open this." });
+                case "key":
+                    if (keychain.getKeys() >= keyID)
+                    {
+                        if (open)
+                        {
+                            open = false;
+                        }
+                        else
+                        {
+                            open = true;
+                        }
+                        movequeue += 10;
+                        opening = true;
+                    }
+                    else if (!textbox.isTalking())
+                    {
+                        textbox.pushText(new string[] { "It's locked. You need a key to open this." });
+                    }
+                    break;
+
+                case "faceID":
+                    if (faceActive)
+                    {
+                        if (open)
+                        {
+                            open = false;
+                        }
+                        else
+                        {
+                            open = true;
+                        }
+                        movequeue += 10;
+                        opening = true;
+                    }
+                    else if (!textbox.isTalking())
+                    {
+                        textbox.pushText(new string[] { "It's locked. It seems like this door needs facial recognition to open" });
+                    }
+                    break;
+
+                default:
+                    if (open)
+                    {
+                        open = false;
+                    }
+                    else
+                    {
+                        open = true;
+                    }
+                    movequeue += 10;
+                    opening = true;
+                    break;
             }
+            
+            
         }
 
         if (movequeue != 0)
@@ -106,5 +148,10 @@ public class doorcodeA : MonoBehaviour
             if (movequeue == 0)
                 opening = false;
         }
+    }
+
+    public void updateFaceID(bool active)
+    {
+        faceActive = active;
     }
 }
