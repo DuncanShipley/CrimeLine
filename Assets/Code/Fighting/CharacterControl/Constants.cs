@@ -2,15 +2,17 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using Assets.Code.Fighting.EnemyManagers.EnemyAis;
+using Assets.Code.Fighting.CharacterControl.EnemyManagement.EnemyAis;
+using Assets.Code.Fighting.CharacterControl.EnemyManagement;
 using UnityEngine.UI;
-namespace Assets.Code.Fighting.EnemyManagers
+
+
+namespace Assets.Code.Fighting.CharacterControl
 {
-    public class EnemyConstants: MonoBehaviour
+    public class Constants: MonoBehaviour
     {
 
-
-        public static EnemyConstants instance;
+        public static Constants instance;
 
         public GameObject Hadouken;
         public GameObject RyuPunch;
