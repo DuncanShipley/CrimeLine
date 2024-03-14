@@ -9,6 +9,7 @@ public class guardHealthT : MonoBehaviour
     public static List<bool> aliveList = new List<bool>();
     public static List<bool> dyingList = new List<bool>();
     public static List<double> dyingTimer = new List<double>();
+    public static List<int> stunList = new List<int>();
 
     void Start()
     {
@@ -16,19 +17,26 @@ public class guardHealthT : MonoBehaviour
         healthList.Add(2);
         dyingList.Add(false);
         dyingTimer.Add(0);
+        stunList.Add(1);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "proj")
+        if (other.gameObject.name == "proj" && stunList[id] > 0)
         {
-            healthList[id]--;
+            stunList[id]--;
+            Debug.Log(stunList[id]);
         } // if it's hit by a projectile, decrease health
     }
 
     void Update()
     {
         id = gameObject.transform.parent.GetComponent<IDsT>().GetID();
-        if (healthList[id] <= 0 && dyingTimer[id] < 2)
+        if (stunList[id] <= 0) // if its been hit, freeze for three seconds
+        {
+            for (float w = 0; w < 5; w += Time.deltaTime) { Debug.Log("waiting for " + w); }
+            stunList[id] = 1;
+        }
+        else if (healthList[id] <= 0 && dyingTimer[id] < 2)
         {
             aliveList[id] = false;
             dyingList[id] = true;

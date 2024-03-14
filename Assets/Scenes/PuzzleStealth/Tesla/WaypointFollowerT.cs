@@ -63,7 +63,7 @@ public class WaypointFollowerT : MonoBehaviour
 
         seesPlayer = CheckFor(Player);
 
-        if (guardHealthT.aliveList[id])
+        if (guardHealthT.stunList[id] > 0)
         {
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < .1f && guardWait <= 1 && !chase[id]) // if you're close and you haven't waited
             {
