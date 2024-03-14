@@ -32,6 +32,8 @@ namespace Assets.Code.Fighting.CharacterControl
     {
         Right,
         Left,
+        Up,
+        Down,
         Jump,
     }
 

@@ -9,10 +9,8 @@ using UnityEngine;
 
 public class PlayerInputManager : MonoBehaviour
 {
-  
-    
-    
-
+    PlayerAction[] playActions = null;
+    PlayerActionManager actionManager;
     private void Start()
     {
         bool[] array = new bool[0];
@@ -32,9 +30,37 @@ public class PlayerInputManager : MonoBehaviour
                 Input.GetKey(KeyCode.LeftArrow), 
                 Input.GetKey(KeyCode.UpArrow), 
                 Input.GetKey(KeyCode.DownArrow));
-        CompileActions(keys);
+        playActions = CompileActions(keys);
+        actionManager.TryMoveAction(ReadyForMoveManager(playActions));
+        actionManager.TryAction(playActions);
     }
-
+    private MovementAction[] ReadyForMoveManager(PlayerAction[] action)
+    {
+        MovementAction[] moveActions = new MovementAction[0];
+        foreach (var Item in action)
+        {
+            switch (Item)
+            {
+                case PlayerAction.Jump:
+                    moveActions.Append(MovementAction.Jump);
+                    break;
+                case PlayerAction.MoveLeft:
+                    moveActions.Append(MovementAction.Left);
+                    break;
+                case PlayerAction.MoveRight:
+                    moveActions.Append(MovementAction.Right);
+                    break;
+                case PlayerAction.MoveUp:
+                    moveActions.Append(MovementAction.Up);
+                    break;
+                case PlayerAction.MoveDown:
+                    moveActions.Append(MovementAction.Down);
+                    break;
+                
+            }
+        }
+        return moveActions;
+    }
     private PlayerAction[] CompileActions(KeysPressed keys)
     {
         PlayerAction[] actions = new PlayerAction[0];
@@ -90,7 +116,7 @@ public class PlayerInputManager : MonoBehaviour
     private void NegateKey(ref bool keyOne, ref bool keyTwo)
     {
         keyOne = keyOne && !keyTwo;///////////Ben help needed
-        keyTwo = keyOne && keyTwo;
+        keyTwo = keyOne && keyTwo;////////help
     }
 
     static bool[] NegateKeys(params bool[] boolValues)
@@ -133,7 +159,6 @@ record KeysPressed
     public bool LA;
     public bool UA;
     public bool DA;
-    //just make this method right?
     public KeysPressed(bool Z, bool X, bool C, bool V, bool RA, bool LA, bool UA, bool DA)
     {
         this.Z = Z;
