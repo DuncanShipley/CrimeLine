@@ -7,7 +7,7 @@ public class Char1Actor : MonoBehaviour
 
     public void MeleeSide()
     {
-
+        
     }
 
     public void MeleeDown()
