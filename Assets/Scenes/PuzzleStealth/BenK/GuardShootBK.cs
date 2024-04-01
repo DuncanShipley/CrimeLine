@@ -19,12 +19,12 @@ public class GuardShootBK : MonoBehaviour
 
     void Update()
     {
-        id = gameObject.transform.parent.GetComponent<IDs>().GetID();
+        id = gameObject.transform.parent.GetComponent<IDsBK>().GetID();
 
 
         throwPause += Time.deltaTime;
 
-        if (WaypointFollower.sus[id] == 1 && throwPause > waitTime)
+        if (WaypointFollowerBK.sus[id] == 1 && throwPause > waitTime)
         {
             copy = Instantiate(projectile, transform.position, gameObject.transform.rotation); // create a projectile at the guard's location
             throwPause = 0;

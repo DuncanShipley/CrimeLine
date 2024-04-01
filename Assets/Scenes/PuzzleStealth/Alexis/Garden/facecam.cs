@@ -21,7 +21,7 @@ public class facecam : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Guard")
+        if (other.tag == "Player")
         {
             door1.GetComponent<doorcodeA>().updateFaceID(true);
             door2.GetComponent<doorcodeA>().updateFaceID(true);
@@ -30,7 +30,7 @@ public class facecam : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Guard")
+        if (other.tag == "Player")
         {
             door1.GetComponent<doorcodeA>().updateFaceID(false);
             door2.GetComponent<doorcodeA>().updateFaceID(false);

@@ -58,11 +58,9 @@ public class objectiveTrackerA : MonoBehaviour
             if (objStage + 1 < lines.Length)
             {
                 cloneObj = Object.Instantiate(gameObject, GameObject.Find("UI").transform);
-                cloneText = Object.Instantiate(thisText, GameObject.Find("UI").transform);
 
                 cloneObj.GetComponent<Image>().sprite = off;
-                cloneObj.GetComponent<objectiveTracker>().thisText = cloneText;
-                cloneObj.GetComponent<objectiveTracker>().objStage++;
+                cloneObj.GetComponent<objectiveTrackerA>().objStage++;
 
                 for (int i = 0; i < allObjectives.Length; i++)
                 {
@@ -76,14 +74,13 @@ public class objectiveTrackerA : MonoBehaviour
                 {
                     if (allTexts[i] != null)
                     {
-                        allTexts[i].transform.position = new Vector3(allTexts[i].transform.position.x, allTexts[i].transform.position.y - 50f, allTexts[i].transform.position.z);
                         allTexts[i].GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f, allTexts[i].GetComponent<TextMeshProUGUI>().color.a - 0.25f);
                     }
                 }
 
                 objectiveTracker.currentObjective = cloneObj.GetComponent<objectiveTracker>();
-                allObjectives[cloneObj.GetComponent<objectiveTracker>().objStage] = cloneObj;
-                allTexts[cloneObj.GetComponent<objectiveTracker>().objStage] = cloneText;
+                allObjectives[cloneObj.GetComponent<objectiveTrackerA>().objStage] = cloneObj;
+                allTexts[cloneObj.GetComponent<objectiveTrackerA>().objStage] = cloneText;
             }
 
         }

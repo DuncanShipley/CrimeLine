@@ -21,11 +21,11 @@ public class WaypointFollowerBK : MonoBehaviour
     public int id;
 
     public static List<int> currentPointIndex = new List<int>();
-    //public static List<float> sus = new List<float>();
-    //public static List<bool> chase = new List<bool>();
-    //public static List<bool> alerting = new List<bool>();
-    //public static List<bool> seeing = new List<bool>();
-    //public static List<int> oldPointIndex = new List<int>();
+    public static List<float> sus = new List<float>();
+    public static List<bool> chase = new List<bool>();
+    public static List<bool> alerting = new List<bool>();
+    public static List<bool> seeing = new List<bool>();
+    public static List<int> oldPointIndex = new List<int>();
 
 
     [SerializeField] public static List<float> speed = new List<float>();
@@ -58,7 +58,7 @@ public class WaypointFollowerBK : MonoBehaviour
     private void Update()
     {
         id = gameObject.transform.parent.GetComponent<IDsBK>().GetID();
-
+        
         if (canMove)
         {
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < .1f && guardWait <= 1) // if you're close and you haven't waited
