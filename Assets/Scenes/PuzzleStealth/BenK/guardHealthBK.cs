@@ -28,7 +28,7 @@ public class guardHealthBK : MonoBehaviour
 
     void Update()
     {
-        id = gameObject.transform.parent.GetComponent<IDs>().GetID();
+        id = gameObject.transform.parent.GetComponent<IDsBK>().GetID();
         if (healthList[id] <= 0 && dyingTimer[id] < 2)
         {
             aliveList[id] = false;
