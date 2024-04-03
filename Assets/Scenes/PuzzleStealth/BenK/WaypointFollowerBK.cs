@@ -44,7 +44,7 @@ public class WaypointFollowerBK : MonoBehaviour
     private void Update()
     {
         id = gameObject.transform.parent.GetComponent<IDsBK>().GetID();
-
+        
         if (canMove)
         {
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait <= 1) // if you're close and you haven't waited

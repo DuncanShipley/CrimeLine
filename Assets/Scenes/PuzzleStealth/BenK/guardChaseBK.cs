@@ -94,6 +94,7 @@ public class guardChaseBK : MonoBehaviour
         }
         else // if none of those are true, end the chase
         {
+            Debug.Log(id);
             chase[id] = false;
             detectRadius = 81;
             WaypointFollowerBK.speed[id] = 2f;
