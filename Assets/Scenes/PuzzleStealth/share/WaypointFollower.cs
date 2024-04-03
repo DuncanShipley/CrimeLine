@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class WaypointFollowerBK : MonoBehaviour
+public class WaypointFollower : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
     public static GameObject[] wpref;
@@ -43,7 +43,7 @@ public class WaypointFollowerBK : MonoBehaviour
 
     private void Update()
     {
-        id = gameObject.transform.parent.GetComponent<IDsBK>().GetID();
+        id = gameObject.transform.parent.GetComponent<IDs>().GetID();
 
         if (canMove)
         {
@@ -55,7 +55,7 @@ public class WaypointFollowerBK : MonoBehaviour
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
                 currentPointIndex[id]++; // look towards the next waypoint
-                guardChaseBK.putWaypoint(startingPosition, id);
+                guardChase.putWaypoint(startingPosition, id);
                 if (currentPointIndex[id] >= waypoints.Length)
                 {
                     currentPointIndex[id] = 0;
@@ -63,7 +63,7 @@ public class WaypointFollowerBK : MonoBehaviour
                 guardWait = 0; // reset wait timer
                 transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed[id]);
             }
-            else if (guardChaseBK.sus[id] == 0 || guardChaseBK.sus[id] == 1)
+            else if (guardChase.sus[id] == 0 || guardChase.sus[id] == 1)
             {
                 transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed[id]); // move towards waypoint
             }
