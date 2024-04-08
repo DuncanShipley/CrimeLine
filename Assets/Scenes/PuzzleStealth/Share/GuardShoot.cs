@@ -24,17 +24,14 @@ public class GuardShoot : MonoBehaviour
 
         throwPause += Time.deltaTime;
 
-        if (WaypointFollower.sus[id]==1 && throwPause > waitTime)
+        if (guardChase.sus[id] == 1 && throwPause > waitTime)
         {
             copy = Instantiate(projectile, transform.position, gameObject.transform.rotation); // create a projectile at the guard's location
             throwPause = 0;
             var pRB = copy.GetComponent<Rigidbody2D>();
-            pRB.AddRelativeForce(Vector3.up*2000); // move in the same direction as last player movement
+            pRB.AddRelativeForce(Vector3.up * 2000); // move in the same direction as last player movement
             copy.name = "Guard Shot";
             copy.tag = "DamagePlayer";
         }
     }
-
-
-    
 }

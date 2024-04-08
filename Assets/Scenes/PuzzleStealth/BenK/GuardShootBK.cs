@@ -14,17 +14,17 @@ public class GuardShootBK : MonoBehaviour
 
     void Start()
     {
-        waitTime = transform.parent.GetComponent<GuardVariables>().GetShootWait();
+        waitTime = transform.parent.GetComponent<GuardVariablesBK>().GetShootWait();
     }
 
     void Update()
     {
-        id = gameObject.transform.parent.GetComponent<IDs>().GetID();
+        id = gameObject.transform.parent.GetComponent<IDsBK>().GetID();
 
 
         throwPause += Time.deltaTime;
 
-        if (WaypointFollower.sus[id] == 1 && throwPause > waitTime)
+        if (guardChaseBK.sus[id] == 1 && throwPause > waitTime)
         {
             copy = Instantiate(projectile, transform.position, gameObject.transform.rotation); // create a projectile at the guard's location
             throwPause = 0;

@@ -14,7 +14,7 @@ public class talkscriptBK : MonoBehaviour
     private int totalLines;
     private int textIndex = 0;
 
-    private InputController input;
+    private InputControllerBK input;
     private TextMeshProUGUI text;
     private GameObject textobj;
     private GameObject textbox;
@@ -30,7 +30,7 @@ public class talkscriptBK : MonoBehaviour
         textbox = GameObject.Find("bigTextbox");
         text = textobj.GetComponent<TextMeshProUGUI>();
 
-        input = GameObject.Find("UI").GetComponent<InputController>();
+        input = GameObject.Find("UI").GetComponent<InputControllerBK>();
     }
 
     // Update is called once per frame
