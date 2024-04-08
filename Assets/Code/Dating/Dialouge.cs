@@ -20,6 +20,7 @@ public class Dialouge : MonoBehaviour
         story = new Story(inkJsonAsset.text);
        // textComponent.text = Lines;
         StartDialouge();
+        
     }
 
     // Update is called once per frame

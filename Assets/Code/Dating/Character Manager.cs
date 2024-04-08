@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 { 
-    private InkExternalFunctions InkExternalFunctions;
+    InkExternalFunctions IKF;
     public List<GameObject> CharacterList = new List<GameObject>();
     private List<Emotions> EmotionalState = new List<Emotions>();
     private List<GameObject> ActiveCharcters = new List<GameObject>();
 
      void Awake()
     {
-        InkExternalFunctions = new InkExternalFunctions();
+         IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
     }
     void Start()
     {
@@ -20,17 +20,32 @@ public class CharacterManager : MonoBehaviour
         for (int i = 0; i < characters.Length; i++)
         {
             GameObject newCharacter = Instantiate(characters[i]);
-            newCharacter.SetActive(false);
+            newCharacter.SetActive(true);
             newCharacter.name = characters[i].name;
             CharacterList.Add(newCharacter);
         }
     }
 
+
     public void SetSpeaker(){
-        if (InkExternalFunctions.CurrentSpeaker != ""){
-            Debug.Log("SetSpeaker to " + InkExternalFunctions.CurrentSpeaker);
-            Debug.Log(InkExternalFunctions.CurrentSpeaker);
+        if(IKF.CurrentSpeaker!=""){
+            //if(IKF)
+            Debug.Log("Setting Speaker to " + IKF.CurrentSpeaker);
+            foreach (GameObject gO in CharacterList){
+                if(gO.name != IKF.CurrentSpeaker){
+                    gO.SetActive(false);
+                }
+                if(gO.name == IKF.CurrentSpeaker){
+                    gO.SetActive(true);
+                    ActiveCharcters.Add(gO.GetComponent<)
+                }
+            }
         }
+    }
+
+    public void SetEmotion(){
+        if(IKF.CurrentEmotion!="")
+        Debug.Log("Setting Emotion to " + IKF.CurrentEmotion);
     }
 
 

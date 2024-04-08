@@ -11,13 +11,13 @@ using JetBrains.Annotations;
 
 public class InkManager : MonoBehaviour
 {
-    private InkExternalFunctions InkExternalFunctions;
+    InkExternalFunctions IKF;
     void Awake()
     {
-        // Remove the default message
+        
         cm = GetComponent<CharacterManager>();
         gm = GetComponent<GameManager>();
-        InkExternalFunctions = new InkExternalFunctions();
+        IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
         StartStory();
        
        
@@ -40,9 +40,12 @@ public class InkManager : MonoBehaviour
     // Creates a new Story object with the compiled story which we can then play!
     void StartStory()
     {
+        Debug.Log("Starting Story");
         story = new Story(inkJSONAsset.text);
-        InkExternalFunctions.Bind(story);
+        IKF.Bind(story);
         RefreshView();
+        cm.SetSpeaker();
+        cm.SetEmotion();
     }
 
    
@@ -66,13 +69,9 @@ public class InkManager : MonoBehaviour
                  text = text.Trim();
                  // Display the text on screen!
                  CreateContentView(text);
-               LD --;
+                LD --;
+                
             }
-        }
-
-        if (InkExternalFunctions.CurrentSpeaker != "")
-        {
-            cm.SetSpeaker();
         }
 
         // Display all the choices, if there are any!
@@ -84,6 +83,8 @@ public class InkManager : MonoBehaviour
             {
                 Choice choice = story.currentChoices[i];
                 Button button = CreateChoiceView(choice.text.Trim());
+                cm.SetSpeaker();
+                cm.SetEmotion();
                 // Tell the button what to do when we press it
                 button.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
@@ -112,10 +113,9 @@ public class InkManager : MonoBehaviour
    /// <param name="text"></param>
     void CreateContentView(string text)
     {
-        TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(120f, 150f, 0), Quaternion.identity) as TextMeshProUGUI;
+        TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(-30f, 120f, 0), Quaternion.identity) as TextMeshProUGUI;
         storyText.text = text;
-        storyText.transform.SetParent(canvas.transform, false);
-        print(storyText.text);
+        storyText.transform.SetParent(canvas.transform, false); 
     }
 
 
@@ -127,7 +127,7 @@ public class InkManager : MonoBehaviour
     Button CreateChoiceView(string text)
     {
      // Creates the button from a prefab
-     Button choice = Instantiate(buttonPrefab, new Vector3(425, -235-(BP*TR), 0), Quaternion.identity) as Button;
+     Button choice = Instantiate(buttonPrefab, new Vector3(475, -305-(BP*TR), 0), Quaternion.identity) as Button;
      choice.transform.SetParent(canvas.transform, false);
 
         // Gets the text from the button prefab

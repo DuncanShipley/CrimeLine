@@ -4,10 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InkExternalFunctions 
+public class InkExternalFunctions : MonoBehaviour 
 {
     public string CurrentSpeaker;
-    public string CurrentEmotion = "Emotion test";
+    public string CurrentEmotion;
     /// <summary>
     /// Binds Ink functions
     /// </summary>
@@ -17,22 +17,18 @@ public class InkExternalFunctions
         Debug.Log("Binding Functions");
         story.BindExternalFunction("SetCharacter", (string CurrentCharacter) => {
             CurrentSpeaker = CurrentCharacter;
-            Debug.Log(CurrentSpeaker);
         });
-        Debug.Log(CurrentSpeaker + " attempt 2");
-
+       
         story.BindExternalFunction("SetEmotion", (string Emotion) => { 
             CurrentEmotion=Emotion;
-            Debug.Log(CurrentEmotion);
         });
     }
     
 
     /// <summary>
-    /// Unbinds Ink functions
+    /// UnBinds Ink functions
     /// </summary>
     /// <param name="story"></param>
-
     public void unBind(Story story)
     {
         Debug.Log("Unbinding Functions");
