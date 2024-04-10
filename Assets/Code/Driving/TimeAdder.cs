@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    AudioSource source;
+    [SerializeField] private GameObject stopwatch;
+
+    void Start()
+    {
+        source = GetComponent<AudioSource>();
+    }
+
+    private IEnumerator OnTriggerEnter(Collider other)
     {
         EventManager.OnTimerUpdate(30);
+        source.Play();
+
+        stopwatch.GetComponent<Renderer>().enabled = false;
+
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 }
