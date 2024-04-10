@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1741,8 +1741,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.44334188, y: 0.7899091, z: 0.2}
-  m_Center: {x: 0.002558479, y: 0.0013877121, z: 0}
+  m_Size: {x: 0.44334188, y: 0.66161895, z: 0.20000002}
+  m_Center: {x: 0.002558479, y: 0.24155885, z: 0.00000007812957}
 --- !u!54 &332108934
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1811,7 +1811,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1979813982, guid: b0d970c280e37d442b971a2fe31dcbdb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b60e6a868074d4e7087d9a96c36f69e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1830,15 +1830,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332108928}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.45, y: 6.64, z: 2}
-  m_LocalScale: {x: -7, y: 7, z: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 9.45, y: 4.94, z: 2}
+  m_LocalScale: {x: -8.138634, y: 8, z: 1.1189125}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 697370722}
   - {fileID: 1172509361}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &377788553
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,7 +2251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e367baea8ba94184cb032d85e69eb06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 8fee8fe25d2f1f4498fb896dc4aeea63, type: 2}
 --- !u!4 &397878699
 Transform:
   m_ObjectHideFlags: 0
@@ -3377,8 +3377,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5717979, y: 0.16036355, z: 0.7838839}
-  m_Center: {x: 0.011853153, y: -0.19584616, z: 0.108058035}
+  m_Size: {x: 0.3078575, y: 0.19096357, z: 0.7838839}
+  m_Center: {x: -0.008675581, y: 0.17135285, z: 0.10805805}
 --- !u!1 &744695544
 GameObject:
   m_ObjectHideFlags: 0
@@ -6340,8 +6340,8 @@ Transform:
   m_GameObject: {fileID: 1283236087}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 8.53, z: 3}
-  m_LocalScale: {x: 4.7100005, y: 1, z: 1.7000004}
+  m_LocalPosition: {x: 0, y: 12.4725, z: 3}
+  m_LocalScale: {x: 4.7100005, y: 1, z: 2.488431}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 777171596}
@@ -6388,7 +6388,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 13019f29b188c7a4d82edf12f6054dd1, type: 2}
+  - {fileID: 2100000, guid: be4c4d7e67a3aba4297d510986bcd57c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8848,6 +8848,9 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 1457252441}
   enemyHealthSlider: {fileID: 2136187902}
   fadeScript: {fileID: 1686148048}
+  funny: {fileID: 8300000, guid: 274e4b2e5d62041efb08303c6edf1f53, type: 3}
+  lore: {fileID: 8300000, guid: d7e7323f3389b4ba2ae7999082f53377, type: 3}
+  quadaldiggle: {fileID: 8300000, guid: 3999b828426504ce48566861ff433b14, type: 3}
 --- !u!114 &1686148048
 MonoBehaviour:
   m_ObjectHideFlags: 0

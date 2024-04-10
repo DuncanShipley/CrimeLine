@@ -15,9 +15,18 @@ public class GameOver : MonoBehaviour
 
     public FadeScript fadeScript;
 
+    [SerializeField] private AudioClip funny;
+    [SerializeField] private AudioClip lore;
+    [SerializeField] private AudioClip quadaldiggle;
+
     private IEnumerator gameWon()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(0.5f);
+        MusicManager.instance.EndSong();
+        SFXManager.instance.PlaySFXClip(quadaldiggle, transform, 0.4f);
+        yield return new WaitForSeconds(2.5f);
+        SFXManager.instance.PlaySFXClip(lore, transform, 0.07f);
+
         for (int i = 0; i < 25; i++)
         {
             youWinMain.SetActive(true);
@@ -27,6 +36,8 @@ public class GameOver : MonoBehaviour
             yield return new WaitForSeconds(0.03f);
             youWinGhost.SetActive(false);
         }
+        yield return new WaitForSeconds(10f);
+        MusicManager.instance.PlaySong(funny, transform, 0.07f);
     }
     private IEnumerator gameLost()
     {
