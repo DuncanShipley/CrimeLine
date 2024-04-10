@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8608,9 +8608,10 @@ GameObject:
   - component: {fileID: 1467687693}
   - component: {fileID: 1467687692}
   - component: {fileID: 1467687690}
+  - component: {fileID: 1467687699}
   - component: {fileID: 1467687698}
   m_Layer: 0
-  m_Name: Character 1
+  m_Name: Seizure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8790,27 +8791,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1467687689}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d3fe85c9a66b242b10ae0977899827, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e36bc8f85cc57a4788016a2cc8d17fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SideH: {fileID: 2200565641159838218, guid: 16ae2d8b1dcb9b64180e26220ff7033f, type: 3}
-  SH: {fileID: 949740253307702744, guid: 7950976499fe481409c299625cc1ee10, type: 3}
-  WH: {fileID: 3711211749649877176, guid: 8e85f448a7a697c49b92f643e6a6cdf9, type: 3}
-  SideJ: {fileID: 6030688806231460762, guid: 4aa8cebf583428c43b1a679509920f85, type: 3}
-  SJ: {fileID: 7865235013050372989, guid: 77ced886d9026a34788d280c15d48966, type: 3}
-  WJ: {fileID: 4140813505544937889, guid: b0082b1a1e45d164cb160535d771b2f9, type: 3}
-  stunned: 0
-  canJump: 0
-  blocking: 0
-  groundSpikeSFX: {fileID: 8300000, guid: 4237e7a75774d5a4eb3d6e7b0a705ab5, type: 3}
-  uppercutSFX: {fileID: 8300000, guid: 4506377ca929cba42b4de7c141fce0c4, type: 3}
+  anim: {fileID: 1467687693}
+  body: {fileID: 1467687695}
+  MeleeSide: {fileID: 0}
+  MeleeUp: {fileID: 0}
+  MeleeDown: {fileID: 0}
+  RangeSide: {fileID: 0}
+  RangeUp: {fileID: 0}
+  RangeDown: {fileID: 0}
+  groundSpikeSFX: {fileID: 0}
+  uppercutSFX: {fileID: 0}
   whipSFX: {fileID: 0}
   knifeSFX: {fileID: 0}
   shieldPushSFX: {fileID: 0}
   ballSFX: {fileID: 0}
-  jumpSFX: {fileID: 0}
-  fadeScript: {fileID: 815886854}
-  healthScript: {fileID: 0}
+--- !u!114 &1467687699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467687689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b9e0424ae72f54abbfb6de8cbc82fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionManager: {fileID: 1467687698}
 --- !u!1 &1475678738
 GameObject:
   m_ObjectHideFlags: 0
@@ -8956,6 +8966,37 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1486949107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1486949108}
+  m_Layer: 0
+  m_Name: MovementHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1486949108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486949107}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6896751, y: 7.272005, z: -16.416964}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1498103885
 GameObject:
   m_ObjectHideFlags: 0
@@ -12419,3 +12460,4 @@ SceneRoots:
   - {fileID: 1036037889}
   - {fileID: 815886858}
   - {fileID: 1677024567}
+  - {fileID: 1486949108}

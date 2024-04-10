@@ -3,7 +3,22 @@ guid: a9d3fe85c9a66b242b10ae0977899827
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - SideH: {fileID: 2200565641159838218, guid: 16ae2d8b1dcb9b64180e26220ff7033f, type: 3}
+  - SH: {fileID: 949740253307702744, guid: 7950976499fe481409c299625cc1ee10, type: 3}
+  - WH: {fileID: 3711211749649877176, guid: 8e85f448a7a697c49b92f643e6a6cdf9, type: 3}
+  - SideJ: {fileID: 6030688806231460762, guid: 4aa8cebf583428c43b1a679509920f85, type: 3}
+  - SJ: {fileID: 7865235013050372989, guid: 77ced886d9026a34788d280c15d48966, type: 3}
+  - WJ: {fileID: 4140813505544937889, guid: b0082b1a1e45d164cb160535d771b2f9, type: 3}
+  - groundSpikeSFX: {instanceID: 0}
+  - uppercutSFX: {instanceID: 0}
+  - whipSFX: {instanceID: 0}
+  - knifeSFX: {instanceID: 0}
+  - shieldPushSFX: {instanceID: 0}
+  - ballSFX: {instanceID: 0}
+  - jumpSFX: {instanceID: 0}
+  - fadeScript: {instanceID: 0}
+  - healthScript: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

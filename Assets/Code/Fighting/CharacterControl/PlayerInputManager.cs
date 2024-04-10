@@ -10,7 +10,7 @@ using UnityEngine;
 public class PlayerInputManager : MonoBehaviour
 {
     PlayerAction[] playActions = null;
-    PlayerActionManager actionManager;
+    [SerializeField] PlayerActionManager actionManager;
     private void Start()
     {
         bool[] array = new bool[0];
@@ -68,13 +68,10 @@ public class PlayerInputManager : MonoBehaviour
         NegateKey(ref keys.LA, ref keys.RA);//make the bool logic here correct
         NegateKey(ref keys.UA, ref keys.DA);
         actKeys = NegateKeys(actKeys);
+        bool[] arrowKeys = new bool[] {keys.LA, keys.RA, keys.UA, keys.DA};
+        bool[] InpArray =   actKeys.Concat(arrowKeys).ToArray();
 
-        bool[] InpArray = new bool[] 
-        {}.Concat<bool>(actKeys.Concat<bool>(
-            new bool[] { keys.RA, keys.LA, keys.DA, keys.UA}
-            )) as bool[];
-
-        foreach (var item in InpArray.Select((value, index) => (value, index)))
+        foreach (var item in InpArray.Select((value, index) => (index, value)))//prob is from the select
         {
             bool key = item.value;
             int i = item.index;
@@ -106,6 +103,8 @@ public class PlayerInputManager : MonoBehaviour
                     case 8:
                         actions.Append(PlayerAction.MoveUp);
                         break;
+                    default:
+                        break;
                 }
             }
 
@@ -115,18 +114,18 @@ public class PlayerInputManager : MonoBehaviour
 
     private void NegateKey(ref bool keyOne, ref bool keyTwo)
     {
-        keyOne = keyOne && !keyTwo;///////////Ben help needed
-        keyTwo = keyOne && keyTwo;////////help
+        
+        (bool, bool) dawg = (keyOne, keyTwo) = ((keyOne && !keyTwo), (keyTwo && !keyOne));
+        keyOne = dawg.Item1;
+        keyTwo = dawg.Item2;
     }
 
-    static bool[] NegateKeys(params bool[] boolValues)
+    static bool[] NegateKeys(params bool[] boolValues)//this has an error and is making things null 
     {
         int firstTrue = Array.FindIndex(boolValues, x => x);
-
-        bool[] mutatedValues = boolValues
-            .Select((b, i) => (value: i == firstTrue, index: i))
-            .Select(x => x.value)
-            .ToArray();
+        bool[] mutatedValues = new bool[boolValues.Length];
+        if (firstTrue != -1)
+            mutatedValues[firstTrue] = true;
         return mutatedValues;
     }
 

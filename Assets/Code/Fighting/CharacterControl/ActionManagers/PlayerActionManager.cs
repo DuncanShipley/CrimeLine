@@ -4,77 +4,81 @@ using System.Linq;
 using Assets.Code.Fighting.CharacterControl;
 using UnityEngine;
 
-public abstract class PlayerActionManager : MonoBehaviour
+
+namespace Assets.Code.Fighting.CharacterControl
 {
-    protected Animator anim;
-    protected Rigidbody body;
-    protected MovementManager manager;
-    protected bool stunned = false;
-    protected float dir;
-    public void TryAction(PlayerAction[] action)
+    public abstract class PlayerActionManager : MonoBehaviour
     {
-        dir = manager.DirFacing;
-        foreach (var Item in action)
+        protected float dir;
+        protected Animator anim;
+        protected Rigidbody body;
+        protected MovementManager manager = new MovementManager(1,1,1);
+        protected bool stunned = false;
+        public void TryAction(PlayerAction[] action)
         {
-            switch(Item)
+            dir = manager.DirFacing;
+            foreach (var Item in action)
             {
-                case PlayerAction.Block:
-                    //idk how ima do block yet
-                    break;
-                case PlayerAction.MeleeAttack:
-                    switch(dir)
-                    {
-                        case 0:
-                            anim.SetTrigger("MeleeSide");
-                            MeleeSide();
-                            break;
-                        case 1:
-                            anim.SetTrigger("MeleeUp");
-                            MeleeDown();
-                            break;
-                        case 2:
-                            anim.SetTrigger("MeleeDown");
-                            MeleeUp();
-                            break;
-                    }
-                    break;
-                case PlayerAction.RangeAttack:
-                    switch (dir)
-                    {
-                        case 0:
-                            anim.SetTrigger("RangeSide");
-                            RangeSide();
-                            break;
-                        case 1:
-                            anim.SetTrigger("RangeUp");
-                            RangeDown();
-                            break;
-                        case 2:
-                            anim.SetTrigger("RangeDown");
-                            RangeUp();
-                            break;
-                    }
-                    break;
+                switch(Item)
+                {
+                    case PlayerAction.Block:
+                        //idk how ima do block yet
+                        break;
+                    case PlayerAction.MeleeAttack:
+                        switch(dir)
+                        {
+                            case 0:
+                                anim.SetTrigger("MeleeSide");
+                                MeleeSideAttack();
+                                break;
+                            case 1:
+                                anim.SetTrigger("MeleeUp");
+                                MeleeDownAttack();
+                                break;
+                            case 2:
+                                anim.SetTrigger("MeleeDown");
+                                MeleeUpAttack();
+                                break;
+                        }
+                        break;
+                    case PlayerAction.RangeAttack:
+                        switch (dir)
+                        {
+                            case 0:
+                                anim.SetTrigger("RangeSide");
+                                RangeSideAttack();
+                                break;
+                            case 1:
+                                anim.SetTrigger("RangeUp");
+                                RangeDownAttack();
+                                break;
+                            case 2:
+                                anim.SetTrigger("RangeDown");
+                                RangeUpAttack();
+                                break;
+                        }
+                        break;
+                }
             }
         }
+
+        public void TryMoveAction(MovementAction[] movement)
+        {
+            body.AddForce(manager.GetVector(movement));
+        }
+
+        public abstract void MeleeSideAttack();
+
+        public abstract void MeleeDownAttack();
+
+        public abstract void MeleeUpAttack();
+
+        public abstract void RangeSideAttack();
+
+        public abstract void RangeDownAttack();
+
+        public abstract void RangeUpAttack();
+
+
     }
-
-    public void TryMoveAction(MovementAction[] movement)
-    {
-        body.AddForce(manager.GetVector(movement));
-    }
-
-    public abstract void MeleeSide();
-
-    public abstract void MeleeDown();
-
-    public abstract void MeleeUp();
-
-    public abstract void RangeSide();
-
-    public abstract void RangeDown();
-
-    public abstract void RangeUp();
-
-
 }
