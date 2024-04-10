@@ -1,7 +1,7 @@
 EXTERNAL SetCharacter(CurrentCharacter)
 EXTERNAL SetEmotion(Emotion)
 
-~ SetCharacter("guard")
+~ SetCharacter("Guard")
 Skopje Macedonia, 2023 <br>Komercijalna Bank
 -> Bank
 
@@ -11,7 +11,9 @@ Guard: No
 *[Nag him] -> Nag
 *[Elude to more] -> Elude
 
+
 == Nag ==
+~SetCharacter("Manager")
 ~SetEmotion("annoyed")
 You: Oh come on, not even 5 minutes? Theres other gaurds here, nothing is going to happen.
 Guard: Excuse me if you aren’t here for buisness, I'm gonna have to ask you to leave.
@@ -42,6 +44,7 @@ Guard: Please step outside.
 *[Threaten] ->ThreatenP
 *[Seek Pity]->END
 
+~SetCharacter("Manager")
 ==Management==
 the management of the poor treatment of us customers
 Guard: Hey listen we don’t have to go there, i’m sorry if I offended you, i’m just doin my job here.

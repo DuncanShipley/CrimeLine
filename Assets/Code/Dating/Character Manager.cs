@@ -7,9 +7,8 @@ public class CharacterManager : MonoBehaviour
 { 
     InkExternalFunctions IKF;
     public List<GameObject> CharacterList = new List<GameObject>();
-    private List<Emotions> EmotionalState = new List<Emotions>();
-    private List<GameObject> ActiveCharcters = new List<GameObject>();
-
+    public string ActiveSpeaker;
+    public string ActiveEmotion;
      void Awake()
     {
          IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
@@ -20,7 +19,7 @@ public class CharacterManager : MonoBehaviour
         for (int i = 0; i < characters.Length; i++)
         {
             GameObject newCharacter = Instantiate(characters[i]);
-            newCharacter.SetActive(true);
+            newCharacter.SetActive(false);
             newCharacter.name = characters[i].name;
             CharacterList.Add(newCharacter);
         }
@@ -29,15 +28,16 @@ public class CharacterManager : MonoBehaviour
 
     public void SetSpeaker(){
         if(IKF.CurrentSpeaker!=""){
-            //if(IKF)
-            Debug.Log("Setting Speaker to " + IKF.CurrentSpeaker);
-            foreach (GameObject gO in CharacterList){
-                if(gO.name != IKF.CurrentSpeaker){
-                    gO.SetActive(false);
-                }
-                if(gO.name == IKF.CurrentSpeaker){
-                    gO.SetActive(true);
-                    ActiveCharcters.Add(gO.GetComponent<)
+            if(ActiveSpeaker != IKF.CurrentSpeaker){
+                Debug.Log("Setting Speaker to " + IKF.CurrentSpeaker);
+                  foreach (GameObject gO in CharacterList){
+                    if(gO.name != IKF.CurrentSpeaker){
+                        gO.SetActive(false);
+                  }
+                    if(gO.name == IKF.CurrentSpeaker){
+                        gO.SetActive(true);
+                        ActiveSpeaker = IKF.CurrentSpeaker;
+                    }
                 }
             }
         }
@@ -45,14 +45,17 @@ public class CharacterManager : MonoBehaviour
 
     public void SetEmotion(){
         if(IKF.CurrentEmotion!="")
+        if(ActiveEmotion != IKF.CurrentEmotion){
         Debug.Log("Setting Emotion to " + IKF.CurrentEmotion);
+        ActiveEmotion = IKF.CurrentEmotion;
+        }
     }
 
 
     [SerializeField]
     public GameObject[] characters;
     
-   
+    
     /*public List<GameObject> ActorsList = new List<GameObject>();
     [SerializeField]
     Vector3 leftActorPosition, rightActorPosition;

@@ -61,7 +61,8 @@ public class InkManager : MonoBehaviour
         int LD = 1;
         while (LD != 0)
         {
-           
+            cm.SetSpeaker();
+            cm.SetEmotion();
             if (story.canContinue==true) {
                 // Continue gets the next line of the story
                  string text = story.Continue();
@@ -70,7 +71,6 @@ public class InkManager : MonoBehaviour
                  // Display the text on screen!
                  CreateContentView(text);
                 LD --;
-                
             }
         }
 
@@ -83,8 +83,6 @@ public class InkManager : MonoBehaviour
             {
                 Choice choice = story.currentChoices[i];
                 Button button = CreateChoiceView(choice.text.Trim());
-                cm.SetSpeaker();
-                cm.SetEmotion();
                 // Tell the button what to do when we press it
                 button.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
@@ -113,6 +111,9 @@ public class InkManager : MonoBehaviour
    /// <param name="text"></param>
     void CreateContentView(string text)
     {
+        if(text==""){
+            RefreshView();
+        }
         TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(-30f, 120f, 0), Quaternion.identity) as TextMeshProUGUI;
         storyText.text = text;
         storyText.transform.SetParent(canvas.transform, false); 
