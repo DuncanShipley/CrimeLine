@@ -33,8 +33,6 @@ public class radio : MonoBehaviour
         {
             gameObject.SetActive(true);
             transform.position = GameObject.Find("Player").transform.position;
-            guardChaseBK.putWaypoint(transform.position, 0);
-            guardChaseBK.currentPointIndex[0] = 0;
             placed = true;
         }
     }

@@ -10,6 +10,8 @@ public class talkscriptA : MonoBehaviour
     public bool key;
     public bool objective;
     public int objectiveStage;
+    public bool item;
+    public GameObject itemObject;
 
     private bool talking = false;
     private int totalLines;
@@ -20,6 +22,7 @@ public class talkscriptA : MonoBehaviour
     private bigTextbox textbox;
     private camfollowA camera;
     private KeychainA keychain;
+    private itemSelector inv;
     bool touch = false;
 
     // Start is called before the first frame update
@@ -29,8 +32,9 @@ public class talkscriptA : MonoBehaviour
         camera = GameObject.Find("Main Camera").GetComponent<camfollowA>();
         textbox = GameObject.Find("bigTextbox").GetComponent<bigTextbox>();
         keychain = GameObject.Find("Player").GetComponent<KeychainA>();
+        inv = GameObject.Find("IScursor").GetComponent<itemSelector>();
 
-        input = GameObject.Find("UI").GetComponent<InputControllerA>();
+        input = GameObject.Find("ScreenUI").GetComponent<InputControllerA>();
     }
 
     // Update is called once per frame
@@ -42,9 +46,18 @@ public class talkscriptA : MonoBehaviour
             textbox.pushText(lines);
 
             if (objective)
+            {
                 objectiveTrackerA.currentObjective.completeObjective(objectiveStage);
+            }
             if (key)
+            {
                 keychain.addKey();
+            }
+            if (item)
+            {
+                Debug.Log(itemObject);
+                inv.AddItem(itemObject);
+            }
         }
     }
 

@@ -27,7 +27,7 @@ public class objectiveTrackerA : MonoBehaviour
     void Start()
     {
         objectiveTrackerA.currentObjective = gameObject.GetComponent<objectiveTrackerA>();
-        input = GameObject.Find("UI").GetComponent<InputController>();
+        input = GameObject.Find("ScreenUI").GetComponent<InputController>();
 
 
         allObjectives[objStage] = gameObject;
@@ -57,7 +57,7 @@ public class objectiveTrackerA : MonoBehaviour
             // Create the next objective if there's one left
             if (objStage + 1 < lines.Length)
             {
-                cloneObj = Object.Instantiate(gameObject, GameObject.Find("UI").transform);
+                cloneObj = Object.Instantiate(gameObject, GameObject.Find("ScreenUI").transform);
 
                 cloneObj.GetComponent<Image>().sprite = off;
                 cloneObj.GetComponent<objectiveTrackerA>().objStage++;

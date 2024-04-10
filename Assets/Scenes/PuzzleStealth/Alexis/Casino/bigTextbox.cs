@@ -17,7 +17,7 @@ public class bigTextbox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        input = GameObject.Find("UI").GetComponent<InputControllerA>();
+        input = GameObject.Find("ScreenUI").GetComponent<InputControllerA>();
         camera = GameObject.Find("Main Camera").GetComponent<camfollowA>();
     }
 
