@@ -17,7 +17,7 @@ public class guardLightBK : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        id = gameObject.transform.parent.GetComponent<IDs>().GetID();
+        id = gameObject.transform.parent.GetComponent<IDsBK>().GetID();
 
         if (guardHealthBK.dyingList[id])
         {

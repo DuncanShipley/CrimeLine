@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class guardChaseBK : MonoBehaviour
+public class guardChaseMain : MonoBehaviour
 {
     public GameObject Player;
     public GameObject Waypoint1;
@@ -33,7 +33,6 @@ public class guardChaseBK : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         Waypoint1 = GameObject.Find("Waypoint 1");
-        // Waypoint1  = this.parent.ge
         startingPosition.Add(Vector3.zero);
         position.Add(Vector3.zero);
 
@@ -68,43 +67,42 @@ public class guardChaseBK : MonoBehaviour
             else // if they are suspicious, begin chasing the player
             {
                 chase[id] = true;
-                AlertBK.alerted[id] = -1;
+                AlertMain.alerted[id] = -1;
                 seeing[id] = true;
                 oldPointIndex[id] = currentPointIndex[id];
                 currentPointIndex[id] = 0;
                 detectRadius = 121;
-                WaypointFollowerBK.speed[id] = 6f;
+                WaypointFollowerMain.speed[id] = 6f;
                 sus[id] = 1;
                 alerting[id] = true;
             }
         }
-        else if (AlertBK.alerted[id] > -1)
+        else if (AlertMain.alerted[id] > -1)
         {
             detectRadius = 121;
-            WaypointFollowerBK.speed[id] = 6f;
+            WaypointFollowerMain.speed[id] = 6f;
             oldPointIndex[id] = currentPointIndex[id];
             currentPointIndex[id] = 0;
         }
         else if (sus[id] > 0) // if they're suspicious and the player isn't within their light, decrease their suspicion
         {
             sus[id] = sus[id] - 0.5f * Time.deltaTime;
-            AlertBK.alerted[id] = -1;
+            AlertMain.alerted[id] = -1;
             alerting[id] = false;
             seeing[id] = false;
         }
         else // if none of those are true, end the chase
         {
-            Debug.Log(id);
             chase[id] = false;
             detectRadius = 81;
-            WaypointFollowerBK.speed[id] = 2f;
+            WaypointFollowerMain.speed[id] = 2f;
             sus[id] = 0;
             alerting[id] = false;
             seeing[id] = false;
         }
         if (time == 0f)
         {
-            id = gameObject.transform.parent.GetComponent<IDsBK>().GetID();  //first, set the guard's id.
+            id = gameObject.transform.parent.GetComponent<IDsMain>().GetID();  //first, set the guard's id.
         }
         if (time > 0.5f && time < 1f)
         {
@@ -117,9 +115,9 @@ public class guardChaseBK : MonoBehaviour
         }
         time += Time.deltaTime;
     }
-    public static void putWaypoint(Vector3 wpLocation, int GuardID)
+    public static void putWaypoint(Vector3 wpLocation, int GuardID, GameObject wp)
     {
-        position[GuardID] = wpLocation;
+        wp.transform.position = wpLocation;
     }
     public bool CheckFor(GameObject cf)
     {
@@ -137,7 +135,7 @@ public class guardChaseBK : MonoBehaviour
             {
                 if (seeingRay.collider.gameObject == cf)
                 {
-                    guardChaseBK.putWaypoint(seeingRay.collider.gameObject.transform.position, id);
+                    guardChaseMain.putWaypoint(seeingRay.collider.gameObject.transform.position, id, Waypoint1);
                     return true;
                 }
             }
@@ -154,7 +152,7 @@ public class guardChaseBK : MonoBehaviour
             {
                 if (seeingRay.collider.gameObject == cf)
                 {
-                    guardChaseBK.putWaypoint(seeingRay.collider.gameObject.transform.position, id);
+                    guardChaseMain.putWaypoint(seeingRay.collider.gameObject.transform.position, id, Waypoint1);
                     return true;
                 }
             }

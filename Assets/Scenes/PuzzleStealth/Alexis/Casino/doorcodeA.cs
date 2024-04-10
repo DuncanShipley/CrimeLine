@@ -9,7 +9,7 @@ public class doorcodeA : MonoBehaviour
     public string dir;
 
     private KeychainA keychain;
-    private bigTextbox textbox;
+    private bigTextboxMain textbox;
 
     bool faceActive = false;
     bool touch = false;
@@ -24,7 +24,7 @@ public class doorcodeA : MonoBehaviour
     {
         input = GameObject.Find("UI").GetComponent<InputControllerA>();
         keychain = GameObject.Find("Player").GetComponent<KeychainA>();
-        textbox = GameObject.Find("bigTextbox").GetComponent<bigTextbox>();
+        textbox = GameObject.Find("bigTextbox").GetComponent<bigTextboxMain>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -17,7 +17,7 @@ public class talkscriptA : MonoBehaviour
 
     private InputControllerA input;
     private TextMeshProUGUI text;
-    private bigTextbox textbox;
+    private bigTextboxMain textbox;
     private camfollowA camera;
     private KeychainA keychain;
     bool touch = false;
@@ -27,7 +27,7 @@ public class talkscriptA : MonoBehaviour
     {
         totalLines = lines.Length;
         camera = GameObject.Find("Main Camera").GetComponent<camfollowA>();
-        textbox = GameObject.Find("bigTextbox").GetComponent<bigTextbox>();
+        textbox = GameObject.Find("bigTextbox").GetComponent<bigTextboxMain>();
         keychain = GameObject.Find("Player").GetComponent<KeychainA>();
 
         input = GameObject.Find("UI").GetComponent<InputControllerA>();

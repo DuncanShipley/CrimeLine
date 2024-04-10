@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelPuzzleA : MonoBehaviour
+public class PanelPuzzleBK : MonoBehaviour
 {
     bool activated = false;
     public GameObject sc;
@@ -46,27 +46,27 @@ public class PanelPuzzleA : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                tiles[y * 3 + x].GetComponent<panelTileScriptMain>().toggleState();
+                tiles[y * 3 + x].GetComponent<panelTileScriptBK>().toggleState();
                 if(x - 1 >= 0)
                 {
-                    tiles[y * 3 + (x - 1)].GetComponent<panelTileScriptMain>().toggleState();
+                    tiles[y * 3 + (x - 1)].GetComponent<panelTileScriptBK>().toggleState();
                 }
                 if (x + 1 <= 2)
                 {
-                    tiles[y * 3 + (x + 1)].GetComponent<panelTileScriptMain>().toggleState();
+                    tiles[y * 3 + (x + 1)].GetComponent<panelTileScriptBK>().toggleState();
                 }
                 if (y - 1 >= 0)
                 {
-                    tiles[(y - 1) * 3 + x].GetComponent<panelTileScriptMain>().toggleState();
+                    tiles[(y - 1) * 3 + x].GetComponent<panelTileScriptBK>().toggleState();
                 }
                 if (y + 1 <= 2)
                 {
-                    tiles[(y + 1) * 3 + x].GetComponent<panelTileScriptMain>().toggleState();
+                    tiles[(y + 1) * 3 + x].GetComponent<panelTileScriptBK>().toggleState();
                 }
             }
             if (allOn())
             {
-                objectiveTrackerMain.currentObjective.completeObjective(3);
+                objectiveTrackerBK.currentObjective.completeObjective(3);
 
                 activated = false;
                 GameObject.Find("Panel").GetComponent<Image>().enabled = false;
@@ -96,7 +96,6 @@ public class PanelPuzzleA : MonoBehaviour
 
             tiles.Add(puzzlesprite);
         }
-        Debug.Log("hi");
     }
     public bool isActivated()
     {

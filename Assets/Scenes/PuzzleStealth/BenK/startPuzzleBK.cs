@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class startPuzzleBK : MonoBehaviour
 {
-    private PanelPuzzle puzzle;
+    private PanelPuzzleBK puzzle;
     private InputControllerBK input;
 
     private bool puzzleDone = false;
@@ -13,7 +13,7 @@ public class startPuzzleBK : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        puzzle = GameObject.Find("Panel").GetComponent<PanelPuzzle>();
+        puzzle = GameObject.Find("Panel").GetComponent<PanelPuzzleBK>();
         input = GameObject.Find("UI").GetComponent<InputControllerBK>();
     }
 

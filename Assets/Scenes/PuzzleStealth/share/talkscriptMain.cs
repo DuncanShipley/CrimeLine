@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class talkscriptBK : MonoBehaviour
+public class talkscriptMain : MonoBehaviour
 {
     public string[] lines;
     public bool objective;
@@ -14,24 +14,23 @@ public class talkscriptBK : MonoBehaviour
     private int totalLines;
     private int textIndex = 0;
 
-    public static objectiveTrackerBK currentObjective;
-    private InputControllerBK input;
+    private InputControllerMain input;
     private TextMeshProUGUI text;
     private GameObject textobj;
     private GameObject textbox;
-    private camfollowBK camera;
+    private camfollowMain camera;
     bool touch = false;
 
     // Start is called before the first frame update
     void Start()
     {
         totalLines = lines.Length;
-        camera = GameObject.Find("Main Camera").GetComponent<camfollowBK>();
+        camera = GameObject.Find("Main Camera").GetComponent<camfollowMain>();
         textobj = GameObject.Find("bigText");
         textbox = GameObject.Find("bigTextbox");
         text = textobj.GetComponent<TextMeshProUGUI>();
 
-        input = GameObject.Find("UI").GetComponent<InputControllerBK>();
+        input = GameObject.Find("UI").GetComponent<InputControllerMain>();
     }
 
     // Update is called once per frame
@@ -39,17 +38,17 @@ public class talkscriptBK : MonoBehaviour
     {
         if (input.GetKeyLimited("z") && (touch || false))
         {
-            if (textbox.GetComponent<bigTextboxBK>().enabled)
+            if (textbox.GetComponent<bigTextboxMain>().enabled)
             {
                 textIndex++;
-                if (textIndex >= totalLines)
+                if(textIndex >= totalLines)
                 {
-                    if (objective)
+                    if(objective)
                     {
-                        objectiveTrackerBK.currentObjective.completeObjective(objectiveStage);
+                        objectiveTrackerMain.currentObjective.completeObjective(objectiveStage);
                     }
-                    textbox.GetComponent<bigTextboxBK>().enabled = false;
-                    textobj.GetComponent<bigTextboxBK>().enabled = false;
+                    textbox.GetComponent<bigTextboxMain>().enabled = false;
+                    textobj.GetComponent<bigTextboxMain>().enabled = false;
                     camera.enable();
                     textIndex = 0;
                 }
@@ -57,11 +56,11 @@ public class talkscriptBK : MonoBehaviour
                 {
                     text.SetText(lines[textIndex]);
                 }
-            }
+            } 
             else
             {
-                textbox.GetComponent<bigTextboxBK>().enabled = true;
-                textobj.GetComponent<bigTextboxBK>().enabled = true;
+                textbox.GetComponent<bigTextboxMain>().enabled = true;
+                textobj.GetComponent<bigTextboxMain>().enabled = true;
                 text.SetText(lines[0]);
                 camera.disable();
             }

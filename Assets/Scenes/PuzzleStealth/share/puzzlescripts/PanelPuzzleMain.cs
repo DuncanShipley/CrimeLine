@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelPuzzleA : MonoBehaviour
+public class PanelPuzzleMain : MonoBehaviour
 {
     bool activated = false;
     public GameObject sc;
@@ -96,7 +96,6 @@ public class PanelPuzzleA : MonoBehaviour
 
             tiles.Add(puzzlesprite);
         }
-        Debug.Log("hi");
     }
     public bool isActivated()
     {

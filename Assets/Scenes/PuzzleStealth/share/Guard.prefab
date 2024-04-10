@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1909061654610787539}
   - component: {fileID: 2488671937741872873}
   - component: {fileID: 8343790355764748305}
-  - component: {fileID: 4253082769494533938}
+  - component: {fileID: 3373465926830294337}
   - component: {fileID: 7491850883777585897}
   m_Layer: 2
   m_Name: Guard Projectile
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4253082769494533938
+--- !u!114 &3373465926830294337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 404972392277804332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db1e586dc88f6d1409e6ac84abc75980, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cee4941fcd174e4eb9710b93c39fe3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 5945362445147238384}
   - component: {fileID: 7419678537183987696}
   - component: {fileID: 2846041561142293091}
-  - component: {fileID: 5558127976506417433}
+  - component: {fileID: 3636648500273427374}
   m_Layer: 2
   m_Name: Sensor Range
   m_TagString: GuardSensor
@@ -289,7 +289,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5558127976506417433
+--- !u!114 &3636648500273427374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,11 +298,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4630442268617346213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e6cea8b5e557c440bb33993e671128d, type: 3}
+  m_Script: {fileID: 11500000, guid: ab88affa36cf8bc4dab8be343e43b384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  alert: -1
+  alert: 0
 --- !u!1 &4645302721874928888
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,8 +398,10 @@ GameObject:
   - component: {fileID: 8143037321026489734}
   - component: {fileID: 2616301274672080652}
   - component: {fileID: 5588583813745133110}
-  - component: {fileID: 4994660664134301441}
+  - component: {fileID: 3889692598575431679}
+  - component: {fileID: 7365723155626606269}
   - component: {fileID: 7256538010822500421}
+  - component: {fileID: 4382576426708421077}
   m_Layer: 2
   m_Name: Guard
   m_TagString: Untagged
@@ -495,13 +497,11 @@ MonoBehaviour:
   - {fileID: 6379318685077126908}
   - {fileID: 964578808346541918}
   - {fileID: 8287346377835657006}
-  leftDetectEdge: 0
-  rightDetectEdge: 0
   relAngle: 0
-  zrotation: 0
+  canMove: 1
   id: 0
-  speed: 2
   Player: {fileID: 0}
+  playerTrans: {fileID: 0}
   rb: {fileID: 0}
 --- !u!61 &2616301274672080652
 BoxCollider2D:
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
---- !u!114 &4994660664134301441
+--- !u!114 &3889692598575431679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -570,12 +570,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 4963367268244224560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eb84c6afd4f3394e9361d353f60f50a, type: 3}
+  m_Script: {fileID: 11500000, guid: f0bf2e14e8d9127418fe96395b1b88cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
   projectile: {fileID: 404972392277804332}
   waitTime: 0
+--- !u!114 &7365723155626606269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963367268244224560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e338acd8bebc04684ea8818c57961b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Waypoint1: {fileID: 0}
+  leftDetectEdge: 0
+  rightDetectEdge: 0
+  id: 0
 --- !u!50 &7256538010822500421
 Rigidbody2D:
   serializedVersion: 4
@@ -603,6 +620,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!195 &4382576426708421077
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963367268244224560}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 3
 --- !u!1 &6379318685077126908
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7459191875886613762}
   - component: {fileID: 2357581924203412912}
-  - component: {fileID: 8107659851017107246}
+  - component: {fileID: 6340170105320290501}
   m_Layer: 2
   m_Name: Guard
   m_TagString: Guard
@@ -685,7 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   publicId: 0
---- !u!114 &8107659851017107246
+--- !u!114 &6340170105320290501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -694,7 +733,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7331019455399242599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5731c06ba1e6dd846a8ce9bacfc54a04, type: 3}
+  m_Script: {fileID: 11500000, guid: 695d1064b8dd748499c213e875935815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7674905096276641158
@@ -706,7 +745,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9208622136490275828}
-  - component: {fileID: 1354371144696170261}
   m_Layer: 2
   m_Name: Waypoint 1
   m_TagString: Untagged
@@ -729,20 +767,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7459191875886613762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1354371144696170261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7674905096276641158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e338acd8bebc04684ea8818c57961b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  id: 0
 --- !u!1 &8287346377835657006
 GameObject:
   m_ObjectHideFlags: 0

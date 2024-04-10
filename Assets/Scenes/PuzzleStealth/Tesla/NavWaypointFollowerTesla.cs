@@ -85,11 +85,8 @@ public class NavWaypointFollowerTesla : MonoBehaviour
                     currentPointIndex[id] = 0;
                 }
                 guardWait = 0; // reset wait timer
-                if (true)
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed);
+                transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed);
 
-                }
             }
             else if (sus[id] == 0 || sus[id] == 1)
             {

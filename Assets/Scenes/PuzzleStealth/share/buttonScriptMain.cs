@@ -2,28 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class startPuzzleA : MonoBehaviour
+public class buttonScriptMain : MonoBehaviour
 {
-    private PanelPuzzleA puzzle;
-    private InputControllerA input;
-
-    private bool puzzleDone = false;
-    private bool touch = false;
+    public GameObject laser;
+    public Sprite on;
+    public Sprite off;
+    private InputControllerMain input;
+    bool touch = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        puzzle = GameObject.Find("Panel").GetComponent<PanelPuzzleA>();
-        input = GameObject.Find("UI").GetComponent<InputControllerA>();
+        input = GameObject.Find("UI").GetComponent<InputControllerMain>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (input.GetKeyLimited("z") && touch && !puzzleDone)
+        if (input.GetKeyLimited("z") && touch)
         {
-            puzzle.activate();
-            puzzleDone = true;
+            laser.SetActive(false);
+            gameObject.GetComponent<SpriteRenderer>().sprite = off;
         }
     }
 

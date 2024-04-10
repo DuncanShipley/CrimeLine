@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class startPuzzleA : MonoBehaviour
+public class startPuzzleMain : MonoBehaviour
 {
-    private PanelPuzzleA puzzle;
-    private InputControllerA input;
+    private PanelPuzzleMain puzzle;
+    private InputControllerMain input;
 
     private bool puzzleDone = false;
     private bool touch = false;
@@ -13,8 +13,8 @@ public class startPuzzleA : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        puzzle = GameObject.Find("Panel").GetComponent<PanelPuzzleA>();
-        input = GameObject.Find("UI").GetComponent<InputControllerA>();
+        puzzle = GameObject.Find("Panel").GetComponent<PanelPuzzleMain>();
+        input = GameObject.Find("UI").GetComponent<InputControllerMain>();
     }
 
     // Update is called once per frame
