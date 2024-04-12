@@ -75,7 +75,7 @@ public class WaypointFollowerMain : MonoBehaviour
             }
             else if (guardChaseMain.sus[id] == 0 || guardChaseMain.sus[id] == 1)
             {
-                //Debug.Log("Destination waypoint: " + waypoints[currentPointIndex[id]]);
+                Debug.Log("Destination waypoint: " + waypoints[currentPointIndex[id]]);
                 guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?

@@ -8,10 +8,12 @@ public class AlertTesla : MonoBehaviour
     public static List<GameObject> guards = new List<GameObject>();
     public static List<int> alerted = new List<int>();
     public int alert;
+    GameObject Waypoint1;
 
     // Start is called before the first frame update
     void Start()
     {
+        Waypoint1 = GameObject.Find("Waypoint 1");
         guards.Add(gameObject);
         alerted.Add(-1);
     }
@@ -30,12 +32,12 @@ public class AlertTesla : MonoBehaviour
             int otherID = collision.gameObject.transform.parent.parent.GetComponent<IDsTesla>().GetID();
 
 
-            if (NavWaypointFollowerTesla.alerting[otherID] && !NavWaypointFollowerTesla.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
+            if (guardChaseTesla.alerting[otherID] && !guardChaseTesla.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
             {
                 alerted[id] = otherID; // set alerted for the non-suspicious guard to the id of the sus one
-                guardChaseTesla.putWaypoint(collision.gameObject.transform.parent.position, id);
+                guardChaseTesla.putWaypoint(collision.gameObject.transform.parent.position, id, Waypoint1);
             }
-            else if (!NavWaypointFollowerTesla.alerting[otherID]) // if the other guard is no longer suspicious
+            else if (!guardChaseTesla.alerting[otherID]) // if the other guard is no longer suspicious
             {
                 alerted[id] = -1; // end alerted
             }

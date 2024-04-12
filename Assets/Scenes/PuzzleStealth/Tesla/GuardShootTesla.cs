@@ -24,7 +24,7 @@ public class GuardShootTesla : MonoBehaviour
 
         throwPause += Time.deltaTime;
 
-        if (NavWaypointFollowerTesla.chase[id] && throwPause > waitTime)
+        if (guardChaseTesla.chase[id] && throwPause > waitTime)
         {
             copy = Instantiate(projectile, transform.position, gameObject.transform.rotation); // create a projectile at the guard's location
             throwPause = 0;

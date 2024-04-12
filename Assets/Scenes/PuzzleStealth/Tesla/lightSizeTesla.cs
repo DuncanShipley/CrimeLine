@@ -20,10 +20,10 @@ public class lightSizeTesla : MonoBehaviour
     {
         id = gameObject.transform.parent.parent.GetComponent<IDsTesla>().GetID();
 
-        myLight.pointLightInnerAngle = NavWaypointFollowerTesla.sus[id] * 45 + 75;
-        myLight.pointLightOuterAngle = NavWaypointFollowerTesla.sus[id] * 45 + 75;
-        myLight.pointLightOuterRadius = NavWaypointFollowerTesla.sus[id] * 2 + 9;
-        myLight.color = Color.Lerp(passiveColor, Color.red, NavWaypointFollowerTesla.sus[id]);
+        myLight.pointLightInnerAngle = guardChaseTesla.sus[id] * 45 + 75;
+        myLight.pointLightOuterAngle = guardChaseTesla.sus[id] * 45 + 75;
+        myLight.pointLightOuterRadius = guardChaseTesla.sus[id] * 2 + 9;
+        myLight.color = Color.Lerp(passiveColor, Color.red, guardChaseTesla.sus[id]);
         // these change the light's radius, angle, and color based on the guard's suspicion.
     }
 }
