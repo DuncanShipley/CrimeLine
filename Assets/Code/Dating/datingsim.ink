@@ -54,7 +54,7 @@ Guard: Alright please step outside.
 
 ==quiz==
 You: Pop quiz! 
-Guaed:I'm going to have to ask yo-
+Guaed:What?
 *[Biology question] -> Biology
 *[History question] -> History
 *[Pop culture question] -> Pop  
@@ -68,7 +68,7 @@ Guard: If I answer the question will you cooperate?
 You: What is the name of the family that Otters, skunks, and wolverines all fall under?
 Guard: Marsupials?
 You: Ooh close but no cigar, the answer I was looking for was Mustelidae.
-Guard: ...??? I- I'm going to have to ask you to lea-
+Guard: ...??? I- I'm putting an end to this charade
 *[Pop culture question] -> Pop  
 *[History question] -> History
 ==History==
@@ -183,7 +183,17 @@ You: I KNOW RIGHT!
 *[Ask about Neko Con] -> NekoCon
 ==Sora==
 You: No disrespect, Sora clears the others E Z. Plus she solos your favorite character, your favorite verse. Her Mahouken is so underrated, it's literally an auto win button that's only countered by bullshit plot convinience and toon force. 
-Guard: Yeah that's pretty true I guess. 
+Guard: Oh really? Than how was dodonzora able to defeat her?
+You: Again plot convinience, If she had just used jetstream-
+Guard: But she did! She was speed blitzed and overpowered. There's no excuse there.
+You: She was nerfed! It's an unfair comparison
+Guard: NovaBaron?
+You: Plot convinience and direct counter
+Guard: Gamek?
+You: Plot convinience and she didn't even get beaten by him in combat! She just couldn't stop him from activating the generator.
+Guard: As far as i'm concerned that counts as a loss.
+You: BULLSHIT
+Guard: Whatever you say I guess
 *[Ask another Neko Princess Rangers question] -> NekoQ
 *[Ask if he's played the games] -> NekoG
 *[Ask about Neko Con] -> NekoCon
@@ -222,7 +232,7 @@ Manager: What’s the issue here?
 
 ==IntroFlirt==
 You: Oh hello there, I feel reassured knowing that a capable looking man such as yourself has come to my rescue. <br>I assume you must be the manager because I can’t imagine you having a position any lower. 
-Manager: Well you got that right, I'm the manager, what can I do for ya?
+Manager: Astute observation, I am the manager, How may I be of service to you?
 //*[]
 //*[]
 ->END
@@ -250,15 +260,33 @@ How do you want to flirt?
 ->END
 
 ==ComplimentIntelligence==
-You: Clearly your a very intelligent man, you've climbed the ranks of the corporate ladder and established yourself as worthy of a prestigious position. Tell me based on your wise insight do you believe that someone who came to a bank to do business would lie about their intentions? I merely tried to make small talk before carrying on and am now facing unjust infrigment of my rights from your fine employee here.
+You: Clearly your a very intelligent man, you've climbed the ranks of the corporate ladder and established yourself as worthy of a prestigious position. Tell me based on your superior insight do you believe that someone who came to a bank to do business would lie about their intentions? I merely tried to make small talk before carrying on and am now facing unjust infrigment of my rights from your fine employee here.
+Manager: Well when you put it like that, I can't dispute it. Excuse my employee's behavior, to slander you with language like "loitering" is not representative of our business. Please by all means carry on.
 ->END
 
 ==InstillConfidence==
 You: I assure you your judgment and will is absolute, your authority is warranted, and you can, and should, do as you see fit, this worker's behavior is subject to your assesment and you have the power to change this situation for the better and absolve this misunderstanding and injustice.
+Manager: How would you suggest I go about doing so?
+Guard: Hey uh are we being serious right now?
+Manger: Silence, customers come first
+[Fire that man]->Fire
+[]
+[]
 ->END
 
 ==ComplimentAppearance==
 You: I see your a fine gentleman of culture as your appearance is very well kept and most certanly cultured. So you must also be able to understand the frustration of being condescended to by an uncultured individual, it's unbefitting for people like us to be subservient to those beneath us, let alone those who aren't even capable of grooming their own facial hair. I mean this is a fine establishment and to have someone like him in charge ordering people like us around is a little ridiculous don't you think?
+Manager: Well hehe, I suppose that's all true, I do take pride in my cleanliness. 
+->END
+==Fire== 
+Guard: Please. That's absurd.
+Manager: Well hold on
+Guard: WHAT! BOSS???
+Manager: Well some assesment can't hurt. It's of the utmost importance that my employee's take their job as seriously as I take mine.
+Guard: Listen, with all do respect you're entertaining the idea of a miscreant customer. Do you hear yourself?
+You: Miscreant? Excuse me, You are most definitely in need of assesment.
+Manager: Precisely. Now then how should we carry out this assesment.
+[Test their general knowledge]->quiz
 ->END
 
 
