@@ -8794,8 +8794,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e36bc8f85cc57a4788016a2cc8d17fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 1467687693}
   body: {fileID: 1467687695}
+  blocking: 0
+  test: 0
   MeleeSide: {fileID: 0}
   MeleeUp: {fileID: 0}
   MeleeDown: {fileID: 0}
