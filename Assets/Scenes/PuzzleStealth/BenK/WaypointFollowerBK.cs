@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaypointFollowerBK : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
+    public GameObject Waypoint1;
     public static GameObject[] wpref;
     private float guardWait = 0f;
     int movingLeft;
@@ -20,6 +21,8 @@ public class WaypointFollowerBK : MonoBehaviour
 
     [SerializeField] public static List<float> speed = new List<float>();
     public GameObject Player;
+    [SerializeField] Transform playerTrans;
+    UnityEngine.AI.NavMeshAgent guard;
 
     public Rigidbody2D rb;
 
@@ -30,6 +33,7 @@ public class WaypointFollowerBK : MonoBehaviour
     public void Start()
     {
         Player = GameObject.Find("Player");
+        Waypoint1 = GameObject.Find("Waypoint 1");
         rb = GetComponent<Rigidbody2D>();
 
         wpref = waypoints;
@@ -39,14 +43,19 @@ public class WaypointFollowerBK : MonoBehaviour
         currentPointIndex.Add(0);
         speed.Add(0);
         startingPosition = transform.position;
+
+        guard = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        guard.updateRotation = false;
+        guard.updateUpAxis = false;
     }
 
     private void Update()
     {
         id = gameObject.transform.parent.GetComponent<IDsBK>().GetID();
-        
+
         if (canMove)
         {
+            
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait <= 1) // if you're close and you haven't waited
             {
                 guardWait += Time.deltaTime; // wait
@@ -55,17 +64,19 @@ public class WaypointFollowerBK : MonoBehaviour
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
                 currentPointIndex[id]++; // look towards the next waypoint
-                guardChaseBK.putWaypoint(startingPosition, id);
+                guardChaseBK.putWaypoint(startingPosition, id, Waypoint1);
                 if (currentPointIndex[id] >= waypoints.Length)
                 {
                     currentPointIndex[id] = 0;
                 }
                 guardWait = 0; // reset wait timer
-                transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed[id]);
+                //transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed[id]);
+                //guard.SetDestination(waypoints[currentPointIndex[id]].transform.position);
             }
             else if (guardChaseBK.sus[id] == 0 || guardChaseBK.sus[id] == 1)
             {
-                transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed[id]); // move towards waypoint
+                //Debug.Log("Destination waypoint: " + waypoints[currentPointIndex[id]]);
+                guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?
             {

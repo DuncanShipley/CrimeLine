@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1909061654610787539}
   - component: {fileID: 2488671937741872873}
   - component: {fileID: 8343790355764748305}
-  - component: {fileID: 3373465926830294337}
+  - component: {fileID: 8479885574320060605}
   - component: {fileID: 7491850883777585897}
   m_Layer: 2
   m_Name: Guard Projectile
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3373465926830294337
+--- !u!114 &8479885574320060605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 404972392277804332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cee4941fcd174e4eb9710b93c39fe3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 67166a8b753463547900ef26d1b14e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 5945362445147238384}
   - component: {fileID: 7419678537183987696}
   - component: {fileID: 2846041561142293091}
-  - component: {fileID: 3636648500273427374}
+  - component: {fileID: 5028403412914260684}
   m_Layer: 2
   m_Name: Sensor Range
   m_TagString: GuardSensor
@@ -289,7 +289,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3636648500273427374
+--- !u!114 &5028403412914260684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4630442268617346213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab88affa36cf8bc4dab8be343e43b384, type: 3}
+  m_Script: {fileID: 11500000, guid: a36826a0af5065642973474e6e571a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
@@ -395,11 +395,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1884867120094375619}
   - component: {fileID: 668435506426713967}
-  - component: {fileID: 8143037321026489734}
+  - component: {fileID: 5541835796931796510}
   - component: {fileID: 2616301274672080652}
-  - component: {fileID: 5588583813745133110}
-  - component: {fileID: 3889692598575431679}
-  - component: {fileID: 7365723155626606269}
+  - component: {fileID: 6641486165319933230}
+  - component: {fileID: 7431046023290794031}
+  - component: {fileID: 1364573048591058823}
   - component: {fileID: 7256538010822500421}
   - component: {fileID: 4382576426708421077}
   m_Layer: 2
@@ -480,7 +480,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8143037321026489734
+--- !u!114 &5541835796931796510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -489,7 +489,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4963367268244224560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fd429e502ecea647ac3a0794ae71d97, type: 3}
+  m_Script: {fileID: 11500000, guid: 17bebc51ae42e2b44a8a7c2cfaa6b90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
@@ -501,7 +501,6 @@ MonoBehaviour:
   canMove: 1
   id: 0
   Player: {fileID: 0}
-  playerTrans: {fileID: 0}
   rb: {fileID: 0}
 --- !u!61 &2616301274672080652
 BoxCollider2D:
@@ -548,7 +547,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5588583813745133110
+--- !u!114 &6641486165319933230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -557,11 +556,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4963367268244224560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f48cde8bfd5433543bef020b48128ee0, type: 3}
+  m_Script: {fileID: 11500000, guid: 81e36f4a04499a842b6d51f9356d5c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
---- !u!114 &3889692598575431679
+  zrotation: 0
+--- !u!114 &7431046023290794031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -570,13 +570,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4963367268244224560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0bf2e14e8d9127418fe96395b1b88cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f6986cff6a45ff43b84c2c2b5c3b24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
   projectile: {fileID: 404972392277804332}
   waitTime: 0
---- !u!114 &7365723155626606269
+--- !u!114 &1364573048591058823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4963367268244224560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e338acd8bebc04684ea8818c57961b, type: 3}
+  m_Script: {fileID: 11500000, guid: 66bf2d98a46da844297aac94d974f665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
@@ -682,8 +682,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7459191875886613762}
-  - component: {fileID: 2357581924203412912}
-  - component: {fileID: 6340170105320290501}
+  - component: {fileID: 2694819987371919961}
+  - component: {fileID: 4015158371652749917}
   m_Layer: 2
   m_Name: Guard
   m_TagString: Guard
@@ -711,7 +711,7 @@ Transform:
   - {fileID: 8289147299426729783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2357581924203412912
+--- !u!114 &2694819987371919961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -720,11 +720,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7331019455399242599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48d111e752df6b418b34ac480794fa9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f1991b4d245b2e4794aee6cf826378f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   publicId: 0
---- !u!114 &6340170105320290501
+--- !u!114 &4015158371652749917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7331019455399242599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 695d1064b8dd748499c213e875935815, type: 3}
+  m_Script: {fileID: 11500000, guid: 14b088b780a19ad4aabde72ddcb89b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7674905096276641158
@@ -808,7 +808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5085372169094861714}
   - component: {fileID: 2673896601392964612}
-  - component: {fileID: 5192024593051066509}
+  - component: {fileID: 1347033234925636742}
   m_Layer: 2
   m_Name: Guard Flashlight
   m_TagString: Untagged
@@ -881,7 +881,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &5192024593051066509
+--- !u!114 &1347033234925636742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8417534527786615383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9317e3e00e22344aac9ec6c68ce5728, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ff728b77e1cbf2479072c32dd743c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
