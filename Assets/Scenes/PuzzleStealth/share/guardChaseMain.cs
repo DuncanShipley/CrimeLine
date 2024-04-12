@@ -8,7 +8,7 @@ public class guardChaseMain : MonoBehaviour
     public GameObject Player;
     public GameObject Waypoint1;
     public static List<Vector3> startingPosition = new List<Vector3>();
-    public static List<Vector3> position = new List<Vector3>();
+    public static List<Vector3> positionList = new List<Vector3>();
 
     public float leftDetectEdge;
     public float rightDetectEdge;
@@ -34,7 +34,7 @@ public class guardChaseMain : MonoBehaviour
         Player = GameObject.Find("Player");
         Waypoint1 = GameObject.Find("Waypoint 1");
         startingPosition.Add(Vector3.zero);
-        position.Add(Vector3.zero);
+        positionList.Add(Vector3.zero);
 
         currentPointIndex.Add(0);
         sus.Add(0);
@@ -106,12 +106,12 @@ public class guardChaseMain : MonoBehaviour
         }
         if (time > 0.5f && time < 1f)
         {
-            position[id] = transform.position;
-            startingPosition[id] = position[id]; // saves the guard's starting position to return the waypoint to it later
+            positionList[id] = transform.position;
+            startingPosition[id] = positionList[id]; // saves the guard's starting position to return the waypoint to it later
         }
         if (time > 1f)
         {
-            transform.position = position[id]; // after enough time has passed to set everything up, go!
+            //transform.position = positionList[id]; // after enough time has passed to set everything up, go!
         }
         time += Time.deltaTime;
     }
