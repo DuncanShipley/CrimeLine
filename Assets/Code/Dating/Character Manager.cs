@@ -19,6 +19,7 @@ public class CharacterManager : MonoBehaviour
         for (int i = 0; i < characters.Length; i++)
         {
             GameObject newCharacter = Instantiate(characters[i]);
+            newCharacter.transform.SetParent(canvas.transform, false);
             newCharacter.SetActive(false);
             newCharacter.name = characters[i].name;
             CharacterList.Add(newCharacter);
@@ -35,6 +36,7 @@ public class CharacterManager : MonoBehaviour
                         gO.SetActive(false);
                   }
                     if(gO.name == IKF.CurrentSpeaker){
+                        gO.transform.SetParent(canvas.transform, true);
                         gO.SetActive(true);
                         ActiveSpeaker = IKF.CurrentSpeaker;
                     }
@@ -54,7 +56,9 @@ public class CharacterManager : MonoBehaviour
 
     [SerializeField]
     public GameObject[] characters;
-    
+
+    [SerializeField]
+    public Canvas canvas;    
     
     /*public List<GameObject> ActorsList = new List<GameObject>();
     [SerializeField]

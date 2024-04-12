@@ -11,7 +11,7 @@ using JetBrains.Annotations;
 
 public class InkManager : MonoBehaviour
 {
-    InkExternalFunctions IKF;
+    
     void Awake()
     {
         
@@ -65,11 +65,12 @@ public class InkManager : MonoBehaviour
             cm.SetEmotion();
             if (story.canContinue==true) {
                 // Continue gets the next line of the story
-                 string text = story.Continue();
+                StartCoroutine(DisplayLine(story.Continue()));
+                //text = story.Continue();
                  // This removes any white space from the text.
-                 text = text.Trim();
+                 //text = text.Trim();
                  // Display the text on screen!
-                 CreateContentView(text);
+                 //CreateContentView(text);
                 LD --;
             }
         }
@@ -98,6 +99,15 @@ public class InkManager : MonoBehaviour
         }            
     }
 
+    private IEnumerator DisplayLine(string line)
+    {
+        RefreshView();
+        foreach(char letter in line.ToCharArray()){
+        text += letter;
+        yield return new WaitForSeconds(typingSpeed);
+        }
+
+    }
 
     // When we click the choice button, tell the story to choose that choice!
     void OnClickChoiceButton (Choice choice) {
@@ -114,21 +124,20 @@ public class InkManager : MonoBehaviour
         if(text==""){
             RefreshView();
         }
-        TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(-30f, 120f, 0), Quaternion.identity) as TextMeshProUGUI;
+        TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(-30f, 120f, 1), Quaternion.identity) as TextMeshProUGUI;
         storyText.text = text;
         storyText.transform.SetParent(canvas.transform, false); 
     }
 
 
-    //moves the button down 35 units on the y axis
-    public static int BP = 0;
-    //the amount of buttons being created 
-    public static int TR = 0;
+    
+    private static int BP = 0;
+    private static int TR = 0;
     // Creates a button showing the choice 
     Button CreateChoiceView(string text)
     {
      // Creates the button from a prefab
-     Button choice = Instantiate(buttonPrefab, new Vector3(475, -305-(BP*TR), 0), Quaternion.identity) as Button;
+     Button choice = Instantiate(buttonPrefab, new Vector3(475, -305-(BP*TR), 1), Quaternion.identity) as Button;
      choice.transform.SetParent(canvas.transform, false);
 
         // Gets the text from the button prefab
@@ -165,11 +174,12 @@ public class InkManager : MonoBehaviour
     private Canvas canvas;
 
     // UI Prefabs
-    [SerializeField]
-    private TextMeshProUGUI textPrefab;
-    [SerializeField]
-    private Button buttonPrefab;
+    private string text;
+    private string line;
+    [SerializeField] private TextMeshProUGUI textPrefab;
+    [SerializeField] private Button buttonPrefab;
+    [SerializeField] private float typingSpeed = 0.04f;
     GameManager gm;
     CharacterManager cm;
-    
+    InkExternalFunctions IKF;
 }
