@@ -11,8 +11,10 @@ namespace Assets.Code.Fighting.CharacterControl
     {
         protected float dir;
         protected Animator anim;
-        protected Rigidbody body;
-        protected MovementManager manager = new MovementManager(1,1,1);
+        public Rigidbody body;//ben help please
+        protected int test;
+        public bool blocking;
+        protected MovementManager manager = new MovementManager(100,100,100);
         protected bool stunned = false;
         public void TryAction(PlayerAction[] action)
         {
@@ -22,14 +24,14 @@ namespace Assets.Code.Fighting.CharacterControl
                 switch(Item)
                 {
                     case PlayerAction.Block:
-                        //idk how ima do block yet
+                        anim.SetTrigger("Block");
                         break;
                     case PlayerAction.MeleeAttack:
                         switch(dir)
                         {
                             case 0:
                                 anim.SetTrigger("MeleeSide");
-                                MeleeSideAttack();
+                                MeleeSideAttack();//prob dont need to call the functions
                                 break;
                             case 1:
                                 anim.SetTrigger("MeleeUp");
@@ -64,7 +66,9 @@ namespace Assets.Code.Fighting.CharacterControl
 
         public void TryMoveAction(MovementAction[] movement)
         {
-            body.AddForce(manager.GetVector(movement));
+            UnityEngine.Debug.Log("pluh");
+            body.velocity = manager.GetVector(movement);
+            
         }
 
         public abstract void MeleeSideAttack();

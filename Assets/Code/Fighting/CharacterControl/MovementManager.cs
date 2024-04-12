@@ -47,6 +47,7 @@ namespace Assets.Code.Fighting.CharacterControl
                         break;
                 }
             }
+            UnityEngine.Debug.Log("pluh");
             return vec;
         }
 

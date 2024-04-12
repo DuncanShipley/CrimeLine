@@ -43,12 +43,15 @@ public class PlayerInputManager : MonoBehaviour
             {
                 case PlayerAction.Jump:
                     moveActions.Append(MovementAction.Jump);
+                    UnityEngine.Debug.Log("pluh");
                     break;
                 case PlayerAction.MoveLeft:
                     moveActions.Append(MovementAction.Left);
+                    UnityEngine.Debug.Log("pluh");
                     break;
                 case PlayerAction.MoveRight:
                     moveActions.Append(MovementAction.Right);
+                    UnityEngine.Debug.Log("pluh");
                     break;
                 case PlayerAction.MoveUp:
                     moveActions.Append(MovementAction.Up);
@@ -84,6 +87,7 @@ public class PlayerInputManager : MonoBehaviour
                         break;
                     case 2:
                         actions.Append(PlayerAction.Jump);
+                        UnityEngine.Debug.Log("pluh");
                         break;
                     case 3:
                         actions.Append(PlayerAction.MeleeAttack);
@@ -93,15 +97,19 @@ public class PlayerInputManager : MonoBehaviour
                         break;
                     case 5:
                         actions.Append(PlayerAction.MoveRight);
+                        UnityEngine.Debug.Log("pluh");
                         break;
                     case 6:
                         actions.Append(PlayerAction.MoveLeft);
+                        UnityEngine.Debug.Log("pluh");
                         break;
                     case 7:
                         actions.Append(PlayerAction.MoveDown);
+                        UnityEngine.Debug.Log("pluh");
                         break;
                     case 8:
                         actions.Append(PlayerAction.MoveUp);
+                        UnityEngine.Debug.Log("pluh");
                         break;
                     default:
                         break;

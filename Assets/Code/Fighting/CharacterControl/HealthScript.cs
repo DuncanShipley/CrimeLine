@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Code.Fighting.CharacterControl;
 
 public class HealthScript : MonoBehaviour
 {
@@ -20,15 +21,18 @@ public class HealthScript : MonoBehaviour
     }
     public void SetHealth(int health)
     {
-        slider.value = health;
-        if (health <= 0)
-        {
-            anim.SetTrigger("die");
-        }
-        else
-        {
-            anim.SetTrigger("hurt");
-        }
+        //if (PlayerActionManager.blocking)
+        //{
+            slider.value = health;
+            if (health <= 0)
+            {
+                anim.SetTrigger("die");
+            }
+            else
+            {
+                anim.SetTrigger("hurt");
+            }
+        //}
     }
 
     public void TakeKnockback(Vector3 vec)

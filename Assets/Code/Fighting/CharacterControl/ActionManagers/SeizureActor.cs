@@ -7,8 +7,11 @@ namespace Assets.Code.Fighting.CharacterControl
 {
     public class SeizureActor : PlayerActionManager
     {
-        [SerializeField] Animator anim;
-        [SerializeField] Rigidbody body;
+        [SerializeField] Animator anim
+        {set; get;}
+        public Rigidbody body
+        {set; get;}
+        public int test;//ben help needed on making variables work
         MovementManager manager;
         public GameObject MeleeSide;
         public GameObject MeleeUp;
@@ -22,6 +25,7 @@ namespace Assets.Code.Fighting.CharacterControl
         [SerializeField] private AudioClip knifeSFX;
         [SerializeField] private AudioClip shieldPushSFX;
         [SerializeField] private AudioClip ballSFX;
+
 
         public override void MeleeSideAttack()
         {
@@ -61,6 +65,11 @@ namespace Assets.Code.Fighting.CharacterControl
         private void DelAttack()
         {
             gameObject.GetComponentInChildren<Attack>().DeleteSelf();
+        }
+        private void Block()
+        {
+            blocking = true;
+            // might what to make movemanger check if blocking before adding kb
         }
     }
 }
