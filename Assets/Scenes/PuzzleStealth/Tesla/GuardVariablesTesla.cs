@@ -17,12 +17,12 @@ public class GuardVariablesTesla : MonoBehaviour
     }
     public float GetChaseSpeed()
     {
-        if (name == "Elite Guard") { return 8f; }
-        else { return 6f; }
+        if (name == "Elite Guard") { return 5f; }
+        else { return 4.5f; }
     }
     public float GetBaseSpeed()
     {
-        return 2f;
+        return 3f;
     }
     public int GetHealth()
     {

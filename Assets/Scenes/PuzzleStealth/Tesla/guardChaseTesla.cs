@@ -21,8 +21,12 @@ public class guardChaseTesla : MonoBehaviour
     public static List<int> currentPointIndex = new List<int>();
     public static List<bool> alerting = new List<bool>();
     public static List<bool> endedChase = new List<bool>();
+    [SerializeField] public static List<float> speed = new List<float>();
 
+    float baseSpeed;
+    float chaseSpeed;
 
+    public bool endedChaseVar;
     int movingLeft;
     bool movingDown;
     RaycastHit2D seeingRay;
@@ -38,6 +42,9 @@ public class guardChaseTesla : MonoBehaviour
         startingPosition.Add(Vector3.zero);
         positionList.Add(Vector3.zero);
 
+        baseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesTesla>().GetBaseSpeed();
+        chaseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesTesla>().GetChaseSpeed();
+
         currentPointIndex.Add(0);
         sus.Add(0);
         chase.Add(false);
@@ -45,10 +52,13 @@ public class guardChaseTesla : MonoBehaviour
         seeing.Add(false);
         oldPointIndex.Add(0);
         endedChase.Add(false);
+        speed.Add(baseSpeed);
     }
     // Update is called once per frame
     void Update()
     {
+        endedChaseVar = endedChase[id];
+        GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed[id];
         seesPlayer = CheckFor(Player);
 
         leftDetectEdge = transform.eulerAngles.z - 270 - detectRadius / 2;
@@ -75,7 +85,7 @@ public class guardChaseTesla : MonoBehaviour
                 oldPointIndex[id] = currentPointIndex[id];
                 currentPointIndex[id] = 0;
                 detectRadius = 121;
-                WaypointFollowerTesla.speed[id] = 6f;
+                speed[id] = chaseSpeed;
                 sus[id] = 1;
                 alerting[id] = true;
             }
@@ -83,7 +93,7 @@ public class guardChaseTesla : MonoBehaviour
         else if (AlertTesla.alerted[id] > -1)
         {
             detectRadius = 121;
-            WaypointFollowerTesla.speed[id] = 6f;
+            speed[id] = chaseSpeed;
             oldPointIndex[id] = currentPointIndex[id];
             currentPointIndex[id] = 0;
         }
@@ -93,16 +103,16 @@ public class guardChaseTesla : MonoBehaviour
             AlertTesla.alerted[id] = -1;
             alerting[id] = false;
             seeing[id] = false;
+            endedChase[id] = true;
         }
         else // if none of those are true, end the chase
         {
             chase[id] = false;
             detectRadius = 81;
-            WaypointFollowerTesla.speed[id] = 2f;
+            speed[id] = baseSpeed;
             sus[id] = 0;
             alerting[id] = false;
             seeing[id] = false;
-            endedChase[id] = true;
         }
         if (time == 0f)
         {

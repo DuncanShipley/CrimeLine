@@ -19,7 +19,6 @@ public class WaypointFollowerTesla : MonoBehaviour
     public static List<int> currentPointIndex = new List<int>();
 
 
-    [SerializeField] public static List<float> speed = new List<float>();
     public GameObject Player;
     [SerializeField] Transform playerTrans;
     UnityEngine.AI.NavMeshAgent guard;
@@ -29,6 +28,7 @@ public class WaypointFollowerTesla : MonoBehaviour
     RaycastHit2D seeingRay;
 
     Vector3 startingPosition;
+
 
     public void Start()
     {
@@ -41,7 +41,6 @@ public class WaypointFollowerTesla : MonoBehaviour
         movingDown = false;
 
         currentPointIndex.Add(0);
-        speed.Add(0);
         startingPosition = transform.position;
 
         guard = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -56,17 +55,18 @@ public class WaypointFollowerTesla : MonoBehaviour
         if (canMove)
         {
             
-            if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait <= 1) // if you're close and you haven't waited
+            if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait <= 1 && !guardChaseTesla.endedChase[id]) // if you're close and you haven't waited
             {
-                if (guardChaseTesla.endedChase[id]){
-                    var targetFacing = transform.rotation.z + 360;
-                    transform.Rotate(new Vector3(0, 60, 0) * Time.deltaTime);
-                    if (transform.rotation.z > targetFacing - 10 && transform.rotation.z < targetFacing + 10){
-                        guardChaseTesla.endedChase[id] = false;
-                    }
-                }
                 guardWait += Time.deltaTime; // wait
-                
+            }
+            else if(guardChaseTesla.endedChase[id] && Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f){
+                transform.Rotate(new Vector3(0, 360, 0) * Time.deltaTime);
+                guardWait += Time.deltaTime;
+                Debug.Log("spinning");
+                if (guardWait >= 1){
+                    Debug.Log("ended spin");
+                    guardChaseTesla.endedChase[id] = false;
+                }
             }
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
@@ -82,7 +82,6 @@ public class WaypointFollowerTesla : MonoBehaviour
             }
             else if (guardChaseTesla.sus[id] == 0 || guardChaseTesla.sus[id] == 1)
             {
-                Debug.Log("Destination waypoint: " + waypoints[currentPointIndex[id]]);
                 guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?

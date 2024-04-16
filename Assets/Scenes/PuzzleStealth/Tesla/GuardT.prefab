@@ -593,6 +593,7 @@ MonoBehaviour:
   Waypoint1: {fileID: 0}
   leftDetectEdge: 0
   rightDetectEdge: 0
+  endedChaseVar: 0
   id: 0
 --- !u!50 &7256538010822500421
 Rigidbody2D:
