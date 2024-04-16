@@ -32,6 +32,7 @@ namespace Assets.Code.Fighting.CharacterControl
                     case MovementAction.Right:
                         vec.x = WalkSpeed;
                         DirFacing = 0;
+                        UnityEngine.Debug.Log("pluh");
                         break;
                     case MovementAction.Left:
                         vec.x = -WalkSpeed;
@@ -47,7 +48,7 @@ namespace Assets.Code.Fighting.CharacterControl
                         break;
                 }
             }
-            UnityEngine.Debug.Log("pluh");
+            
             return vec;
         }
 

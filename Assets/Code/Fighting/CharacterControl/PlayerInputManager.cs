@@ -36,80 +36,76 @@ public class PlayerInputManager : MonoBehaviour
     }
     private MovementAction[] ReadyForMoveManager(PlayerAction[] action)
     {
-        MovementAction[] moveActions = new MovementAction[0];
+        List<MovementAction> moveActions = new List<MovementAction>();
         foreach (var Item in action)
         {
             switch (Item)
             {
                 case PlayerAction.Jump:
-                    moveActions.Append(MovementAction.Jump);
+                    moveActions.Add(MovementAction.Jump);
                     UnityEngine.Debug.Log("pluh");
                     break;
                 case PlayerAction.MoveLeft:
-                    moveActions.Append(MovementAction.Left);
+                    moveActions.Add(MovementAction.Left);
                     UnityEngine.Debug.Log("pluh");
                     break;
                 case PlayerAction.MoveRight:
-                    moveActions.Append(MovementAction.Right);
+                    moveActions.Add(MovementAction.Right);
                     UnityEngine.Debug.Log("pluh");
                     break;
                 case PlayerAction.MoveUp:
-                    moveActions.Append(MovementAction.Up);
+                    moveActions.Add(MovementAction.Up);
                     break;
                 case PlayerAction.MoveDown:
-                    moveActions.Append(MovementAction.Down);
+                    moveActions.Add(MovementAction.Down);
                     break;
                 
             }
         }
-        return moveActions;
+        return moveActions.ToArray();
     }
     private PlayerAction[] CompileActions(KeysPressed keys)
     {
-        PlayerAction[] actions = new PlayerAction[0];
+        List<PlayerAction> actions = new List<PlayerAction>();
         bool[] actKeys = new bool[] {keys.Z, keys.X, keys.C, keys.V};
-        NegateKey(ref keys.LA, ref keys.RA);//make the bool logic here correct
+        NegateKey(ref keys.LA, ref keys.RA);
         NegateKey(ref keys.UA, ref keys.DA);
         actKeys = NegateKeys(actKeys);
         bool[] arrowKeys = new bool[] {keys.LA, keys.RA, keys.UA, keys.DA};
         bool[] InpArray =   actKeys.Concat(arrowKeys).ToArray();
 
-        foreach (var item in InpArray.Select((value, index) => (index, value)))//prob is from the select
+        foreach (var item in InpArray.Select((value, index) => (index, value)))
         {
             bool key = item.value;
             int i = item.index;
+
             if (key)
             {
                 switch (i)
                 {
                     case 1:
-                        actions.Append(PlayerAction.Block);
+                        actions.Add(PlayerAction.Jump);
                         break;
                     case 2:
-                        actions.Append(PlayerAction.Jump);
-                        UnityEngine.Debug.Log("pluh");
+                        actions.Add(PlayerAction.Block);
                         break;
                     case 3:
-                        actions.Append(PlayerAction.MeleeAttack);
+                        actions.Add(PlayerAction.MeleeAttack);
                         break;
                     case 4:
-                        actions.Append(PlayerAction.RangeAttack);
+                        actions.Add(PlayerAction.RangeAttack);
                         break;
                     case 5:
-                        actions.Append(PlayerAction.MoveRight);
-                        UnityEngine.Debug.Log("pluh");
+                        actions.Add(PlayerAction.MoveLeft);
                         break;
                     case 6:
-                        actions.Append(PlayerAction.MoveLeft);
-                        UnityEngine.Debug.Log("pluh");
+                        actions.Add(PlayerAction.MoveRight);
                         break;
                     case 7:
-                        actions.Append(PlayerAction.MoveDown);
-                        UnityEngine.Debug.Log("pluh");
+                        actions.Add(PlayerAction.MoveUp);
                         break;
                     case 8:
-                        actions.Append(PlayerAction.MoveUp);
-                        UnityEngine.Debug.Log("pluh");
+                        actions.Add(PlayerAction.MoveDown);
                         break;
                     default:
                         break;
@@ -117,7 +113,7 @@ public class PlayerInputManager : MonoBehaviour
             }
 
         }
-        return actions;
+        return actions.ToArray();
     }
 
     private void NegateKey(ref bool keyOne, ref bool keyTwo)

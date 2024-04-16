@@ -14,7 +14,7 @@ namespace Assets.Code.Fighting.CharacterControl
         public Rigidbody body;//ben help please
         protected int test;
         public bool blocking;
-        protected MovementManager manager = new MovementManager(100,100,100);
+        protected MovementManager manager = new MovementManager(1,1,1);
         protected bool stunned = false;
         public void TryAction(PlayerAction[] action)
         {
@@ -66,7 +66,6 @@ namespace Assets.Code.Fighting.CharacterControl
 
         public void TryMoveAction(MovementAction[] movement)
         {
-            UnityEngine.Debug.Log("pluh");
             body.velocity = manager.GetVector(movement);
             
         }
