@@ -8,8 +8,6 @@ public class WaypointFollowerBK : MonoBehaviour
     public GameObject Waypoint1;
     public static GameObject[] wpref;
     private float guardWait = 0f;
-    int movingLeft;
-    bool movingDown;
     public double relAngle;
     private float atan;
     public bool canMove = true;
@@ -17,6 +15,8 @@ public class WaypointFollowerBK : MonoBehaviour
     public int id;
 
     public static List<int> currentPointIndex = new List<int>();
+    public static List<int> movingLeft = new List<int>();
+    public static List<bool> movingDown = new List<bool>();
 
 
     [SerializeField] public static List<float> speed = new List<float>();
@@ -37,8 +37,9 @@ public class WaypointFollowerBK : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         wpref = waypoints;
-        movingLeft = 0;
-        movingDown = false;
+
+        movingLeft.Add(0);
+        movingDown.Add(false);
 
         currentPointIndex.Add(0);
         speed.Add(0);
@@ -64,7 +65,7 @@ public class WaypointFollowerBK : MonoBehaviour
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
                 currentPointIndex[id]++; // look towards the next waypoint
-                guardChaseBK.putWaypoint(startingPosition, id, Waypoint1);
+                guardChaseBK.putWaypoint(startingPosition, id, Waypoint1, false);
                 if (currentPointIndex[id] >= waypoints.Length)
                 {
                     currentPointIndex[id] = 0;
@@ -80,19 +81,19 @@ public class WaypointFollowerBK : MonoBehaviour
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?
             {
-                movingLeft = 180;
+                movingLeft[id] = 180;
             }
             else
             {
-                movingLeft = 0;
+                movingLeft[id] = 0;
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) < 0f) // are moving down?
             {
-                movingDown = true;
+                movingDown[id] = true;
             }
             else
             {
-                movingDown = false;
+                movingDown[id] = false;
 
             }
             if (waypoints[currentPointIndex[id]].transform.position.y > transform.position.y && waypoints[currentPointIndex[id]].transform.position.x > transform.position.x) // if the current waypoint is up and to the right of us
@@ -120,7 +121,7 @@ public class WaypointFollowerBK : MonoBehaviour
             {
                 atan = (float)-Math.PI / 2;
             }
-            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(atan * 180 / Math.PI) - 90 + movingLeft); // point towards current waypoint
+            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(atan * 180 / Math.PI) - 90 + movingLeft[id]); // point towards current waypoint
         }
         else
         {

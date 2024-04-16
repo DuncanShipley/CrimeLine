@@ -35,7 +35,7 @@ public class AlertBK : MonoBehaviour
             if (guardChaseBK.alerting[otherID] && !guardChaseBK.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
             {
                 alerted[id] = otherID; // set alerted for the non-suspicious guard to the id of the sus one
-                guardChaseBK.putWaypoint(collision.gameObject.transform.parent.position, id, Waypoint1);
+                guardChaseBK.putWaypoint(collision.gameObject.transform.parent.position, id, Waypoint1, true);
             }
             else if (!guardChaseBK.alerting[otherID]) // if the other guard is no longer suspicious
             {
