@@ -8,10 +8,12 @@ public class AlertBK : MonoBehaviour
     public static List<GameObject> guards = new List<GameObject>();
     public static List<int> alerted = new List<int>();
     public int alert;
+    GameObject Waypoint1;
 
     // Start is called before the first frame update
     void Start()
     {
+        Waypoint1 = GameObject.Find("Waypoint 1");
         guards.Add(gameObject);
         alerted.Add(-1);
     }
@@ -33,7 +35,7 @@ public class AlertBK : MonoBehaviour
             if (guardChaseBK.alerting[otherID] && !guardChaseBK.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
             {
                 alerted[id] = otherID; // set alerted for the non-suspicious guard to the id of the sus one
-                guardChaseBK.putWaypoint(collision.gameObject.transform.parent.position, id);
+                guardChaseBK.putWaypoint(collision.gameObject.transform.parent.position, id, Waypoint1, true);
             }
             else if (!guardChaseBK.alerting[otherID]) // if the other guard is no longer suspicious
             {
