@@ -11,6 +11,8 @@ public class WaypointFollowerBK : MonoBehaviour
     public double relAngle;
     private float atan;
     public bool canMove = true;
+    public float distance;
+    public bool close;
 
     public int id;
 
@@ -60,7 +62,7 @@ public class WaypointFollowerBK : MonoBehaviour
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait <= 1) // if you're close and you haven't waited
             {
                 guardWait += Time.deltaTime; // wait
-
+                close = true;
             }
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
@@ -73,11 +75,16 @@ public class WaypointFollowerBK : MonoBehaviour
                 guardWait = 0; // reset wait timer
                 //transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed[id]);
                 //guard.SetDestination(waypoints[currentPointIndex[id]].transform.position);
+                close = false;
             }
             else if (guardChaseBK.sus[id] == 0 || guardChaseBK.sus[id] == 1)
             {
                 //Debug.Log("Destination waypoint: " + waypoints[currentPointIndex[id]]);
                 guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
+                close = false;
+            }
+            else{
+                close = false;
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?
             {
@@ -96,31 +103,61 @@ public class WaypointFollowerBK : MonoBehaviour
                 movingDown[id] = false;
 
             }
-            if (waypoints[currentPointIndex[id]].transform.position.y > transform.position.y && waypoints[currentPointIndex[id]].transform.position.x > transform.position.x) // if the current waypoint is up and to the right of us
-            {
-                relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI;
+            if (close){
+                if (waypoints[currentPointIndex[id]+1].transform.position.y > transform.position.y && waypoints[currentPointIndex[id]+1].transform.position.x > transform.position.x) // if the current waypoint is up and to the right of us
+                {
+                    relAngle = Math.Atan((waypoints[currentPointIndex[id]+1].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]+1].transform.position.x - transform.position.x)) * 180 / Math.PI;
+                }
+                else if (waypoints[currentPointIndex[id]+1].transform.position.x < transform.position.x) // if it's to the left of us
+                {
+                    relAngle = Math.Atan((waypoints[currentPointIndex[id]+1].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]+1].transform.position.x - transform.position.x)) * 180 / Math.PI + 180;
+                }
+                else // if it's down and to the right of us
+                {
+                    relAngle = Math.Atan((waypoints[currentPointIndex[id]+1].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]+1].transform.position.x - transform.position.x)) * 180 / Math.PI + 360;
+                }
+                // ^^ these are to take the inverse tangent of the correct 'triangle' ^^
+                if (Mathf.Abs(waypoints[currentPointIndex[id]+1].transform.position.x - transform.position.x) > 0.01f)
+                {
+                    atan = (float)Math.Atan((waypoints[currentPointIndex[id]+1].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]+1].transform.position.x - transform.position.x));
+                }
+                else if (Mathf.Abs(waypoints[currentPointIndex[id]+1].transform.position.x - transform.position.x) > 0)
+                {
+                    atan = (float)Math.PI / 2;
+                }
+                else
+                {
+                    atan = (float)-Math.PI / 2;
+                }
             }
-            else if (waypoints[currentPointIndex[id]].transform.position.x < transform.position.x) // if it's to the left of us
-            {
-                relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI + 180;
+            else{
+                if (waypoints[currentPointIndex[id]].transform.position.y > transform.position.y && waypoints[currentPointIndex[id]].transform.position.x > transform.position.x) // if the current waypoint is up and to the right of us
+                {
+                    relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI;
+                }
+                else if (waypoints[currentPointIndex[id]].transform.position.x < transform.position.x) // if it's to the left of us
+                {
+                    relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI + 180;
+                }
+                else // if it's down and to the right of us
+                {
+                    relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI + 360;
+                }
+                // ^^ these are to take the inverse tangent of the correct 'triangle' ^^
+                if (Mathf.Abs(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) > 0.01f)
+                {
+                    atan = (float)Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x));
+                }
+                else if (Mathf.Abs(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) > 0)
+                {
+                    atan = (float)Math.PI / 2;
+                }
+                else
+                {
+                    atan = (float)-Math.PI / 2;
+                }
             }
-            else // if it's down and to the right of us
-            {
-                relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI + 360;
-            }
-            // ^^ these are to take the inverse tangent of the correct 'triangle' ^^
-            if (Mathf.Abs(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) > 0.01f)
-            {
-                atan = (float)Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x));
-            }
-            else if (Mathf.Abs(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) > 0)
-            {
-                atan = (float)Math.PI / 2;
-            }
-            else
-            {
-                atan = (float)-Math.PI / 2;
-            }
+            
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(atan * 180 / Math.PI) - 90 + movingLeft[id]); // point towards current waypoint
         }
         else
