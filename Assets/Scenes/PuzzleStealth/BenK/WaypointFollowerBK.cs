@@ -73,13 +73,10 @@ public class WaypointFollowerBK : MonoBehaviour
                     currentPointIndex[id] = 0;
                 }
                 guardWait = 0; // reset wait timer
-                //transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed[id]);
-                //guard.SetDestination(waypoints[currentPointIndex[id]].transform.position);
                 close = false;
             }
             else if (guardChaseBK.sus[id] == 0 || guardChaseBK.sus[id] == 1)
             {
-                //Debug.Log("Destination waypoint: " + waypoints[currentPointIndex[id]]);
                 guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
                 close = false;
             }
@@ -157,8 +154,15 @@ public class WaypointFollowerBK : MonoBehaviour
                     atan = (float)-Math.PI / 2;
                 }
             }
-            
+            if (close && waypoints[currentPointIndex[id]+1].transform.position.x < transform.position.x && waypoints[currentPointIndex[id]].transform.position.x < transform.position.x) 
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(atan * 180 / Math.PI) - 90 + movingLeft[id]); 
+                Debug.Log("downleft");
+            }
+            else
+            {
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(atan * 180 / Math.PI) - 90 + movingLeft[id]); // point towards current waypoint
+            }
         }
         else
         {

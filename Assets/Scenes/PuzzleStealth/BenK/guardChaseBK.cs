@@ -123,7 +123,6 @@ public class guardChaseBK : MonoBehaviour
             oldPointIndex[GuardID] = WaypointFollowerBK.currentPointIndex[GuardID];
             WaypointFollowerBK.currentPointIndex[GuardID] = 0;
         }
-        Debug.Log("putting waypoint");
     }
     public bool CheckFor(GameObject cf)
     {
