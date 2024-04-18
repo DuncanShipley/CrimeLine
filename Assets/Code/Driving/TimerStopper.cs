@@ -13,5 +13,6 @@ public class TimerStopper : MonoBehaviour
         EventManager.OnTimerStop();
         print("You Win!");
         SceneManager.LoadScene("You Win!");
+
     }
 }
