@@ -10,8 +10,8 @@ namespace Assets.Code.Fighting.CharacterControl
     public abstract class PlayerActionManager : MonoBehaviour
     {
         protected float dir;
-        protected Animator anim;
-        public Rigidbody body;//ben help please
+        public Animator anim;
+        public Rigidbody body;
         protected int test;
         public bool blocking;
         protected MovementManager manager = new MovementManager(1,1,1);
@@ -21,45 +21,42 @@ namespace Assets.Code.Fighting.CharacterControl
             dir = manager.DirFacing;
             foreach (var Item in action)
             {
-                switch(Item)
+                if (!stunned)
                 {
-                    case PlayerAction.Block:
-                        anim.SetTrigger("Block");
-                        break;
-                    case PlayerAction.MeleeAttack:
-                        switch(dir)
-                        {
-                            case 0:
-                                anim.SetTrigger("MeleeSide");
-                                MeleeSideAttack();//prob dont need to call the functions
-                                break;
-                            case 1:
-                                anim.SetTrigger("MeleeUp");
-                                MeleeDownAttack();
-                                break;
-                            case 2:
-                                anim.SetTrigger("MeleeDown");
-                                MeleeUpAttack();
-                                break;
-                        }
-                        break;
-                    case PlayerAction.RangeAttack:
-                        switch (dir)
-                        {
-                            case 0:
-                                anim.SetTrigger("RangeSide");
-                                RangeSideAttack();
-                                break;
-                            case 1:
-                                anim.SetTrigger("RangeUp");
-                                RangeDownAttack();
-                                break;
-                            case 2:
-                                anim.SetTrigger("RangeDown");
-                                RangeUpAttack();
-                                break;
-                        }
-                        break;
+                    switch(Item)
+                    {
+                        case PlayerAction.Block:
+                            anim.SetTrigger("Block");
+                            break;
+                        case PlayerAction.MeleeAttack:
+                            switch(dir)
+                            {
+                                case 0:
+                                    anim.SetTrigger("MeleeSide");
+                                    break;
+                                case 1:
+                                    anim.SetTrigger("MeleeUp");
+                                    break;
+                                case 2:
+                                    anim.SetTrigger("MeleeDown");
+                                    break;
+                            }
+                            break;
+                        case PlayerAction.RangeAttack:
+                            switch (dir)
+                            {
+                                case 0:
+                                    anim.SetTrigger("RangeSide");
+                                    break;
+                                case 1:
+                                    anim.SetTrigger("RangeUp");
+                                    break;
+                                case 2:
+                                    anim.SetTrigger("RangeDown");
+                                    break;
+                            }
+                            break;
+                    }
                 }
             }
         }

@@ -83,28 +83,28 @@ public class PlayerInputManager : MonoBehaviour
             {
                 switch (i)
                 {
-                    case 1:
+                    case 0:
                         actions.Add(PlayerAction.Jump);
                         break;
-                    case 2:
+                    case 1:
                         actions.Add(PlayerAction.Block);
                         break;
-                    case 3:
+                    case 2:
                         actions.Add(PlayerAction.MeleeAttack);
                         break;
-                    case 4:
+                    case 3:
                         actions.Add(PlayerAction.RangeAttack);
                         break;
-                    case 5:
+                    case 4:
                         actions.Add(PlayerAction.MoveLeft);
                         break;
-                    case 6:
+                    case 5:
                         actions.Add(PlayerAction.MoveRight);
                         break;
-                    case 7:
+                    case 6:
                         actions.Add(PlayerAction.MoveUp);
                         break;
-                    case 8:
+                    case 7:
                         actions.Add(PlayerAction.MoveDown);
                         break;
                     default:

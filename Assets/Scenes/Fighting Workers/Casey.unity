@@ -8794,21 +8794,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e36bc8f85cc57a4788016a2cc8d17fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1467687693}
   body: {fileID: 1467687695}
   blocking: 0
-  test: 0
-  MeleeSide: {fileID: 0}
-  MeleeUp: {fileID: 0}
-  MeleeDown: {fileID: 0}
-  RangeSide: {fileID: 0}
-  RangeUp: {fileID: 0}
-  RangeDown: {fileID: 0}
-  groundSpikeSFX: {fileID: 0}
-  uppercutSFX: {fileID: 0}
-  whipSFX: {fileID: 0}
-  knifeSFX: {fileID: 0}
-  shieldPushSFX: {fileID: 0}
-  ballSFX: {fileID: 0}
+  MeleeSide: {fileID: 2200565641159838218, guid: 16ae2d8b1dcb9b64180e26220ff7033f, type: 3}
+  MeleeUp: {fileID: 3711211749649877176, guid: 8e85f448a7a697c49b92f643e6a6cdf9, type: 3}
+  MeleeDown: {fileID: 949740253307702744, guid: 7950976499fe481409c299625cc1ee10, type: 3}
+  RangeSide: {fileID: 6030688806231460762, guid: 4aa8cebf583428c43b1a679509920f85, type: 3}
+  RangeUp: {fileID: 4140813505544937889, guid: b0082b1a1e45d164cb160535d771b2f9, type: 3}
+  RangeDown: {fileID: 7865235013050372989, guid: 77ced886d9026a34788d280c15d48966, type: 3}
+  MSideSFX: {fileID: 8300000, guid: e92ff114dd1e55d468f9f97a761091f9, type: 3}
+  MDownSFX: {fileID: 8300000, guid: 4506377ca929cba42b4de7c141fce0c4, type: 3}
+  MUpSFX: {fileID: 8300000, guid: 4237e7a75774d5a4eb3d6e7b0a705ab5, type: 3}
+  RSideSFX: {fileID: 8300000, guid: fb95b310d2a0f4b40b372ce94e8f821a, type: 3}
+  RDownSFX: {fileID: 8300000, guid: 2c7fc06f40322054ab5eccef8026aac5, type: 3}
+  RUpSFX: {fileID: 8300000, guid: df4af585156c4064c936a620d10f8052, type: 3}
 --- !u!114 &1467687699
 MonoBehaviour:
   m_ObjectHideFlags: 0
