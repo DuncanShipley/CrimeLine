@@ -17,8 +17,6 @@ public class WaypointFollowerTesla : MonoBehaviour
     public int id;
 
     public static List<int> currentPointIndex = new List<int>();
-
-
     public GameObject Player;
     [SerializeField] Transform playerTrans;
     UnityEngine.AI.NavMeshAgent guard;
@@ -54,12 +52,12 @@ public class WaypointFollowerTesla : MonoBehaviour
 
         if (canMove)
         {
-            
-            if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait <= 1 && !guardChaseTesla.endedChase[id]) // if you're close and you haven't waited
+            // Debug.Log(Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position));
+            if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1.2f && guardWait <= 1 && !guardChaseTesla.endedChase[id]) // if you're close and you haven't waited
             {
                 guardWait += Time.deltaTime; // wait
             }
-            else if(guardChaseTesla.endedChase[id] && Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f){
+            else if(guardChaseTesla.endedChase[id] && Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1.2f){
                 transform.Rotate(new Vector3(0, 360, 0) * Time.deltaTime);
                 guardWait += Time.deltaTime;
                 Debug.Log("spinning");
