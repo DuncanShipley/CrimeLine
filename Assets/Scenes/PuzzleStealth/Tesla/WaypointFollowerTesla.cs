@@ -60,9 +60,9 @@ public class WaypointFollowerTesla : MonoBehaviour
             else if(guardChaseTesla.endedChase[id] && Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1.2f){
                 transform.Rotate(new Vector3(0, 360, 0) * Time.deltaTime);
                 guardWait += Time.deltaTime;
-                Debug.Log("spinning");
+                //Debug.Log("spinning");
                 if (guardWait >= 1){
-                    Debug.Log("ended spin");
+                    //Debug.Log("ended spin");
                     guardChaseTesla.endedChase[id] = false;
                 }
             }

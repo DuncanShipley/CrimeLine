@@ -9,15 +9,13 @@ public class lasercodeTesla : MonoBehaviour
 
     private int waypointIndex;
     private float curWaypoint;
-    LineRenderer render;
+    Renderer render;
     bool on = true;
-    public GameObject lT;
-    public GameObject gT;
 
     // Start is called before the first frame update
     void Start()
     {
-        render = GetComponent<LineRenderer>();
+        render = GetComponent<Renderer>();
         if (moving)
         {
             waypointIndex = 0; 
@@ -55,12 +53,8 @@ public class lasercodeTesla : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("laser: " + gameObject.transform.position);
-        lT.transform.position = gameObject.transform.position;
-        gT.transform.position = collision.gameObject.transform.position;
-        Debug.Log("guard: " + collision.gameObject.transform.position);
         if (collision.gameObject.name == "Sensor Range"){
-            if (Vector2.Distance(collision.gameObject.transform.position, gameObject.transform.position) < 5f){
+            if (Vector2.Distance(collision.gameObject.transform.position, gameObject.transform.position) < 3f){
                 render.enabled = false;
                 on = false;
                 //Debug.Log("off");

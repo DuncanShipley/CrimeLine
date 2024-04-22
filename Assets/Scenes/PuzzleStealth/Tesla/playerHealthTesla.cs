@@ -30,7 +30,12 @@ public class playerHealthTesla : MonoBehaviour
         if (collision.tag == "DamagePlayer")
         {
             health--;
+            Debug.Log("hit, health = " + health);
         } // if it's hit by something damaging, decrease health
+        
+    }
+    private void OnTriggerStay2D(Collider2D collision){
+        
     }
 
     IEnumerator Death()
