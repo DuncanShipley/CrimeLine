@@ -18,15 +18,15 @@ Skopje Macedonia, 2023 <br>Komercijalna Bank
 == Bank ==
 You: Hey mister! You got some time to spare?
 Guard: No
-*[Nag him] -> Nag
-*[Elude to more] -> Elude
+*[Nag him]-> Nag
+*[Elude to more]-> Elude
 
 == Nag ==
 You: Oh come on, not even 5 minutes? There's other guards here, nothing is going to happen.
 Guard: Excuse me if you aren’t here for business, I'm gonna have to ask you to leave.
-*[Nag him] -> Nag2
-*[Elude to more] -> Elude
-*[Question authority] -> Question
+*[Nag him]-> Nag2
+*[Elude to more]-> Elude
+*[Question authority]-> Question
 ->END
 
 ==Nag2==
@@ -42,22 +42,22 @@ Guard: I'm not going to follow, please leave.
 
 ==Question==
 You: Is this how you normally treat patrons of this establishment? If so I must inform
-*[The general public] ->Public
-*[The management] ->Management
+*[The general public]->Public
+*[The management]->Management
 
 ==Public==
 the general public of the poor treatment of us customers
 Guard: Alright please step outside.
-*[Threaten] ->ThreatenP
+*[Threaten]->ThreatenP
 *[Seek Pity]->END
 *[Think fast]->quiz
 
 ==quiz==
 You: Pop quiz! 
 Guaed:What?
-*[Biology question] -> Biology
-*[History question] -> History
-*[Pop culture question] -> Pop  
+*[Biology question]-> Biology
+*[History question]-> History
+*[Pop culture question]-> Pop  
 ==Biology==
 You: What is the name of the family that Otters, skunks, and wolverines all fall under?
 Guard: Uhm excuse me?
@@ -69,8 +69,8 @@ You: What is the name of the family that Otters, skunks, and wolverines all fall
 Guard: Marsupials?
 You: Ooh close but no cigar, the answer I was looking for was Mustelidae.
 Guard: ...??? I- I'm putting an end to this charade
-*[Pop culture question] -> Pop  
-*[History question] -> History
+*[Pop culture question]-> Pop  
+*[History question]-> History
 ==History==
 You: Which famous assination sparked the conflict for world war 2?
 Guard: Alright step outside now.
@@ -79,9 +79,9 @@ Guard: Alright step outside now.
 You: Of the Seven Neko Princess Rangers from the original 1987 show: Neko Princess Rangers Galaxy SAGA, who posesses the "Mars Blaze Mahouken"?
 Guard: Easy, that's Akane chan.
 You: Correct!
-*[Biology question] -> Biology
-*[History question] -> History
-*[Ask how he knew] -> Fandom
+*[Biology question]-> Biology
+*[History question]-> History
+*[Ask how he knew]-> Fandom
 *[Ask another Neko Princess Rangers question] ->NekoQ
 ->END
 ==Fandom==
@@ -94,10 +94,10 @@ Guard: All 3 baby
 You: Have you watched Galaxy SAGA reboot?
 Guard: Unfourtanetly yes, all six + the fillers
 You: Yikes brother, been there done that.
-*[Ask another Neko Princess Rangers question] -> NekoQ
-*[Ask who their oshi is] -> oshi
-*[Ask if he's played the games] -> NekoG
-*[Ask about Neko Con] -> NekoCon
+*[Ask another Neko Princess Rangers question]-> NekoQ
+*[Ask who their oshi is]-> oshi
+*[Ask if he's played the games]-> NekoG
+*[Ask about Neko Con]-> NekoCon
 
 -> END
 
@@ -106,21 +106,21 @@ You: Well then, In the NovaBaron arc, what does Fumie say that causes NovaBaron 
 Guard: "I cannot accept because to do so would be a betreyal of my kin, it would make no better than yourself.
 No suffering you can put me through will hurt more than knowing my heart has told lies."
 You: Off the top? Wow! You truly are who you say you are, a devout Fumie fan.
-*[Ask who their oshi is] -> oshi
-*[Ask if he's played the games] -> NekoG
+*[Ask who their oshi is]-> oshi
+*[Ask if he's played the games]-> NekoG
 *[Ask about Neko Con] -> NekoCon
 ==oshi==
 You: Who is your oshi? In G1 obviously.
 Guard: Fumie chan all the way! 
 You: Wow a man of taste I see.
 Guard: How could I not aside from being the original shizendere, she's got easily the most versatile and unique Mahouken. What about you? Who's your oshi?
-*[Akane(Mars)] -> Akane
-*[Emi(Mercury)] -> Emi
-*[Hikari(Jupiter)] -> Hikari
-*[kohaku(Venus)] -> Kohaku
-*[Reina(Neptune)] -> Reina
-*[Sora(Uranus)] -> Sora
-*[Also Fumie(Saturn)] ->Fumie
+*[Akane(Mars)]-> Akane
+*[Emi(Mercury)]-> Emi
+*[Hikari(Jupiter)]-> Hikari
+*[kohaku(Venus)]-> Kohaku
+*[Reina(Neptune)]-> Reina
+*[Sora(Uranus)]-> Sora
+*[Also Fumie(Saturn)]->Fumie
 ==NekoG==
 You: Have you played any of the Star defenders?
 Guard: Are you kidding? Of course! My favorite is defenders 3 no questions asked.
@@ -131,9 +131,9 @@ Guard: You missed out, I'm telling you the cutscene was worth it.
 You: How many attempts did it take you? Or how many hours?
 Guard: A month, every day after work, 2 hour sessions at a time.
 You: Gotta give you credit man that's super impressive.
-*[Ask another Neko Princess Rangers question] -> NekoQ
-*[Ask who their oshi is] -> oshi
-*[Ask about Neko Con] -> NekoCon
+*[Ask another Neko Princess Rangers question]-> NekoQ
+*[Ask who their oshi is]-> oshi
+*[Ask about Neko Con]-> NekoCon
 ==NekoCon==
 You: Are you going to NekoCon?
 Guard: No but I really want to. It's too expensive and I wouldn't be able to go because it's on a work day anywas.
@@ -147,33 +147,42 @@ You: Yes thats perfect! Let's get going it starts in 3 hours!
 Guard: I can't believe this! it's almost two good to be true. Alright then I'll tell my boss I have to leave for a family emergency.
 ->END
 ==Akane==
-You: Akane, Easy! She was girl power before girl power. Nobody wanted the smoke and for good reason! She slayed like no other could. Also Emi teasing her about her crush on Shohei never failed to make me laugh.
+You: Akane, Easy! She was girl power before girl power. 
+You: Nobody wanted the smoke and for good reason! She slayed like no other could. 
+You: Also Emi teasing her about her crush on Shohei never failed to make me laugh.
 Guard: I love her and shohei together. It's so frustrating to follow but it keeps you so invested.
-*[Ask another Neko Princess Rangers question] -> NekoQ
-*[Ask if he's played the games] -> NekoG
-*[Ask about Neko Con] -> NekoCon
+*[Ask another Neko Princess Rangers question]-> NekoQ
+*[Ask if he's played the games]-> NekoG
+*[Ask about Neko Con]-> NekoCon
 ==Emi==
-You: I love Emi and honestly the hate is undeserved. She's a little much, but that's important to her character. 80% of the comedy comes from her shenanagins. And every good team needs a scamp. And you have to admit her Mahouken is easily top 3 coolest.
+You: I love Emi and honestly the hate is undeserved. She's a little much, but that's important to her character. 
+You: 80% of the comedy comes from her shenanagins. And every good team needs a scamp. 
+You: And you have to admit her Mahouken is easily top 3 coolest.
 Guard: I can appreciate a fellow devout for an underrated queen.
 You: You know it. We gotta stick together cause it's us versus the world.
-*[Ask another Neko Princess Rangers question] -> NekoQ
-*[Ask if he's played the games] -> NekoG
-*[Ask about Neko Con] -> NekoCon
+*[Ask another Neko Princess Rangers question]-> NekoQ
+*[Ask if he's played the games]-> NekoG
+*[Ask about Neko Con]-> NekoCon
 ==Hikari==
-You: Call me basic but Hikari is and will always be best girl. She's too good for the rest of them honestly. Every scene is enhanced by her presence and some of the best emotional moments involve her. The perfect older sister to the group.
+You: Call me basic but Hikari is and will always be best girl. She's too good for the rest of them honestly. 
+You: Every scene is enhanced by her presence and some of the best emotional moments involve her. 
+You: The perfect older sister to the group.
 Guard: Sorry, that's basic for sure. Wouldn't be me but, she's popular for a reason right? I'm not knocking your opinion cause she definitely is deserving of that fanbase.
-*[Ask another Neko Princess Rangers question] -> NekoQ
-*[Ask if he's played the games] -> NekoG
-*[Ask about Neko Con] -> NekoCon
+*[Ask another Neko Princess Rangers question]-> NekoQ
+*[Ask if he's played the games]-> NekoG
+*[Ask about Neko Con]-> NekoCon
 ==Kohaku==
 You: Oh it's kohaku for sure. Our lesbian queen.
 Guard: Well I guess, but she's never confirmed to be lesbian.
 You: Uhm yes she basically is, i'm sorry but if you're denying her very clear identity then you're homophobic.
 Guard: What? No no it's nothing like that, I just feel like at least for me, she is never confirmed to be a lesbian by the creator, none of her interactions with akane are ever explicitly romantic and akane never recipracates. I believe they're just good friends with a unique bond but nothing more. You can definitely have your own opinion though!
-You: Kohakane is not opinion, it's canon. Either way I love her so much, her sheltered clueless rich girl personality perfectly clashes with akane's head first tom boyish character. They're just made for eachother. They're dynamic is what got me through all the fillers.
-*[Ask another Neko Princess Rangers question] -> NekoQ
-*[Ask if he's played the games] -> NekoG
-*[Ask about Neko Con] -> NekoCon
+You: Kohakane is not opinion, it's canon. Either way I love her so much, 
+You: her sheltered clueless rich girl personality perfectly clashes with akane's head first tom boyish character. 
+You: They're just made for eachother. 
+You: Their dynamic is what got me through all the fillers.
+*[Ask another Neko Princess Rangers question]-> NekoQ
+*[Ask if he's played the games]-> NekoG
+*[Ask about Neko Con]-> NekoCon
 ==Reina==
 You: TEAM REINA FOREVER. "Mahouken, Neptune's wrath UNLIMITTED!" Chills. Still Chills. I don't care what anyone says about her because she's just wayyy too cool. If you think she isn't top 2 we can never get along. Also she's just too hot, her G1 outfit is PEAK!
 Guard: I know right! I love her G1 outfit, her VA literally saves lives with that preformance. 
@@ -194,30 +203,30 @@ You: Plot convinience and she didn't even get beaten by him in combat! She just 
 Guard: As far as i'm concerned that counts as a loss.
 You: BULLSHIT
 Guard: Whatever you say I guess
-*[Ask another Neko Princess Rangers question] -> NekoQ
-*[Ask if he's played the games] -> NekoG
-*[Ask about Neko Con] -> NekoCon
+*[Ask another Neko Princess Rangers question]-> NekoQ
+*[Ask if he's played the games]-> NekoG
+*[Ask about Neko Con]-> NekoCon
 ==Fumie==
 You: Much like yourself I believe Fumie is the best written character in the series.
-For instance during the NovaBaron arc Episode 97:"I cannot accept because to do so would be a betreyal of my kin, it would make no better than yourself.
-No suffering you can put me through will hurt more than knowing my heart has told lies." A line delivered so perfectly I could never look at the series the same. 
-On my first watch through I shed tears, much like every subsequent watchthrough.
-The single scene was able to found my beleif that she was the culmination and synthesis of Haneyama sensei's genius in theater, media, and culture. 
-This is supported by the fact that haneyama's own favorite scene of the anime adaption is during the Univers Tour arc Episode 54:
-Fumie stands in the abandoned palace garden that has been unkept and overun by fauna and flora and yet light shines brightly through.
-The symbolism is genius, kohaku literally peers into Fumie's heart(the castle), unkept(the emotions and trauma she ignores and leaves unchecked), 
-but in this moment we see her tranquility as she's brought back to the place of her trauma(the castle) and the remanant of what was her old life. 
-It's a bittersweet moment that solidifies g1 as superior to all other NPR media. The piano musical theme being so subtle and quiet plays so well into this scene it truly boggles my mind! Still iconic after all this time. 
-Hatred, pain, and war are the emotions that govern people which destoys them and the world. 
-Fumie's character arc teaches us to love our fellow people, friends, family, especially those who live on earth with us. We are not the only ones who live on earth. Be loving and considerate to them as well. 
+You: For instance during the NovaBaron arc Episode 97:"I cannot accept because to do so would be a betreyal of my kin, it would make no better than yourself.
+You: No suffering you can put me through will hurt more than knowing my heart has told lies." A line delivered so perfectly I could never look at the series the same. 
+You: On my first watch through I shed tears, much like every subsequent watchthrough.
+You: The single scene was able to found my beleif that she was the culmination and synthesis of Haneyama sensei's genius in theater, media, and culture. 
+You: This is supported by the fact that haneyama's own favorite scene of the anime adaption is during the Univers Tour arc Episode 54:
+You: Fumie stands in the abandoned palace garden that has been unkept and overun by fauna and flora and yet light shines brightly through.
+You: The symbolism is genius, kohaku literally peers into Fumie's heart(the castle), unkept(the emotions and trauma she ignores and leaves unchecked), 
+You: but in this moment we see her tranquility as she's brought back to the place of her trauma(the castle) and the remanant of what was her old life. 
+You: It's a bittersweet moment that solidifies g1 as superior to all other NPR media. The piano musical theme being so subtle and quiet plays so well into this scene it truly boggles my mind! Still iconic after all this time. 
+You: Hatred, pain, and war are the emotions that govern people which destoys them and the world. 
+You: Fumie's character arc teaches us to love our fellow people, friends, family, especially those who live on earth with us. We are not the only ones who live on earth. Be loving and considerate to them as well. 
 Guard: *sniff* that was beautiful, I'm honestly moved and so glad I could meet another like minded individual.
-*[Ask another Neko Princess Rangers question] -> NekoQ
-*[Ask if he's played the games] -> NekoG
-*[Ask about Neko Con] -> NekoCon
+*[Ask another Neko Princess Rangers question]-> NekoQ
+*[Ask if he's played the games]-> NekoG
+*[Ask about Neko Con]-> NekoCon
 ==Management==
 the management of the poor treatment of us customers
 Guard: Hey listen we don’t have to go there, i’m sorry if I offended you, i’m just doin my job here.
-*[Threaten Management] ->ThreatenM
+*[Threaten Management]->ThreatenM
 
 ==ThreatenP==
 You: Then I'll be taking this issue up with the general public.
@@ -228,7 +237,7 @@ You: Then I’ll be taking this issue up with Management.
 You: Excuse me! May I speak to the Manager of this establishment?
 Manager: What’s the issue here?
 *[Flirt] -> IntroFlirt
-*[Give it to em straight] -> GITEMS
+*[Give it to em straight]-> GITEMS
 
 ==IntroFlirt==
 You: Oh hello there, I feel reassured knowing that a capable looking man such as yourself has come to my rescue. <br>I assume you must be the manager because I can’t imagine you having a position any lower. 
@@ -260,22 +269,29 @@ How do you want to flirt?
 ->END
 
 ==ComplimentIntelligence==
-You: Clearly your a very intelligent man, you've climbed the ranks of the corporate ladder and established yourself as worthy of a prestigious position. Tell me based on your superior insight do you believe that someone who came to a bank to do business would lie about their intentions? I merely tried to make small talk before carrying on and am now facing unjust infrigment of my rights from your fine employee here.
+You: Clearly your a very intelligent man, you've climbed the ranks of the corporate ladder and established yourself as worthy of a prestigious position. 
+You: Tell me based on your superior insight do you believe that someone who came to a bank to do business would lie about their intentions? 
+You: I merely tried to make small talk before carrying on and am now facing unjust infrigment of my rights from your fine employee here.
 Manager: Well when you put it like that, I can't dispute it. Excuse my employee's behavior, to slander you with language like "loitering" is not representative of our business. Please by all means carry on.
 ->END
 
 ==InstillConfidence==
-You: I assure you your judgment and will is absolute, your authority is warranted, and you can, and should, do as you see fit, this worker's behavior is subject to your assesment and you have the power to change this situation for the better and absolve this misunderstanding and injustice.
+You: I assure you your judgment and will is absolute, your authority is warranted,
+You: you can, and should, do as you see fit, this worker's behavior is subject to your assesment and you have the power to change this situation for the better and absolve this misunderstanding and injustice.
 Manager: How would you suggest I go about doing so?
 Guard: Hey uh are we being serious right now?
 Manger: Silence, customers come first
-[Fire that man]->Fire
-[]
-[]
+*[Fire that man]->Fire
+*[]
+*[]
 ->END
 
 ==ComplimentAppearance==
-You: I see your a fine gentleman of culture as your appearance is very well kept and most certanly cultured. So you must also be able to understand the frustration of being condescended to by an uncultured individual, it's unbefitting for people like us to be subservient to those beneath us, let alone those who aren't even capable of grooming their own facial hair. I mean this is a fine establishment and to have someone like him in charge ordering people like us around is a little ridiculous don't you think?
+You: I see your a fine gentleman of culture as your appearance is very well kept and most certanly cultured. 
+You: So you must also be able to understand the frustration of being condescended to by an uncultured individual, 
+You: it's unbefitting for people like us to be subservient to those beneath us,
+You: let alone those who aren't even capable of grooming their own facial hair.
+You: I mean this is a fine establishment and to have someone like him in charge ordering people like us around is a little ridiculous don't you think?
 Manager: Well hehe, I suppose that's all true, I do take pride in my cleanliness. 
 ->END
 ==Fire== 
@@ -286,7 +302,143 @@ Manager: Well some assesment can't hurt. It's of the utmost importance that my e
 Guard: Listen, with all do respect you're entertaining the idea of a miscreant customer. Do you hear yourself?
 You: Miscreant? Excuse me, You are most definitely in need of assesment.
 Manager: Precisely. Now then how should we carry out this assesment.
-[Test their general knowledge]->quiz
+*[Test their general knowledge]->quiz
+*[Test their morality]->morality
+*[Test their abillity to apprehend someone]->Apprehend
 ->END
+==morality==
+You: Let's test you're morality shall we?
+Manager: Splendid idea, this will help illuminate your character and expose any flaws.
+You: The trolley problem goes as follows:
+You: There is a runaway trolley barreling down the railway tracks. 
+You: Ahead, on the tracks, there are five people tied up and unable to move.
+You: The trolley is headed straight for them. You are standing some distance off in the train yard, next to a lever. 
+You: If you pull this lever, the trolley will switch to a different set of tracks. 
+You: However, you notice that there is one person on the side track. 
+You: You have two (and only two) options:
+You: Do nothing, in which case the trolley will kill the five people on the main track. 
+You: or,
+You: Pull the lever, diverting the trolley onto the side track where it will kill one person.
+You: What do you do?
+Guard: The people's lives are of the upmost importance. I will pull the lever even if there's blood on my hands to save the lives of more people.
+Manager: Ah ha, here we see the character flaws begin to shine through, obviously the correct answer is to abstain from pulling the lever, 
+Manager: In doing so, the blood is on your hands, society will not be able to see past it.
+You: Precisely.
+Guard: Your kidding!
+Manager: What else should we test him on?
+*[]
+*[]
+->END
+==Apprehend==
+Manager: Interesting. That would be relevant to their abillity to provide value to the company. How do you suppose we test this?
+You: It's simple, given a 5 second head start I will attempt to get away from the bank, you must be able to catch me within the hour timer. Failure to do so and you will be terminated. Make sense?
+Guard: Please, this is absurd. Also you don't truly believe you can escape from me can you? I mean, it is literally my job.
+You: Oh ho? Let's see you put your money where your mouth is.
+Guard: Ha! You're gonna regret ever challenging my authority.
+Manager: Well that settles it, on the count of 3.
+Manager: 3..
+Manager: 2..
+Manager: 1..
+Manager: GO!
+*[Look for hiding places in the city]-> Hiding
+*[Run towards traffic]-> Traffic
+*[Head up to the rooftops]-> Rooftops
+==Hiding==
+You: But where to hide...
+*[Beneath the bridge]->Bridge
+*[Coffee shop]->Coffee
+*[Rooftops]->RoofHide
+==Bridge==
+You: The guard should be on the hunt now.
+Homeless Man: The feds? They're coming???
+You: Oh hello, no don't worry you'll be just fine.
+Homeless Man: YOU! You're one of them aren't you! 
+You: Whoa whoa hold on man I mean no harm, lets put the knife away huh?
+Homeless Man: THATS WHAT ONE OF THEM FEDS WOULD SAY YOU SNAKE
+*[Fight]->FightH
+*[Run]->RunH
+*[Call for help]->HelpH
+*[Offer a special service]->ServiceH
+==FightH==
+You: I'm sorry but it has to be done, I don't have time for this.
+Homeless Man: DIE FED BASTARD
+*[Lethal counterattack]->Lethal
+*[Attempt to Paralize]->Paralize
+==Lethal==
+/*Snap*/
+You: I'm sorry it had to be done,
+You: Can't afford to have any witnesses. Wrong place at the wrong time.
+/*Image of guard in background*/
+You: Shit why's he over here?? And moreover why is he coming this way?
+*[Run]->Caught
+*[Hide]->HideBridge
+*[Hide the body]->Body
+==Paralize==
+/*Snap*/
+You: I'm sorry it had to be done,
+You: You will be paralized for the time being and you'll be fully recovered in sixteen hours, I just need you to be quiet for the time being.
+/*Image of guard in background*/
+You: Shit why's he over here?? And moreover why is he coming this way?
+*[Run]->Caught
+*[Hide]->HideBridge
+*[Hide the body]->Body
+==RunH==
+You: Ok ok i'll get out of your space, my bad man.
+*[Coffee shop]->Caught
+*[Rooftops]->Caught
+==HelpH==
+You: Someone please! Help me!
+Homeless Man: Ohhhhh no, n-no no no. You're not going anywhere.
+Guard: Ha! I've caught you- oh, in need of a proffesional?
+You: I'm sorry I ever doubted you, I need you.
+Guard: Uh hehe, wow, I-I suppose so, looks to me like you could use a hand.
+You: Please help me I'll do anything.
+Guard: Anything!? Well when you make a face like that how can I refuse, this does mean that I win though alright? Don't get the wrong idea or whatever.
+Homeless Man: YOU'LL NEVER TAKE ME!
+Guard: Right, the situation at hand. 
+/*Punch*/
+You: Thank you so much. You're my hero, you really saved me!
+Guard: Please, i'm just doing my job here.
+You: What can I do to make it up to you?
 
+==ServiceH==
+You: Hey we don't have to do this, maybe we can work something out between us. How long has it been since you've had any carnal release?
+Homeless Man: Huh... uh hehe yes that sounds awesome.
+You: Well let's see what were workin with here, /*zip*/ oh my.
+Homeless Man: Ah ha.. ohh yeahh hurry hurry
+/*Black screen*/
+You: There we go, he should be out for the count now.
+/*Image of guard in background*/
+You: Shit why's he over here?? And moreover why is he coming this way?
+*[Run]->Caught
+*[Hide]->HideBridge
+*[Hide the body]->Body
+->END
+==Coffee==
+You: The guard should be on the hunt now.
+Barista: Welcome, how can I help you?
+*[Order a drink]->Order
+*[Bribe to switch outfits/places]->Disguise
+*[Hide in the bathroom]->Bathroom
+==RoofHide==
+You: The guard should be on the hunt now.
+==Traffic==
+You: The guard should be on the hunt now.
+Guard: Stop there!
+You: Excuse me
+/*Cars Honk*/
+Guard: You're a maniac!
+You: I'm winning though aren't I?
+==Rooftops==
+You: The guard should be on the hunt now.
+==Order==
+You: Yeah tell you what, can I get a grande, flat white, with an extra shot?
+Cashier: Yeah that'll be 5.99$
+Cashier: And what name should I call for your order?
+You: Kennedy.
+Cashier: Would you like to leave a tip?
+You: Here's a dollar.
+Cashier: Thank you, your order will be right on it's way.
+
+->END
 
