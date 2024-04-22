@@ -70,7 +70,8 @@ namespace Assets.Code.Fighting.CharacterControl
         }
         private void DelAttack()
         {
-            gameObject.GetComponentInChildren<Attack>().DeleteSelf();
+            if (gameObject.GetComponentInChildren<Attack>() != null)
+                gameObject.GetComponentInChildren<Attack>().DeleteSelf();
             stunned = false;
         }
         private void Unstunn()

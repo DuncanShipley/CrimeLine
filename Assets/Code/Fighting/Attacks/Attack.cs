@@ -40,7 +40,6 @@ public abstract class Attack : MonoBehaviour
     }
     public void DeleteSelf()
     {
-        Debug.Log("uhohoh");
         Destroy(gameObject);
     }
 }
