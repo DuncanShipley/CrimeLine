@@ -14,7 +14,7 @@ public class GuardShootBK : MonoBehaviour
 
     void Start()
     {
-        waitTime = transform.parent.GetComponent<GuardVariables>().GetShootWait();
+        waitTime = transform.parent.GetComponent<GuardVariablesBK>().GetShootWait();
     }
 
     void Update()
@@ -24,7 +24,7 @@ public class GuardShootBK : MonoBehaviour
 
         throwPause += Time.deltaTime;
 
-        if (WaypointFollowerBK.sus[id] == 1 && throwPause > waitTime)
+        if (guardChaseBK.sus[id] == 1 && throwPause > waitTime)
         {
             copy = Instantiate(projectile, transform.position, gameObject.transform.rotation); // create a projectile at the guard's location
             throwPause = 0;

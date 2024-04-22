@@ -30,12 +30,12 @@ public class AlertA : MonoBehaviour
             int otherID = collision.gameObject.transform.parent.parent.GetComponent<IDsA>().GetID();
 
 
-            if (WaypointFollower.alerting[otherID] && !WaypointFollower.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
+            if (WaypointFollowerA.alerting[otherID] && !WaypointFollowerA.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
             {
                 alerted[id] = otherID; // set alerted for the non-suspicious guard to the id of the sus one
-                guardChase.putWaypoint(collision.gameObject.transform.parent.position, id);
+                guardChaseA.putWaypoint(collision.gameObject.transform.parent.position, id);
             }
-            else if (!WaypointFollower.alerting[otherID]) // if the other guard is no longer suspicious
+            else if (!WaypointFollowerA.alerting[otherID]) // if the other guard is no longer suspicious
             {
                 alerted[id] = -1; // end alerted
             }

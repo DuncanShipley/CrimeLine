@@ -17,12 +17,12 @@ public class lightSizeBK : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        id = gameObject.transform.parent.parent.GetComponent<IDs>().GetID();
+        id = gameObject.transform.parent.parent.GetComponent<IDsBK>().GetID();
 
-        myLight.pointLightInnerAngle = WaypointFollowerBK.sus[id] * 45 + 75;
-        myLight.pointLightOuterAngle = WaypointFollowerBK.sus[id] * 45 + 75;
-        myLight.pointLightOuterRadius = WaypointFollowerBK.sus[id] * 2 + 9;
-        myLight.color = Color.Lerp(passiveColor, Color.red, WaypointFollowerBK.sus[id]);
+        myLight.pointLightInnerAngle = guardChaseBK.sus[id] * 45 + 75;
+        myLight.pointLightOuterAngle = guardChaseBK.sus[id] * 45 + 75;
+        myLight.pointLightOuterRadius = guardChaseBK.sus[id] * 2 + 9;
+        myLight.color = Color.Lerp(passiveColor, Color.red, guardChaseBK.sus[id]);
         // these change the light's radius, angle, and color based on the guard's suspicion.
     }
 }

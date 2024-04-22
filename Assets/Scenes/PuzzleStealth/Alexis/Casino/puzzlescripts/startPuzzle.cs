@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class startPuzzleA : MonoBehaviour
 {
-    private PanelPuzzle puzzle;
-    private InputController input;
+    private PanelPuzzleA puzzle;
+    private InputControllerA input;
 
     private bool puzzleDone = false;
     private bool touch = false;
@@ -13,8 +13,8 @@ public class startPuzzleA : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        puzzle = GameObject.Find("Panel").GetComponent<PanelPuzzle>();
-        input = GameObject.Find("UI").GetComponent<InputController>();
+        puzzle = GameObject.Find("Panel").GetComponent<PanelPuzzleA>();
+        input = GameObject.Find("UI").GetComponent<InputControllerA>();
     }
 
     // Update is called once per frame

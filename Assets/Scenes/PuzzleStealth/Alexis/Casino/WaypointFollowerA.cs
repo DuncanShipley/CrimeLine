@@ -153,7 +153,7 @@ public class WaypointFollowerA : MonoBehaviour
                 else // if they are suspicious, begin chasing the player
                 {
                     chase[id] = true;
-                    Alert.alerted[id] = -1;
+                    AlertA.alerted[id] = -1;
                     seeing[id] = true;
                     oldPointIndex[id] = currentPointIndex[id];
                     currentPointIndex[id] = 0;
@@ -163,7 +163,7 @@ public class WaypointFollowerA : MonoBehaviour
                     alerting[id] = true;
                 }
             }
-            else if (Alert.alerted[id] > -1)
+            else if (AlertA.alerted[id] > -1)
             {
                 detectRadius = 121;
                 speed = 6f;
@@ -173,7 +173,7 @@ public class WaypointFollowerA : MonoBehaviour
             else if (sus[id] > 0) // if they're suspicious and the player isn't within their light, decrease their suspicion
             {
                 sus[id] = sus[id] - 0.5f * Time.deltaTime;
-                Alert.alerted[id] = -1;
+                AlertA.alerted[id] = -1;
                 alerting[id] = false;
                 seeing[id] = false;
             }
@@ -188,7 +188,7 @@ public class WaypointFollowerA : MonoBehaviour
             }
             zrotation = transform.eulerAngles.z;
         }
-        else if (guardHealth.dyingList[id]) // plat our cute little death animation when the guard dies
+        else if (guardHealthA.dyingList[id]) // plat our cute little death animation when the guard dies
         {
             zrotation += 360 * Time.deltaTime;
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, zrotation);
@@ -215,7 +215,7 @@ public class WaypointFollowerA : MonoBehaviour
             {
                 if (seeingRay.collider.gameObject == cf)
                 {
-                    guardChase.putWaypoint(seeingRay.collider.gameObject.transform.position, id);
+                    guardChaseA.putWaypoint(seeingRay.collider.gameObject.transform.position, id);
                     return true;
                 }
             }
@@ -232,7 +232,7 @@ public class WaypointFollowerA : MonoBehaviour
             {
                 if (seeingRay.collider.gameObject == cf)
                 {
-                    guardChase.putWaypoint(seeingRay.collider.gameObject.transform.position, id);
+                    guardChaseA.putWaypoint(seeingRay.collider.gameObject.transform.position, id);
                     return true;
                 }
             }

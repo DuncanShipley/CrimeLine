@@ -11,7 +11,7 @@ public class pickpocketingA : MonoBehaviour
     private int pickProgress = 0;
     private Image textbox;
     private TextMeshProUGUI text;
-    private Keychain keychain;
+    private KeychainA keychain;
     private bool touch;
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class pickpocketingA : MonoBehaviour
     {
         textbox = GameObject.Find("playerTextbox").GetComponent<Image>();
         text = GameObject.Find("playerText").GetComponent<TextMeshProUGUI>();
-        keychain = GameObject.Find("Player").GetComponent<Keychain>();
+        keychain = GameObject.Find("Player").GetComponent<KeychainA>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -85,7 +85,7 @@ public class pickpocketingA : MonoBehaviour
                 case 180:
                     text.SetText("Key get!");
                     keychain.addKey();
-                    objectiveTracker.currentObjective.completeObjective(1);
+                    objectiveTrackerA.currentObjective.completeObjective(1);
                     break;
                 case 240:
                     heldKey = 0;

@@ -46,27 +46,27 @@ public class PanelPuzzleA : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                tiles[y * 3 + x].GetComponent<panelTileScript>().toggleState();
+                tiles[y * 3 + x].GetComponent<panelTileScriptMain>().toggleState();
                 if(x - 1 >= 0)
                 {
-                    tiles[y * 3 + (x - 1)].GetComponent<panelTileScript>().toggleState();
+                    tiles[y * 3 + (x - 1)].GetComponent<panelTileScriptMain>().toggleState();
                 }
                 if (x + 1 <= 2)
                 {
-                    tiles[y * 3 + (x + 1)].GetComponent<panelTileScript>().toggleState();
+                    tiles[y * 3 + (x + 1)].GetComponent<panelTileScriptMain>().toggleState();
                 }
                 if (y - 1 >= 0)
                 {
-                    tiles[(y - 1) * 3 + x].GetComponent<panelTileScript>().toggleState();
+                    tiles[(y - 1) * 3 + x].GetComponent<panelTileScriptMain>().toggleState();
                 }
                 if (y + 1 <= 2)
                 {
-                    tiles[(y + 1) * 3 + x].GetComponent<panelTileScript>().toggleState();
+                    tiles[(y + 1) * 3 + x].GetComponent<panelTileScriptMain>().toggleState();
                 }
             }
             if (allOn())
             {
-                objectiveTracker.currentObjective.completeObjective(3);
+                objectiveTrackerMain.currentObjective.completeObjective(3);
 
                 activated = false;
                 GameObject.Find("Panel").GetComponent<Image>().enabled = false;
@@ -106,7 +106,7 @@ public class PanelPuzzleA : MonoBehaviour
     {
         for(int i = 0; i < 9; i++)
         {
-            if(!tiles[i].GetComponent<panelTileScript>().getState())
+            if(!tiles[i].GetComponent<panelTileScriptMain>().getState())
             {
                 return false;
             }

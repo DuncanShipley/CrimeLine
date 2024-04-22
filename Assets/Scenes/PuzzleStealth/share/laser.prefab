@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1036650628770426492}
   - component: {fileID: 430963799723523467}
   - component: {fileID: 3833070888125918435}
-  - component: {fileID: 8373461212709817223}
+  - component: {fileID: 6378920071631284752}
   m_Layer: 0
   m_Name: laser
   m_TagString: DamagePlayer
@@ -179,7 +179,7 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &8373461212709817223
+--- !u!114 &6378920071631284752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 342761085880337715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 412da49cb3bb14946839983aa15551a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 5935cafb519c4e9439d9936f376e0f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0

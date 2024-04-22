@@ -7,13 +7,13 @@ public class buttonScriptA : MonoBehaviour
     public GameObject laser;
     public Sprite on;
     public Sprite off;
-    private InputController input;
+    private InputControllerA input;
     bool touch = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        input = GameObject.Find("UI").GetComponent<InputController>();
+        input = GameObject.Find("UI").GetComponent<InputControllerA>();
     }
 
     // Update is called once per frame

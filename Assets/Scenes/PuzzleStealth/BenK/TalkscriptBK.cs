@@ -14,7 +14,8 @@ public class talkscriptBK : MonoBehaviour
     private int totalLines;
     private int textIndex = 0;
 
-    private InputController input;
+    public static objectiveTrackerBK currentObjective;
+    private InputControllerBK input;
     private TextMeshProUGUI text;
     private GameObject textobj;
     private GameObject textbox;
@@ -30,7 +31,7 @@ public class talkscriptBK : MonoBehaviour
         textbox = GameObject.Find("bigTextbox");
         text = textobj.GetComponent<TextMeshProUGUI>();
 
-        input = GameObject.Find("UI").GetComponent<InputController>();
+        input = GameObject.Find("UI").GetComponent<InputControllerBK>();
     }
 
     // Update is called once per frame
@@ -38,17 +39,17 @@ public class talkscriptBK : MonoBehaviour
     {
         if (input.GetKeyLimited("z") && (touch || false))
         {
-            if (textbox.GetComponent<bigTextbox>().enabled)
+            if (textbox.GetComponent<bigTextboxBK>().enabled)
             {
                 textIndex++;
                 if (textIndex >= totalLines)
                 {
                     if (objective)
                     {
-                        objectiveTracker.currentObjective.completeObjective(objectiveStage);
+                        objectiveTrackerBK.currentObjective.completeObjective(objectiveStage);
                     }
-                    textbox.GetComponent<bigTextbox>().enabled = false;
-                    textobj.GetComponent<bigTextbox>().enabled = false;
+                    textbox.GetComponent<bigTextboxBK>().enabled = false;
+                    textobj.GetComponent<bigTextboxBK>().enabled = false;
                     camera.enable();
                     textIndex = 0;
                 }
@@ -59,8 +60,8 @@ public class talkscriptBK : MonoBehaviour
             }
             else
             {
-                textbox.GetComponent<bigTextbox>().enabled = true;
-                textobj.GetComponent<bigTextbox>().enabled = true;
+                textbox.GetComponent<bigTextboxBK>().enabled = true;
+                textobj.GetComponent<bigTextboxBK>().enabled = true;
                 text.SetText(lines[0]);
                 camera.disable();
             }
