@@ -65,12 +65,13 @@ public class InkManager : MonoBehaviour
             cm.SetEmotion();
             if (story.canContinue==true) {
                 // Continue gets the next line of the story
-                StartCoroutine(DisplayLine(story.Continue()));
-                //text = story.Continue();
+                
+                //string text = story.Continue();
                  // This removes any white space from the text.
                  //text = text.Trim();
                  // Display the text on screen!
                  //CreateContentView(text);
+                 StartCoroutine(DisplayLine(story.Continue()));
                 LD --;
             }
         }
@@ -101,12 +102,12 @@ public class InkManager : MonoBehaviour
 
     private IEnumerator DisplayLine(string line)
     {
-        RefreshView();
+        RemoveChildren();
         foreach(char letter in line.ToCharArray()){
-        text += letter;
+        line += letter;
+        CreateContentView(line);
         yield return new WaitForSeconds(typingSpeed);
         }
-
     }
 
     // When we click the choice button, tell the story to choose that choice!
@@ -119,14 +120,15 @@ public class InkManager : MonoBehaviour
    /// Creates a text box and displays the dialouge
    /// </summary>
    /// <param name="text"></param>
-    void CreateContentView(string text)
+    void CreateContentView(string line)
     {
-        if(text==""){
+        if(line==""){
             RefreshView();
         }
-        TextMeshProUGUI storyText = Instantiate(textPrefab, new Vector3(-30f, 120f, 1), Quaternion.identity) as TextMeshProUGUI;
-        storyText.text = text;
-        storyText.transform.SetParent(canvas.transform, false); 
+        StoryText = Instantiate(textPrefab, new Vector3(-30f, 120f, 1), Quaternion.identity) as TextMeshProUGUI;
+        StoryText.text = line;
+        RemoveChildren();
+        StoryText.transform.SetParent(canvas.transform, false); 
     }
 
 
@@ -154,6 +156,14 @@ public class InkManager : MonoBehaviour
      return choice;
      }
 
+/// <summary>
+/// Sets the current line blank
+/// </summary>
+/// <param name="line"></param>
+    void SetBlank(string line){
+        line = "";
+    }
+
     /// <summary>
     /// Removes UI from the Ink canvas
     /// </summary>
@@ -169,13 +179,10 @@ public class InkManager : MonoBehaviour
     [SerializeField]
     private TextAsset inkJSONAsset;
     public Story story;
-
     [SerializeField]
     private Canvas canvas;
-
-    // UI Prefabs
-    private string text;
     private string line;
+    private TextMeshProUGUI StoryText;
     [SerializeField] private TextMeshProUGUI textPrefab;
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private float typingSpeed = 0.04f;
