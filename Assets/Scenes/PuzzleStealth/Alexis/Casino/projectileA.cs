@@ -1,84 +1,141 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.UI;
 
 public class projectileA : MonoBehaviour
 {
-    public GameObject player;
-    Rigidbody2D rb;
-    public static int availible = 5;
-    bool shot = false;
-    bool landed = false;
-    GameObject copy;
-    Vector3 lastInput;
-    float h = 0f;
-    float v = 0f;
-    static float throwPause = 0;
-    float rotationGoal;
-    // Start is called before the first frame update
+    public bool fired = false;
+    public int z;
+    public Sprite[] sprites;
+    public int knives = 3;
 
-    void Start()
-    {
-        gameObject.name = "proj";
-        rb = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player");
-    }
+    private GameObject itemSprite;
+    private bool leftPlayer = false;
+
 
     void Update()
     {
-
-
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
-        // last movement
-        if ((Mathf.Abs(h) > 0) || (Mathf.Abs(v) > 0)) // if it's moving
+        if(fired)
         {
-            if (Mathf.Abs(h) > 0) // if it's moving horizontally record the horizontal movement
-                lastInput.x = (h / Mathf.Abs(h)) * 100;
-            else if (Mathf.Abs(v) - Mathf.Abs(h) > .1) // if its only moving horizontally a bit and it's moving vertically, ignore horizontal movement
-                lastInput.x = 0;
-
-            if (Mathf.Abs(v) > 0)
-                lastInput.y = (v / Mathf.Abs(v)) * 100;
-            else if (Mathf.Abs(h) - Mathf.Abs(v) > .1)
-                lastInput.y = 0;
+            Debug.Log(z);
+            //Debug.Log(Math.Sin((double)transform.rotation.z * Math.PI / 180));
+            GetComponent<Rigidbody2D>().MovePosition(transform.position + new Vector3(Mathf.Sin(z * Mathf.PI / 180) / 2, Mathf.Cos(z * Mathf.PI / 180) / 2, 0));
         }
-
-        rotationGoal = Mathf.Atan(lastInput.x / lastInput.y);
-        throwPause += Time.deltaTime;
-
-        if (Input.GetKeyDown(KeyCode.E) && availible > 0 && throwPause >= 2)
+        else
         {
-            availible--;
-            //copy = Instantiate(gameObject, player.transform.position, new Quaternion(0, 0, rotationGoal, 0)); // create a projectile at the player's location
-            copy = Instantiate(gameObject, player.transform.position, new Quaternion()); // create a projectile at the player's location
-            //Debug.Log(rotationGoal);
-            throwPause = 0;
-            var pRB = copy.GetComponent<Rigidbody2D>();
-            //pRB.AddRelativeForce(Vector3.up * 100); // move in the same direction as last player movement
-            pRB.AddRelativeForce(lastInput); // move in the same direction as last player movement
+            gameObject.GetComponent<SpriteRenderer>().sprite = sprites[knives];
         }
     }
 
-
-    private void OnTriggerExit2D(Collider2D collision)
+    public void deploy() 
     {
-        shot = true; // when it stops touching the player
+        if(knives > 0)
+        {
+            GameObject obj = GameObject.Instantiate(gameObject, GameObject.Find("Player").transform.position, transform.rotation);
+            obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, 0.5f);
+            obj.GetComponent<SpriteRenderer>().sprite = sprites[1];
+            obj.GetComponent<projectileA>().makeRotation();
+            obj.GetComponent<projectileA>().fired = true;
+
+            subtractKnife();
+        }
+        
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void makeRotation() 
     {
-        if (collision.tag == "Player" && shot)
+        if(Input.GetKey(KeyCode.RightArrow))
         {
-            availible++;
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                z = 45;
+                transform.Rotate(0, 0, 315, Space.Self);
+            }
+            else if(Input.GetKey(KeyCode.DownArrow))
+            {
+                z = 135;
+                transform.Rotate(0, 0, 225, Space.Self);
+            }
+            else
+            {
+                z = 90;
+                transform.Rotate(0, 0, 270, Space.Self);
+            }
+        }
+        else if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                z = 315;
+                transform.Rotate(0, 0, 45, Space.Self);
+            }
+            else if(Input.GetKey(KeyCode.DownArrow))
+            {
+                z = 225;
+                transform.Rotate(0, 0, 135, Space.Self);
+            }
+            else
+            {
+                z = 270;
+                transform.Rotate(0, 0, 90, Space.Self);
+            }
+        }
+        else
+        {
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                z = 0;
+                transform.Rotate(0, 0, 0, Space.Self);
+            }
+            else if(Input.GetKey(KeyCode.DownArrow))
+            {
+                z = 180;
+                transform.Rotate(0, 0, 180, Space.Self);
+            }
+            else
+            {
+                z = 270;
+                transform.Rotate(0, 0, 90, Space.Self);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player" && leftPlayer && fired)
+        {
+            GameObject.Find("knife").GetComponent<projectileA>().addKnife();
             Destroy(gameObject);
-        } // if the player touches it after the initial shot, pick it up
-        if (collision.gameObject.name != "proj" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "GuardSensor" && !landed)
-        {
-            landed = true;
-            rb.velocity = Vector3.zero;
-            gameObject.transform.SetParent(collision.gameObject.transform);
-        } // if it hits something real, stop moving and attatch to the item it hit
+        }
     }
-    // Update is called once per frame
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            leftPlayer = true;
+        }
+    }
+
+    public void addKnife()
+    {
+        if(knives < 3)
+        {
+            knives++;
+            GameObject.Find("heldItem").GetComponent<Image>().sprite = sprites[knives];
+            gameObject.GetComponent<SpriteRenderer>().sprite = sprites[knives];
+        }
+    }
+
+    public void subtractKnife()
+    {
+        if(knives > 0)
+        {
+            knives--;
+            GameObject.Find("heldItem").GetComponent<Image>().sprite = sprites[knives];
+            gameObject.GetComponent<SpriteRenderer>().sprite = sprites[knives];
+        }
+    }
 }

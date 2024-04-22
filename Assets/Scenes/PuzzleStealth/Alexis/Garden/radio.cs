@@ -21,19 +21,11 @@ public class radio : MonoBehaviour
         }
     }
 
-    public void activate(Vector3 pos)
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
+    public void deploy()
     {
-        if(!placed && Input.GetKeyDown(KeyCode.X)) 
-        {
-            gameObject.SetActive(true);
-            transform.position = GameObject.Find("Player").transform.position;
-            placed = true;
-        }
+        gameObject.SetActive(true);
+        transform.position = GameObject.Find("Player").transform.position;
+        placed = true;
     }
 }

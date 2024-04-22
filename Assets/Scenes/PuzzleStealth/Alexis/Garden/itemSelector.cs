@@ -13,16 +13,18 @@ public class itemSelector : MonoBehaviour
     private float y;
     private bool menuOpen;
 
-    public GameObject[] heldObjects = new GameObject[8];
+    public GameObject[] heldItemSprites = new GameObject[8];
+    public GameObject[] heldItemObjects = new GameObject[8];
     public GameObject heldObject = null;
     public GameObject uiSprite;
+    public Sprite emptyItemSprite;
 
     // Start is called before the first frame update
     void Start()
     {
         pos = gameObject.GetComponent<RectTransform>();
         for(int i = 0; i < 8; i++) {
-            heldObjects[i] = null;
+            heldItemSprites[i] = null;
         }
     }
 
@@ -34,9 +36,13 @@ public class itemSelector : MonoBehaviour
         {
             MakeMovement();
         }
-        if(menuOpen && !Input.GetKey(KeyCode.C))
+        if(menuOpen && !Input.GetKey(KeyCode.C) && GetCursorPos() >= 0)
         {
-            SelectItem();
+            SelectItem(GetCursorPos());
+        }
+        if(Input.GetKeyDown(KeyCode.X) && GetCursorPos() >= 0)
+        {
+            UseItem(GetCursorPos());
         }
     }
 
@@ -77,6 +83,19 @@ public class itemSelector : MonoBehaviour
         pos.anchoredPosition = new Vector2(x + h, y + v);
     }
 
+    void UpdateSprites()
+    {
+        for(int i = 0; i < 8; i++)
+        {
+            heldItemSprites[i].GetComponent<Image>().sprite = heldItemObjects[i].GetComponent<SpriteRenderer>().sprite;
+            
+            if(heldItemObjects[i] != null)
+            {
+                
+            }
+        }
+    }
+
     void MakeColors() 
     {
         if(Input.GetKey(KeyCode.C))
@@ -84,8 +103,8 @@ public class itemSelector : MonoBehaviour
             GameObject.Find("itemSelector").GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
             GameObject.Find("IScursor").GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
             for(int i = 0; i < 8; i++) {
-                if(heldObjects[i])
-                    heldObjects[i].GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+                if(heldItemSprites[i])
+                    heldItemSprites[i].GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
             }
 
             
@@ -95,8 +114,8 @@ public class itemSelector : MonoBehaviour
             GameObject.Find("itemSelector").GetComponent<Image>().color = new Color(1f, 1f, 1f, GameObject.Find("itemSelector").GetComponent<Image>().color.a - 0.05f);
             GameObject.Find("IScursor").GetComponent<Image>().color = new Color(1f, 1f, 1f, GameObject.Find("IScursor").GetComponent<Image>().color.a - 0.05f);
             for(int i = 0; i < 8; i++) {
-                if(heldObjects[i])
-                    heldObjects[i].GetComponent<Image>().color = new Color(1f, 1f, 1f, heldObjects[i].GetComponent<Image>().color.a - 0.05f);
+                if(heldItemSprites[i])
+                    heldItemSprites[i].GetComponent<Image>().color = new Color(1f, 1f, 1f, heldItemSprites[i].GetComponent<Image>().color.a - 0.05f);
             }
 
 
@@ -107,57 +126,13 @@ public class itemSelector : MonoBehaviour
         }
     }
 
-    void SelectItem() 
+    void SelectItem(int id) 
     {
-        if(!Input.GetKey(KeyCode.C) && menuOpen) 
+        if(!Input.GetKey(KeyCode.C) && menuOpen ) 
         {
             x = pos.anchoredPosition.x;
             y = pos.anchoredPosition.y;
-
-            Debug.Log(x);
-            Debug.Log(y);
-            if(x > 30) 
-            {
-                if(y > 30)
-                {
-                    AssignItem(heldObjects[1]);
-                }
-                else if(y < -30)
-                {
-                    AssignItem(heldObjects[3]);
-                }
-                else
-                {
-                    AssignItem(heldObjects[2]);
-                }
-            }
-            else if(x < -30)
-            {
-                if(y > 30)
-                {
-                    AssignItem(heldObjects[6]);
-                }
-                else if(y < -30)
-                {
-                    AssignItem(heldObjects[4]);
-                }
-                else
-                {
-                    AssignItem(heldObjects[5]);
-                }
-            }
-            else
-            {
-                if(y > 30)
-                {
-                    AssignItem(heldObjects[0]);
-                }
-                else if(y < -30)
-                {
-                    AssignItem(heldObjects[4]);
-                }
-            }
-
+            AssignItem(heldItemSprites[id]);
             menuOpen = false;
         }
     }
@@ -171,6 +146,70 @@ public class itemSelector : MonoBehaviour
         }
     }
 
+    void UseItem(int id)
+    {
+        if(heldItemObjects[id])
+        {
+            bool toDestroy = items.UseItem(heldItemObjects[id]);
+
+            if(toDestroy)
+            {
+                Destroy(heldItemSprites[id]);
+                heldItemObjects[id] = null;
+                heldItemSprites[id] = null;
+                heldObject = null;
+                GameObject.Find("heldItem").GetComponent<Image>().sprite = emptyItemSprite;
+            }
+        }
+    }
+
+    int GetCursorPos() 
+    {
+        if(x > 30) 
+        {
+            if(y > 30)
+            {
+                return 1;
+            }
+            else if(y < -30)
+            {
+                return 3;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+        else if(x < -30)
+        {
+            if(y > 30)
+            {
+                return 7;
+            }
+            else if(y < -30)
+            {
+                return 5;
+            }
+            else
+            {
+                return 6;
+            }
+        }
+        else
+        {
+            if(y > 30)
+            {
+                return 0;
+            }
+            else if(y < -30)
+            {
+                return 4;
+            }
+        }
+
+        return -1;
+    }
+
     public void AddItem(GameObject item)
     {
         int itemPos = -1;
@@ -179,10 +218,9 @@ public class itemSelector : MonoBehaviour
 
         for(int i = 0; i < 8; i++)
         {
-            if(!heldObjects[i])
+            if(!heldItemSprites[i])
             {
                 itemPos = i;
-                heldObjects[i] = item;
                 break;
             }
         }
@@ -231,12 +269,13 @@ public class itemSelector : MonoBehaviour
                     y = 60;
                     break;
             }
+            heldItemObjects[itemPos] = item;
 
-            heldObjects[itemPos] = Instantiate(uiSprite, GameObject.Find("itemSelector").GetComponent<Transform>());
-            heldObjects[itemPos].GetComponent<Image>().sprite = item.gameObject.GetComponent<SpriteRenderer>().sprite;
-            heldObjects[itemPos].GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
-            heldObjects[itemPos].GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
-            heldObjects[itemPos].GetComponent<RectTransform>().sizeDelta = new Vector2(48, 48);
+            heldItemSprites[itemPos] = Instantiate(uiSprite, GameObject.Find("itemSelector").GetComponent<Transform>());
+            heldItemSprites[itemPos].GetComponent<Image>().color = new Color(1f, 1f, 1f, 0f);
+            heldItemSprites[itemPos].GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+            heldItemSprites[itemPos].GetComponent<RectTransform>().sizeDelta = new Vector2(48, 48);
+            heldItemSprites[itemPos].GetComponent<Image>().sprite = heldItemObjects[itemPos].GetComponent<SpriteRenderer>().sprite;
         }
     }
 }

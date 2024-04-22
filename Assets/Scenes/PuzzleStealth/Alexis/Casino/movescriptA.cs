@@ -7,8 +7,9 @@ public class movescriptA : MonoBehaviour
 {
     float h = 0f;
     float v = 0f;
+    public float baseSpeed = 3;
     public Rigidbody2D heldObject;
-    int spd;
+    float spd;
 
     Animator anim;
 
@@ -114,9 +115,9 @@ public class movescriptA : MonoBehaviour
         rb2.MovePosition(rb2.transform.position + inp);
     }
 
-    int GetSpeed()
+    float GetSpeed()
     {
-        int tempSpd = 4;
+        float tempSpd = baseSpeed;
 
         // set speed based on if the player if Focused or not
         if (Input.GetKey(KeyCode.LeftShift))
