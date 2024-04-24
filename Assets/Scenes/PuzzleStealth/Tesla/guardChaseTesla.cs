@@ -22,6 +22,7 @@ public class guardChaseTesla : MonoBehaviour
     public static List<bool> alerting = new List<bool>();
     public static List<bool> endedChase = new List<bool>();
     [SerializeField] public static List<float> speed = new List<float>();
+    public static List<float> timesSeen = new List<float>();
 
     float baseSpeed;
     float chaseSpeed;
@@ -53,10 +54,12 @@ public class guardChaseTesla : MonoBehaviour
         oldPointIndex.Add(0);
         endedChase.Add(false);
         speed.Add(baseSpeed);
+        timesSeen.Add(0f);
     }
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(timeCheck);
         endedChaseVar = endedChase[id];
         GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed[id];
         seesPlayer = CheckFor(Player);
@@ -75,7 +78,11 @@ public class guardChaseTesla : MonoBehaviour
         {
             if (sus[id] < 1) // and the guard isn't suspicious
             {
-                sus[id] = sus[id] + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position); // increase the guard's suspicion
+                sus[id] = sus[id] + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position) + timesSeen[id] / 10; // increase the guard's suspicion
+
+                Debug.Log("with times seen: " + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position) + timesSeen[id] / 10);
+                Debug.Log("without times s: " + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position));
+                Debug.Log("times seen " + timesSeen[id]);
             }
             else // if they are suspicious, begin chasing the player
             {
@@ -107,6 +114,7 @@ public class guardChaseTesla : MonoBehaviour
         }
         else // if none of those are true, end the chase
         {
+            if (speed[id] == chaseSpeed) { timesSeen[id]++; }
             chase[id] = false;
             detectRadius = 81;
             speed[id] = baseSpeed;
