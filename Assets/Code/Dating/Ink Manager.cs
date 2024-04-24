@@ -26,14 +26,21 @@ public class InkManager : MonoBehaviour
     private void Update()
     {
         // Displays a new line every time you click unless there is a choice 
-        if (story.canContinue == true) { 
-            if (story.currentChoices.Count == 0)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    RefreshView();
-                }
+        if(counting == 0){
+            if (story.canContinue == true) { 
+                if (story.currentChoices.Count == 0)
+                {   
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        RefreshView();
+                    }
+                }   
             }
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            spacepressed = true;
+            Debug.Log("running??");
         }
     }
 
@@ -56,7 +63,8 @@ public class InkManager : MonoBehaviour
     void RefreshView()
     {
         
-        RemoveChildren();
+        RemoveText();
+        RemoveButtons();
         //Displays one line of text at a time
         int LD = 1;
         while (LD != 0)
@@ -102,11 +110,23 @@ public class InkManager : MonoBehaviour
 
     private IEnumerator DisplayLine(string line)
     {
-        RemoveChildren();
-        foreach(char letter in line.ToCharArray()){
-        line += letter;
-        CreateContentView(line);
-        yield return new WaitForSeconds(typingSpeed);
+        string text = "";
+        RemoveText();
+        foreach(char letter in line.ToCharArray())
+        {
+            counting++;
+            if (spacepressed)  
+            {
+                text = line;
+                RemoveText();
+                CreateContentView(text);
+                spacepressed = false;
+                counting = 1;
+                break;
+            }
+            text += letter;
+            CreateContentView(text);
+            yield return new WaitForSeconds(typingSpeed);
         }
     }
 
@@ -120,14 +140,14 @@ public class InkManager : MonoBehaviour
    /// Creates a text box and displays the dialouge
    /// </summary>
    /// <param name="text"></param>
-    void CreateContentView(string line)
+    void CreateContentView(string text)
     {
-        if(line==""){
+        if(text==""){
             RefreshView();
         }
         StoryText = Instantiate(textPrefab, new Vector3(-30f, 120f, 1), Quaternion.identity) as TextMeshProUGUI;
-        StoryText.text = line;
-        RemoveChildren();
+        StoryText.text = text;
+        RemoveText();
         StoryText.transform.SetParent(canvas.transform, false); 
     }
 
@@ -167,20 +187,33 @@ public class InkManager : MonoBehaviour
     /// <summary>
     /// Removes UI from the Ink canvas
     /// </summary>
-    void RemoveChildren()
+    void RemoveText()
     {
         int childCount = canvas.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
+            //string Clone = canvas.transform.GetChild(i).gameObject;
+            if(canvas.transform.GetChild(i).gameObject.name == "Text(Clone)"){
             Destroy(canvas.transform.GetChild(i).gameObject);
+            }
         }
     }
 
-    [SerializeField]
-    private TextAsset inkJSONAsset;
+    void RemoveButtons(){
+         int childCount 
+         = canvas.transform.childCount;
+        for (int i = childCount - 1; i >= 0; --i)
+        {
+            //string Clone = canvas.transform.GetChild(i).gameObject;
+            if(canvas.transform.GetChild(i).gameObject.name == "Button(Clone)"){
+            Destroy(canvas.transform.GetChild(i).gameObject);
+            }
+        }
+    }
+
+    [SerializeField] private TextAsset inkJSONAsset;
     public Story story;
-    [SerializeField]
-    private Canvas canvas;
+    [SerializeField] private Canvas canvas;
     private string line;
     private TextMeshProUGUI StoryText;
     [SerializeField] private TextMeshProUGUI textPrefab;
@@ -189,4 +222,6 @@ public class InkManager : MonoBehaviour
     GameManager gm;
     CharacterManager cm;
     InkExternalFunctions IKF;
+    private bool spacepressed;
+    public int counting;
 }
