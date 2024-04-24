@@ -78,6 +78,10 @@ namespace Assets.Code.Fighting.CharacterControl
         {
             stunned = false;
         }
+        private void NexTac()
+        {
+            
+        }
         private void Block()
         {
             blocking = true;
