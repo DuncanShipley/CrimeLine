@@ -1,11 +1,3 @@
-Code.ink: 
-EXTERNAL place_actors(left_actor_name, right_actor_name)
-EXTERNAL change_emotion(emotion,ID)
-//Left = 0, right = 1
-{place_actors("Actor","Actor 1")}
-{change_emotion("Angry",0)}
-{change_emotion("Happy",1)}
-
 
 //Main Story:
 
@@ -15,13 +7,13 @@ EXTERNAL change_emotion(emotion,ID)
 Skopje Macedonia, 2023 <br>Komercijalna Bank
 -> Bank
 
-== Bank ==
+==Bank==
 You: Hey mister! You got some time to spare?
 Guard: No
 *[Nag him]-> Nag
 *[Elude to more]-> Elude
 
-== Nag ==
+==Nag==
 You: Oh come on, not even 5 minutes? There's other guards here, nothing is going to happen.
 Guard: Excuse me if you aren’t here for business, I'm gonna have to ask you to leave.
 *[Nag him]-> Nag2
@@ -54,7 +46,12 @@ Guard: Alright please step outside.
 
 ==quiz==
 You: Pop quiz! 
-Guaed:What?
+Guard:What?
+{Fire:
+<>Manager: An excellent Idea.
+}
+->quizQ
+==quizQ==
 *[Biology question]-> Biology
 *[History question]-> History
 *[Pop culture question]-> Pop  
@@ -64,17 +61,35 @@ Guard: Uhm excuse me?
 You: Oh its alright its very normal to need to hear the question again.
 Guard: No I-
 You: What is the name of the family that Otters, skunks, and wolverines all fall under?
+{Fire:
+Guard: If I answer the question will we stop with the nonsense?
+-else:
 Guard: If I answer the question will you cooperate?
+}
 You: What is the name of the family that Otters, skunks, and wolverines all fall under?
 Guard: Marsupials?
 You: Ooh close but no cigar, the answer I was looking for was Mustelidae.
+{Fire:
+Manager: How dissapointing.
+Guard: This is hardly relevant to anything!
+Manager: Next question.
+Guard: Oh brother come on-
+-else:
 Guard: ...??? I- I'm putting an end to this charade
-*[Pop culture question]-> Pop  
-*[History question]-> History
+}
+->quizQ
+
 ==History==
-You: Which famous assination sparked the conflict for world war 2?
+You: Which famous assination sparked the conflict for world war 1?
+{Fire:
+Guard: This is absurd! Who on earth knows that?
+Manager: I believe it was arch duke Franz Ferdinand
+You: Correct! See I believe this brings your character into question more than my own.
+->quizQ
+-else:
 Guard: Alright step outside now.
 -> END
+}
 ==Pop==
 You: Of the Seven Neko Princess Rangers from the original 1987 show: Neko Princess Rangers Galaxy SAGA, who posesses the "Mars Blaze Mahouken"?
 Guard: Easy, that's Akane chan.
@@ -94,21 +109,17 @@ Guard: All 3 baby
 You: Have you watched Galaxy SAGA reboot?
 Guard: Unfourtanetly yes, all six + the fillers
 You: Yikes brother, been there done that.
-*[Ask another Neko Princess Rangers question]-> NekoQ
-*[Ask who their oshi is]-> oshi
-*[Ask if he's played the games]-> NekoG
-*[Ask about Neko Con]-> NekoCon
+->Questions
 
 -> END
+
 
 ==NekoQ==
 You: Well then, In the NovaBaron arc, what does Fumie say that causes NovaBaron to lose his cool and reveal his alternate persona, Lavernus.
 Guard: "I cannot accept because to do so would be a betreyal of my kin, it would make no better than yourself.
 No suffering you can put me through will hurt more than knowing my heart has told lies."
 You: Off the top? Wow! You truly are who you say you are, a devout Fumie fan.
-*[Ask who their oshi is]-> oshi
-*[Ask if he's played the games]-> NekoG
-*[Ask about Neko Con] -> NekoCon
+-> Questions
 ==oshi==
 You: Who is your oshi? In G1 obviously.
 Guard: Fumie chan all the way! 
@@ -131,9 +142,7 @@ Guard: You missed out, I'm telling you the cutscene was worth it.
 You: How many attempts did it take you? Or how many hours?
 Guard: A month, every day after work, 2 hour sessions at a time.
 You: Gotta give you credit man that's super impressive.
-*[Ask another Neko Princess Rangers question]-> NekoQ
-*[Ask who their oshi is]-> oshi
-*[Ask about Neko Con]-> NekoCon
+->Questions
 ==NekoCon==
 You: Are you going to NekoCon?
 Guard: No but I really want to. It's too expensive and I wouldn't be able to go because it's on a work day anywas.
@@ -151,26 +160,20 @@ You: Akane, Easy! She was girl power before girl power.
 You: Nobody wanted the smoke and for good reason! She slayed like no other could. 
 You: Also Emi teasing her about her crush on Shohei never failed to make me laugh.
 Guard: I love her and shohei together. It's so frustrating to follow but it keeps you so invested.
-*[Ask another Neko Princess Rangers question]-> NekoQ
-*[Ask if he's played the games]-> NekoG
-*[Ask about Neko Con]-> NekoCon
+->Questions
 ==Emi==
 You: I love Emi and honestly the hate is undeserved. She's a little much, but that's important to her character. 
 You: 80% of the comedy comes from her shenanagins. And every good team needs a scamp. 
 You: And you have to admit her Mahouken is easily top 3 coolest.
 Guard: I can appreciate a fellow devout for an underrated queen.
 You: You know it. We gotta stick together cause it's us versus the world.
-*[Ask another Neko Princess Rangers question]-> NekoQ
-*[Ask if he's played the games]-> NekoG
-*[Ask about Neko Con]-> NekoCon
+->Questions
 ==Hikari==
 You: Call me basic but Hikari is and will always be best girl. She's too good for the rest of them honestly. 
 You: Every scene is enhanced by her presence and some of the best emotional moments involve her. 
 You: The perfect older sister to the group.
 Guard: Sorry, that's basic for sure. Wouldn't be me but, she's popular for a reason right? I'm not knocking your opinion cause she definitely is deserving of that fanbase.
-*[Ask another Neko Princess Rangers question]-> NekoQ
-*[Ask if he's played the games]-> NekoG
-*[Ask about Neko Con]-> NekoCon
+->Questions
 ==Kohaku==
 You: Oh it's kohaku for sure. Our lesbian queen.
 Guard: Well I guess, but she's never confirmed to be lesbian.
@@ -180,16 +183,12 @@ You: Kohakane is not opinion, it's canon. Either way I love her so much,
 You: her sheltered clueless rich girl personality perfectly clashes with akane's head first tom boyish character. 
 You: They're just made for eachother. 
 You: Their dynamic is what got me through all the fillers.
-*[Ask another Neko Princess Rangers question]-> NekoQ
-*[Ask if he's played the games]-> NekoG
-*[Ask about Neko Con]-> NekoCon
+->Questions
 ==Reina==
 You: TEAM REINA FOREVER. "Mahouken, Neptune's wrath UNLIMITTED!" Chills. Still Chills. I don't care what anyone says about her because she's just wayyy too cool. If you think she isn't top 2 we can never get along. Also she's just too hot, her G1 outfit is PEAK!
 Guard: I know right! I love her G1 outfit, her VA literally saves lives with that preformance. 
 You: I KNOW RIGHT!
-*[Ask another Neko Princess Rangers question] -> NekoQ
-*[Ask if he's played the games] -> NekoG
-*[Ask about Neko Con] -> NekoCon
+->Questions
 ==Sora==
 You: No disrespect, Sora clears the others E Z. Plus she solos your favorite character, your favorite verse. Her Mahouken is so underrated, it's literally an auto win button that's only countered by bullshit plot convinience and toon force. 
 Guard: Oh really? Than how was dodonzora able to defeat her?
@@ -203,9 +202,7 @@ You: Plot convinience and she didn't even get beaten by him in combat! She just 
 Guard: As far as i'm concerned that counts as a loss.
 You: BULLSHIT
 Guard: Whatever you say I guess
-*[Ask another Neko Princess Rangers question]-> NekoQ
-*[Ask if he's played the games]-> NekoG
-*[Ask about Neko Con]-> NekoCon
+->Questions
 ==Fumie==
 You: Much like yourself I believe Fumie is the best written character in the series.
 You: For instance during the NovaBaron arc Episode 97:"I cannot accept because to do so would be a betreyal of my kin, it would make no better than yourself.
@@ -220,9 +217,19 @@ You: It's a bittersweet moment that solidifies g1 as superior to all other NPR m
 You: Hatred, pain, and war are the emotions that govern people which destoys them and the world. 
 You: Fumie's character arc teaches us to love our fellow people, friends, family, especially those who live on earth with us. We are not the only ones who live on earth. Be loving and considerate to them as well. 
 Guard: *sniff* that was beautiful, I'm honestly moved and so glad I could meet another like minded individual.
-*[Ask another Neko Princess Rangers question]-> NekoQ
-*[Ask if he's played the games]-> NekoG
-*[Ask about Neko Con]-> NekoCon
+->Questions
+==Questions==
+{
+    - NekoQ:
+    *[Ask who their oshi is]-> oshi
+    *[Ask if he's played the games]-> NekoG
+    *[Ask about Neko Con]-> NekoCon
+    - else:
+    *[Ask another Neko Princess Rangers question]-> NekoQ
+}
+
+
+
 ==Management==
 the management of the poor treatment of us customers
 Guard: Hey listen we don’t have to go there, i’m sorry if I offended you, i’m just doin my job here.
@@ -282,8 +289,8 @@ Manager: How would you suggest I go about doing so?
 Guard: Hey uh are we being serious right now?
 Manger: Silence, customers come first
 *[Fire that man]->Fire
-*[]
-*[]
+//*[]
+//*[]
 ->END
 
 ==ComplimentAppearance==
@@ -295,6 +302,7 @@ You: I mean this is a fine establishment and to have someone like him in charge 
 Manager: Well hehe, I suppose that's all true, I do take pride in my cleanliness. 
 ->END
 ==Fire== 
+You: Isn't it obvious. His position as a guard must be terminated at once.
 Guard: Please. That's absurd.
 Manager: Well hold on
 Guard: WHAT! BOSS???
@@ -326,8 +334,8 @@ Manager: In doing so, the blood is on your hands, society will not be able to se
 You: Precisely.
 Guard: Your kidding!
 Manager: What else should we test him on?
-*[]
-*[]
+//*[]
+//*[]
 ->END
 ==Apprehend==
 Manager: Interesting. That would be relevant to their abillity to provide value to the company. How do you suppose we test this?
@@ -371,8 +379,8 @@ You: Can't afford to have any witnesses. Wrong place at the wrong time.
 /*Image of guard in background*/
 You: Shit why's he over here?? And moreover why is he coming this way?
 *[Run]->Caught
-*[Hide]->HideBridge
-*[Hide the body]->Body
+//*[Hide]->HideBridge
+//*[Hide the body]->Body
 ==Paralize==
 /*Snap*/
 You: I'm sorry it had to be done,
@@ -380,8 +388,8 @@ You: You will be paralized for the time being and you'll be fully recovered in s
 /*Image of guard in background*/
 You: Shit why's he over here?? And moreover why is he coming this way?
 *[Run]->Caught
-*[Hide]->HideBridge
-*[Hide the body]->Body
+//*[Hide]->HideBridge
+//*[Hide the body]->Body
 ==RunH==
 You: Ok ok i'll get out of your space, my bad man.
 *[Coffee shop]->Caught
@@ -400,7 +408,7 @@ Guard: Right, the situation at hand.
 You: Thank you so much. You're my hero, you really saved me!
 Guard: Please, i'm just doing my job here.
 You: What can I do to make it up to you?
-
+->END
 ==ServiceH==
 You: Hey we don't have to do this, maybe we can work something out between us. How long has it been since you've had any carnal release?
 Homeless Man: Huh... uh hehe yes that sounds awesome.
@@ -411,17 +419,16 @@ You: There we go, he should be out for the count now.
 /*Image of guard in background*/
 You: Shit why's he over here?? And moreover why is he coming this way?
 *[Run]->Caught
-*[Hide]->HideBridge
-*[Hide the body]->Body
+//*[Hide]->HideBridge*[Hide the body]->Body//
 ->END
 ==Coffee==
 You: The guard should be on the hunt now.
 Barista: Welcome, how can I help you?
 *[Order a drink]->Order
-*[Bribe to switch outfits/places]->Disguise
-*[Hide in the bathroom]->Bathroom
+//*[Bribe to switch outfits/places]->Disguise*[Hide in the bathroom]->Bathroom//
 ==RoofHide==
 You: The guard should be on the hunt now.
+->END
 ==Traffic==
 You: The guard should be on the hunt now.
 Guard: Stop there!
@@ -429,8 +436,10 @@ You: Excuse me
 /*Cars Honk*/
 Guard: You're a maniac!
 You: I'm winning though aren't I?
+->END
 ==Rooftops==
 You: The guard should be on the hunt now.
+->END
 ==Order==
 You: Yeah tell you what, can I get a grande, flat white, with an extra shot?
 Cashier: Yeah that'll be 5.99$
@@ -439,6 +448,76 @@ You: Kennedy.
 Cashier: Would you like to leave a tip?
 You: Here's a dollar.
 Cashier: Thank you, your order will be right on it's way.
-
+You: Perfect. Hide where he'll least expect it. Plain sight.
+->END
+==Caught==
+You: Shit I gotta go! 
+Guard: Gotcha! Don't fight back.
+You: Not bad, that's a clean rear naked choke hold, you seem to know what you're doing. 
+You: Although I'm not so sure the law lets security guards put people in choke holds, I'll let you because admittdley you've bested me.
+Guard: I'm glad that at the very least you have the brains to recognize when you're out of options. 
+Guard: Now lets head back so I can prove myself to the boss.
+*[Surprise Counterattack]->Failedatk
+//*[Walk back]->//
+*[Seduce]->Seduce
+*[Bribe]->Bribe
+==Bribe==
+You: Hey listen we can work something out, 
+You: We don't have to go back, 
+You: how about a little treat shows up in your venmoe,
+You: I get out of your hair and we never have to cross paths again. Huh? Not so bad right?
+Guard: How much are we talking? Cause to put it lightly the bidding starts very high. I'm not about to stake my job for nothing.
+*[50$]->Fifty
+*[100$]->Hundred
+*[1000$]->Thousand
+==Fifty==
+You: 50$ call it good?
+Guard: HAH that's rich,
+Guard: Now let's get this over with and head back.
+*[100$]->Hundred
+*[1000$]->Thousand
+//*[Walk back]->//
+*[Surprise Counterattack]->Failedatk
+*[Seduce]->Seduce
+==Hundred==
+You: Tell ya what a whole hundred and we go our seperate ways.
+Guard: Getting fired is gonna cost me a whole lot more than a hundred dollars.
+You: How do you know your getting fired? It's really not that deep and i'm sure your boss is a sensible man.
+Guard: Then clearly you don't know him well enough,
+Guard: No disrespect to him.
+*[1000$]->Thousand
+//*[Walk back]->
+//*[Surprise Counterattack]->CounteratkG
+*[Seduce]->Seduce
+==Thousand==
+You: Thousand dollars final offer.
+Guard: How do I know you even got a thousand dollars lying around, go ahead lets see that stack.
+You: Now hold on, I don't got it on me, maybe I give you my contact info, we figure this out when I've withdrawn that money.
+Guard: Well if you're in such a rush why don't we head back to the bank and withdraw it there?
+//*[Walk back]->
+*[Surprise Counterattack]->Failedatk
+*[Seduce]->Seduce
+==Failedatk==
+You: But will he expect this?
+/*Fighting game noise*/
+/*Pause*/
+...
+Guard: That was mighty slick there chief, you've crossed the line though.
+Guard: We're headed back,
+Guard: And don't even think about trying anything funny.
+You: That's quite the tight grip there mister.
+Guard: ...
+//*[Walk back]->
+->END
+==Seduce==
+You: Hold on now we can work something out, 
+You: We're in no rush to be anywhere.
+Guard: That's just not true.
+You: Maybe I provide you a special little service, you leave me be, we go our seperate ways huh? 
+You: After all this tight grip has got me feeling a certain sorta way. You don't feel that?
+Guard: ... I uh
+Guard: AhEm uh, hehe...  what sorta service do you have in mind?
+You: Whatever your in the mood for darling.
+Guard:
 ->END
 
