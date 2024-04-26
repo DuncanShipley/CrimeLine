@@ -8,6 +8,7 @@ TagManager:
   - leftdoor
   - Guard
   - GuardSensor
+  - AiCar
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - camera overlay
   - roads
   - drive here
-  - 
+  - road lines
   - 
   - 
   - 
