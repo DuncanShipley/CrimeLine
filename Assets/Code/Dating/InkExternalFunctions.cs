@@ -8,6 +8,8 @@ public class InkExternalFunctions : MonoBehaviour
 {
     public string CurrentSpeaker;
     public string CurrentEmotion;
+    public string CurrentBackground;
+
     /// <summary>
     /// Binds Ink functions
     /// </summary>
@@ -18,9 +20,11 @@ public class InkExternalFunctions : MonoBehaviour
         story.BindExternalFunction("SetCharacter", (string CurrentCharacter) => {
             CurrentSpeaker = CurrentCharacter;
         });
-       
-        story.BindExternalFunction("SetEmotion", (string Emotion) => { 
-            CurrentEmotion=Emotion;
+       story.BindExternalFunction("SetEmotion", (string Emotion) => { 
+            CurrentEmotion = Emotion;
+        });
+        story.BindExternalFunction("SetBackground", (string Background) => {
+            CurrentBackground = Background;
         });
     }
     
@@ -34,5 +38,6 @@ public class InkExternalFunctions : MonoBehaviour
         Debug.Log("Unbinding Functions");
         story.UnbindExternalFunction("SetCharacter");
         story.UnbindExternalFunction("SetEmotion");
+        story.UnbindExternalFunction("SetBackground");
     }
 }

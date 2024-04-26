@@ -13,14 +13,12 @@ public class InkManager : MonoBehaviour
 {
     
     void Awake()
-    {
-        
+    {  
         cm = GetComponent<CharacterManager>();
         gm = GetComponent<GameManager>();
+        bgm = GetComponent<BackgroundManager>();
         IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
         StartStory();
-       
-       
     }
 
     private void Update()
@@ -37,10 +35,11 @@ public class InkManager : MonoBehaviour
                 }   
             }
         }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            spacepressed = true;
-            Debug.Log("running??");
+        if(counting !=0){
+            if(Input.GetMouseButtonDown(1))
+            {
+                skippedPressed = true;
+            }
         }
     }
 
@@ -115,18 +114,21 @@ public class InkManager : MonoBehaviour
         foreach(char letter in line.ToCharArray())
         {
             counting++;
-            if (spacepressed)  
+            if (skippedPressed == true)  
             {
                 text = line;
                 RemoveText();
                 CreateContentView(text);
-                spacepressed = false;
-                counting = 1;
+                skippedPressed = false;
+                counting = 0;
                 break;
             }
             text += letter;
             CreateContentView(text);
             yield return new WaitForSeconds(typingSpeed);
+        }
+        if(counting == line.Length){
+            counting = 0;
         }
     }
 
@@ -212,16 +214,17 @@ public class InkManager : MonoBehaviour
     }
 
     [SerializeField] private TextAsset inkJSONAsset;
-    public Story story;
     [SerializeField] private Canvas canvas;
-    private string line;
-    private TextMeshProUGUI StoryText;
     [SerializeField] private TextMeshProUGUI textPrefab;
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private float typingSpeed = 0.04f;
+    public Story story;
+    private string line;
+    private TextMeshProUGUI StoryText;
+    private bool skippedPressed;
+    public int counting;
     GameManager gm;
     CharacterManager cm;
     InkExternalFunctions IKF;
-    private bool spacepressed;
-    public int counting;
+    BackgroundManager bgm;
 }

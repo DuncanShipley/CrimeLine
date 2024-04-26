@@ -18,7 +18,7 @@ public class CharacterManager : MonoBehaviour
        
         for (int i = 0; i < characters.Length; i++)
         {
-            GameObject newCharacter = Instantiate(characters[i]);
+            GameObject newCharacter = Instantiate(characters[i], new Vector3(0, 0, 3), Quaternion.identity);
             newCharacter.transform.SetParent(canvas.transform, false);
             newCharacter.SetActive(false);
             newCharacter.name = characters[i].name;
