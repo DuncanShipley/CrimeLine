@@ -11,7 +11,7 @@ public class GroundSpikeAttack : Attack
     }
     public override int damage
     {
-        get { return 30; }
+        get { return 10; }
 
     }
 }

@@ -11,7 +11,7 @@ public class KnifeAttack : RangedAttack
     }
     public override int speed
     {
-        get { return 20; }
+        get { return 18; }
 
     }
 
@@ -27,12 +27,12 @@ public class KnifeAttack : RangedAttack
     }
     public override float time
     {
-        get { return 0; }
+        get { return 5; }
 
     }
     public override bool limited
     {
-        get { return false; }
+        get { return true; }
 
     }
 }
