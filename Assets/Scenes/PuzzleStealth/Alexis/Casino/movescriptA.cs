@@ -7,7 +7,9 @@ public class movescriptA : MonoBehaviour
 {
     float h = 0f;
     float v = 0f;
-    int spd;
+    public float baseSpeed = 3;
+    public Rigidbody2D heldObject;
+    float spd;
 
     Animator anim;
 
@@ -29,7 +31,12 @@ public class movescriptA : MonoBehaviour
             spd = GetSpeed();
 
             // movement
-            MakeMovement(h, v);
+            if(MovingObj()) {
+                MakeMovementWithObj(h, v);
+            } else {
+                MakeMovement(h, v);
+            }
+            
 
             // animation
             SetMovementAnim();
@@ -39,26 +46,26 @@ public class movescriptA : MonoBehaviour
 
     void SetMovementAnim()
     {
-        if (Math.Abs(h) > Math.Abs(v))
+        if (Math.Abs(h) > Math.Abs(v) )
         {
-            if (h > 0)
+            if ((!MovingObj() && h > 0) || (MovingObj() && heldObject.transform.position.x > transform.position.x))
             {
-                anim.SetInteger("playerDir", 2);
+                anim.SetInteger("playerDir", 2); //right
             }
-            else if (h < 0)
+            else if ((!MovingObj() && h < 0) || (MovingObj() && heldObject.transform.position.x < transform.position.x))
             {
-                anim.SetInteger("playerDir", 4);
+                anim.SetInteger("playerDir", 4); //left
             }
         }
-        else if ((Math.Abs(v) >= Math.Abs(h)) && (Math.Abs(v) != 0))
+        else if (Math.Abs(v) >= Math.Abs(h) && Math.Abs(v) != 0)
         {
-            if (v > 0)
+            if ((!MovingObj() && v > 0) || (MovingObj() && heldObject.transform.position.y > transform.position.y))
             {
-                anim.SetInteger("playerDir", 1);
+                anim.SetInteger("playerDir", 1); //up
             }
-            else if (v < 0)
+            else if ((!MovingObj() && v < 0) || (MovingObj() && heldObject.transform.position.y < transform.position.y))
             {
-                anim.SetInteger("playerDir", 3);
+                anim.SetInteger("playerDir", 3); //down
             }
         }
         else
@@ -67,24 +74,62 @@ public class movescriptA : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag=="movable"){
+            heldObject = other.GetComponentInParent<Rigidbody2D>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag=="movable"){
+            heldObject = null;
+        }
+    }
+
     void MakeMovement(float hv, float vv)
     {
         var rb = GetComponent<Rigidbody2D>();
+
         Vector3 inp = new Vector3(hv / 20 * spd, vv / 20 * spd, 0);
         rb.MovePosition(transform.position + inp);
     }
 
-    int GetSpeed()
+    void MakeMovementWithObj(float hv, float vv)
     {
+        var rb1 = GetComponent<Rigidbody2D>();
+        var rb2 = heldObject;
+        Vector3 inp = new Vector3(0, 0, 0);
+
+        if(Math.Abs(transform.position.x - heldObject.transform.position.x) > 0.5) 
+        {
+            inp = new Vector3(hv / 20 * spd, 0, 0);
+        } 
+        else if (Math.Abs(transform.position.y - heldObject.transform.position.y) > 0.5) 
+        {
+            inp = new Vector3(0, vv / 20 * spd, 0);
+        }
+        
+        rb1.MovePosition(transform.position + inp);
+        rb2.MovePosition(rb2.transform.position + inp);
+    }
+
+    float GetSpeed()
+    {
+        float tempSpd = baseSpeed;
+
         // set speed based on if the player if Focused or not
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            return 2;
+            tempSpd /= 2;
         }
-        else
-        {
-            return 4;
+        if (heldObject != null && Input.GetKey(KeyCode.Z)) {
+            tempSpd /= 2;
         }
+
+        return tempSpd;
+    
     }
 
     bool CanMove()
@@ -94,6 +139,11 @@ public class movescriptA : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    bool MovingObj() 
+    {
+        return (heldObject != null && Input.GetKey(KeyCode.Z));
     }
 
 }

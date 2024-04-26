@@ -9,6 +9,8 @@ TagManager:
   - Guard
   - GuardSensor
   - DamagePlayer
+  - movable
+  - camera
   layers:
   - Default
   - TransparentFX
