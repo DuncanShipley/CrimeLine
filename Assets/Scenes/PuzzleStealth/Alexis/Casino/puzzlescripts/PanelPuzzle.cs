@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelPuzzleA : MonoBehaviour
+public class PanelPuzzleAlexis : MonoBehaviour
 {
     bool activated = false;
     public GameObject sc;
@@ -46,22 +46,22 @@ public class PanelPuzzleA : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                tiles[y * 3 + x].GetComponent<panelTileScriptMain>().toggleState();
+                tiles[y * 3 + x].GetComponent<panelTileScriptAlexis>().toggleState();
                 if(x - 1 >= 0)
                 {
-                    tiles[y * 3 + (x - 1)].GetComponent<panelTileScriptMain>().toggleState();
+                    tiles[y * 3 + (x - 1)].GetComponent<panelTileScriptAlexis>().toggleState();
                 }
                 if (x + 1 <= 2)
                 {
-                    tiles[y * 3 + (x + 1)].GetComponent<panelTileScriptMain>().toggleState();
+                    tiles[y * 3 + (x + 1)].GetComponent<panelTileScriptAlexis>().toggleState();
                 }
                 if (y - 1 >= 0)
                 {
-                    tiles[(y - 1) * 3 + x].GetComponent<panelTileScriptMain>().toggleState();
+                    tiles[(y - 1) * 3 + x].GetComponent<panelTileScriptAlexis>().toggleState();
                 }
                 if (y + 1 <= 2)
                 {
-                    tiles[(y + 1) * 3 + x].GetComponent<panelTileScriptMain>().toggleState();
+                    tiles[(y + 1) * 3 + x].GetComponent<panelTileScriptAlexis>().toggleState();
                 }
             }
             if (allOn())
@@ -106,7 +106,7 @@ public class PanelPuzzleA : MonoBehaviour
     {
         for(int i = 0; i < 9; i++)
         {
-            if(!tiles[i].GetComponent<panelTileScriptMain>().getState())
+            if(!tiles[i].GetComponent<panelTileScriptAlexis>().getState())
             {
                 return false;
             }

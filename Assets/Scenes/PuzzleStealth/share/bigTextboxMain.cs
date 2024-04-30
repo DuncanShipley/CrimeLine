@@ -11,13 +11,11 @@ public class bigTextboxMain : MonoBehaviour
 
     private List<string> textQueue = new List<string>();
 
-    private InputControllerMain input;
     private camfollowMain camera;
 
     // Start is called before the first frame update
     void Start()
     {
-        input = GameObject.Find("UI").GetComponent<InputControllerMain>();
         camera = GameObject.Find("Main Camera").GetComponent<camfollowMain>();
     }
 
@@ -26,13 +24,13 @@ public class bigTextboxMain : MonoBehaviour
     {
         makeMovements();
 
-        if(textQueue.Count >= 1 && input.GetKeyLimited("z"))
+        if(textQueue.Count >= 1 && Input.GetKeyDown(KeyCode.Z))
         {
             Debug.Log("hi");
             text.SetText(textQueue[0]);
             textQueue.RemoveAt(0);
         } 
-        else if(input.GetKeyLimited("z") && enabled & !moving)
+        else if(Input.GetKeyDown(KeyCode.Z) && enabled & !moving)
         {
             enabled = false;
             moving = true;

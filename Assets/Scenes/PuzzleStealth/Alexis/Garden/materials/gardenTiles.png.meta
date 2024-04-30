@@ -277,6 +277,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: gardenTiles_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75dd0c708df842af920223726e7bb4a
+      internalID: 1621241930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -296,6 +317,7 @@ TextureImporter:
       gardenTiles_5: 1887971345
       gardenTiles_6: 42743413
       gardenTiles_7: -1977472000
+      gardenTiles_8: 1621241930
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

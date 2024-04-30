@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CursorA : MonoBehaviour
+public class CursorAlexis : MonoBehaviour
 {
     // PRIVATE VARS
     public int cx = 0; // x pos within puzzle grid
