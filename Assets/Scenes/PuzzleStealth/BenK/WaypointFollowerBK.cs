@@ -12,13 +12,16 @@ public class WaypointFollowerBK : MonoBehaviour
     private float atan;
     public bool canMove = true;
     public float distance;
-    public bool close;
 
     public int id;
 
     public static List<int> currentPointIndex = new List<int>();
     public static List<int> movingLeft = new List<int>();
+    public static List<bool> lookingLeft = new List<bool>();
     public static List<bool> movingDown = new List<bool>();
+    public static List<bool> lookingDown = new List<bool>();
+    public static List<bool> movedDown = new List<bool>();
+    public static List<bool> close = new List<bool>();
 
 
     [SerializeField] public static List<float> speed = new List<float>();
@@ -44,7 +47,11 @@ public class WaypointFollowerBK : MonoBehaviour
         wpref = waypoints;
 
         movingLeft.Add(0);
+        lookingLeft.Add(false);
         movingDown.Add(false);
+        lookingDown.Add(false);
+        movedDown.Add(false);
+        close.Add(false);
 
         currentPointIndex.Add(0);
         speed.Add(0);
@@ -67,7 +74,7 @@ public class WaypointFollowerBK : MonoBehaviour
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait < 2f) // if you're close and you haven't waited
             {
                 guardWait += Time.deltaTime; // wait
-                close = true;
+                close[id] = true;
             }
             else if (guardWait >= 2f) // once you've waited (and are still close)
             {
@@ -78,17 +85,33 @@ public class WaypointFollowerBK : MonoBehaviour
                     currentPointIndex[id] = 0;
                 }
                 guardWait = 0; // reset wait timer
-                close = false;
+                close[id] = false;
             }
             else if (guardChaseBK.sus[id] == 0 || guardChaseBK.sus[id] == 1)
             {
                 guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
-                close = false;
+                close[id] = false;
             }
             else{
-                close = false;
+                close[id] = false;
             }
-            if (close) {
+            if (relAngle > 90 && relAngle < 270)
+            {
+                lookingLeft[id] = true;
+            }
+            else
+            {
+                lookingLeft[id] = false;
+            }
+            if (relAngle > 180)
+            {
+                lookingDown[id] = true;
+            }
+            else
+            {
+                lookingDown[id] = false;
+            }
+            if (close[id]) {
                 if ((float)(waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x) < 0f) // are moving left?
                 {
                     movingLeft[id] = 180;
@@ -96,6 +119,22 @@ public class WaypointFollowerBK : MonoBehaviour
                 else
                 {
                     movingLeft[id] = 0;
+                }
+                if ((float)(waypoints[(currentPointIndex[id]+1) % 4].transform.position.y - transform.position.y) < 0f) // are moving down?
+                {
+                    movingDown[id] = true;
+                }
+                else
+                {
+                    movingDown[id] = false;
+                }
+                if ((float)(waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) < 0f) // are moving down?
+                {
+                    movedDown[id] = true;
+                }
+                else
+                {
+                    movedDown[id] = false;
                 }
             }
             else{
@@ -107,17 +146,16 @@ public class WaypointFollowerBK : MonoBehaviour
                 {
                     movingLeft[id] = 0;
                 }
+                if ((float)(waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) < 0f) // are moving down?
+                {
+                    movingDown[id] = true;
+                }
+                else
+                {
+                    movingDown[id] = false;
+                }
             }
-            if ((float)(waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) < 0f) // are moving down?
-            {
-                movingDown[id] = true;
-            }
-            else
-            {
-                movingDown[id] = false;
-
-            }
-            if (close){
+            if (close[id]){
                 if (waypoints[(currentPointIndex[id]+1) % 4].transform.position.y > transform.position.y && waypoints[(currentPointIndex[id]+1) % 4].transform.position.x > transform.position.x) // if the next waypoint is up and to the right of us
                 {
                     relAngle = Math.Atan((waypoints[(currentPointIndex[id]+1) % 4].transform.position.y - transform.position.y) / (waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x)) * 180 / Math.PI + guardWait * 180;
@@ -143,8 +181,7 @@ public class WaypointFollowerBK : MonoBehaviour
                 {
                     atan = (float)-Math.PI / 2;
                 }
-                //Debug.Log(testList[id] + ", " + relAngle + ", " + atan);
-
+                relAngle = relAngle % 360;
             }
             else{
                 if (waypoints[currentPointIndex[id]].transform.position.y > transform.position.y && waypoints[currentPointIndex[id]].transform.position.x > transform.position.x) // if the current waypoint is up and to the right of us
@@ -174,7 +211,6 @@ public class WaypointFollowerBK : MonoBehaviour
                 }
             }
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, ((float)(relAngle) - 90 + movingLeft[id]) % 360); // point towards current waypoint
-            Debug.Log(movingLeft[id]);
         }
         else
         {

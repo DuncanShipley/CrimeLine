@@ -46,8 +46,20 @@ public class guardChaseBK : MonoBehaviour
     {
         seesPlayer = CheckFor(Player);
 
-        movingLeft = (WaypointFollowerBK.movingLeft[id] == 180);
-        movingUp = !WaypointFollowerBK.movingDown[id];
+        if (WaypointFollowerBK.close[id]){
+            movingLeft = WaypointFollowerBK.lookingLeft[id];
+            if (WaypointFollowerBK.movedDown[id]){
+                movingUp = !WaypointFollowerBK.lookingDown[id];
+            }
+            else{
+                movingUp = WaypointFollowerBK.lookingDown[id];
+                //Debug.Log(WaypointFollowerBK.movedDown[id]);
+            }
+        }
+        else{
+            movingLeft = (WaypointFollowerBK.movingLeft[id] == 180);
+            movingUp = !WaypointFollowerBK.movingDown[id];
+        }
 
         leftDetectEdge = transform.eulerAngles.z - 270 - detectRadius / 2;
         rightDetectEdge = transform.eulerAngles.z - 90 + detectRadius / 2;
@@ -128,9 +140,10 @@ public class guardChaseBK : MonoBehaviour
     {
         for (float i = 0; i < 50; i++)
         {
-            if (movingUp && !movingLeft){
+            if ((movingUp && !movingLeft) ^ (WaypointFollowerBK.close[id] && !movingUp && movingLeft)){
                 seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin((((50 - i) * (leftDetectEdge+360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * (leftDetectEdge+360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
                 Debug.DrawRay(transform.position, new Vector2((float)-Math.Sin((((50 - i) * (leftDetectEdge+360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * (leftDetectEdge+360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)));
+                Debug.Log("upright");
             }
             else{
                 seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin((((50 - i) * (leftDetectEdge) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * (leftDetectEdge) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
@@ -144,9 +157,10 @@ public class guardChaseBK : MonoBehaviour
                     return true;
                 }
             }
-            if (movingUp && movingLeft){
+            if ((movingUp && movingLeft) ^ (WaypointFollowerBK.close[id] && !(movingUp || movingLeft))){
                 seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(((i * (rightDetectEdge-360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * (rightDetectEdge-360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
                 Debug.DrawRay(transform.position, new Vector2((float)-Math.Sin(((i * (rightDetectEdge-360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * (rightDetectEdge-360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)));
+                Debug.Log("upleft");
             }
             else{
                 seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(((i * (rightDetectEdge) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * (rightDetectEdge) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);

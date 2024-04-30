@@ -27,7 +27,7 @@ public class objectiveTrackerA : MonoBehaviour
     void Start()
     {
         objectiveTrackerA.currentObjective = gameObject.GetComponent<objectiveTrackerA>();
-        input = GameObject.Find("ScreenUI").GetComponent<InputController>();
+        input = GameObject.Find("ScreenUI").GetComponent<InputControllerA>();
 
 
         allObjectives[objStage] = gameObject;
