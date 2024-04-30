@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Driving Workers/Duncan Messing Around.unity
     guid: 2c8fcc7b249df7445905f6fdb1695e3d
   - enabled: 1
@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Driving Workers/You Win!.unity
     guid: 03a0273ff9d974d4a8a71f126d9f447f
+  - enabled: 1
+    path: Assets/Scenes/Driving Workers/Cybertruck.unity
+    guid: 8a08899f1b1c6ba439f7ce0f2fc0b095
+  - enabled: 1
+    path: Assets/Scenes/Driving Workers/Ari Transition Test.unity
+    guid: 38ee89cde2cfe48e2937008960d09dfa
   m_configObjects: {}
