@@ -39,15 +39,18 @@ You: Is this how you normally treat patrons of this establishment? If so I must 
 *[The management] ->Management
 
 ==Public==
-the general public of the poor treatment of us customers
+You: Is this how you normally treat patrons of this establishment? 
+If so I must inform the general public of the poor treatment of us customers
 Guard: Please step outside.
 *[Threaten] ->ThreatenP
 *[Seek Pity]->END
 
+
+==Management==
 ~SetBackground("InsideBank")
 ~SetCharacter("Manager")
-==Management==
-the management of the poor treatment of us customers
+You: Is this how you normally treat patrons of this establishment? 
+If so I must inform the management of the poor treatment of us customers
 Guard: Hey listen we don’t have to go there, i’m sorry if I offended you, i’m just doin my job here.
 *[Threaten Management] ->ThreatenM
 
