@@ -14,6 +14,7 @@ Guard: No
 
 ==Nag==
 You: Oh come on, not even 5 minutes? There's other guards here, nothing is going to happen.
+~SetEmotion("Annoyed")
 Guard: Excuse me if you aren’t here for business, I'm gonna have to ask you to leave.
 *[Nag him]-> Nag2
 *[Elude to more]-> Elude
@@ -24,10 +25,11 @@ Guard: Excuse me if you aren’t here for business, I'm gonna have to ask you to
 You: You can’t even answer my questions?
 Guard: No, I'm working. I'm going to ask you again to leave the premise. 
 You: Pleaseeeee, it's just a few questions. I'm from out of town. I just want to know if there is anywhere specific I should visit.
+->Question
 ->END
 
 ==Elude==
-You: I have something cool to show you.
+You: I have something cool to show you, come with me.
 Guard: I'm not going to follow, please leave.
 ->END
 
@@ -37,7 +39,7 @@ You: Is this how you normally treat patrons of this establishment? If so I must 
 *[The management]->Management
 
 ==Public==
-the general public of the poor treatment of us customers
+You: Is this how you normally treat patrons of this establishment? If so I must inform the general public of the poor treatment of us customers
 Guard: Alright please step outside.
 *[Threaten]->ThreatenP
 *[Seek Pity]->END
@@ -230,7 +232,7 @@ Guard: *sniff* that was beautiful, I'm honestly moved and so glad I could meet a
 
 
 ==Management==
-the management of the poor treatment of us customers
+You: Is this how you normally treat patrons of this establishment? If so I must inform the management of the poor treatment of us customers
 Guard: Hey listen we don’t have to go there, i’m sorry if I offended you, i’m just doin my job here.
 *[Threaten Management]->ThreatenM
 

@@ -14,8 +14,7 @@ public class Emotions : MonoBehaviour
         happy,sad,nuetral,angry,annoyed
     }
 
-    [SerializeField]
-    CharacterEmotions Mystate;
+    [SerializeField] CharacterEmotions Mystate;
       
    
     void Awake()
@@ -25,6 +24,7 @@ public class Emotions : MonoBehaviour
     }
     public void changestate(string emotionName)
     {
+        Debug.Log("changing emotions");
         StartCoroutine(emotionName + "State");
     }
     IEnumerator NuetralState()
@@ -46,7 +46,7 @@ public class Emotions : MonoBehaviour
         yield return null;
     }
 
-      IEnumerator SadState()
+    IEnumerator SadState()
     {
         spRend.sprite = emotionSprite[3];
         Mystate = CharacterEmotions.sad;

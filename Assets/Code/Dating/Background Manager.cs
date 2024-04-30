@@ -5,7 +5,6 @@ using UnityEngine;
 public class BackgroundManager : MonoBehaviour
 {
      InkExternalFunctions IKF;
-
        void Awake()
     {
          IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
