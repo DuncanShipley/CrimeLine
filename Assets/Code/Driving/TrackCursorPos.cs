@@ -28,11 +28,15 @@ public class TrackCursorPos : MonoBehaviour
 
             float cx = mousePos.x;
             float cy = mousePos.y;
+    
 
-            if((cx >= x && cx <= x + length) && (cy >= y && cy <= y + height))
+            if((cx >= x && cx <= x + length) && (cy >= y && cy <= y + height) && (i == 1))
             {
-                Debug.Log("Cursor Found");
-                carSpin.SetTrigger("ButtonHighlight");
+                carSpin.SetBool("ButtonHighlight", true);
+            }
+            else if (i == 1)
+            {
+                carSpin.SetBool("ButtonHighlight", false);
             }
         }
     }
