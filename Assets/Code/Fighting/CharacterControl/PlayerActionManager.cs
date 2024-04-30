@@ -14,8 +14,16 @@ namespace Assets.Code.Fighting.CharacterControl
         public Rigidbody body;
         protected int test;
         public bool blocking;
-        protected MovementManager manager = new MovementManager(1,1,1);
+        protected MovementManager manager = new MovementManager(10,1,1);
         protected bool stunned = false;
+        private bool TouchingGround
+        {
+            get
+            {
+                return false;
+            }
+        }
+        
         public void TryAction(PlayerAction[] action)
         {
             dir = manager.DirFacing;

@@ -10,6 +10,7 @@ namespace Assets.Code.Fighting.CharacterControl
         private float Gravity;
         public float DirFacing;
         private bool Crouching;
+        
 
         public MovementManager(float WalkSpeed, float JumpHeight, float Gravity)
         {
@@ -32,7 +33,6 @@ namespace Assets.Code.Fighting.CharacterControl
                     case MovementAction.Right:
                         vec.x = WalkSpeed;
                         DirFacing = 0;
-                        UnityEngine.Debug.Log("pluh");
                         break;
                     case MovementAction.Left:
                         vec.x = -WalkSpeed;
