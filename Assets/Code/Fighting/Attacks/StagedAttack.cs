@@ -10,6 +10,7 @@ public abstract class StagedAttack : MonoBehaviour
     {
         Reset();
         Stages[0].SetActive(true);
+        Invoke("NextStage", 1);
     }
 
     public void NextStage()
@@ -20,8 +21,9 @@ public abstract class StagedAttack : MonoBehaviour
             Reset();
             return;
         }
-        Stages[FirstActive].SetActive(false);
-        Stages[FirstActive+1].SetActive(true);
+        Stages[0].SetActive(false);
+        Stages[1].SetActive(true);
+        Invoke("NextStage", 1);
     }
 
     public int FindFirstAcive(GameObject[] gameObects)
@@ -35,7 +37,7 @@ public abstract class StagedAttack : MonoBehaviour
             }
             count++;
         }
-        return -1;
+        return 0;
     }
 
     public void Reset()
