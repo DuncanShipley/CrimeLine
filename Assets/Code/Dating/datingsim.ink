@@ -1,9 +1,8 @@
+EXTERNAL SetCharacter(CurrentCharacter)
+EXTERNAL SetEmotion(Emotion)
+EXTERNAL SetBackground(Background)
 
-//Main Story:
-
-
-
-
+~ SetCharacter("Guard")
 Skopje Macedonia, 2023 <br>Komercijalna Bank
 -> Bank
 
