@@ -17,6 +17,7 @@ public class WaypointFollowerTesla : MonoBehaviour
     public int id;
 
     public static List<int> currentPointIndex = new List<int>();
+    public static List<int> tempList = new List<int>();
     public GameObject Player;
     [SerializeField] Transform playerTrans;
     UnityEngine.AI.NavMeshAgent guard;
@@ -48,6 +49,9 @@ public class WaypointFollowerTesla : MonoBehaviour
 
     private void Update()
     {
+        if (gameObject.tag == "NPC"){
+            
+        }
         id = gameObject.transform.parent.GetComponent<IDsTesla>().GetID();
 
         if (canMove)
@@ -68,7 +72,8 @@ public class WaypointFollowerTesla : MonoBehaviour
             }
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
-                currentPointIndex[id]++; // look towards the next waypoint
+                if (gameObject.tag == "NPC"){ currentPointIndex[id] = UnityEngine.Random.Range(0, waypoints.Length); Debug.Log(currentPointIndex[id]); }
+                else { currentPointIndex[id]++; } // look towards the next waypoint
                 guardChaseTesla.putWaypoint(startingPosition, id, Waypoint1);
                 if (currentPointIndex[id] >= waypoints.Length)
                 {

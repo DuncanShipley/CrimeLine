@@ -12,7 +12,7 @@ public class guardChaseTesla : MonoBehaviour
 
     public float leftDetectEdge;
     public float rightDetectEdge;
-    public static float detectRadius = 75;
+    public float detectRadius = 75;
     private bool seesPlayer;
     public static List<float> sus = new List<float>();
     public static List<bool> chase = new List<bool>();
@@ -80,7 +80,7 @@ public class guardChaseTesla : MonoBehaviour
             {
                 sus[id] = sus[id] + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position) + timesSeen[id] / 10; // increase the guard's suspicion
 
-                Debug.Log("with times seen: " + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position) + timesSeen[id] / 10);
+                Debug.Log("with times seen: " + (10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position) + timesSeen[id] / 10));
                 Debug.Log("without times s: " + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position));
                 Debug.Log("times seen " + timesSeen[id]);
             }
