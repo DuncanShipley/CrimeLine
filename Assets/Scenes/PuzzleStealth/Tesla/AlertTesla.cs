@@ -35,7 +35,8 @@ public class AlertTesla : MonoBehaviour
             if (guardChaseTesla.alerting[otherID] && !guardChaseTesla.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
             {
                 alerted[id] = otherID; // set alerted for the non-suspicious guard to the id of the sus one
-                guardChaseTesla.putWaypoint(collision.gameObject.transform.parent.position, id, Waypoint1);
+                if (gameObject.tag == "NPC"){guardChaseTesla.putWaypoint(collision.gameObject.transform.parent.position, id, Waypoint1);}
+                Debug.Log("moved to guard by alert");
             }
             else if (!guardChaseTesla.alerting[otherID]) // if the other guard is no longer suspicious
             {

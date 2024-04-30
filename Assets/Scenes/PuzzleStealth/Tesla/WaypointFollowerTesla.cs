@@ -75,6 +75,7 @@ public class WaypointFollowerTesla : MonoBehaviour
                 if (gameObject.tag == "NPC"){ currentPointIndex[id] = UnityEngine.Random.Range(0, waypoints.Length); Debug.Log(currentPointIndex[id]); }
                 else { currentPointIndex[id]++; } // look towards the next waypoint
                 guardChaseTesla.putWaypoint(startingPosition, id, Waypoint1);
+                if (gameObject.tag == "NPC") {Debug.Log("moved to next place");}
                 if (currentPointIndex[id] >= waypoints.Length)
                 {
                     currentPointIndex[id] = 0;

@@ -158,6 +158,7 @@ public class guardChaseTesla : MonoBehaviour
                 if (seeingRay.collider.gameObject == cf)
                 {
                     guardChaseTesla.putWaypoint(seeingRay.collider.gameObject.transform.position, id, Waypoint1);
+                    if (gameObject.tag == "NPC"){Debug.Log("moved by seeing player 1");}
                     return true;
                 }
             }
@@ -174,6 +175,7 @@ public class guardChaseTesla : MonoBehaviour
             {
                 if (seeingRay.collider.gameObject == cf)
                 {
+                    if (gameObject.tag == "NPC"){Debug.Log("moved by seeing player 2");}
                     guardChaseTesla.putWaypoint(seeingRay.collider.gameObject.transform.position, id, Waypoint1);
                     return true;
                 }
