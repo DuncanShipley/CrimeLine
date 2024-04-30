@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stopsign (Breakable)
       objectReference: {fileID: 0}
+    - target: {fileID: 1290268953411352940, guid: 51aac1f088e12da45921ce9a31fbb491, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.058
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
