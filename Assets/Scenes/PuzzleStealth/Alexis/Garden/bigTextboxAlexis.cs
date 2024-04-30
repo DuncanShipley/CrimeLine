@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class bigTextboxMain : MonoBehaviour
+public class bigTextboxAlexis : MonoBehaviour
 {
     public bool enabled;
     public bool moving = false;
@@ -11,12 +11,12 @@ public class bigTextboxMain : MonoBehaviour
 
     private List<string> textQueue = new List<string>();
 
-    private camfollowMain camera;
+    private camfollowAlexis camera;
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameObject.Find("Main Camera").GetComponent<camfollowMain>();
+        camera = GameObject.Find("Main Camera").GetComponent<camfollowAlexis>();
     }
 
     // Update is called once per frame

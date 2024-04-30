@@ -45,6 +45,7 @@ SpriteAtlas:
     - 91de569d15f55174493ba468bd22e08b: -1977472000
     - 91de569d15f55174493ba468bd22e08b: -1189624217
     - 91de569d15f55174493ba468bd22e08b: 1887971345
+    - 91de569d15f55174493ba468bd22e08b: 1621241930
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 1260816760, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
@@ -55,6 +56,7 @@ SpriteAtlas:
   - {fileID: -1977472000, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
   - {fileID: -1189624217, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
   - {fileID: 1887971345, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
+  - {fileID: 1621241930, guid: 91de569d15f55174493ba468bd22e08b, type: 3}
   m_PackedSpriteNamesToIndex:
   - gardenTiles_2
   - gardenTiles_3
@@ -64,6 +66,7 @@ SpriteAtlas:
   - gardenTiles_7
   - gardenTiles_4
   - gardenTiles_5
+  - gardenTiles_8
   m_RenderDataMap: {}
   m_Tag: New Sprite Atlas
   m_IsVariant: 0

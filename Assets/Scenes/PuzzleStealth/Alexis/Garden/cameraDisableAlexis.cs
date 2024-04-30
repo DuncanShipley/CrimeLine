@@ -2,28 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class startPuzzleAlexis : MonoBehaviour
+public class cameraDisable : MonoBehaviour
 {
-    private PanelPuzzleAlexis puzzle;
-    private InputControllerAlexis input;
-
-    private bool puzzleDone = false;
-    private bool touch = false;
+    private GameObject[] cams;
+    private bool touch;
 
     // Start is called before the first frame update
     void Start()
     {
-        puzzle = GameObject.Find("Panel").GetComponent<PanelPuzzleAlexis>();
-        input = GameObject.Find("UI").GetComponent<InputControllerAlexis>();
+        cams = GameObject.FindGameObjectsWithTag("camera");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (input.GetKeyLimited("z") && touch && !puzzleDone)
+        if (Input.GetKeyDown(KeyCode.Z) && touch) 
         {
-            puzzle.activate();
-            puzzleDone = true;
+            for(int i = 0; i < cams.Length; i++)
+            {
+                Destroy(cams[i]);
+            }
+
+            cams = null;
         }
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class panelTileScriptA : MonoBehaviour
+public class panelTileScriptAlexis : MonoBehaviour
 {
     public Sprite on;
     public Sprite off;
