@@ -5,43 +5,34 @@ using UnityEngine;
 public class WaypointFollowerTesla : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
+    public GameObject Waypoint1;
     public static GameObject[] wpref;
-    //static public int currentWaypointIndex = 0;
     private float guardWait = 0f;
     int movingLeft;
     bool movingDown;
-    //public static bool chase;
-    public static float detectRadius = 75;
-    //public int oldWaypointIndex;
-    //public static float suspicious;
-    public float leftDetectEdge;
-    public float rightDetectEdge;
     public double relAngle;
-    public float zrotation = 0;
-    private bool seesPlayer;
     private float atan;
+    public bool canMove = true;
 
     public int id;
 
     public static List<int> currentPointIndex = new List<int>();
-    public static List<float> sus = new List<float>();
-    public static List<bool> chase = new List<bool>();
-    public static List<bool> alerting = new List<bool>();
-    public static List<bool> seeing = new List<bool>();
-    public static List<int> oldPointIndex = new List<int>();
-
-
-    [SerializeField] private float speed = 2f;
+    public static List<int> tempList = new List<int>();
     public GameObject Player;
+    [SerializeField] Transform playerTrans;
+    UnityEngine.AI.NavMeshAgent guard;
 
     public Rigidbody2D rb;
 
     RaycastHit2D seeingRay;
 
     Vector3 startingPosition;
+
+
     public void Start()
     {
         Player = GameObject.Find("Player");
+        Waypoint1 = GameObject.Find("Waypoint 1");
         rb = GetComponent<Rigidbody2D>();
 
         wpref = waypoints;
@@ -49,45 +40,53 @@ public class WaypointFollowerTesla : MonoBehaviour
         movingDown = false;
 
         currentPointIndex.Add(0);
-        sus.Add(0);
-        chase.Add(false);
-        alerting.Add(false);
-        seeing.Add(false);
-        oldPointIndex.Add(0);
         startingPosition = transform.position;
+
+        guard = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        guard.updateRotation = false;
+        guard.updateUpAxis = false;
     }
 
     private void Update()
     {
+        if (gameObject.tag == "NPC"){
+            
+        }
         id = gameObject.transform.parent.GetComponent<IDsTesla>().GetID();
 
-        seesPlayer = CheckFor(Player);
-
-        if (guardHealthTesla.stunList[id] > 0)
+        if (canMove)
         {
-            if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < .1f && guardWait <= 1 && !chase[id]) // if you're close and you haven't waited
+            // Debug.Log(Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position));
+            if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1.2f && guardWait <= 1 && !guardChaseTesla.endedChase[id]) // if you're close and you haven't waited
             {
                 guardWait += Time.deltaTime; // wait
-
+            }
+            else if(guardChaseTesla.endedChase[id] && Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1.2f){
+                transform.Rotate(new Vector3(0, 360, 0) * Time.deltaTime);
+                guardWait += Time.deltaTime;
+                //Debug.Log("spinning");
+                if (guardWait >= 1){
+                    //Debug.Log("ended spin");
+                    guardChaseTesla.endedChase[id] = false;
+                }
             }
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
-                currentPointIndex[id]++; // look towards the next waypoint
-                guardChaseTesla.putWaypoint(startingPosition, id);
+                if (gameObject.tag == "NPC"){ currentPointIndex[id] = UnityEngine.Random.Range(0, waypoints.Length); Debug.Log(currentPointIndex[id]); }
+                else { currentPointIndex[id]++; } // look towards the next waypoint
+                guardChaseTesla.putWaypoint(startingPosition, id, Waypoint1);
+                if (gameObject.tag == "NPC") {Debug.Log("moved to next place");}
                 if (currentPointIndex[id] >= waypoints.Length)
                 {
                     currentPointIndex[id] = 0;
                 }
                 guardWait = 0; // reset wait timer
-                if (true)
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed);
-
-                }
+                //transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed[id]);
+                //guard.SetDestination(waypoints[currentPointIndex[id]].transform.position);
             }
-            else if (sus[id] == 0 || sus[id] == 1)
+            else if (guardChaseTesla.sus[id] == 0 || guardChaseTesla.sus[id] == 1)
             {
-                transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed); // move towards waypoint
+                guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?
             {
@@ -106,17 +105,17 @@ public class WaypointFollowerTesla : MonoBehaviour
                 movingDown = false;
 
             }
-            if (Player.transform.position.y > transform.position.y && Player.transform.position.x > transform.position.x) // if the player is up and to the right of us
+            if (waypoints[currentPointIndex[id]].transform.position.y > transform.position.y && waypoints[currentPointIndex[id]].transform.position.x > transform.position.x) // if the current waypoint is up and to the right of us
             {
-                relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI;
+                relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI;
             }
-            else if (Player.transform.position.x < transform.position.x) // if they're to the left of us
+            else if (waypoints[currentPointIndex[id]].transform.position.x < transform.position.x) // if it's to the left of us
             {
-                relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI + 180;
+                relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI + 180;
             }
-            else // if they're down and to the right of us
+            else // if it's down and to the right of us
             {
-                relAngle = Math.Atan((Player.transform.position.y - transform.position.y) / (Player.transform.position.x - transform.position.x)) * 180 / Math.PI + 360;
+                relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI + 360;
             }
             // ^^ these are to take the inverse tangent of the correct 'triangle' ^^
             if (Mathf.Abs(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) > 0.01f)
@@ -132,64 +131,6 @@ public class WaypointFollowerTesla : MonoBehaviour
                 atan = (float)-Math.PI / 2;
             }
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(atan * 180 / Math.PI) - 90 + movingLeft); // point towards current waypoint
-            leftDetectEdge = transform.eulerAngles.z - 270 - detectRadius / 2;
-            rightDetectEdge = transform.eulerAngles.z - 90 + detectRadius / 2;
-            if (leftDetectEdge < -detectRadius / 2)
-            {
-                leftDetectEdge += 360;
-            }
-            if (rightDetectEdge < detectRadius / 2)
-            {
-                rightDetectEdge += 360;
-            } // establish the radii within which the guard can detect the player
-            if (Vector2.Distance(transform.position, Player.transform.position) < detectRadius / 7 && seesPlayer) // if the player is within the guard's light
-            {
-                if (sus[id] < 1) // and the guard isn't suspicious
-                {
-                    sus[id] = sus[id] + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position); // increase the guard's suspicion
-                }
-                else // if they are suspicious, begin chasing the player
-                {
-                    chase[id] = true;
-                    AlertTesla.alerted[id] = -1;
-                    seeing[id] = true;
-                    oldPointIndex[id] = currentPointIndex[id];
-                    currentPointIndex[id] = 0;
-                    detectRadius = 121;
-                    speed = 6f;
-                    sus[id] = 1;
-                    alerting[id] = true;
-                }
-            }
-            else if (AlertTesla.alerted[id] > -1)
-            {
-                detectRadius = 121;
-                speed = 6f;
-                oldPointIndex[id] = currentPointIndex[id];
-                currentPointIndex[id] = 0;
-            }
-            else if (sus[id] > 0) // if they're suspicious and the player isn't within their light, decrease their suspicion
-            {
-                sus[id] = sus[id] - 0.5f * Time.deltaTime;
-                AlertTesla.alerted[id] = -1;
-                alerting[id] = false;
-                seeing[id] = false;
-            }
-            else // if none of those are true, end the chase
-            {
-                chase[id] = false;
-                detectRadius = 81;
-                speed = 2f;
-                sus[id] = 0;
-                alerting[id] = false;
-                seeing[id] = false;
-            }
-            zrotation = transform.eulerAngles.z;
-        }
-        else if (guardHealthTesla.dyingList[id]) // plat our cute little death animation when the guard dies
-        {
-            zrotation += 360 * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, zrotation);
         }
         else
         {
@@ -197,44 +138,8 @@ public class WaypointFollowerTesla : MonoBehaviour
             rb.angularVelocity /= 1.02f;
         }
     }
-    private bool CheckFor(GameObject cf)
-    {
-        for (float i = 0; i < 50; i++)
-        {
-            if (!movingDown && movingLeft != 180)
-            {
-                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin((((50 - i) * (leftDetectEdge + 360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * (leftDetectEdge + 360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
-            }
-            else
-            {
-                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
-            }
-            if (seeingRay.collider != null)
-            {
-                if (seeingRay.collider.gameObject == cf)
-                {
-                    guardChaseTesla.putWaypoint(seeingRay.collider.gameObject.transform.position, id);
-                    return true;
-                }
-            }
-            if (!movingDown && movingLeft == 180)
-            {
-                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(((i * (rightDetectEdge - 360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * (rightDetectEdge - 360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
-            }
-            else
-            {
-                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(((i * rightDetectEdge * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * rightDetectEdge * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
-
-            }
-            if (seeingRay.collider != null)
-            {
-                if (seeingRay.collider.gameObject == cf)
-                {
-                    guardChaseTesla.putWaypoint(seeingRay.collider.gameObject.transform.position, id);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }
+
+
+
+

@@ -13,6 +13,7 @@ public class buttonScriptTesla : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.GetComponent<SpriteRenderer>().sprite = on;
         input = GameObject.Find("UI").GetComponent<InputControllerTesla>();
     }
 

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
-guid: 17ae0fd4432d8db4181de538d6d4da23
+<<<<<<<< HEAD:Assets/Scenes/PuzzleStealth/Tesla/Elite Guard.prefab.meta
+guid: 2acb2bf94b4bd42a881097c4e6a17ee3
+PrefabImporter:
+========
+guid: 451d227826f747d4cbbda998ff99e78b
 DefaultImporter:
+>>>>>>>> b770c3d2f1e9690c0dbb07dd0f765ce40ed6d90b:Assets/Scenes/PuzzleStealth/Alexis/Materials/decorations/buttonon.pdn.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

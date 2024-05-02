@@ -11,7 +11,7 @@ public class playerHealthTesla : MonoBehaviour
 
     public int health;
     bool dead = false;
-    
+    float stayTime;
 
     void Start()
     {
@@ -20,6 +20,7 @@ public class playerHealthTesla : MonoBehaviour
         endText = GameObject.Find("Game Over");
         endScreen.enabled = false;
         endText.SetActive(false);
+        stayTime = 0;
     }
     public void Awake()
     {
@@ -30,7 +31,21 @@ public class playerHealthTesla : MonoBehaviour
         if (collision.tag == "DamagePlayer")
         {
             health--;
+            Debug.Log("hit, health = " + health);
         } // if it's hit by something damaging, decrease health
+        if (collision.name.Contains("laser")){
+            stayTime = 0;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D other){
+        if (other.name.Contains("laser")){
+            stayTime += Time.deltaTime;
+            if (stayTime >= 1){
+                stayTime = 0;
+                health--;
+                Debug.Log("laser stay, health = " + health);
+            }
+        }
     }
 
     IEnumerator Death()
