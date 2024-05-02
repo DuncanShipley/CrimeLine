@@ -22,7 +22,7 @@ public class doorcodeAlexis : MonoBehaviour
     // Colider
     private void Start()
     {
-        input = GameObject.Find("ScreenUI").GetComponent<InputControllerAlexis>();
+        input = GameObject.Find("Screen UI").GetComponent<InputControllerAlexis>();
         keychain = GameObject.Find("Player").GetComponent<KeychainAlexis>();
         textbox = GameObject.Find("bigTextbox").GetComponent<bigTextboxAlexis>();
     }

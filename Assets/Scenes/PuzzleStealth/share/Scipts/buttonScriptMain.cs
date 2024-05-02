@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buttonScriptA : MonoBehaviour
+public class buttonScriptMain : MonoBehaviour
 {
     public GameObject laser;
     public Sprite on;

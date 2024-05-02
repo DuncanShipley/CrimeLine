@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class characterSelector : MonoBehaviour
+public class characterSelectorMain : MonoBehaviour
 {
     public GameObject button1;
     public GameObject button2;
