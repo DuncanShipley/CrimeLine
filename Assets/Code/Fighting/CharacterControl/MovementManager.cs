@@ -23,8 +23,7 @@ namespace Assets.Code.Fighting.CharacterControl
         public Vector3 GetVector(MovementAction[] move)
         {
             Vector3 vec = new Vector3();
-            foreach (var item in move)//more stuff needed maybe idk
-            {
+            foreach (var item in move){//we have to do more stuff
                 switch (item)
                 {
                     case MovementAction.Jump:
@@ -39,7 +38,7 @@ namespace Assets.Code.Fighting.CharacterControl
                         DirFacing = 0;
                         break;
                     case MovementAction.Up:
-                        //how do we want to do crouching and like looking up or smthn
+                        //how do we want to do crouching and like looking up or smth
                         DirFacing = 1;
                         break;
                     case MovementAction.Down:

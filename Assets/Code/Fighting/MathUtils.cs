@@ -29,12 +29,11 @@ namespace Assets.Code.Fighting
             return Physics.OverlapBox(component.transform.position, component.GetComponents<BoxCollider>()[0].size, component.transform.rotation, 0).ToImmutableList().Count > 0;
         }
 
-
-        public static bool isTouching(this Component component, string tag)
+        public static bool TouchingGround(this Collider collider)
         {
-            return Physics.OverlapBox(component.transform.position, component.GetComponents<BoxCollider>()[0].size, component.transform.rotation, 0)
-                .ToImmutableList()
-                .FindAll(i => i.CompareTag(tag)).Count > 0;
+            
+            float distToGround = collider.bounds.extents.y;
+            return Physics.Raycast(collider.transform.position, -Vector3.up, distToGround + 0.1f);
         }
 
     }

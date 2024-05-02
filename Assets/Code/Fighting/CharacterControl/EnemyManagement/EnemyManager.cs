@@ -37,7 +37,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         {
             foreach (Enemy enemy in ActiveChildren)
             {
-                EnemyAiInput input = BuildInputs(enemy.actor, FindObjectOfType<PCControl>().gameObject.transform);
+                EnemyAiInput input = BuildInputs(enemy.actor, FindObjectOfType<PCControl>().gameObject.GetComponent<Collider>());
                 (AttackAction, MovementAction[]) action = enemy.brain.Output(input);
                 //applly the movements
                 enemy.actor.GetComponent<ActionManager>().TryAction(action.Item1);
@@ -46,13 +46,13 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
             }
         }
 
-        private EnemyAiInput BuildInputs(GameObject enemy, Transform playerPosition)
+        private EnemyAiInput BuildInputs(GameObject enemy, Collider playerPosition)
         {
-            float distanceToPC = MathUtils.EuclideanNorm3(enemy.transform.position, playerPosition.position);
-            bool playerTouchingGround = playerPosition.isTouching("ground");
-            bool touchingGround = enemy.transform.isTouching("ground");
+            float distanceToPC = MathUtils.EuclideanNorm3(enemy.transform.position, playerPosition.bounds.center);
+            bool playerTouchingGround = playerPosition.TouchingGround();
+            bool touchingGround = enemy.GetComponent<Collider>().TouchingGround();
             AnimatorStateInfo animation = enemy.TryGetComponent<Animator>(out Animator comp) ? comp.GetCurrentAnimatorStateInfo(0) : throw new MissingComponentException("Enemy animator component not found");
-            Vector3 PCPosition = playerPosition.position;
+            Vector3 PCPosition = playerPosition.bounds.center;
   
             return new EnemyAiInput
                 (
