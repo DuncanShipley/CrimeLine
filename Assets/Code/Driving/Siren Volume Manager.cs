@@ -13,8 +13,8 @@ public class SirenVolumeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Music.volume = 1;
         Siren.volume = 0;
+        Music.volume = 1;
     }
 
     // Update is called once per frame
