@@ -8,10 +8,12 @@ public class AlertMain : MonoBehaviour
     public static List<GameObject> guards = new List<GameObject>();
     public static List<int> alerted = new List<int>();
     public int alert;
+    GameObject Waypoint1;
 
     // Start is called before the first frame update
     void Start()
     {
+        Waypoint1 = GameObject.Find("Waypoint 1");
         guards.Add(gameObject);
         alerted.Add(-1);
     }
@@ -30,12 +32,12 @@ public class AlertMain : MonoBehaviour
             int otherID = collision.gameObject.transform.parent.parent.GetComponent<IDsMain>().GetID();
 
 
-            if (WaypointFollowerMain.alerting[otherID] && !WaypointFollowerMain.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
+            if (guardChaseMain.alerting[otherID] && !guardChaseMain.seeing[id]) // if it gets close to a guard that's chasing and can't see the player
             {
                 alerted[id] = otherID; // set alerted for the non-suspicious guard to the id of the sus one
-                guardChaseMain.putWaypoint(collision.gameObject.transform.parent.position, id);
+                guardChaseMain.putWaypoint(collision.gameObject.transform.parent.position, id, Waypoint1, true);
             }
-            else if (!WaypointFollowerMain.alerting[otherID]) // if the other guard is no longer suspicious
+            else if (!guardChaseMain.alerting[otherID]) // if the other guard is no longer suspicious
             {
                 alerted[id] = -1; // end alerted
             }
