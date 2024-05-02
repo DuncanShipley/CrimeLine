@@ -10,8 +10,7 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
 public class InkManager : MonoBehaviour
-{
-    
+{    
     void Awake()
     {  
         cm = GetComponent<CharacterManager>();
@@ -20,7 +19,6 @@ public class InkManager : MonoBehaviour
         IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
         StartStory();
     }
-
     private void Update()
     {
         // Displays a new line every time you click unless there is a choice 
@@ -54,14 +52,11 @@ public class InkManager : MonoBehaviour
         cm.SetEmotion();
     }
 
-   
-    
    /// <summary>
    /// Main Function, Destroys old content and choices. Creates new line of dialouge and any choices
    /// </summary>
     void RefreshView()
     {
-        
         RemoveText();
         RemoveButtons();
         //Displays one line of text at a time
@@ -71,14 +66,7 @@ public class InkManager : MonoBehaviour
             cm.SetSpeaker();
             cm.SetEmotion();
             if (story.canContinue==true) {
-                // Continue gets the next line of the story
-                
-                //string text = story.Continue();
-                 // This removes any white space from the text.
-                 //text = text.Trim();
-                 // Display the text on screen!
-                 //CreateContentView(text);
-                 StartCoroutine(DisplayLine(story.Continue()));
+                StartCoroutine(DisplayLine(story.Continue()));
                 LD --;
             }
         }

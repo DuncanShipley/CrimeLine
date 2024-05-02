@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ink External Functions
+  - Emotions Manager
   layers:
   - Default
   - TransparentFX

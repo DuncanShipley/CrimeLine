@@ -6,8 +6,8 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 { 
     InkExternalFunctions IKF;
-    Emotions EM;
     public List<GameObject> CharacterList = new List<GameObject>();
+    List<GameObject> activeSpeakers = new List<GameObject>();
     private string ActiveSpeaker;
     public string ActiveEmotion;
     [SerializeField] public GameObject[] characters;
@@ -15,7 +15,6 @@ public class CharacterManager : MonoBehaviour
      void Awake()
     {
          IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
-         EM = GameObject.FindGameObjectWithTag("Emotions Manager").GetComponent<Emotions>();
     }
     void Start()
     {     
@@ -50,7 +49,11 @@ public class CharacterManager : MonoBehaviour
             if(ActiveEmotion != IKF.CurrentEmotion){
                 Debug.Log("Setting Emotion to " + IKF.CurrentEmotion);
                 ActiveEmotion = IKF.CurrentEmotion;
-                EM.changestate(ActiveEmotion);
+              /*  foreach(gameObject speaker in activeSpeakers){
+                    if(speaker.gameObject.activeInHierachy){
+                        speaker.changestate(ActiveEmotion);
+                    }
+                }*/
             }
         }
     }

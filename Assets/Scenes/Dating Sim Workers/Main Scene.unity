@@ -224,7 +224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterList: []
-  ActiveSpeaker: 
   ActiveEmotion: 
   characters:
   - {fileID: 5345753755031983825, guid: 3ace9d2c7b4f58740ba36eddd3034ce2, type: 3}
@@ -254,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10f1e34639441148a14f36ad176aa72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSONAsset: {fileID: 4900000, guid: 4c6b10ac8e91b82408f789c550c3d0ac, type: 3}
+  inkJSONAsset: {fileID: 4900000, guid: db2290e9aa28d4eee8eadeb2db1bacb1, type: 3}
   canvas: {fileID: 1194130575}
   textPrefab: {fileID: 1212636373746908506, guid: 77181b55049b10f41bc38a21276a7df2, type: 3}
   buttonPrefab: {fileID: 11455116, guid: 37c108a6c38964f79a6621eccb33ddc1, type: 3}
@@ -358,8 +357,8 @@ Canvas:
   m_GameObject: {fileID: 491119759}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1645240109}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -471,7 +470,7 @@ SpriteRenderer:
   m_SortingLayerID: 1168855943
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1797a76f57a55664b9b252f38d0f14bc, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -479,7 +478,7 @@ SpriteRenderer:
   m_Size: {x: 46.079998, y: 34.559998}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &523751081
@@ -559,6 +558,52 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 506.53693, y: 146.53735, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &525688778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 525688780}
+  - component: {fileID: 525688779}
+  m_Layer: 0
+  m_Name: Emotions Manager
+  m_TagString: Emotions Manager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &525688779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525688778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdf26d4fa2f6d84ea02ba86f95c9045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emotionSprite: []
+  Mystate: 2
+--- !u!4 &525688780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525688778}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 219.08577, y: -160.39044, z: 2936.728}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -949,7 +994,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterList: []
-  ActiveSpeaker: 
   ActiveEmotion: 
   characters: []
   canvas: {fileID: 0}
@@ -1267,3 +1311,4 @@ SceneRoots:
   - {fileID: 1557187676}
   - {fileID: 970840166}
   - {fileID: 885806200}
+  - {fileID: 525688780}

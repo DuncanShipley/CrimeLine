@@ -232,6 +232,7 @@ Guard: *sniff* that was beautiful, I'm honestly moved and so glad I could meet a
 
 
 ==Management==
+~SetCharacter("Manager")
 You: Is this how you normally treat patrons of this establishment? If so I must inform the management of the poor treatment of us customers
 Guard: Hey listen we don’t have to go there, i’m sorry if I offended you, i’m just doin my job here.
 *[Threaten Management]->ThreatenM
