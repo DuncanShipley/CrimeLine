@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class WaypointFollowerTesla : MonoBehaviour
+public class WaypointFollowerMain : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
     public GameObject Waypoint1;
@@ -17,7 +17,9 @@ public class WaypointFollowerTesla : MonoBehaviour
     public int id;
 
     public static List<int> currentPointIndex = new List<int>();
-    public static List<int> tempList = new List<int>();
+
+
+    [SerializeField] public static List<float> speed = new List<float>();
     public GameObject Player;
     [SerializeField] Transform playerTrans;
     UnityEngine.AI.NavMeshAgent guard;
@@ -27,7 +29,6 @@ public class WaypointFollowerTesla : MonoBehaviour
     RaycastHit2D seeingRay;
 
     Vector3 startingPosition;
-
 
     public void Start()
     {
@@ -40,6 +41,7 @@ public class WaypointFollowerTesla : MonoBehaviour
         movingDown = false;
 
         currentPointIndex.Add(0);
+        speed.Add(0);
         startingPosition = transform.position;
 
         guard = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -49,33 +51,20 @@ public class WaypointFollowerTesla : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.tag == "NPC"){
-            
-        }
-        id = gameObject.transform.parent.GetComponent<IDsTesla>().GetID();
+        id = gameObject.transform.parent.GetComponent<IDsMain>().GetID();
 
         if (canMove)
         {
-            // Debug.Log(Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position));
-            if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1.2f && guardWait <= 1 && !guardChaseTesla.endedChase[id]) // if you're close and you haven't waited
+            
+            if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait <= 1) // if you're close and you haven't waited
             {
                 guardWait += Time.deltaTime; // wait
-            }
-            else if(guardChaseTesla.endedChase[id] && Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1.2f){
-                transform.Rotate(new Vector3(0, 360, 0) * Time.deltaTime);
-                guardWait += Time.deltaTime;
-                //Debug.Log("spinning");
-                if (guardWait >= 1){
-                    //Debug.Log("ended spin");
-                    guardChaseTesla.endedChase[id] = false;
-                }
+
             }
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
-                if (gameObject.tag == "NPC"){ currentPointIndex[id] = UnityEngine.Random.Range(0, waypoints.Length); Debug.Log(currentPointIndex[id]); }
-                else { currentPointIndex[id]++; } // look towards the next waypoint
-                guardChaseTesla.putWaypoint(startingPosition, id, Waypoint1);
-                if (gameObject.tag == "NPC") {Debug.Log("moved to next place");}
+                currentPointIndex[id]++; // look towards the next waypoint
+                guardChaseMain.putWaypoint(startingPosition, id, Waypoint1);
                 if (currentPointIndex[id] >= waypoints.Length)
                 {
                     currentPointIndex[id] = 0;
@@ -84,8 +73,9 @@ public class WaypointFollowerTesla : MonoBehaviour
                 //transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPointIndex[id]].transform.position, Time.deltaTime * speed[id]);
                 //guard.SetDestination(waypoints[currentPointIndex[id]].transform.position);
             }
-            else if (guardChaseTesla.sus[id] == 0 || guardChaseTesla.sus[id] == 1)
+            else if (guardChaseMain.sus[id] == 0 || guardChaseMain.sus[id] == 1)
             {
+                Debug.Log("Destination waypoint: " + waypoints[currentPointIndex[id]]);
                 guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?

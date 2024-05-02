@@ -65,7 +65,7 @@ public class NavWaypointFollowerTesla : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    { /*
         id = gameObject.transform.parent.GetComponent<IDsTesla>().GetID();
 
         seesPlayer = CheckFor(Player);
@@ -238,6 +238,6 @@ public class NavWaypointFollowerTesla : MonoBehaviour
                 }
             }
         }
-        return false;
+        return false; */
     }
 }

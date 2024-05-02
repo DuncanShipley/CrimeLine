@@ -238,6 +238,8 @@ GameObject:
   - component: {fileID: 2616301274672080652}
   - component: {fileID: 903482836315137524}
   - component: {fileID: 1330459101925941382}
+  - component: {fileID: 2150877146045638198}
+  - component: {fileID: 9038952648403121668}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Guard
@@ -333,11 +335,13 @@ MonoBehaviour:
   - {fileID: 6379318685077126908}
   - {fileID: 964578808346541918}
   - {fileID: 8287346377835657006}
-  wpref: []
-  oldWaypointIndex: 0
+  Waypoint1: {fileID: 0}
+  relAngle: 0
+  canMove: 1
   id: 0
-  speed: 2
   Player: {fileID: 0}
+  playerTrans: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &6673728498950165926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +355,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  healthVar: 0
 --- !u!61 &2616301274672080652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -439,6 +442,46 @@ MonoBehaviour:
   id: 0
   projectile: {fileID: 5003787750461934991}
   waitTime: 0.25
+--- !u!195 &2150877146045638198
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963367268244224560}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 10
+  avoidancePriority: 40
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &9038952648403121668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963367268244224560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54acec1f57cc444d8acb5765775b678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Waypoint1: {fileID: 0}
+  leftDetectEdge: 0
+  rightDetectEdge: 0
+  endedChaseVar: 0
+  id: 0
 --- !u!1 &5003787750461934991
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +747,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9208622136490275828}
-  - component: {fileID: 5430442222470773045}
   m_Layer: 0
   m_Name: Waypoint 1
   m_TagString: Untagged
@@ -727,20 +769,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7459191875886613762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5430442222470773045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7674905096276641158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c54acec1f57cc444d8acb5765775b678, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  id: 0
 --- !u!1 &8287346377835657006
 GameObject:
   m_ObjectHideFlags: 0

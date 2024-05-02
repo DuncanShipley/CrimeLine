@@ -193,3 +193,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moving: 0
   waypoints: []
+  lT: {fileID: 0}
+  gT: {fileID: 0}
