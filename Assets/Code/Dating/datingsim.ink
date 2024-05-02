@@ -1,8 +1,8 @@
-EXTERNAL SetCharacter(CurrentCharacter)
-EXTERNAL SetEmotion(Emotion)
-EXTERNAL SetBackground(Background)
+//EXTERNAL SetCharacter(CurrentCharacter)
+//EXTERNAL SetEmotion(Emotion)
+//EXTERNAL SetBackground(Background)
 
-~ SetCharacter("Guard")
+//~ SetCharacter("Guard")//
 Skopje Macedonia, 2023 <br>Komercijalna Bank
 -> Bank
 
@@ -47,7 +47,7 @@ Guard: Alright please step outside.
 You: Pop quiz! 
 Guard:What?
 {Fire:
-<>Manager: An excellent Idea.
+Manager: An excellent Idea.
 }
 ->quizQ
 ==quizQ==
@@ -72,7 +72,7 @@ You: Ooh close but no cigar, the answer I was looking for was Mustelidae.
 Manager: How dissapointing.
 Guard: This is hardly relevant to anything!
 Manager: Next question.
-Guard: Oh brother come on-
+Guard: Ohhh brother come on-
 -else:
 Guard: ...??? I- I'm putting an end to this charade
 }
@@ -83,7 +83,11 @@ You: Which famous assination sparked the conflict for world war 1?
 {Fire:
 Guard: This is absurd! Who on earth knows that?
 Manager: I believe it was arch duke Franz Ferdinand
-You: Correct! See I believe this brings your character into question more than my own.
+You: Correct! See I believe this brings your character into question more than my own. 
+You: After all it's common knowledge really. 
+You: If you don't learn history you are doomed to repeat it. 
+You: This defacit of knowledge calls into question your responsibillity.
+Manager: Precisely.
 ->quizQ
 -else:
 Guard: Alright step outside now.
@@ -99,7 +103,7 @@ You: Correct!
 *[Ask another Neko Princess Rangers question] ->NekoQ
 ->END
 ==Fandom==
-how did you know the answer? And so fast. Are you an NPR fan?
+You: how did you know the answer? And so fast. Are you an NPR fan?
 Guard: Am I an NPR fan? Please, you don't even know the half of it.
 You: Have you watched every season of g1?
 Guard: All of them and the movie
@@ -109,15 +113,39 @@ You: Have you watched Galaxy SAGA reboot?
 Guard: Unfourtanetly yes, all six + the fillers
 You: Yikes brother, been there done that.
 ->Questions
-
--> END
-
-
 ==NekoQ==
 You: Well then, In the NovaBaron arc, what does Fumie say that causes NovaBaron to lose his cool and reveal his alternate persona, Lavernus.
-Guard: "I cannot accept because to do so would be a betreyal of my kin, it would make no better than yourself.
+Guard: "I cannot accept your offer, because to do so would be a betreyal of my kin, it would make no better than yourself.
 No suffering you can put me through will hurt more than knowing my heart has told lies."
+{oshi: 
 You: Off the top? Wow! You truly are who you say you are, a devout Fumie fan.
+}
+{Fire && History:
+You: Off the top? Very impressive. Perhaps I've misjudged you.
+Manager: What does this mean for him?
+    You: There's no doubt about it. He has learned the lessons that history teaches us.
+    You: Even if through a different medium he is just as cultured as us.
+    Manager: What!? Please, do you really beleive so? With all do respect the idea seems far fetched. 
+    Guard: No it's true.
+    Guard: I have NPR to thank for becoming the person I am today.
+}
+{Fire && not History:
+You: Off the top? Very impressive. Perhaps I've misjudged you.
+Manager: What do you mean by that?
+You: There's no doubt about it. He is very cultured. I believe he has proved himself in this regard.
+Manager: Err well how do you suppose that having vast knowledge of this, 
+Space- no, Galaxy Princess Rangers or whatever it was called constitutes being cultured?
+Guard: Have you considered that maybe you are the uncultured one?
+You: He brings up a fair point.
+Manager: Ok well now hold on. Nevermind me let's just stay on track.
+//-> Move on back to fired or -> ban together against manager (maybe)
+}
+{not Fire: 
+You: Off the top? Very impressive. 
+}
+{oshi: 
+You: Off the top? Wow! You truly are who you say you are, a devout Fumie fan.
+}
 -> Questions
 ==oshi==
 You: Who is your oshi? In G1 obviously.
@@ -145,14 +173,15 @@ You: Gotta give you credit man that's super impressive.
 ==NekoCon==
 You: Are you going to NekoCon?
 Guard: No but I really want to. It's too expensive and I wouldn't be able to go because it's on a work day anywas.
-You: Well, keep this between just you and me alright?
+You: {Fire:*Whisper* }Well, keep this between just you and me alright?
 Guard: Sure sure.
-You: I can get you the hookup if your willing to take the day off, I'm a vip and I can bring one +1 but I don't have any friends who can come with.
+You: I can get you the hookup if your willing to take the day off, I'm a vip and I can bring a +1 but I don't have any friends who can come with.
 Guard: Really!? You would let me come along? Even though we've just met?
 You: Look I have the Vip pass right here, if I can let one more person come along why not help out a fellow fan.
-Guard: *sniff* I can't thank you enough are you really sure? I can driv us there if you need.
+Guard: *sniff* I can't thank you enough are you really sure? I can drive us there if you need.
 You: Yes thats perfect! Let's get going it starts in 3 hours!
-Guard: I can't believe this! it's almost two good to be true. Alright then I'll tell my boss I have to leave for a family emergency.
+{not Fire:Guard: I can't believe this! it's almost two good to be true. Alright then I'll tell my boss I have to leave for a family emergency.}
+{Fire:Manager: Go where exactly?} //convinceM
 ->END
 ==Akane==
 You: Akane, Easy! She was girl power before girl power. 
@@ -204,28 +233,24 @@ Guard: Whatever you say I guess
 ->Questions
 ==Fumie==
 You: Much like yourself I believe Fumie is the best written character in the series.
-You: For instance during the NovaBaron arc Episode 97:"I cannot accept because to do so would be a betreyal of my kin, it would make no better than yourself.
-You: No suffering you can put me through will hurt more than knowing my heart has told lies." A line delivered so perfectly I could never look at the series the same. 
-You: On my first watch through I shed tears, much like every subsequent watchthrough.
-You: The single scene was able to found my beleif that she was the culmination and synthesis of Haneyama sensei's genius in theater, media, and culture. 
-You: This is supported by the fact that haneyama's own favorite scene of the anime adaption is during the Univers Tour arc Episode 54:
+{not NekoQ: You: For instance during the NovaBaron arc Episode 97:"I cannot accept because to do so would be a betreyal of my kin, it would make no better than yourself.}
+{not NekoQ:You: No suffering you can put me through will hurt more than knowing my heart has told lies." A line delivered so perfectly I could never look at the series the same.} 
+{not NekoQ:You: On my first watch through I shed tears, much like every subsequent watchthrough.}
+{not NekoQ:You: The single scene was able to found my beleif that} {NekoQ:You: }she was the culmination and synthesis of Haneyama sensei's genius in theater, media, and culture. 
+You: This is supported by the fact that haneyama's own favorite scene of the anime adaption is during the Universe Tour arc Episode 54:
 You: Fumie stands in the abandoned palace garden that has been unkept and overun by fauna and flora and yet light shines brightly through.
-You: The symbolism is genius, kohaku literally peers into Fumie's heart(the castle), unkept(the emotions and trauma she ignores and leaves unchecked), 
-You: but in this moment we see her tranquility as she's brought back to the place of her trauma(the castle) and the remanant of what was her old life. 
+You: The symbolism is genius, kohaku literally peers into Fumie's heart(the castle), unkept (the emotions and trauma she ignores and leaves unchecked), 
+You: but in this moment we see her tranquility as she's brought back to the place of her trauma(also the castle in a literal sense) and the remanant of what was her old life. 
 You: It's a bittersweet moment that solidifies g1 as superior to all other NPR media. The piano musical theme being so subtle and quiet plays so well into this scene it truly boggles my mind! Still iconic after all this time. 
-You: Hatred, pain, and war are the emotions that govern people which destoys them and the world. 
-You: Fumie's character arc teaches us to love our fellow people, friends, family, especially those who live on earth with us. We are not the only ones who live on earth. Be loving and considerate to them as well. 
+You: Fumie's character arc teaches us to love our fellow people, friends, family, especially all of those who live on earth with us. We are not the only ones who live on earth. Be loving and considerate to them as well. 
 Guard: *sniff* that was beautiful, I'm honestly moved and so glad I could meet another like minded individual.
 ->Questions
 ==Questions==
-{
-    - NekoQ:
     *[Ask who their oshi is]-> oshi
     *[Ask if he's played the games]-> NekoG
     *[Ask about Neko Con]-> NekoCon
-    - else:
-    *[Ask another Neko Princess Rangers question]-> NekoQ
-}
+
+    *{not NekoQ}[Ask another Neko Princess Rangers question]-> NekoQ
 
 
 
@@ -424,7 +449,7 @@ You: Shit why's he over here?? And moreover why is he coming this way?
 You: The guard should be on the hunt now.
 Barista: Welcome, how can I help you?
 *[Order a drink]->Order
-//*[Bribe to switch outfits/places]->Disguise*[Hide in the bathroom]->Bathroom//
+//*[Bribe to switch outfits/places]->Disguise*[Hide in the bathroom]->Bathroom
 ==RoofHide==
 You: The guard should be on the hunt now.
 ->END
@@ -443,7 +468,7 @@ You: The guard should be on the hunt now.
 You: Yeah tell you what, can I get a grande, flat white, with an extra shot?
 Cashier: Yeah that'll be 5.99$
 Cashier: And what name should I call for your order?
-You: Kennedy.
+You: Robin
 Cashier: Would you like to leave a tip?
 You: Here's a dollar.
 Cashier: Thank you, your order will be right on it's way.
@@ -457,7 +482,7 @@ You: Although I'm not so sure the law lets security guards put people in choke h
 Guard: I'm glad that at the very least you have the brains to recognize when you're out of options. 
 Guard: Now lets head back so I can prove myself to the boss.
 *[Surprise Counterattack]->Failedatk
-//*[Walk back]->//
+//*[WalkBack]->//
 *[Seduce]->Seduce
 *[Bribe]->Bribe
 ==Bribe==
@@ -475,7 +500,7 @@ Guard: HAH that's rich,
 Guard: Now let's get this over with and head back.
 *[100$]->Hundred
 *[1000$]->Thousand
-//*[Walk back]->//
+//*[WalkBack]->//
 *[Surprise Counterattack]->Failedatk
 *[Seduce]->Seduce
 ==Hundred==
@@ -485,15 +510,15 @@ You: How do you know your getting fired? It's really not that deep and i'm sure 
 Guard: Then clearly you don't know him well enough,
 Guard: No disrespect to him.
 *[1000$]->Thousand
-//*[Walk back]->
-//*[Surprise Counterattack]->CounteratkG
+//*[WalkBack]->
+*[Surprise Counterattack]->CounteratkG
 *[Seduce]->Seduce
 ==Thousand==
 You: Thousand dollars final offer.
 Guard: How do I know you even got a thousand dollars lying around, go ahead lets see that stack.
 You: Now hold on, I don't got it on me, maybe I give you my contact info, we figure this out when I've withdrawn that money.
 Guard: Well if you're in such a rush why don't we head back to the bank and withdraw it there?
-//*[Walk back]->
+//*[WalkBack]->
 *[Surprise Counterattack]->Failedatk
 *[Seduce]->Seduce
 ==Failedatk==
@@ -506,7 +531,13 @@ Guard: We're headed back,
 Guard: And don't even think about trying anything funny.
 You: That's quite the tight grip there mister.
 Guard: ...
-//*[Walk back]->
+//*[WalkBack]->
+->END
+==CounteratkG==
+You: But will he expect this?
+/*Fighting game noise*/
+/*Pause*/
+You: Nice I can't believe that actually worked. This guy is a real oaf.
 ->END
 ==Seduce==
 You: Hold on now we can work something out, 
@@ -517,6 +548,17 @@ You: After all this tight grip has got me feeling a certain sorta way. You don't
 Guard: ... I uh
 Guard: AhEm uh, hehe...  what sorta service do you have in mind?
 You: Whatever your in the mood for darling.
-Guard:
+Guard: Your simple tricks won't work on me
+You: Perhaps I'll just show you what I mean.
+You: As they say, actions speak louder than words.
+//Fade to black and then unzip noise
+Guard: That was incredible. I can't even move. I need a second just to cool off.
+->END
+==WalkBack==
+You: Alright, alright I submit. 
+You: Let's head back.
+Guard: Good. Don't try anything funny.
+//fade to black back to the Bank
+Manager: 
 ->END
 
