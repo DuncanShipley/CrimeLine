@@ -4,47 +4,55 @@ using UnityEngine;
 
 public abstract class StagedAttack : MonoBehaviour
 {
-    public virtual GameObject[] Stages {get; set;}
+    //todo get something      dun dun dun dun dun dun dun dun dun dun dun dn dun dun dun dun dun dun dun dun 
+
+    public virtual int Stages {get; set;}
 
     public void Awake()
     {
         Reset();
-        Stages[0].SetActive(true);
+        GetChildAt(0).SetActive(true);
         Invoke("NextStage", 1);
     }
 
     public void NextStage()
     {
-        int FirstActive = FindFirstAcive(Stages);
-        if (FirstActive == Stages.Length)
+        int stage = FindStage(Stages);
+        if (stage == Stages-1)
         {
             Reset();
             return;
         }
-        Stages[0].SetActive(false);
-        Stages[1].SetActive(true);
+        GetChildAt(stage).SetActive(false);
+        GetChildAt(stage+1).SetActive(true);
         Invoke("NextStage", 1);
     }
 
-    public int FindFirstAcive(GameObject[] gameObects)
+    public int FindStage(int stages)
     {
-        int count = 0;
-        foreach(var Object in gameObects)
+
+        for(int i = 0; i<stages; i++)
         {
-            if (Object.activeSelf)
+            if (GetChildAt(i).activeSelf)
             {
-                return count;
+                return i;
             }
-            count++;
+
         }
         return 0;
     }
 
+    ref GameObject GetChildAt(int i)
+    {
+        ref GameObject child = this.gameObject.transform.GetChild(i).gameObject;
+        return ref child;
+    }
+
     public void Reset()
     {
-        foreach(var Object in Stages)
+        for(int i = 0; i<Stages; i++)
         {
-            Object.SetActive(false);
+            GetChildAt(i).SetActive(false);
         }
     }
 }
