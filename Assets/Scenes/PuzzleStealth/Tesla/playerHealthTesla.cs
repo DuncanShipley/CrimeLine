@@ -31,7 +31,6 @@ public class playerHealthTesla : MonoBehaviour
         if (collision.tag == "DamagePlayer")
         {
             health--;
-            Debug.Log("hit, health = " + health);
         } // if it's hit by something damaging, decrease health
         if (collision.name.Contains("laser")){
             stayTime = 0;

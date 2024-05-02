@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaypointFollowerTesla : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
-    public GameObject Waypoint1;
+    public Transform Waypoint1;
     public static GameObject[] wpref;
     private float guardWait = 0f;
     int movingLeft;
@@ -32,7 +32,7 @@ public class WaypointFollowerTesla : MonoBehaviour
     public void Start()
     {
         Player = GameObject.Find("Player");
-        Waypoint1 = GameObject.Find("Waypoint 1");
+        Waypoint1 = this.gameObject.transform.parent.GetChild(1);
         rb = GetComponent<Rigidbody2D>();
 
         wpref = waypoints;
@@ -49,9 +49,6 @@ public class WaypointFollowerTesla : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.tag == "NPC"){
-            
-        }
         id = gameObject.transform.parent.GetComponent<IDsTesla>().GetID();
 
         if (canMove)
@@ -72,10 +69,9 @@ public class WaypointFollowerTesla : MonoBehaviour
             }
             else if (guardWait >= 1) // once you've waited (and are still close)
             {
-                if (gameObject.tag == "NPC"){ currentPointIndex[id] = UnityEngine.Random.Range(0, waypoints.Length); Debug.Log(currentPointIndex[id]); }
+                if (gameObject.tag == "NPC") { currentPointIndex[id] = UnityEngine.Random.Range(0, waypoints.Length); }
                 else { currentPointIndex[id]++; } // look towards the next waypoint
                 guardChaseTesla.putWaypoint(startingPosition, id, Waypoint1);
-                if (gameObject.tag == "NPC") {Debug.Log("moved to next place");}
                 if (currentPointIndex[id] >= waypoints.Length)
                 {
                     currentPointIndex[id] = 0;

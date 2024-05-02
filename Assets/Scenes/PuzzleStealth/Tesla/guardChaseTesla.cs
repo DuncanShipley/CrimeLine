@@ -6,7 +6,7 @@ using UnityEngine;
 public class guardChaseTesla : MonoBehaviour
 {
     public GameObject Player;
-    public GameObject Waypoint1;
+    public Transform Waypoint1;
     public static List<Vector3> startingPosition = new List<Vector3>();
     public static List<Vector3> positionList = new List<Vector3>();
 
@@ -39,7 +39,7 @@ public class guardChaseTesla : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
-        Waypoint1 = GameObject.Find("Waypoint 1");
+        Waypoint1 = this.gameObject.transform.parent.GetChild(1);
         startingPosition.Add(Vector3.zero);
         positionList.Add(Vector3.zero);
 
@@ -59,7 +59,7 @@ public class guardChaseTesla : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(timeCheck);
+        Debug.Log(Waypoint1);
         endedChaseVar = endedChase[id];
         GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed[id];
         seesPlayer = CheckFor(Player);
@@ -79,10 +79,6 @@ public class guardChaseTesla : MonoBehaviour
             if (sus[id] < 1) // and the guard isn't suspicious
             {
                 sus[id] = sus[id] + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position) + timesSeen[id] / 10; // increase the guard's suspicion
-
-                Debug.Log("with times seen: " + (10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position) + timesSeen[id] / 10));
-                Debug.Log("without times s: " + 10 * Time.deltaTime / Vector2.Distance(transform.position, Player.transform.position));
-                Debug.Log("times seen " + timesSeen[id]);
             }
             else // if they are suspicious, begin chasing the player
             {
@@ -137,9 +133,9 @@ public class guardChaseTesla : MonoBehaviour
         }
         time += Time.deltaTime;
     }
-    public static void putWaypoint(Vector3 wpLocation, int GuardID, GameObject wp)
+    public static void putWaypoint(Vector3 wpLocation, int GuardID, Transform wp)
     {
-        wp.transform.position = wpLocation;
+        wp.position = wpLocation;
     }
     public bool CheckFor(GameObject cf)
     {
