@@ -31,43 +31,49 @@ namespace Assets.Code.Fighting.CharacterControl
         {
             SFXManager.instance.PlaySFXClip(MSideSFX, transform, 1f);
             Instantiate(this.MeleeSide, gameObject.transform, false);
-            stunned = true;
         }
 
         public override void MeleeDownAttack()
         {
             SFXManager.instance.PlaySFXClip(MDownSFX, transform, 1f);
             Instantiate(this.MeleeDown, gameObject.transform, false);
-            stunned = true;
         }
 
         public override void MeleeUpAttack()
         {
             SFXManager.instance.PlaySFXClip(MUpSFX, transform, 1f);
             Instantiate(this.MeleeUp, gameObject.transform, false);
-            stunned = true;
         }
 
         public override void RangeSideAttack()
         {
             SFXManager.instance.PlaySFXClip(RSideSFX, transform, 0.3f);
             Instantiate(this.RangeSide, gameObject.transform, false);
-            stunned = true;
         }
 
         public override void RangeUpAttack()
         {
             SFXManager.instance.PlaySFXClip(RUpSFX, transform, 0.3f);
             Instantiate(this.RangeUp, gameObject.transform, false);
-            stunned = true;
         }
 
         public override void RangeDownAttack()
         {
             SFXManager.instance.PlaySFXClip(RDownSFX, transform, 3f);
             Instantiate(this.RangeDown, gameObject.transform, false);
-            stunned = true;
         }
+
+        public override void Block()
+        {
+            blocking = true;
+            
+            //todo might what to make movemanger check if blocking before adding kb
+        }
+        public override void DeBlock()
+        {
+            blocking = false;
+        }
+
         private void DelAttack()
         {
             if (gameObject.GetComponentInChildren<Attack>() != null)
@@ -82,10 +88,6 @@ namespace Assets.Code.Fighting.CharacterControl
         {
             
         }
-        private void Block()
-        {
-            blocking = true;
-            // might what to make movemanger check if blocking before adding kb
-        }
+
     }
 }

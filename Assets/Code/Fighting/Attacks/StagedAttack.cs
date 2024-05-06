@@ -4,14 +4,14 @@ using UnityEngine;
 
 public abstract class StagedAttack : MonoBehaviour
 {
-    //todo get something      dun dun dun dun dun dun dun dun dun dun dun dn dun dun dun dun dun dun dun dun 
+    //todo get something      dun dun dun dun dun dun dun dun dun dun dun dn dun dun dun dun dun dun dun dun nah nvmd
 
     public virtual int Stages {get; set;}
 
     public void Awake()
     {
         Reset();
-        GetChildAt(0).SetActive(true);
+        this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         Invoke("NextStage", 1);
     }
 
@@ -23,8 +23,8 @@ public abstract class StagedAttack : MonoBehaviour
             Reset();
             return;
         }
-        GetChildAt(stage).SetActive(false);
-        GetChildAt(stage+1).SetActive(true);
+        this.gameObject.transform.GetChild(stage).gameObject.SetActive(false);
+        this.gameObject.transform.GetChild(stage+1).gameObject.SetActive(true);
         Invoke("NextStage", 1);
     }
 
@@ -33,7 +33,7 @@ public abstract class StagedAttack : MonoBehaviour
 
         for(int i = 0; i<stages; i++)
         {
-            if (GetChildAt(i).activeSelf)
+            if (this.gameObject.transform.GetChild(i).gameObject.activeSelf)
             {
                 return i;
             }
@@ -42,17 +42,12 @@ public abstract class StagedAttack : MonoBehaviour
         return 0;
     }
 
-    ref GameObject GetChildAt(int i)
-    {
-        ref GameObject child = this.gameObject.transform.GetChild(i).gameObject;
-        return ref child;
-    }
 
     public void Reset()
     {
         for(int i = 0; i<Stages; i++)
         {
-            GetChildAt(i).SetActive(false);
+            this.gameObject.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 }

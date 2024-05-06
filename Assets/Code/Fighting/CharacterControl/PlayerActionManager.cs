@@ -27,18 +27,22 @@ namespace Assets.Code.Fighting.CharacterControl
                     {
                         case PlayerAction.Block:
                             anim.SetTrigger("Block");
+                            stunned = true;
                             break;
                         case PlayerAction.MeleeAttack:
                             switch(dir)
                             {
                                 case 0:
                                     anim.SetTrigger("MeleeSide");
+                                    stunned = true;
                                     break;
                                 case 1:
                                     anim.SetTrigger("MeleeUp");
+                                    stunned = true;
                                     break;
                                 case 2:
                                     anim.SetTrigger("MeleeDown");
+                                    stunned = true;
                                     break;
                             }
                             break;
@@ -47,12 +51,15 @@ namespace Assets.Code.Fighting.CharacterControl
                             {
                                 case 0:
                                     anim.SetTrigger("RangeSide");
+                                    stunned = true;
                                     break;
                                 case 1:
                                     anim.SetTrigger("RangeUp");
+                                    stunned = true;
                                     break;
                                 case 2:
                                     anim.SetTrigger("RangeDown");
+                                    stunned = true;
                                     break;
                             }
                             break;
@@ -78,6 +85,10 @@ namespace Assets.Code.Fighting.CharacterControl
         public abstract void RangeDownAttack();
 
         public abstract void RangeUpAttack();
+
+        public abstract void Block();
+
+        public abstract void DeBlock();
 
 
     }

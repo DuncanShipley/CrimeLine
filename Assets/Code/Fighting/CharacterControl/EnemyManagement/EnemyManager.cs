@@ -37,7 +37,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         {
             foreach (Enemy enemy in ActiveChildren)
             {
-                EnemyAiInput input = BuildInputs(enemy.actor, FindObjectOfType<PCControl>().gameObject.transform);
+                EnemyAiInput input = BuildInputs(enemy.actor, FindObjectOfType<PlayerActionManager>().gameObject.transform);
                 (AttackAction, MovementAction[]) action = enemy.brain.Output(input);
                 //applly the movements
                 enemy.actor.GetComponent<ActionManager>().TryAction(action.Item1);
