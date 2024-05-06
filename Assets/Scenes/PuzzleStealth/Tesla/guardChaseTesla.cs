@@ -46,20 +46,20 @@ public class guardChaseTesla : MonoBehaviour
         baseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesTesla>().GetBaseSpeed();
         chaseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesTesla>().GetChaseSpeed();
 
-        currentPointIndex.Add(0);
-        sus.Add(0);
-        chase.Add(false);
-        alerting.Add(false);
-        seeing.Add(false);
-        oldPointIndex.Add(0);
-        endedChase.Add(false);
-        speed.Add(baseSpeed);
-        timesSeen.Add(0f);
+        // currentPointIndex.Add(0);
+        // sus.Add(0);
+        // chase.Add(false);
+        // alerting.Add(false);
+        // seeing.Add(false);
+        // oldPointIndex.Add(0);
+        // endedChase.Add(false);
+        // speed.Add(baseSpeed);
+        // timesSeen.Add(0f);
     }
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Waypoint1);
+        //Debug.Log(Waypoint1);
         endedChaseVar = endedChase[id];
         GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed[id];
         seesPlayer = CheckFor(Player);

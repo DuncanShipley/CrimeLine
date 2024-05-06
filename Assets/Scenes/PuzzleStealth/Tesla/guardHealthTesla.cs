@@ -13,11 +13,11 @@ public class guardHealthTesla : MonoBehaviour
 
     void Start()
     {
-        aliveList.Add(true);
-        healthList.Add(2);
-        dyingList.Add(false);
-        dyingTimer.Add(0);
-        stunList.Add(1);
+        // aliveList.Add(true);
+        // healthList.Add(2);
+        // dyingList.Add(false);
+        // dyingTimer.Add(0);
+        // stunList.Add(1);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

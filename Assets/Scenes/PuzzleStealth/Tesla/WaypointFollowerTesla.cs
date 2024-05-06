@@ -39,7 +39,7 @@ public class WaypointFollowerTesla : MonoBehaviour
         movingLeft = 0;
         movingDown = false;
 
-        currentPointIndex.Add(0);
+        //currentPointIndex.Add(0);
         startingPosition = transform.position;
 
         guard = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -82,7 +82,12 @@ public class WaypointFollowerTesla : MonoBehaviour
             }
             else if (guardChaseTesla.sus[id] == 0 || guardChaseTesla.sus[id] == 1)
             {
-                guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
+                if (gameObject.tag == "NPC"){
+                    guard.SetDestination(this.gameObject.transform.position);
+                }
+                else {
+                    guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
+                }
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?
             {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AlertTesla : MonoBehaviour
 {
     public int id;
-    public static List<GameObject> guards = new List<GameObject>();
+    //public static List<GameObject> // = new List<GameObject>();
     public static List<int> alerted = new List<int>();
     public int alert;
     Transform Waypoint1;
@@ -16,8 +16,8 @@ public class AlertTesla : MonoBehaviour
     {
         Waypoint1 = this.gameObject.transform.parent.parent.GetChild(1);
         player = GameObject.Find("Player").transform;
-        guards.Add(gameObject);
-        alerted.Add(-1);
+        //guards.Add(gameObject);
+        //alerted.Add(-1);
     }
 
     // Update is called once per frame

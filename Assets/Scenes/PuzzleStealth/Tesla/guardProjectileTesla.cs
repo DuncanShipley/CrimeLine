@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,22 +6,25 @@ using UnityEngine;
 public class guardProjectileTesla : MonoBehaviour
 {
     public GameObject source;
+    float timeExisting;
     // Start is called before the first frame update
     void Start()
     {
         if (gameObject.name == "Guard Projectile") { source = transform.parent.gameObject; }
+        timeExisting = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        timeExisting += Time.deltaTime;
         if (gameObject.name == "Guard Projectile")
         {
             transform.position = source.transform.position;
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
+        if (timeExisting > 60 && gameObject.name != "Guard Projectile"){
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
