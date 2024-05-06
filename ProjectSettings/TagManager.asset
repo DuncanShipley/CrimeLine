@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ink External Functions
   - Emotions Manager
+  - Guard
+  - Manager
   layers:
   - Default
   - TransparentFX

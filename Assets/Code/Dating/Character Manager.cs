@@ -6,12 +6,12 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 { 
     InkExternalFunctions IKF;
-    public List<GameObject> CharacterList = new List<GameObject>();
-    List<GameObject> activeSpeakers = new List<GameObject>();
-    private string ActiveSpeaker;
-    public string ActiveEmotion;
+    Emotions EmotionManager;
     [SerializeField] public GameObject[] characters;
-    [SerializeField] public Canvas canvas;    
+    public List<GameObject> CharacterList = new List<GameObject>();
+    private string ActiveSpeaker;
+    private string ActiveEmotion;
+    [SerializeField] private Canvas canvas;    
      void Awake()
     {
          IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
@@ -45,15 +45,17 @@ public class CharacterManager : MonoBehaviour
         }
     }
     public void SetEmotion(){
+        EmotionManager = GameObject.FindGameObjectWithTag(ActiveSpeaker).GetComponent<Emotions>();
         if(IKF.CurrentEmotion!=""){
             if(ActiveEmotion != IKF.CurrentEmotion){
-                Debug.Log("Setting Emotion to " + IKF.CurrentEmotion);
                 ActiveEmotion = IKF.CurrentEmotion;
-              /*  foreach(gameObject speaker in activeSpeakers){
-                    if(speaker.gameObject.activeInHierachy){
-                        speaker.changestate(ActiveEmotion);
+                foreach(GameObject gO in CharacterList){
+                    if(gO.activeInHierarchy){
+                        if(gO.name == ActiveSpeaker){
+                            EmotionManager.changestate(ActiveEmotion);
+                        }
                     }
-                }*/
+                }
             }
         }
     }

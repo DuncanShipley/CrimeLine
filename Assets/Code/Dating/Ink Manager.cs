@@ -22,23 +22,17 @@ public class InkManager : MonoBehaviour
     private void Update()
     {
         // Displays a new line every time you click unless there is a choice 
-        if(counting == 0){
-            if (story.canContinue == true) { 
-                if (story.currentChoices.Count == 0)
-                {   
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        RefreshView();
-                    }
-                }   
-            }
+       
+        if (story.canContinue == true) { 
+            if (story.currentChoices.Count == 0)
+            {   
+                if (Input.GetMouseButtonDown(0))
+                {
+                      RefreshView();
+                 }
+            }   
         }
-        if(counting !=0){
-            if(Input.GetMouseButtonDown(1))
-            {
-                skippedPressed = true;
-            }
-        }
+        if(Input.GetMouseButtonDown(1)){ skippedPressed = true;}
     }
 
     // Creates a new Story object with the compiled story which we can then play!
@@ -48,8 +42,6 @@ public class InkManager : MonoBehaviour
         story = new Story(inkJSONAsset.text);
         IKF.Bind(story);
         RefreshView();
-        cm.SetSpeaker();
-        cm.SetEmotion();
     }
 
    /// <summary>
@@ -60,17 +52,9 @@ public class InkManager : MonoBehaviour
         RemoveText();
         RemoveButtons();
         //Displays one line of text at a time
-        int LD = 1;
-        while (LD != 0)
-        {
-            cm.SetSpeaker();
-            cm.SetEmotion();
-            if (story.canContinue==true) {
-                StartCoroutine(DisplayLine(story.Continue()));
-                LD --;
-            }
-        }
-
+        if (story.canContinue==true) {StartCoroutine(DisplayLine(story.Continue()));}
+        if(IKF.CurrentSpeaker != ""){cm.SetSpeaker();}
+        if(IKF.CurrentEmotion != ""){ cm.SetEmotion();}
         // Display all the choices, if there are any!
         if (story.currentChoices.Count > 0)
         {
@@ -94,29 +78,23 @@ public class InkManager : MonoBehaviour
             }
         }            
     }
-
     private IEnumerator DisplayLine(string line)
     {
         string text = "";
         RemoveText();
         foreach(char letter in line.ToCharArray())
         {
-            counting++;
             if (skippedPressed == true)  
             {
                 text = line;
                 RemoveText();
                 CreateContentView(text);
                 skippedPressed = false;
-                counting = 0;
                 break;
             }
             text += letter;
             CreateContentView(text);
             yield return new WaitForSeconds(typingSpeed);
-        }
-        if(counting == line.Length){
-            counting = 0;
         }
     }
 

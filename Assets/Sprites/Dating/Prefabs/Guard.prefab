@@ -50,12 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdf26d4fa2f6d84ea02ba86f95c9045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpriteOrder: Nuetral, Happy, Angry, Sad, Annoyed
   emotionSprite:
   - {fileID: 21300000, guid: 8a05b1609b0e9e14991daae719649495, type: 3}
-  - {fileID: 21300000, guid: 72f21e96559a3474f98192283949b09f, type: 3}
   - {fileID: 21300000, guid: 12c8546dc9252354fa7ea983ee689a43, type: 3}
-  - {fileID: 21300000, guid: ac4c27098017b8a43b78504bdb2ca884, type: 3}
   - {fileID: 21300000, guid: 3f35adc4bf56e40468812c316949d355, type: 3}
+  - {fileID: 21300000, guid: 72f21e96559a3474f98192283949b09f, type: 3}
+  - {fileID: 21300000, guid: ac4c27098017b8a43b78504bdb2ca884, type: 3}
   Mystate: 2
 --- !u!222 &8902484982403723130
 CanvasRenderer:

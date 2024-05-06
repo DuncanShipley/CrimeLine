@@ -6,22 +6,21 @@ public class Emotions : MonoBehaviour
 {
     //needs a happy, sad, nuetral, and angry sprite for each character
     InkExternalFunctions IKF;
+    private string ActiveEmotion;
+    public string SpriteOrder = "Nuetral, Happy, Angry, Sad, Annoyed";
     public Sprite[] emotionSprite;
     SpriteRenderer spRend;
     [SerializeField] CharacterEmotions Mystate;
     //Add Emotions Here
     public enum CharacterEmotions
     {
-        happy,sad,nuetral,angry,annoyed
+        nuetral,happy,angry,sad,annoyed
     }
     void Awake()
     {
         IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
         Mystate = CharacterEmotions.nuetral;
         spRend = GetComponent<SpriteRenderer>();
-    }
-    void Update()
-    {
     }
     public void changestate(string emotionName)
     {

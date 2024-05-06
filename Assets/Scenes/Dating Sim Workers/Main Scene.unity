@@ -223,11 +223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e50984406fbc8745813ef6d84245e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterList: []
-  ActiveEmotion: 
   characters:
   - {fileID: 5345753755031983825, guid: 3ace9d2c7b4f58740ba36eddd3034ce2, type: 3}
   - {fileID: 8512334846354789707, guid: 6efadfa0d10584e82b018526242655a1, type: 3}
+  CharacterList: []
   canvas: {fileID: 491119762}
 --- !u!114 &385688794
 MonoBehaviour:
@@ -301,8 +300,9 @@ GameObject:
   - component: {fileID: 491119765}
   - component: {fileID: 491119764}
   - component: {fileID: 491119766}
+  - component: {fileID: 491119767}
   m_Layer: 5
-  m_Name: Dialouge Box
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ba149f63264fb4377981eb26ad1dd07b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -470,17 +470,29 @@ SpriteRenderer:
   m_SortingLayerID: 1168855943
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ba149f63264fb4377981eb26ad1dd07b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 46.079998, y: 34.559998}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &491119767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491119759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e272a9c106a4695aa4daafd6d10892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &523751081
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +575,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &525688778
+--- !u!224 &791942363 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4027183570899031469, guid: 77181b55049b10f41bc38a21276a7df2, type: 3}
+  m_PrefabInstance: {fileID: 861887426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &845393225
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -571,36 +588,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 525688780}
-  - component: {fileID: 525688779}
+  - component: {fileID: 845393227}
+  - component: {fileID: 845393226}
   m_Layer: 0
-  m_Name: Emotions Manager
+  m_Name: Emotion Manager
   m_TagString: Emotions Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &525688779
+--- !u!114 &845393226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525688778}
+  m_GameObject: {fileID: 845393225}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fdf26d4fa2f6d84ea02ba86f95c9045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpriteOrder: Nuetral, Happy, Angry, Sad, Annoyed
   emotionSprite: []
-  Mystate: 2
---- !u!4 &525688780
+  Mystate: 0
+--- !u!4 &845393227
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525688778}
+  m_GameObject: {fileID: 845393225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 219.08577, y: -160.39044, z: 2936.728}
@@ -609,11 +627,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &791942363 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4027183570899031469, guid: 77181b55049b10f41bc38a21276a7df2, type: 3}
-  m_PrefabInstance: {fileID: 861887426}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &861887426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -993,9 +1006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e50984406fbc8745813ef6d84245e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterList: []
-  ActiveEmotion: 
   characters: []
+  CharacterList: []
   canvas: {fileID: 0}
 --- !u!4 &1557187676
 Transform:
@@ -1311,4 +1323,4 @@ SceneRoots:
   - {fileID: 1557187676}
   - {fileID: 970840166}
   - {fileID: 885806200}
-  - {fileID: 525688780}
+  - {fileID: 845393227}
