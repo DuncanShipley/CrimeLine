@@ -14,7 +14,7 @@ public class startPuzzleMain : MonoBehaviour
     void Start()
     {
         puzzle = GameObject.Find("Panel").GetComponent<PanelPuzzleMain>();
-        input = GameObject.Find("UI").GetComponent<InputControllerMain>();
+        input = GameObject.Find("Screen UI").GetComponent<InputControllerMain>();
     }
 
     // Update is called once per frame

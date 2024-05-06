@@ -13,7 +13,7 @@ public class buttonScriptMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        input = GameObject.Find("UI").GetComponent<InputControllerMain>();
+        input = GameObject.Find("Screen UI").GetComponent<InputControllerMain>();
     }
 
     // Update is called once per frame

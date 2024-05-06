@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5945362445147238384}
   - component: {fileID: 7419678537183987696}
   - component: {fileID: 2846041561142293091}
-  - component: {fileID: 2021453450270142204}
+  - component: {fileID: 2995790173474531266}
   m_Layer: 2
   m_Name: Sensor Range
   m_TagString: GuardSensor
@@ -127,7 +127,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2021453450270142204
+--- !u!114 &2995790173474531266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4630442268617346213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba6f685e5b629e94cbf79b9f8dac72e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 978b433fdffb24297a0db2520093355b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
@@ -234,8 +234,8 @@ GameObject:
   - component: {fileID: 1884867120094375619}
   - component: {fileID: 668435506426713967}
   - component: {fileID: 2616301274672080652}
-  - component: {fileID: 6288633593503823034}
-  - component: {fileID: 2402303060321238787}
+  - component: {fileID: 1935683834257778761}
+  - component: {fileID: 6839404254639637756}
   - component: {fileID: 7256538010822500421}
   m_Layer: 2
   m_Name: Guard
@@ -359,7 +359,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6288633593503823034
+--- !u!114 &1935683834257778761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -368,19 +368,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 4963367268244224560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e3948295e0f96a41b8885eaa1b79618, type: 3}
+  m_Script: {fileID: 11500000, guid: be97498be84cc44a185b08a5ccc179a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
-  leftDetectEdge: 0
-  rightDetectEdge: 0
+  Waypoint1: {fileID: 0}
   relAngle: 0
-  zrotation: 0
+  canMove: 1
+  distance: 0
   id: 0
-  speed: 2
+  test: 0
   Player: {fileID: 0}
+  playerTrans: {fileID: 0}
   rb: {fileID: 0}
---- !u!114 &2402303060321238787
+--- !u!114 &6839404254639637756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,7 +390,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4963367268244224560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64fa6c15004a90f4a896f64a43e2a977, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3bb4016b9244706abb5d5444f393e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
@@ -460,7 +461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7459191875886613762}
-  - component: {fileID: 8066573348106088969}
+  - component: {fileID: 6121744108677718872}
   m_Layer: 2
   m_Name: Guard
   m_TagString: Guard
@@ -488,7 +489,7 @@ Transform:
   - {fileID: 8289147299426729783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8066573348106088969
+--- !u!114 &6121744108677718872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -497,7 +498,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7331019455399242599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9396b7cb0b37e7641b138af7bd24a3ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 87e584ef7dde4498f97a41c0d063630a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   publicId: 0
@@ -510,7 +511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9208622136490275828}
-  - component: {fileID: 6746332175963885568}
+  - component: {fileID: 7826997017671944776}
   m_Layer: 2
   m_Name: Waypoint 1
   m_TagString: Untagged
@@ -533,7 +534,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7459191875886613762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6746332175963885568
+--- !u!114 &7826997017671944776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -542,10 +543,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7674905096276641158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f7a8898fc9a5a4f9d57c7e837bf1c0, type: 3}
+  m_Script: {fileID: 11500000, guid: ce0d6dd6338a14c3ab5bae640aee3aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  Waypoint1: {fileID: 0}
+  leftDetectEdge: 0
+  rightDetectEdge: 0
   id: 0
 --- !u!1 &8287346377835657006
 GameObject:
@@ -588,7 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5085372169094861714}
   - component: {fileID: 2673896601392964612}
-  - component: {fileID: 961645911912493951}
+  - component: {fileID: 160801528887882709}
   m_Layer: 2
   m_Name: Guard Flashlight
   m_TagString: Untagged
@@ -661,7 +665,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &961645911912493951
+--- !u!114 &160801528887882709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -670,7 +674,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8417534527786615383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881aa6471162eaf429ab5b2434e4979b, type: 3}
+  m_Script: {fileID: 11500000, guid: b47a787324afc489db0462327430ae7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0

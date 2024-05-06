@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 704527538336202330}
   - component: {fileID: 1601699684749271116}
   - component: {fileID: 3454257018466159436}
-  - component: {fileID: 2666244312023252291}
+  - component: {fileID: 2083368075299720705}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2666244312023252291
+--- !u!114 &2083368075299720705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2394297018594124297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60bcd40fa4d157d409f2e79edf644875, type: 3}
+  m_Script: {fileID: 11500000, guid: 72c3cbd72eac0435f9b8ef6890d254e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   laser: {fileID: 0}
