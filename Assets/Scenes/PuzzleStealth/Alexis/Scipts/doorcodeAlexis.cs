@@ -17,12 +17,10 @@ public class doorcodeAlexis : MonoBehaviour
     bool opening = false;
     float movequeue = 0;
     float speed = 10;
-    private InputControllerAlexis input;
 
     // Colider
     private void Start()
     {
-        input = GameObject.Find("Screen UI").GetComponent<InputControllerAlexis>();
         keychain = GameObject.Find("Player").GetComponent<KeychainAlexis>();
         textbox = GameObject.Find("bigTextbox").GetComponent<bigTextboxAlexis>();
     }
@@ -40,7 +38,7 @@ public class doorcodeAlexis : MonoBehaviour
     private void Update()
     {
 
-        if (input.GetKeyLimited("z") && touch && movequeue == 0 && !opening)
+        if (Input.GetKeyDown(KeyCode.Z) && touch && movequeue == 0 && !opening)
         {
             switch (lockType)
             {
