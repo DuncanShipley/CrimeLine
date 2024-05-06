@@ -5,11 +5,11 @@ namespace Assets.Code.Fighting.CharacterControl
 {
     public class MovementManager
     {
-        private float WalkSpeed;
-        private float JumpHeight;
-        private float Gravity;
+        public float WalkSpeed;
+        public float JumpHeight;
+        public float Gravity;
         public float DirFacing;
-        private bool Crouching;
+        public bool Crouching;
         
 
         public MovementManager(float WalkSpeed, float JumpHeight, float Gravity)

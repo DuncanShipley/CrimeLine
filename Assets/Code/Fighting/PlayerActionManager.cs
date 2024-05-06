@@ -58,24 +58,24 @@
 //                 }
 //             }
 //         }
-
+//
 //         public void TryMoveAction(MovementAction[] movement)
 //         {
 //             body.AddForce(manager.GetVector(movement));
 //         }
-
+//
 //         public abstract void MeleeSideAttack();
-
+//
 //         public abstract void MeleeDownAttack();
-
+//
 //         public abstract void MeleeUpAttack();
-
+//
 //         public abstract void RangeSideAttack();
-
+//
 //         public abstract void RangeDownAttack();
-
+//
 //         public abstract void RangeUpAttack();
-
-
+//
+//
 //     }
 // }

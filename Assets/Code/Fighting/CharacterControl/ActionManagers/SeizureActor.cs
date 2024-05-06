@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 
 namespace Assets.Code.Fighting.CharacterControl
@@ -11,8 +12,9 @@ namespace Assets.Code.Fighting.CharacterControl
         {set; get;}
         public Rigidbody body
         {set; get;}
-        public MovementManager manager
-        {set; get;}
+        MovementManager manager = new MovementManager(10,30,1);
+        private Collider collider;
+        
         public GameObject MeleeSide;
         public GameObject MeleeUp;
         public GameObject MeleeDown;
@@ -26,6 +28,11 @@ namespace Assets.Code.Fighting.CharacterControl
         [SerializeField] private AudioClip RDownSFX;
         [SerializeField] private AudioClip RUpSFX;
 
+
+        protected override bool TouchingGround()
+        {
+            return collider.TouchingGround();
+        }
 
         public override void MeleeSideAttack()
         {

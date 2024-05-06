@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System.Collections.Immutable;
+using Unity.VisualScripting.FullSerializer;
 
 namespace Assets.Code.Fighting
 {
@@ -31,9 +32,9 @@ namespace Assets.Code.Fighting
 
         public static bool TouchingGround(this Collider collider)
         {
-            
             float distToGround = collider.bounds.extents.y;
-            return Physics.Raycast(collider.transform.position, -Vector3.up, distToGround + 0.1f);
+            return Physics.Raycast(collider.bounds.center, -Vector3.up, 4.0f);
+            
         }
 
     }

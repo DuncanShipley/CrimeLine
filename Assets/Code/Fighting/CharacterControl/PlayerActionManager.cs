@@ -14,19 +14,19 @@ namespace Assets.Code.Fighting.CharacterControl
         public Animator anim;
         public Rigidbody body;
         public bool blocking;
-        protected MovementManager manager = new MovementManager(10,1,1);
+        protected MovementManager movementManager;
         protected bool stunned = false;
-        private bool TouchingGround
+        protected Collider collider;
+
+
+        public PlayerActionManager()
         {
-            get
-            {
-                return body.GetComponent<Collider>().TouchingGround();
-            }
+            collider = body.GetComponent<Collider>();
         }
         
         public void TryAction(PlayerAction[] action)
         {
-            dir = manager.DirFacing;
+            dir = movementManager.DirFacing;
             foreach (var Item in action)
             {
                 if (!stunned)
@@ -68,14 +68,21 @@ namespace Assets.Code.Fighting.CharacterControl
                 }
             }
         }
+        
+        protected abstract bool TouchingGround();
 
         public void TryMoveAction(MovementAction[] movement)
         {
-            Vector3 velocity = manager.GetVector(
-                TouchingGround? movement : 
-                    movement.Where( action => !action.Equals(MovementAction.Jump)).ToArrayPooled() );
-            print(body.GetComponent<Collider>().bounds.center.y);
+            movement = TouchingGround()? movement : 
+                movement.Where( action => !action.Equals(MovementAction.Jump)).ToArrayPooled();
+            Vector3 velocity = movementManager.GetVector(movement);
+            if (movement.Contains(MovementAction.Jump))
+            {
+                body.AddForce(Vector3.up * movementManager.JumpHeight);
+            }
+
             body.velocity = velocity;
+
 
         }
 
