@@ -356,7 +356,7 @@ Guard: The people's lives are of the upmost importance. I will pull the lever ev
 Manager: Ah ha, here we see the character flaws begin to shine through, obviously the correct answer is to abstain from pulling the lever, 
 Manager: In doing so, the blood is on your hands, society will not be able to see past it.
 You: Precisely.
-Guard: Your kidding!
+Guard: You're kidding!
 Manager: What else should we test him on?
 //*[]
 //*[]
@@ -402,7 +402,7 @@ You: I'm sorry it had to be done,
 You: Can't afford to have any witnesses. Wrong place at the wrong time.
 /*Image of guard in background*/
 You: Shit why's he over here?? And moreover why is he coming this way?
-*[Run]->Caught
+*[Run]->RunH
 //*[Hide]->HideBridge
 //*[Hide the body]->Body
 ==Paralize==
@@ -411,7 +411,7 @@ You: I'm sorry it had to be done,
 You: You will be paralized for the time being and you'll be fully recovered in sixteen hours, I just need you to be quiet for the time being.
 /*Image of guard in background*/
 You: Shit why's he over here?? And moreover why is he coming this way?
-*[Run]->Caught
+*[Run]->RunH
 //*[Hide]->HideBridge
 //*[Hide the body]->Body
 ==RunH==
@@ -482,7 +482,7 @@ You: Although I'm not so sure the law lets security guards put people in choke h
 Guard: I'm glad that at the very least you have the brains to recognize when you're out of options. 
 Guard: Now lets head back so I can prove myself to the boss.
 *[Surprise Counterattack]->Failedatk
-//*[WalkBack]->//
+[WalkBack]->WalkBack
 *[Seduce]->Seduce
 *[Bribe]->Bribe
 ==Bribe==
@@ -500,7 +500,7 @@ Guard: HAH that's rich,
 Guard: Now let's get this over with and head back.
 *[100$]->Hundred
 *[1000$]->Thousand
-//*[WalkBack]->//
+[WalkBack]->WalkBack
 *[Surprise Counterattack]->Failedatk
 *[Seduce]->Seduce
 ==Hundred==
@@ -510,7 +510,7 @@ You: How do you know your getting fired? It's really not that deep and i'm sure 
 Guard: Then clearly you don't know him well enough,
 Guard: No disrespect to him.
 *[1000$]->Thousand
-//*[WalkBack]->
+[WalkBack]->WalkBack
 *[Surprise Counterattack]->CounteratkG
 *[Seduce]->Seduce
 ==Thousand==
@@ -518,7 +518,7 @@ You: Thousand dollars final offer.
 Guard: How do I know you even got a thousand dollars lying around, go ahead lets see that stack.
 You: Now hold on, I don't got it on me, maybe I give you my contact info, we figure this out when I've withdrawn that money.
 Guard: Well if you're in such a rush why don't we head back to the bank and withdraw it there?
-//*[WalkBack]->
+[WalkBack]->WalkBack
 *[Surprise Counterattack]->Failedatk
 *[Seduce]->Seduce
 ==Failedatk==
@@ -531,8 +531,7 @@ Guard: We're headed back,
 Guard: And don't even think about trying anything funny.
 You: That's quite the tight grip there mister.
 Guard: ...
-//*[WalkBack]->
-->END
+[WalkBack]->WalkBack
 ==CounteratkG==
 You: But will he expect this?
 /*Fighting game noise*/
@@ -558,7 +557,27 @@ Guard: That was incredible. I can't even move. I need a second just to cool off.
 You: Alright, alright I submit. 
 You: Let's head back.
 Guard: Good. Don't try anything funny.
-//fade to black back to the Bank
-Manager: 
+*[Stay silent and walk back in complience]->Comply
+*[strike up some conversation]->Conversation
+==Comply==
+//fade to black
+Manager: Well well well, it appears you've proven yourself useful.
+Guard: So I'm vindicated and off the hook right boss?
+Manager: That was the terms of our deal.
+Guard: Sweet! Well, without anymore delay let's get back to doing our jobs.
+Manager: Excellent idea!
+Guard: Great. Then i'm gonna have to ask you to leave the premises.
+You: Urk you'll regret that, you will.
+->END
+==Conversation==
+You: This view is quite something huh? I envy you getting paid to hangout in this beautiful area of town.
+Guard: It really is, although, after spending every day here you begin to take it for granted.
+*//activites
+*
+*
+You: Since were here you wanna get some ice cream? My treat.
+Guard: What's your angle here?
+You: I'm craving something sweet and it's nice weather. What about it?
+Guard: Well when you put it like that.
 ->END
 
