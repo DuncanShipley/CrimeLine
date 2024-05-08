@@ -11,6 +11,8 @@ TagManager:
   - DamagePlayer
   - movable
   - camera
+  - button
+  - spinnySteel
   layers:
   - Default
   - TransparentFX
