@@ -22,6 +22,8 @@ public class WaypointFollowerTesla : MonoBehaviour
     [SerializeField] Transform playerTrans;
     UnityEngine.AI.NavMeshAgent guard;
 
+    public static List<Vector3> spottedPosition = new List<Vector3>();
+
     public Rigidbody2D rb;
 
     RaycastHit2D seeingRay;
@@ -82,12 +84,11 @@ public class WaypointFollowerTesla : MonoBehaviour
             }
             else if (guardChaseTesla.sus[id] == 0 || guardChaseTesla.sus[id] == 1)
             {
-                if (gameObject.tag == "NPC"){
-                    guard.SetDestination(this.gameObject.transform.position);
+                if (gameObject.tag == "NPC" && guardChaseTesla.sus[id] == 1){
+                    this.gameObject.transform.position = spottedPosition[id];
                 }
-                else {
-                    guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
-                }
+                guard.SetDestination(waypoints[currentPointIndex[id]].transform.position); // move towards waypoint
+                
             }
             if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?
             {

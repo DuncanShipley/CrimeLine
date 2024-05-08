@@ -26,6 +26,7 @@ public class GuardVariablesTesla : MonoBehaviour
         AlertTesla.alerted.Add(-1);
 
         WaypointFollowerTesla.currentPointIndex.Add(0);
+        WaypointFollowerTesla.spottedPosition.Add(Vector3.zero);
     }
 
     // Update is called once per frame

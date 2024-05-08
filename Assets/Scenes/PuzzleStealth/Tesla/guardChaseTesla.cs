@@ -91,6 +91,7 @@ public class guardChaseTesla : MonoBehaviour
                 speed[id] = chaseSpeed;
                 sus[id] = 1;
                 alerting[id] = true;
+                WaypointFollowerTesla.spottedPosition[id] = this.gameObject.transform.position;
             }
         }
         else if (AlertTesla.alerted[id] > -1)
