@@ -21,6 +21,7 @@ public class Emotions : MonoBehaviour
         IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
         Mystate = CharacterEmotions.nuetral;
         spRend = GetComponent<SpriteRenderer>();
+        changestate("Nuetral");
     }
     public void changestate(string emotionName)
     {

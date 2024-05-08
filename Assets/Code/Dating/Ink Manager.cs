@@ -15,24 +15,27 @@ public class InkManager : MonoBehaviour
     {  
         cm = GetComponent<CharacterManager>();
         gm = GetComponent<GameManager>();
-        bgm = GetComponent<BackgroundManager>();
         IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
+        bgm = GameObject.FindGameObjectWithTag("Background").GetComponent<BackgroundManager>();
         StartStory();
     }
     private void Update()
     {
         // Displays a new line every time you click unless there is a choice 
-       
-        if (story.canContinue == true) { 
-            if (story.currentChoices.Count == 0)
-            {   
-                if (Input.GetMouseButtonDown(0))
-                {
-                      RefreshView();
-                 }
-            }   
+        if (counting == 0){
+            if (story.canContinue == true) { 
+                if (story.currentChoices.Count == 0){   
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        RefreshView();
+                    }
+                }   
+            }
         }
-        if(Input.GetMouseButtonDown(1)){ skippedPressed = true;}
+        if(counting !=0)
+        {
+            if(Input.GetMouseButtonDown(1)){ skippedPressed = true;}
+        }
     }
 
     // Creates a new Story object with the compiled story which we can then play!
@@ -52,7 +55,8 @@ public class InkManager : MonoBehaviour
         RemoveText();
         RemoveButtons();
         //Displays one line of text at a time
-        if (story.canContinue==true) {StartCoroutine(DisplayLine(story.Continue()));}
+        if(story.canContinue==true) {StartCoroutine(DisplayLine(story.Continue()));}
+        if(IKF.CurrentBackground != ""){bgm.changeBackground(IKF.CurrentBackground);}
         if(IKF.CurrentSpeaker != ""){cm.SetSpeaker();}
         if(IKF.CurrentEmotion != ""){ cm.SetEmotion();}
         // Display all the choices, if there are any!
@@ -90,10 +94,13 @@ public class InkManager : MonoBehaviour
                 RemoveText();
                 CreateContentView(text);
                 skippedPressed = false;
+                counting = 0;
                 break;
             }
+            counting++;
             text += letter;
             CreateContentView(text);
+            if(counting == line.Length){counting =0;}
             yield return new WaitForSeconds(typingSpeed);
         }
     }

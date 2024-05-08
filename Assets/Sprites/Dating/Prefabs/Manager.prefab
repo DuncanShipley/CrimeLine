@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 8512334846354789707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 50, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,11 +52,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteOrder: Nuetral, Happy, Angry, Sad, Annoyed
   emotionSprite:
-  - {fileID: 21300000, guid: ccc6a4a16b6db114e81fda4d26ec8020, type: 3}
-  - {fileID: 21300000, guid: e4b9294d7cc86e447908a09a20b358e5, type: 3}
-  - {fileID: 21300000, guid: 1a51017a254e9484da5daad9ebd51e7f, type: 3}
-  - {fileID: 21300000, guid: 3b319cdb95f9c4fc89254ad78a05e7d8, type: 3}
-  - {fileID: 21300000, guid: 4c128b8c391769440a385da516f8faa1, type: 3}
+  - {fileID: 21300000, guid: 9b4062acc5a9b4cc7b734f69385dfc2b, type: 3}
+  - {fileID: 21300000, guid: 35bd8f05b08d34ead9966bcc9c9e9a24, type: 3}
+  - {fileID: 21300000, guid: f0bb12a6154864d90aff6b149ec82e2f, type: 3}
+  - {fileID: 21300000, guid: 82931580ec5164ec7bfe77d67175a65e, type: 3}
+  - {fileID: 21300000, guid: 482e6f4cfe924443faf39651f470f508, type: 3}
   Mystate: 0
 --- !u!222 &8377108649601281328
 CanvasRenderer:
@@ -115,6 +115,6 @@ SpriteRenderer:
   m_Size: {x: 4.13, y: 7.54}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

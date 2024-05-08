@@ -2,8 +2,9 @@ EXTERNAL SetCharacter(CurrentCharacter)
 EXTERNAL SetEmotion(Emotion)
 EXTERNAL SetBackground(Background)
 
-~ SetCharacter("Guard")
+~SetBackground("OutsideBank")
 Skopje Macedonia, 2023 <br>Komercijalna Bank
+~SetCharacter("Guard")
 -> Bank
 
 ==Bank==
@@ -232,6 +233,7 @@ Guard: *sniff* that was beautiful, I'm honestly moved and so glad I could meet a
 
 
 ==Management==
+~SetBackground("InsideBank")
 ~SetCharacter("Manager")
 You: Is this how you normally treat patrons of this establishment? If so I must inform the management of the poor treatment of us customers
 Guard: Hey listen we don’t have to go there, i’m sorry if I offended you, i’m just doin my job here.
