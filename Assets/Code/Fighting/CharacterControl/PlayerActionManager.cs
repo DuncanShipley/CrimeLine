@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Code.Fighting.CharacterControl;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 
 namespace Assets.Code.Fighting.CharacterControl
@@ -14,19 +16,15 @@ namespace Assets.Code.Fighting.CharacterControl
         public Animator anim;
         public Rigidbody body;
         public bool blocking;
-        protected MovementManager movementManager;
+        protected abstract MovementManager manager { get; }
         protected bool stunned = false;
-        protected Collider collider;
-
-
-        public PlayerActionManager()
-        {
-            collider = body.GetComponent<Collider>();
-        }
+        public new Collider collider;
         
+
+
         public void TryAction(PlayerAction[] action)
         {
-            dir = movementManager.DirFacing;
+            dir = manager.DirFacing;
             foreach (var Item in action)
             {
                 if (!stunned)
@@ -69,21 +67,25 @@ namespace Assets.Code.Fighting.CharacterControl
             }
         }
         
-        protected abstract bool TouchingGround();
 
         public void TryMoveAction(MovementAction[] movement)
         {
-            movement = TouchingGround()? movement : 
+            Vector3 bodyVeloicty = body.velocity;
+            Assert.IsNotNull(collider);
+            Assert.IsNotNull(body);
+            movement = collider.TouchingGround()? movement : 
                 movement.Where( action => !action.Equals(MovementAction.Jump)).ToArrayPooled();
-            Vector3 velocity = movementManager.GetVector(movement);
+            Vector3 velocity = manager.GetVector(movement);
             if (movement.Contains(MovementAction.Jump))
             {
-                body.AddForce(Vector3.up * movementManager.JumpHeight);
+                body.AddForce(Vector3.up * manager.JumpHeight);
             }
 
-            body.velocity = velocity;
-
-
+            if (movement.Contains(MovementAction.Left))
+            {
+                body.AddTorque(Vector3.left * 10);
+            }
+            
         }
 
         public abstract void MeleeSideAttack();

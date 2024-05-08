@@ -8,12 +8,10 @@ namespace Assets.Code.Fighting.CharacterControl
 {
     public class SeizureActor : PlayerActionManager
     {
-        public Animator anim
-        {set; get;}
-        public Rigidbody body
-        {set; get;}
-        MovementManager manager = new MovementManager(10,30,1);
-        private Collider collider;
+        protected override MovementManager manager
+        {
+            get { return new MovementManager(10,30,1);}
+        } 
         
         public GameObject MeleeSide;
         public GameObject MeleeUp;
@@ -27,12 +25,6 @@ namespace Assets.Code.Fighting.CharacterControl
         [SerializeField] private AudioClip RSideSFX;
         [SerializeField] private AudioClip RDownSFX;
         [SerializeField] private AudioClip RUpSFX;
-
-
-        protected override bool TouchingGround()
-        {
-            return collider.TouchingGround();
-        }
 
         public override void MeleeSideAttack()
         {

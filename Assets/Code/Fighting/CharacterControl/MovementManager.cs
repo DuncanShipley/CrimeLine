@@ -20,6 +20,7 @@ namespace Assets.Code.Fighting.CharacterControl
 
         }
 
+        
         public Vector3 GetVector(MovementAction[] move)
         {
             Vector3 vec = new Vector3();
