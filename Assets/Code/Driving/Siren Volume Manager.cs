@@ -15,6 +15,7 @@ public class SirenVolumeManager : MonoBehaviour
     {
         Siren.volume = 0;
         Music.volume = 1;
+        print("started");
     }
 
     // Update is called once per frame
@@ -24,6 +25,7 @@ public class SirenVolumeManager : MonoBehaviour
             Siren.Play();
             Siren.volume = 1;
             Music.volume = 1/2;
+            print("30 sec left");
         }
     }
 }
