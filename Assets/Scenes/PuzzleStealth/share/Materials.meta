@@ -1,7 +1,12 @@
 fileFormatVersion: 2
-guid: 686f487362e195b488427ec52d23c988
+<<<<<<<< HEAD:Assets/Scenes/PuzzleStealth/Tesla/Still Guard.prefab.meta
+guid: 6c381158b1af74950b6d03e68e30039a
+PrefabImporter:
+========
+guid: 8ca791496d6891e47bcf8df9bbaccb5b
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> b770c3d2f1e9690c0dbb07dd0f765ce40ed6d90b:Assets/Scenes/PuzzleStealth/Alexis/Materials.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
