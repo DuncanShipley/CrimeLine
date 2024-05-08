@@ -70,7 +70,6 @@ public class WaypointFollowerMain : MonoBehaviour
         testList[id] = test;
         if (canMove)
         {
-            
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait < 2f) // if you're close and you haven't waited
             {
                 guardWait += Time.deltaTime; // wait
