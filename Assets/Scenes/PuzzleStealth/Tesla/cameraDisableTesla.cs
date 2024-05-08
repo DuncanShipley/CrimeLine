@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buttonScriptTesla : MonoBehaviour
+public class cameraDisableTesla : MonoBehaviour
 {
-    public GameObject laser;
-    public Sprite on;
-    public Sprite off;
-    private InputControllerTesla input;
-    bool touch = false;
+    private GameObject[] cams;
+    private bool touch;
 
     // Start is called before the first frame update
     void Start()
     {
-        input = GameObject.Find("Screen UI").GetComponent<InputControllerTesla>();
+        cams = GameObject.FindGameObjectsWithTag("camera");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (input.GetKeyLimited("z") && touch)
+        if (Input.GetKeyDown(KeyCode.Z) && touch) 
         {
-            laser.SetActive(false);
-            gameObject.GetComponent<SpriteRenderer>().sprite = off;
+            for(int i = 0; i < cams.Length; i++)
+            {
+                Destroy(cams[i]);
+            }
+
+            cams = null;
         }
     }
 

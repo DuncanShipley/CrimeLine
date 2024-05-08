@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class doorcodeTesla : MonoBehaviour
 {
-    public int key;
+    public string lockType;
+    public int keyID;
+    public string dir;
+
+    private KeychainTesla keychain;
+    private bigTextboxTesla textbox;
+
+    bool faceActive = false;
     bool touch = false;
-    bool open = true;
+    bool open = false;
+    bool opening = false;
     float movequeue = 0;
     float speed = 10;
+    private InputControllerTesla input;
 
     // Colider
-    private void start()
+    private void Start()
     {
+        input = GameObject.Find("Screen UI").GetComponent<InputControllerTesla>();
+        keychain = GameObject.Find("Player").GetComponent<KeychainTesla>();
+        textbox = GameObject.Find("bigTextbox").GetComponent<bigTextboxTesla>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
-        {
+        if (other.tag=="Player"){
             touch = true;
         }
     }
@@ -29,10 +40,65 @@ public class doorcodeTesla : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKey(KeyCode.Z) && touch && open && movequeue == 0)
+        if (input.GetKeyLimited("z") && touch && movequeue == 0 && !opening)
         {
-            movequeue = 10;
-            open = false;
+            switch (lockType)
+            {
+                case "key":
+                    if (keychain.getKeys() >= keyID)
+                    {
+                        if (open)
+                        {
+                            open = false;
+                        }
+                        else
+                        {
+                            open = true;
+                        }
+                        movequeue += 10;
+                        opening = true;
+                    }
+                    else if (!textbox.isTalking())
+                    {
+                        textbox.pushText(new string[] { "It's locked. You need a key to open this." });
+                    }
+                    break;
+
+                case "faceID":
+                    if (faceActive)
+                    {
+                        if (open)
+                        {
+                            open = false;
+                        }
+                        else
+                        {
+                            open = true;
+                        }
+                        movequeue += 10;
+                        opening = true;
+                    }
+                    else if (!textbox.isTalking())
+                    {
+                        textbox.pushText(new string[] { "It's locked. It seems like this door needs facial recognition to open" });
+                    }
+                    break;
+
+                default:
+                    if (open)
+                    {
+                        open = false;
+                    }
+                    else
+                    {
+                        open = true;
+                    }
+                    movequeue += 10;
+                    opening = true;
+                    break;
+            }
+            
+            
         }
 
         if (movequeue != 0)
@@ -41,14 +107,51 @@ public class doorcodeTesla : MonoBehaviour
             var x = 0;
             var y = 0;
 
-            if (gameObject.tag == "leftdoor")
-                x = -1;
-            if (gameObject.tag == "rightdoor")
-                x = 1;
+            switch (dir)
+            {
+                case "up":
+                    if (open)
+                        y++;
+                    else
+                        y--;
+                    break;
+
+                case "down":
+                    if (open)
+                        y--;
+                    else
+                        y++;
+                    break;
+
+                case "right":
+                    if (open)
+                        x++;
+                    else
+                        x--;
+                    break;
+
+                case "left":
+                    if (open)
+                        x--;
+                    else
+                        x++;
+                    break;
+
+                default:
+                    break;
+            }
 
             Vector3 inp = new Vector3(x / speed, y / speed, 0);
-            rb.MovePosition(transform.position + inp);
+            transform.position = transform.position + inp;
             movequeue--;
+
+            if (movequeue == 0)
+                opening = false;
         }
+    }
+
+    public void updateFaceID(bool active)
+    {
+        faceActive = active;
     }
 }

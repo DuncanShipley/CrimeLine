@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaypointFollowerMain : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
-    public GameObject Waypoint1;
+    public Transform Waypoint1;
     public static GameObject[] wpref;
     private float guardWait = 0f;
     public double relAngle;
@@ -16,6 +16,7 @@ public class WaypointFollowerMain : MonoBehaviour
     public int id;
 
     public static List<int> currentPointIndex = new List<int>();
+    public static List<Vector3> spottedPosition = new List<Vector3>();
     public static List<int> movingLeft = new List<int>();
     public static List<bool> lookingLeft = new List<bool>();
     public static List<bool> movingDown = new List<bool>();
@@ -23,11 +24,6 @@ public class WaypointFollowerMain : MonoBehaviour
     public static List<bool> movedDown = new List<bool>();
     public static List<bool> close = new List<bool>();
 
-
-    [SerializeField] public static List<float> speed = new List<float>();
-    public float test = 0;
-
-    public static List<float> testList = new List<float>();
     public GameObject Player;
     [SerializeField] Transform playerTrans;
     UnityEngine.AI.NavMeshAgent guard;
@@ -41,21 +37,12 @@ public class WaypointFollowerMain : MonoBehaviour
     public void Start()
     {
         Player = GameObject.Find("Player");
-        Waypoint1 = GameObject.Find("Waypoint 1");
+        Waypoint1 = this.gameObject.transform.parent.GetChild(1);
         rb = GetComponent<Rigidbody2D>();
 
         wpref = waypoints;
 
-        movingLeft.Add(0);
-        lookingLeft.Add(false);
-        movingDown.Add(false);
-        lookingDown.Add(false);
-        movedDown.Add(false);
-        close.Add(false);
-
         currentPointIndex.Add(0);
-        speed.Add(0);
-        testList.Add(0);
         startingPosition = transform.position;
 
         guard = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -67,7 +54,6 @@ public class WaypointFollowerMain : MonoBehaviour
     {
         id = gameObject.transform.parent.GetComponent<IDsMain>().GetID();
 
-        testList[id] = test;
         if (canMove)
         {
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait < 2f) // if you're close and you haven't waited

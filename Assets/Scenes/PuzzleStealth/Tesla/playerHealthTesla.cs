@@ -11,7 +11,7 @@ public class playerHealthTesla : MonoBehaviour
 
     public int health;
     bool dead = false;
-    float stayTime;
+    float stayTime = 0;
 
     void Start()
     {
@@ -20,7 +20,6 @@ public class playerHealthTesla : MonoBehaviour
         endText = GameObject.Find("Game Over");
         endScreen.enabled = false;
         endText.SetActive(false);
-        stayTime = 0;
     }
     public void Awake()
     {

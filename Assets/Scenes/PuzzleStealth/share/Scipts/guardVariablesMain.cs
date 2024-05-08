@@ -7,6 +7,31 @@ public class GuardVariablesMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        guardChaseMain.sus.Add(0);
+        guardChaseMain.chase.Add(false);
+        guardChaseMain.alerting.Add(false);
+        guardChaseMain.seeing.Add(false);
+        guardChaseMain.oldPointIndex.Add(0);
+        guardChaseMain.speed.Add(GetBaseSpeed());
+        guardChaseMain.timesSeen.Add(0f);
+        guardChaseMain.detectRadius.Add(75f);
+
+        guardHealthMain.aliveList.Add(true);
+        guardHealthMain.healthList.Add(2);
+        guardHealthMain.dyingList.Add(false);
+        guardHealthMain.dyingTimer.Add(0);
+        //guardHealthMain.stunList.Add(1);
+
+        AlertMain.alerted.Add(-1);
+
+        WaypointFollowerMain.currentPointIndex.Add(0);
+        WaypointFollowerMain.spottedPosition.Add(Vector3.zero);
+        WaypointFollowerMain.movingLeft.Add(0);
+        WaypointFollowerMain.lookingLeft.Add(false);
+        WaypointFollowerMain.movingDown.Add(false);
+        WaypointFollowerMain.lookingDown.Add(false);
+        WaypointFollowerMain.movedDown.Add(false);
+        WaypointFollowerMain.close.Add(false);
 
     }
 

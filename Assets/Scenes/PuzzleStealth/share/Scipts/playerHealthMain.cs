@@ -11,6 +11,7 @@ public class playerHealthMain : MonoBehaviour
 
     public int health;
     bool dead = false;
+    float stayTime = 0;
 
 
     void Start()
@@ -31,6 +32,20 @@ public class playerHealthMain : MonoBehaviour
         {
             health--;
         } // if it's hit by something damaging, decrease health
+        if (collision.name.Contains("laser")){
+            stayTime = 0;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other){
+        if (other.name.Contains("laser")){
+            stayTime += Time.deltaTime;
+            if (stayTime >= 1){
+                stayTime = 0;
+                health--;
+                Debug.Log("laser stay, health = " + health);
+            }
+        }
     }
 
     IEnumerator Death()

@@ -7,15 +7,15 @@ public class GuardVariablesTesla : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        guardChaseTesla.currentPointIndex.Add(0);
         guardChaseTesla.sus.Add(0);
         guardChaseTesla.chase.Add(false);
         guardChaseTesla.alerting.Add(false);
         guardChaseTesla.seeing.Add(false);
         guardChaseTesla.oldPointIndex.Add(0);
-        guardChaseTesla.endedChase.Add(false);
+        // guardChaseTesla.endedChase.Add(false);
         guardChaseTesla.speed.Add(GetBaseSpeed());
         guardChaseTesla.timesSeen.Add(0f);
+        guardChaseMain.detectRadius.Add(75f);
 
         guardHealthTesla.aliveList.Add(true);
         guardHealthTesla.healthList.Add(2);

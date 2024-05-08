@@ -12,10 +12,6 @@ public class guardHealthMain : MonoBehaviour
 
     void Start()
     {
-        aliveList.Add(true);
-        healthList.Add(2);
-        dyingList.Add(false);
-        dyingTimer.Add(0);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

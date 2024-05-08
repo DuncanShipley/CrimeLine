@@ -12,22 +12,20 @@ public class guardChaseTesla : MonoBehaviour
 
     public float leftDetectEdge;
     public float rightDetectEdge;
-    public float detectRadius = 75;
+    public static List<float> detectRadius = new List<float>(); 
     private bool seesPlayer;
     public static List<float> sus = new List<float>();
     public static List<bool> chase = new List<bool>();
     public static List<bool> seeing = new List<bool>();
     public static List<int> oldPointIndex = new List<int>();
-    public static List<int> currentPointIndex = new List<int>();
     public static List<bool> alerting = new List<bool>();
-    public static List<bool> endedChase = new List<bool>();
+    //public static List<bool> endedChase = new List<bool>();
     [SerializeField] public static List<float> speed = new List<float>();
     public static List<float> timesSeen = new List<float>();
 
     float baseSpeed;
     float chaseSpeed;
 
-    public bool endedChaseVar;
     int movingLeft;
     bool movingDown;
     RaycastHit2D seeingRay;
@@ -45,36 +43,25 @@ public class guardChaseTesla : MonoBehaviour
 
         baseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesTesla>().GetBaseSpeed();
         chaseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesTesla>().GetChaseSpeed();
-
-        // currentPointIndex.Add(0);
-        // sus.Add(0);
-        // chase.Add(false);
-        // alerting.Add(false);
-        // seeing.Add(false);
-        // oldPointIndex.Add(0);
-        // endedChase.Add(false);
-        // speed.Add(baseSpeed);
-        // timesSeen.Add(0f);
     }
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(Waypoint1);
-        endedChaseVar = endedChase[id];
         GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed[id];
         seesPlayer = CheckFor(Player);
 
-        leftDetectEdge = transform.eulerAngles.z - 270 - detectRadius / 2;
-        rightDetectEdge = transform.eulerAngles.z - 90 + detectRadius / 2;
-        if (leftDetectEdge < -detectRadius / 2)
+        leftDetectEdge = transform.eulerAngles.z - 270 - detectRadius[id] / 2;
+        rightDetectEdge = transform.eulerAngles.z - 90 + detectRadius[id] / 2;
+        if (leftDetectEdge < -detectRadius[id] / 2)
         {
             leftDetectEdge += 360;
         }
-        if (rightDetectEdge < detectRadius / 2)
+        if (rightDetectEdge < detectRadius[id] / 2)
         {
             rightDetectEdge += 360;
         } // establish the radii within which the guard can detect the player
-        if (Vector2.Distance(transform.position, Player.transform.position) < detectRadius / 7 && seesPlayer) // if the player is within the guard's light
+        if (Vector2.Distance(transform.position, Player.transform.position) < detectRadius[id] / 7 && seesPlayer) // if the player is within the guard's light
         {
             if (sus[id] < 1) // and the guard isn't suspicious
             {
@@ -85,9 +72,9 @@ public class guardChaseTesla : MonoBehaviour
                 chase[id] = true;
                 AlertTesla.alerted[id] = -1;
                 seeing[id] = true;
-                oldPointIndex[id] = currentPointIndex[id];
-                currentPointIndex[id] = 0;
-                detectRadius = 121;
+                oldPointIndex[id] = WaypointFollowerTesla.currentPointIndex[id];
+                WaypointFollowerTesla.currentPointIndex[id] = 0;
+                detectRadius[id] = 121;
                 speed[id] = chaseSpeed;
                 sus[id] = 1;
                 alerting[id] = true;
@@ -96,10 +83,10 @@ public class guardChaseTesla : MonoBehaviour
         }
         else if (AlertTesla.alerted[id] > -1)
         {
-            detectRadius = 121;
+            detectRadius[id] = 121;
             speed[id] = chaseSpeed;
-            oldPointIndex[id] = currentPointIndex[id];
-            currentPointIndex[id] = 0;
+            oldPointIndex[id] = WaypointFollowerTesla.currentPointIndex[id];
+            WaypointFollowerTesla.currentPointIndex[id] = 0;
         }
         else if (sus[id] > 0) // if they're suspicious and the player isn't within their light, decrease their suspicion
         {
@@ -113,7 +100,7 @@ public class guardChaseTesla : MonoBehaviour
         {
             if (speed[id] == chaseSpeed) { timesSeen[id]++; }
             chase[id] = false;
-            detectRadius = 81;
+            detectRadius[id] = 81;
             speed[id] = baseSpeed;
             sus[id] = 0;
             alerting[id] = false;
@@ -144,11 +131,11 @@ public class guardChaseTesla : MonoBehaviour
         {
             if (!movingDown && movingLeft != 180)
             {
-                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin((((50 - i) * (leftDetectEdge + 360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * (leftDetectEdge + 360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
+                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin((((50 - i) * (leftDetectEdge + 360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * (leftDetectEdge + 360) * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius[id]), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
             }
             else
             {
-                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
+                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos((((50 - i) * leftDetectEdge * Math.PI / 180) + i * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius[id]), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
             }
             if (seeingRay.collider != null)
             {
@@ -161,11 +148,11 @@ public class guardChaseTesla : MonoBehaviour
             }
             if (!movingDown && movingLeft == 180)
             {
-                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(((i * (rightDetectEdge - 360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * (rightDetectEdge - 360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
+                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(((i * (rightDetectEdge - 360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * (rightDetectEdge - 360) * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius[id]), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
             }
             else
             {
-                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(((i * rightDetectEdge * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * rightDetectEdge * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
+                seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(((i * rightDetectEdge * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50), (float)Math.Cos(((i * rightDetectEdge * Math.PI / 180) + (50 - i) * transform.rotation.eulerAngles.z * Math.PI / 180) / 50)), (float)Math.Sqrt(detectRadius[id]), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
 
             }
             if (seeingRay.collider != null)
