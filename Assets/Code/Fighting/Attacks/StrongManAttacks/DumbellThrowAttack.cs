@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DumbellThrowAttack : MonoBehaviour
+public class DumbellThrowAttack : RangedAttack
 {
-    // Start is called before the first frame update
-    void Start()
+    public override int damage
     {
-        
+        get {return 3;}
     }
-
-    // Update is called once per frame
-    void Update()
+    public override Vector3 knockback 
     {
-        
+        get{return new Vector3(200,-100,0)}
     }
 }

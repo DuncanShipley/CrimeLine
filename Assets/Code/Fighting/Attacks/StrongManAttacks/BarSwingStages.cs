@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarSwingAttack : Attack
+public class BarSwingStages : StagedAttack
 {
-    public override int damage
+        public override int Stages
     {
         get {return 2;}
     }
