@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class StagedAttack : MonoBehaviour
 {
-    //todo get something      dun dun dun dun dun dun dun dun dun dun dun dn dun dun dun dun dun dun dun dun nah nvmd
+    //todo get something      dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun nah nvmd
 
     public virtual int Stages {get; set;}
 
@@ -33,7 +33,7 @@ public abstract class StagedAttack : MonoBehaviour
 
         for(int i = 0; i<stages; i++)
         {
-            if (this.gameObject.transform.GetChild(i).gameObject.activeSelf)
+            if (this.gameObject.transform.GetChild(i).gameObject.activeSelf)//the child is getting murdered before this
             {
                 return i;
             }

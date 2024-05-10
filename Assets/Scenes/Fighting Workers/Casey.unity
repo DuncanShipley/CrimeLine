@@ -6738,33 +6738,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f515f103539c67348beb078438b58983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SideH: {fileID: 0}
-  SH: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
-  WH: {fileID: 0}
-  SideJ: {fileID: 0}
-  SJ: {fileID: 0}
-  WJ: {fileID: 0}
-  body: {fileID: 0}
-  anim: {fileID: 0}
-  stunned: 0
-  canJump: 0
-  blocking: 0
-  groundSpikeSFX: {fileID: 0}
-  uppercutSFX: {fileID: 0}
-  whipSFX: {fileID: 0}
-  knifeSFX: {fileID: 0}
-  shieldPushSFX: {fileID: 0}
-  ballSFX: {fileID: 0}
-  jumpSFX: {fileID: 0}
-  CurrentAttack: {fileID: 0}
-  fadeScript: {fileID: 815886854}
-  healthScript: {fileID: 0}
-  <SideH>k__BackingField: {fileID: 0}
-  <SH>k__BackingField: {fileID: 0}
-  <WH>k__BackingField: {fileID: 0}
-  <SideJ>k__BackingField: {fileID: 0}
-  <SJ>k__BackingField: {fileID: 0}
-  <WJ>k__BackingField: {fileID: 0}
 --- !u!1 &1140407210
 GameObject:
   m_ObjectHideFlags: 0

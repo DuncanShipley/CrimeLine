@@ -12,15 +12,6 @@ public abstract class Attack : MonoBehaviour
 
     public virtual Vector3 knockback { get; set; }
 
-    /*
-    public virtual float time { get; set; }
-    public void Start()
-    {
-        Invoke("DeleteSelf", time);
-    }
-    For if we want limited range projectiles
-    */
-
     public void Start()
     {
         this.num = gameObject.transform.parent.localScale.x;
@@ -34,7 +25,7 @@ public abstract class Attack : MonoBehaviour
             int newHealth = (int)(health.slider.value) - damage;
             health.SetHealth(newHealth);
             health.TakeKnockback(knockback);
-            DeleteSelf();
+            
             
         }
     }
