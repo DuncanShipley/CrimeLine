@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/PuzzleStealth/Alexis/Garden/itemSelector.cs.meta
+guid: 963a9bc8f845c47f8ace69bef876c5f5
+========
+guid: db1e586dc88f6d1409e6ac84abc75980
+>>>>>>>> 70df061aeeaf183fa6fe8e50a246861ca69f9617:Assets/Scenes/PuzzleStealth/Share/guardProjectile.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class guardChaseMain : MonoBehaviour
+public class guardChaseTesla : MonoBehaviour
 {
     public GameObject Player;
     public Transform Waypoint1;
@@ -19,7 +19,7 @@ public class guardChaseMain : MonoBehaviour
     public static List<bool> seeing = new List<bool>();
     public static List<int> oldPointIndex = new List<int>();
     public static List<bool> alerting = new List<bool>();
-    
+    //public static List<bool> endedChase = new List<bool>();
     [SerializeField] public static List<float> speed = new List<float>();
     public static List<float> timesSeen = new List<float>();
 
@@ -40,9 +40,9 @@ public class guardChaseMain : MonoBehaviour
         Waypoint1 = this.gameObject.transform.parent.GetChild(1);
         startingPosition.Add(Vector3.zero);
         positionList.Add(Vector3.zero);
-;
-        baseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesMain>().GetBaseSpeed();
-        chaseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesMain>().GetChaseSpeed();
+
+        baseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesTesla>().GetBaseSpeed();
+        chaseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesTesla>().GetChaseSpeed();
     }
     // Update is called once per frame
     void Update()
@@ -50,18 +50,18 @@ public class guardChaseMain : MonoBehaviour
         seesPlayer = CheckFor(Player);
         GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed[id];
 
-        if (WaypointFollowerMain.close[id]){
-            movingLeft = WaypointFollowerMain.lookingLeft[id];
-            if (WaypointFollowerMain.movedDown[id]){
-                movingUp = !WaypointFollowerMain.lookingDown[id];
+        if (WaypointFollowerTesla.close[id]){
+            movingLeft = WaypointFollowerTesla.lookingLeft[id];
+            if (WaypointFollowerTesla.movedDown[id]){
+                movingUp = !WaypointFollowerTesla.lookingDown[id];
             }
             else{
-                movingUp = WaypointFollowerMain.lookingDown[id];
+                movingUp = WaypointFollowerTesla.lookingDown[id];
             }
         }
         else{
-            movingLeft = (WaypointFollowerMain.movingLeft[id] == 180);
-            movingUp = !WaypointFollowerMain.movingDown[id];
+            movingLeft = (WaypointFollowerTesla.movingLeft[id] == 180);
+            movingUp = !WaypointFollowerTesla.movingDown[id];
         }
 
         leftDetectEdge = transform.eulerAngles.z - 270 - detectRadius[id] / 2;
@@ -83,10 +83,10 @@ public class guardChaseMain : MonoBehaviour
             else // if they are suspicious, begin chasing the player
             {
                 chase[id] = true;
-                AlertMain.alerted[id] = -1;
+                AlertTesla.alerted[id] = -1;
                 seeing[id] = true;
-                oldPointIndex[id] = WaypointFollowerMain.currentPointIndex[id];
-                WaypointFollowerMain.currentPointIndex[id] = 0;
+                oldPointIndex[id] = WaypointFollowerTesla.currentPointIndex[id];
+                WaypointFollowerTesla.currentPointIndex[id] = 0;
                 detectRadius[id] = 121;
                 speed[id] = chaseSpeed;
                 sus[id] = 1;
@@ -94,18 +94,18 @@ public class guardChaseMain : MonoBehaviour
                 WaypointFollowerTesla.spottedPosition[id] = this.gameObject.transform.position;
             }
         }
-        else if (AlertMain.alerted[id] > -1)
+        else if (AlertTesla.alerted[id] > -1)
         {
             detectRadius[id] = 121;
             speed[id] = 6f;
-            oldPointIndex[id] = WaypointFollowerMain.currentPointIndex[id];
-            WaypointFollowerMain.currentPointIndex[id] = 0;
+            oldPointIndex[id] = WaypointFollowerTesla.currentPointIndex[id];
+            WaypointFollowerTesla.currentPointIndex[id] = 0;
             speed[id] = chaseSpeed;
         }
         else if (sus[id] > 0) // if they're suspicious and the player isn't within their light, decrease their suspicion
         {
             sus[id] = sus[id] - 0.5f * Time.deltaTime;
-            AlertMain.alerted[id] = -1;
+            AlertTesla.alerted[id] = -1;
             alerting[id] = false;
             seeing[id] = false;
         }
@@ -121,7 +121,7 @@ public class guardChaseMain : MonoBehaviour
         }
         if (time == 0f)
         {
-            id = gameObject.transform.parent.GetComponent<IDsMain>().GetID();  //first, set the guard's id.
+            id = gameObject.transform.parent.GetComponent<IDsTesla>().GetID();  //first, set the guard's id.
         }
         if (time > 0.5f && time < 1f)
         {
@@ -134,13 +134,13 @@ public class guardChaseMain : MonoBehaviour
     {
         wp.position = wpLocation;
         if (prior){
-            oldPointIndex[GuardID] = WaypointFollowerMain.currentPointIndex[GuardID];
-            WaypointFollowerMain.currentPointIndex[GuardID] = 0;
+            oldPointIndex[GuardID] = WaypointFollowerTesla.currentPointIndex[GuardID];
+            WaypointFollowerTesla.currentPointIndex[GuardID] = 0;
         }
     }
     public bool CheckFor(GameObject cf)
     {
-        if (WaypointFollowerMain.close[id]) {
+        if (WaypointFollowerTesla.close[id]) {
             seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(transform.rotation.eulerAngles.z * Math.PI / 180), (float)Math.Cos(transform.rotation.eulerAngles.z * Math.PI / 180)), (float)Math.Sqrt(detectRadius[id]), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
             //Debug.DrawRay(transform.position, new Vector2((float)-Math.Sin(transform.rotation.eulerAngles.z * Math.PI / 180), (float)Math.Cos(transform.rotation.eulerAngles.z * Math.PI / 180)));
             if (seeingRay.collider != null)
@@ -192,5 +192,5 @@ public class guardChaseMain : MonoBehaviour
         
         return false;
     }
-}
 
+}

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class WaypointFollowerMain : MonoBehaviour
+public class WaypointFollowerTesla : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
     public Transform Waypoint1;
@@ -23,7 +23,7 @@ public class WaypointFollowerMain : MonoBehaviour
     public static List<bool> lookingDown = new List<bool>();
     public static List<bool> movedDown = new List<bool>();
     public static List<bool> close = new List<bool>();
-
+    
     public GameObject Player;
     [SerializeField] Transform playerTrans;
     UnityEngine.AI.NavMeshAgent guard;
@@ -51,7 +51,7 @@ public class WaypointFollowerMain : MonoBehaviour
 
     private void Update()
     {
-        id = gameObject.transform.parent.GetComponent<IDsMain>().GetID();
+        id = gameObject.transform.parent.GetComponent<IDsTesla>().GetID();
 
         if (canMove)
         {
@@ -60,11 +60,11 @@ public class WaypointFollowerMain : MonoBehaviour
                 guardWait += Time.deltaTime; // wait
                 close[id] = true;
             }
-            else if (guardWait >= 2f) // once you've waited (and are still close)
+            else if (guardWait >= 1) // once you've waited (and are still close)
             {
                 if (gameObject.tag == "NPC") { currentPointIndex[id] = UnityEngine.Random.Range(0, waypoints.Length); }
                 else { currentPointIndex[id]++; } // look towards the next waypoint
-                guardChaseMain.putWaypoint(startingPosition, id, Waypoint1, false);
+                guardChaseTesla.putWaypoint(startingPosition, id, Waypoint1, false);
                 if (currentPointIndex[id] >= waypoints.Length)
                 {
                     currentPointIndex[id] = 0;
@@ -72,7 +72,7 @@ public class WaypointFollowerMain : MonoBehaviour
                 guardWait = 0; // reset wait timer
                 close[id] = false;
             }
-            else if (guardChaseMain.sus[id] == 0 || guardChaseMain.sus[id] == 1)
+            else if (guardChaseTesla.sus[id] == 0 || guardChaseTesla.sus[id] == 1)
             {
                 if (gameObject.tag == "NPC" && guardChaseTesla.sus[id] == 1){
                     this.gameObject.transform.position = spottedPosition[id];
@@ -100,7 +100,7 @@ public class WaypointFollowerMain : MonoBehaviour
                 lookingDown[id] = false;
             }
             if (close[id]) {
-                if ((float)(waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x) < 0f) // are moving left?
+                if ((float)(waypoints[currentPointIndex[id]].transform.position.x - transform.position.x) < 0f) // are moving left?
                 {
                     movingLeft[id] = 180;
                 }
@@ -108,7 +108,7 @@ public class WaypointFollowerMain : MonoBehaviour
                 {
                     movingLeft[id] = 0;
                 }
-                if ((float)(waypoints[(currentPointIndex[id]+1) % 4].transform.position.y - transform.position.y) < 0f) // are moving down?
+                if ((float)(waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) < 0f) // are moving down?
                 {
                     movingDown[id] = true;
                 }
@@ -178,7 +178,7 @@ public class WaypointFollowerMain : MonoBehaviour
                 }
                 else if (waypoints[currentPointIndex[id]].transform.position.x < transform.position.x) // if it's to the left of us
                 {
-                    relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI;
+                    relAngle = Math.Atan((waypoints[currentPointIndex[id]].transform.position.y - transform.position.y) / (waypoints[currentPointIndex[id]].transform.position.x - transform.position.x)) * 180 / Math.PI + 180;
                 }
                 else // if it's down and to the right of us
                 {
@@ -198,7 +198,7 @@ public class WaypointFollowerMain : MonoBehaviour
                     atan = (float)-Math.PI / 2;
                 }
             }
-            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, ((float)(relAngle) - 90 + movingLeft[id]) % 360); // point towards current waypoint
+            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, (float)(atan * 180 / Math.PI) - 90 + movingLeft[id]); // point towards current waypoint
         }
         else
         {

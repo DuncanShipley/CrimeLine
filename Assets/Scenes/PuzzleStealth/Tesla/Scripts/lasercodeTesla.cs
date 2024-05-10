@@ -16,11 +16,8 @@ public class lasercodeTesla : MonoBehaviour
     void Start()
     {
         render = GetComponent<Renderer>();
-        if (moving)
-        {
-            waypointIndex = 0; 
-            curWaypoint = waypoints[0];
-        }
+        waypointIndex = 0; 
+        curWaypoint = waypoints[0];
         
     }
 

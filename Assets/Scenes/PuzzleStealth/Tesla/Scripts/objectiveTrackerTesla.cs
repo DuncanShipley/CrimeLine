@@ -58,10 +58,8 @@ public class objectiveTrackerTesla : MonoBehaviour
             if (objStage + 1 < lines.Length)
             {
                 cloneObj = Object.Instantiate(gameObject, GameObject.Find("UI").transform);
-                cloneText = Object.Instantiate(thisText, GameObject.Find("UI").transform);
 
                 cloneObj.GetComponent<Image>().sprite = off;
-                cloneObj.GetComponent<objectiveTrackerTesla>().thisText = cloneText;
                 cloneObj.GetComponent<objectiveTrackerTesla>().objStage++;
 
                 for (int i = 0; i < allObjectives.Length; i++)

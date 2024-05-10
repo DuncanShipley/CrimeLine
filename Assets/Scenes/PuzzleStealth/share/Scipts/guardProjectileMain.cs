@@ -5,6 +5,7 @@ using UnityEngine;
 public class guardProjectileMain : MonoBehaviour
 {
     public GameObject source;
+    float timeExisting = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +15,14 @@ public class guardProjectileMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeExisting += Time.deltaTime;
         if (gameObject.name == "Guard Projectile")
         {
             transform.position = source.transform.position;
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
+        if (timeExisting > 60 && gameObject.name != "Guard Projectile"){
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

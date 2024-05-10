@@ -34,10 +34,10 @@ public class AlertMain : MonoBehaviour
             if (guardChaseMain.alerting[otherID] && !guardChaseMain.seeing[id] && Vector2.Distance(collision.gameObject.transform.position, this.gameObject.transform.position) > 5f) // if it gets close to a guard that's chasing and can't see the player
             {
                 alerted[id] = otherID; // set alerted for the non-suspicious guard to the id of the sus one
-                if (gameObject.tag != "NPC") {guardChaseMain.putWaypoint(collision.gameObject.transform.parent.position, id, Waypoint1);}
+                if (gameObject.tag != "NPC") {guardChaseMain.putWaypoint(collision.gameObject.transform.parent.position, id, Waypoint1, true);}
             }
             else if (guardChaseMain.alerting[otherID] && !guardChaseMain.seeing[id]){
-                guardChaseMain.putWaypoint(player.position, id, Waypoint1);
+                guardChaseMain.putWaypoint(player.position, id, Waypoint1, true);
             }
             else if (!guardChaseMain.alerting[otherID]) // if the other guard is no longer suspicious
             {

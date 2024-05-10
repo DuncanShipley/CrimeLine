@@ -20,7 +20,6 @@ public class GuardVariablesMain : MonoBehaviour
         guardHealthMain.healthList.Add(2);
         guardHealthMain.dyingList.Add(false);
         guardHealthMain.dyingTimer.Add(0);
-        //guardHealthMain.stunList.Add(1);
 
         AlertMain.alerted.Add(-1);
 
@@ -42,12 +41,12 @@ public class GuardVariablesMain : MonoBehaviour
     }
     public float GetChaseSpeed()
     {
-        if (name == "Elite Guard") { return 8f; }
-        else { return 6f; }
+        if (name == "Elite Guard") { return 5f; }
+        else { return 4.5f; }
     }
     public float GetBaseSpeed()
     {
-        return 2f;
+        return 3f;
     }
     public int GetHealth()
     {

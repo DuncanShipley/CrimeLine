@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class radioMain : MonoBehaviour
+public class radioTesla : MonoBehaviour
 {
     public GameObject waypoint;
     private bool placed = false;
@@ -28,6 +28,6 @@ public class radioMain : MonoBehaviour
         transform.position = GameObject.Find("Player").transform.position;
         placed = true;
 
-        guardChaseMain.putWaypoint(transform.position, 0, waypoint.transform, true);
+        guardChaseTesla.putWaypoint(transform.position, 0, waypoint.transform, true);
     }
 }

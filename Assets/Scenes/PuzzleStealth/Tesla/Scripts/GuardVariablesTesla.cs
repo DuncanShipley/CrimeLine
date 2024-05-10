@@ -12,21 +12,25 @@ public class GuardVariablesTesla : MonoBehaviour
         guardChaseTesla.alerting.Add(false);
         guardChaseTesla.seeing.Add(false);
         guardChaseTesla.oldPointIndex.Add(0);
-        // guardChaseTesla.endedChase.Add(false);
         guardChaseTesla.speed.Add(GetBaseSpeed());
         guardChaseTesla.timesSeen.Add(0f);
-        guardChaseMain.detectRadius.Add(75f);
+        guardChaseTesla.detectRadius.Add(75f);
 
         guardHealthTesla.aliveList.Add(true);
         guardHealthTesla.healthList.Add(2);
         guardHealthTesla.dyingList.Add(false);
         guardHealthTesla.dyingTimer.Add(0);
-        guardHealthTesla.stunList.Add(1);
 
         AlertTesla.alerted.Add(-1);
 
         WaypointFollowerTesla.currentPointIndex.Add(0);
         WaypointFollowerTesla.spottedPosition.Add(Vector3.zero);
+        WaypointFollowerTesla.movingLeft.Add(0);
+        WaypointFollowerTesla.lookingLeft.Add(false);
+        WaypointFollowerTesla.movingDown.Add(false);
+        WaypointFollowerTesla.lookingDown.Add(false);
+        WaypointFollowerTesla.movedDown.Add(false);
+        WaypointFollowerTesla.close.Add(false);
     }
 
     // Update is called once per frame

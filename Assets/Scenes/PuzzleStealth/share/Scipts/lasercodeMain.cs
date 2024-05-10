@@ -26,8 +26,6 @@ public class lasercodeMain : MonoBehaviour
     {
         if (moving)
         {
-            
-
             if (curWaypoint > gameObject.transform.position.y) 
             {
                 gameObject.transform.position += new Vector3(0f, 0.1f, 0.0f);

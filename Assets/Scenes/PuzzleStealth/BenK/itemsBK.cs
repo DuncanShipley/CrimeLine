@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class itemsMain : MonoBehaviour
+public class itemsBK : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -21,15 +21,15 @@ public class itemsMain : MonoBehaviour
         switch (item.name)
         {
             case "radio" :
-                item.GetComponent<radioMain>().deploy();
+                item.GetComponent<radioBK>().deploy();
                 return true;
                 break;
             case "signalJammer" :
-                item.GetComponent<signalJammerMain>().deploy();
+                item.GetComponent<signalJammerBK>().deploy();
                 return false;
                 break;
             case "knife" :
-                item.GetComponent<projectileMain>().deploy();
+                item.GetComponent<projectileBK>().deploy();
                 return false;
                 break;
         }

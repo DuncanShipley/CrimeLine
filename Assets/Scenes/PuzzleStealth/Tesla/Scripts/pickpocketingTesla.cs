@@ -66,30 +66,37 @@ public class pickpocketingTesla : MonoBehaviour
             text.enabled = true;
         }
 
-        switch (pickProgress) {
-            case 0:
-                text.SetText("Pocketing<br>key...");
-                break;
-            case 45:
-                text.SetText("Pocketing<br>key....");
-                break;
-            case 90:
-                text.SetText("Pocketing<br>key.....");
-                break;
-            case 135:
-                text.SetText("Pocketing<br>key......");
-                break;
-            case 180:
-                text.SetText("Key get!");
-                keychain.addKey();
-                objectiveTrackerTesla.currentObjective.completeObjective(1);
-                break;
-            case 300:
-                heldKey = 0;
-                pickProgress = 0;
-                break;
-        }
+        if(heldKey != 0)
+        {
+            switch (pickProgress) {
+                case 0:
+                    text.SetText("Pocketing<br>key...");
+                    break;
+                case 45:
+                    text.SetText("Pocketing<br>key....");
+                    break;
+                case 90:
+                    text.SetText("Pocketing<br>key.....");
+                    break;
+                case 135:
+                    text.SetText("Pocketing<br>key......");
+                    break;
+                case 180:
+                    text.SetText("Key get!");
+                    keychain.addKey();
+                    objectiveTrackerTesla.currentObjective.completeObjective(1);
+                    break;
+                case 300:
+                    heldKey = 0;
+                    pickProgress = 0;
+                    break;
+            }
 
-        pickProgress++;
+            pickProgress++;
+        }
+        else
+        {
+            text.SetText("Nothing to steal...");
+        }
     }
 }

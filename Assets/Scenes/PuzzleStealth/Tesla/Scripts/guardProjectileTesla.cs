@@ -6,12 +6,11 @@ using UnityEngine;
 public class guardProjectileTesla : MonoBehaviour
 {
     public GameObject source;
-    float timeExisting;
+    float timeExisting = 0;
     // Start is called before the first frame update
     void Start()
     {
         if (gameObject.name == "Guard Projectile") { source = transform.parent.gameObject; }
-        timeExisting = 0;
     }
 
     // Update is called once per frame
