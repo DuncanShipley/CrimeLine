@@ -13,6 +13,8 @@ TagManager:
   - camera
   - button
   - spinnySteel
+  - spinnySteel2
+  - spinnySteel1
   layers:
   - Default
   - TransparentFX

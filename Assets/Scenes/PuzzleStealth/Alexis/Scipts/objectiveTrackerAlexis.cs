@@ -21,13 +21,11 @@ public class objectiveTrackerAlexis : MonoBehaviour
     private GameObject cloneObj;
     private GameObject cloneText;
     public GameObject thisText;
-    private InputControllerAlexis input;
 
     // Start is called before the first frame update
     void Start()
     {
         objectiveTrackerAlexis.currentObjective = gameObject.GetComponent<objectiveTrackerAlexis>();
-        input = GameObject.Find("Screen UI").GetComponent<InputControllerAlexis>();
 
 
         allObjectives[objStage] = gameObject;
