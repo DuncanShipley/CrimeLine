@@ -572,12 +572,61 @@ You: Urk you'll regret that, you will.
 ==Conversation==
 You: This view is quite something huh? I envy you getting paid to hangout in this beautiful area of town.
 Guard: It really is, although, after spending every day here you begin to take it for granted.
-*//activites
-*
-*
-You: Since were here you wanna get some ice cream? My treat.
-Guard: What's your angle here?
-You: I'm craving something sweet and it's nice weather. What about it?
-Guard: Well when you put it like that.
+*care for ice cream?
+    You: Since were here you wanna get some ice cream? My treat.
+    Guard: What's your angle here?
+    You: I'm craving something sweet and it's nice weather. What about it?
+    Guard: Well when you put it like that.
+    ->IceCream
+*Sit down on the viewside bench
+    You: Since were here why not stop to sit and admire the view?
+    Guard: Come on we have places to be.
+    ->Comply
+==IceCream==
+Salesman: Hey there folks what can I get for ya today?
+Guard: Can I get a split scoop, pistachio and chocolate mousse, in a waffle cone with sprinkles, whipped cream, peanuts, and the pirouettes?
+Salesman: For sure!
+You: What the hell are you thinking??
+You: Hold on you think i'm paying for all that? 
+You: Fat chance.
+Guard: Well we could just head back now if your unwilling to keep your word.
+You: No no no alright fine get whatever.
+Salesman: And what can I get for you?
+*Pistachio
+    {Fumie:Guard: Pistachio huh? We truly have so much in common.}
+    {not oshi:
+    Guard: Listen you don't have to pretend in order to impress me.
+    You: What are you even talking about?
+    Guard: You copied my order plain and simple.
+    You: Pfft hardly, you ordered enough ice cream to make a cow lactose intolerant.
+    Guard: Oh shut up.
+    }
+    
+*French Vanilla
+{Hikari:
+Guard: You're about as basic as they come!
+You: Excuse me? What's that supposed to mean?
+Guard: Well of all the NPR's your oshi is Hikari and of all the flavors you can you pick vanilla.
+You: Well if they're superior than I see no issue.
+}
+Guard: Of all the wonderful flavors? 
+You: Who's paying again?
+Guard: Fair enough.
+*Sorbet
+Guard: Good choice. Maybe I should've gotten that.
+You: I can give you some if you want to try it.
+Guard: If you don't mind uhm I would love to try it.
+-
+Salesman: Alrighty then that will be 19.35$
+You: Here you are.
+Salesman: Excellent have an amazing rest of your day!
+You: 19.35$? Really?
+{Sorbet:
+Guard: Do you mind if I have a taste of yours?
+You: Sure, here you go.
+Guard: Oh right off the spoon? 
+You: I'm sorry I-
+Guard: No it's ok I guess I don't mind so much.
+}
 ->END
 
