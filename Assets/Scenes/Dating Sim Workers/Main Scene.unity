@@ -226,6 +226,7 @@ MonoBehaviour:
   characters:
   - {fileID: 5345753755031983825, guid: 3ace9d2c7b4f58740ba36eddd3034ce2, type: 3}
   - {fileID: 8512334846354789707, guid: 6efadfa0d10584e82b018526242655a1, type: 3}
+  - {fileID: 7983352471180951034, guid: b6f2adcf79f184cecac8214270539b07, type: 3}
   CharacterList: []
   canvas: {fileID: 491119762}
 --- !u!114 &385688794
@@ -495,10 +496,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e272a9c106a4695aa4daafd6d10892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackgroundOrder: Inside bank, Outside bank
+  BackgroundOrder: Inside bank, Outside bank, Under Bridge
   Backgrounds:
   - {fileID: 21300000, guid: 2be1e2675ad3a4f908d9cbed8dd51244, type: 3}
   - {fileID: 21300000, guid: ba149f63264fb4377981eb26ad1dd07b, type: 3}
+  - {fileID: 21300000, guid: 6839d9d3675da44b1ab0c4bf2691e913, type: 3}
 --- !u!1 &523751081
 GameObject:
   m_ObjectHideFlags: 0

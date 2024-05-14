@@ -17,7 +17,10 @@ public class InkManager : MonoBehaviour
         gm = GetComponent<GameManager>();
         IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
         bgm = GameObject.FindGameObjectWithTag("Background").GetComponent<BackgroundManager>();
-        StartStory();
+        Debug.Log("Starting Story");
+        story = new Story(inkJSONAsset.text);
+        IKF.Bind(story);
+        RefreshView();
     }
     private void Update()
     {
@@ -37,16 +40,6 @@ public class InkManager : MonoBehaviour
             if(Input.GetMouseButtonDown(1)){ skippedPressed = true;}
         }
     }
-
-    // Creates a new Story object with the compiled story which we can then play!
-    void StartStory()
-    {
-        Debug.Log("Starting Story");
-        story = new Story(inkJSONAsset.text);
-        IKF.Bind(story);
-        RefreshView();
-    }
-
    /// <summary>
    /// Main Function, Destroys old content and choices. Creates new line of dialouge and any choices
    /// </summary>
@@ -107,7 +100,7 @@ public class InkManager : MonoBehaviour
 
     // When we click the choice button, tell the story to choose that choice!
     void OnClickChoiceButton (Choice choice) {
-		story.ChooseChoiceIndex (choice.index);
+		story.ChooseChoiceIndex(choice.index);
 		RefreshView();
 	}
 

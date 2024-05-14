@@ -20,8 +20,8 @@ public class BackgroundManager : MonoBehaviour
     }
      public void changeBackground(string ActiveBackground)
      {
-          Debug.Log("Changing background to " + ActiveBackground);
-          StartCoroutine(ActiveBackground); 
+               Debug.Log("Changing background to " + ActiveBackground);
+               StartCoroutine(ActiveBackground); 
      }
      IEnumerator InsideBank()
      {
@@ -31,6 +31,11 @@ public class BackgroundManager : MonoBehaviour
      IEnumerator OutsideBank()
      {
           iRend.sprite = Backgrounds[1];
+          yield return null;
+     }
+     IEnumerator UnderBridge()
+     {
+          iRend.sprite = Backgrounds[2];
           yield return null;
      }
 }
