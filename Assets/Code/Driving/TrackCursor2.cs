@@ -6,11 +6,11 @@ public class TrackCursor2 : MonoBehaviour
 {
     public Animator carSpin;
 
-    public void CyberTruckSpinTrue()
+    public void SpinTrue()
     {
         carSpin.SetBool("ButtonHighlight", true);
     }
-    public void CyberTruckSpinFalse()
+    public void SpinFalse()
     {
         carSpin.SetBool("ButtonHighlight", false);
     }
