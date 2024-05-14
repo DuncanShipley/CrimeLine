@@ -684,6 +684,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7459191875886613762}
+  - component: {fileID: 5106269197343239891}
+  - component: {fileID: 8745426347020387483}
   m_Layer: 2
   m_Name: GuardMain
   m_TagString: Guard
@@ -711,6 +713,31 @@ Transform:
   - {fileID: 8289147299426729783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5106269197343239891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331019455399242599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e584ef7dde4498f97a41c0d063630a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  publicId: 0
+--- !u!114 &8745426347020387483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331019455399242599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc3f6d689d9541c8b9eed2c6ca7905c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7674905096276641158
 GameObject:
   m_ObjectHideFlags: 0

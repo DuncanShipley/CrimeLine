@@ -18,7 +18,7 @@ public class lasercodeMain : MonoBehaviour
     {
         render = GetComponent<Renderer>();
         waypointIndex = 0; 
-        curWaypoint = waypoints[0];
+        if (moving) { curWaypoint = waypoints[0]; }
     }
 
     // Update is called once per frame

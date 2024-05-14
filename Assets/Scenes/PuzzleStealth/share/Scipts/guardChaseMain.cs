@@ -40,7 +40,7 @@ public class guardChaseMain : MonoBehaviour
         Waypoint1 = this.gameObject.transform.parent.GetChild(1);
         startingPosition.Add(Vector3.zero);
         positionList.Add(Vector3.zero);
-;
+
         baseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesMain>().GetBaseSpeed();
         chaseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesMain>().GetChaseSpeed();
     }
@@ -91,7 +91,8 @@ public class guardChaseMain : MonoBehaviour
                 speed[id] = chaseSpeed;
                 sus[id] = 1;
                 alerting[id] = true;
-                WaypointFollowerTesla.spottedPosition[id] = this.gameObject.transform.position;
+                WaypointFollowerMain.spottedPosition[id] = this.gameObject.transform.position;
+                
             }
         }
         else if (AlertMain.alerted[id] > -1)

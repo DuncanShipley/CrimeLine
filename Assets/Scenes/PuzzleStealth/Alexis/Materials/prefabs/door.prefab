@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8290733697629955826}
   - component: {fileID: 1286568510780962415}
-  - component: {fileID: 7309458905147568144}
+  - component: {fileID: 7307648924049467048}
   - component: {fileID: 7445273977995095033}
   - component: {fileID: 6192349804914257611}
   - component: {fileID: 1390967035339971303}
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7309458905147568144
+--- !u!114 &7307648924049467048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 709985463410121665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760063bcdbedf804995b8489150645d3, type: 3}
+  m_Script: {fileID: 11500000, guid: b4d1eac9591964e2dbbf75a619341a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lockType: 
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShadowGroup: 0
   m_ComponentVersion: 1
-  m_HasRenderer: 0
+  m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   - {x: 0.24, y: -0.24, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -292482
+  m_InstanceId: 40400
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.24, y: 0.24, z: 0}

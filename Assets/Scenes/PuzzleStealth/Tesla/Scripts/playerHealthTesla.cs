@@ -7,7 +7,6 @@ public class playerHealthTesla : MonoBehaviour
 {
     public Image endScreen;
     public GameObject endText;
-    public GameObject test;
 
     public int health;
     bool dead = false;
