@@ -8,28 +8,31 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Driving Workers/Duncan Messing Around.unity
     guid: 2c8fcc7b249df7445905f6fdb1695e3d
-  - enabled: 0
-    path: Assets/Scenes/Driving Workers/Duncan Working.unity
-    guid: 009e6c4974784df478289fad4dcfb985
+  - enabled: 1
+    path: Assets/Scenes/Driving Workers/Ari Working.unity
+    guid: e05e273a40ed31442acc58124c10cfdc
   - enabled: 1
     path: Assets/Scenes/Driving Workers/Final Scenes/FinalCybertruck.unity
     guid: 4dd40dd34db684493b91e8f12272850d
-  - enabled: 1
-    path: Assets/Scenes/Driving Workers/You Lose.unity
-    guid: 8a278aab517801a48986a4ef7a55c1b7
-  - enabled: 1
-    path: Assets/Scenes/Driving Workers/You Win!.unity
-    guid: 03a0273ff9d974d4a8a71f126d9f447f
   - enabled: 1
     path: Assets/Scenes/Driving Workers/Final Scenes/FinalPurpleCar.unity
     guid: a907401e401304eb0832c4ff19e9f676
   - enabled: 1
     path: Assets/Scenes/Driving Workers/Final Scenes/FinalRedTruck.unity
     guid: 54d77a45b24774fe8a680d2447436074
+  - enabled: 1
+    path: Assets/Scenes/Driving Workers/You Win!.unity
+    guid: 03a0273ff9d974d4a8a71f126d9f447f
+  - enabled: 1
+    path: Assets/Scenes/Driving Workers/You Lose.unity
+    guid: 8a278aab517801a48986a4ef7a55c1b7
   - enabled: 0
     path: Assets/Scenes/Driving Workers/Cybertruck.unity
     guid: 8a08899f1b1c6ba439f7ce0f2fc0b095
   - enabled: 0
     path: Assets/Scenes/Driving Workers/Ari Transition Test.unity
     guid: 38ee89cde2cfe48e2937008960d09dfa
+  - enabled: 0
+    path: Assets/Scenes/Driving Workers/Duncan Working.unity
+    guid: 009e6c4974784df478289fad4dcfb985
   m_configObjects: {}
