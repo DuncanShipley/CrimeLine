@@ -25,8 +25,6 @@ public abstract class Attack : MonoBehaviour
             int newHealth = (int)(health.slider.value) - damage;
             health.SetHealth(newHealth);
             health.TakeKnockback(knockback);
-            
-            
         }
     }
     public void DeleteSelf()

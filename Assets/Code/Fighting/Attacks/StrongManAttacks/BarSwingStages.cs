@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BarSwingStages : StagedAttack
 {
-        public override int Stages
+    public override int Stages
     {
         get {return 2;}
     }

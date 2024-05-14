@@ -10,7 +10,7 @@ public abstract class StagedAttack : MonoBehaviour
 
     public void Awake()
     {
-        Reset();
+        Set();
         this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         Invoke("NextStage", 1);
     }
@@ -20,7 +20,8 @@ public abstract class StagedAttack : MonoBehaviour
         int stage = FindStage(Stages);
         if (stage == Stages-1)
         {
-            Reset();
+            this.gameObject.transform.GetParent.stunned = false;
+            Destroy(gameObject);
             return;
         }
         this.gameObject.transform.GetChild(stage).gameObject.SetActive(false);
@@ -33,7 +34,7 @@ public abstract class StagedAttack : MonoBehaviour
 
         for(int i = 0; i<stages; i++)
         {
-            if (this.gameObject.transform.GetChild(i).gameObject.activeSelf)//the child is getting murdered before this
+            if (this.gameObject.transform.GetChild(i).gameObject.activeSelf)
             {
                 return i;
             }
@@ -43,7 +44,7 @@ public abstract class StagedAttack : MonoBehaviour
     }
 
 
-    public void Reset()
+    public void Set()
     {
         for(int i = 0; i<Stages; i++)
         {
