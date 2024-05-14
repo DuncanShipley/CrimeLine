@@ -23,7 +23,7 @@
 
         public override void TryMoveAction(MovementAction[] movement)
         {
-            body.AddForce(manager.GetVector(movement));
+            //body.AddForce(manager.GetVector(movement));
         }
 
 

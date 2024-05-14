@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.ComponentModel;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace Assets.Code.Fighting.CharacterControl
@@ -15,20 +18,22 @@ namespace Assets.Code.Fighting.CharacterControl
         public MovementManager(float WalkSpeed, float JumpHeight, float Gravity)
         {
             this.WalkSpeed = WalkSpeed;
-            this.JumpHeight = JumpHeight;
-            this.Gravity = Gravity;
-
+            this.Gravity = -9.81f * Gravity;
+            this.JumpHeight = (float) Math.Sqrt((4 * JumpHeight * Math.Pow(this.Gravity, 2)) / -this.Gravity);
         }
 
         
-        public Vector3 GetVector(MovementAction[] move)
+        public Vector3 GetVector(MovementAction[] move, Collider collider, Rigidbody body)
         {
             Vector3 vec = new Vector3();
             foreach (var item in move){//we have to do more stuff
                 switch (item)
                 {
                     case MovementAction.Jump:
-                        vec.y = JumpHeight;
+                        if (collider.TouchingGround())
+                        {
+                            vec.y = JumpHeight;
+                        }
                         break;
                     case MovementAction.Right:
                         vec.x = WalkSpeed;
@@ -48,7 +53,11 @@ namespace Assets.Code.Fighting.CharacterControl
                         break;
                 }
             }
-            
+            if (!collider.TouchingGround())
+            {
+                Debug.Log("we touching grond");
+                vec.y = body.velocity.y;
+            }
             return vec;
         }
 

@@ -10,13 +10,13 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
     public class EnemyManager : MonoBehaviour
     {
         [SerializeField] private readonly Transform SPAWNING_LOCATION = new GameObject().transform;
-        [SerializeField] public static GameObject KenPrefab;
-        [SerializeField] public static GameObject RyuPrefab;
 
 
         private List<Enemy> ActiveChildren;
         private EnemyType[] InitialEnemies;
 
+        private GameObject playerObject;
+        private Collider playerCollider;
 
 
 
@@ -29,6 +29,8 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
 
         private void Start()
         {
+            playerObject = FindObjectOfType<PlayerActionManager>().gameObject;
+            playerCollider = playerObject.GetComponent<Collider>();
             SpawnEnemies(InitialEnemies);
 
         }
@@ -37,30 +39,29 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         {
             foreach (Enemy enemy in ActiveChildren)
             {
-                EnemyAiInput input = BuildInputs(enemy.actor, FindObjectOfType<PCControl>().gameObject.GetComponent<Collider>());
+                EnemyAiInput input = BuildInputs(enemy, playerCollider);
                 (AttackAction, MovementAction[]) action = enemy.brain.Output(input);
-                //applly the movements
-                enemy.actor.GetComponent<ActionManager>().TryAction(action.Item1);
-                enemy.actor.GetComponent<ActionManager>().TryMoveAction(action.Item2);
+                enemy.actionManager.TryAction(action.Item1);
+                enemy.actionManager.TryMoveAction(action.Item2);
 
             }
         }
 
-        private EnemyAiInput BuildInputs(GameObject enemy, Collider playerPosition)
+        private EnemyAiInput BuildInputs(Enemy enemy, Collider playerPosition)
         {
-            float distanceToPC = MathUtils.EuclideanNorm3(enemy.transform.position, playerPosition.bounds.center);
+            float distanceToPC = MathUtils.EuclideanNorm3(enemy.actor.transform.position, playerPosition.bounds.center);
             bool playerTouchingGround = playerPosition.TouchingGround();
-            bool touchingGround = enemy.GetComponent<Collider>().TouchingGround();
-            AnimatorStateInfo animation = enemy.TryGetComponent<Animator>(out Animator comp) ? comp.GetCurrentAnimatorStateInfo(0) : throw new MissingComponentException("Enemy animator component not found");
-            Vector3 PCPosition = playerPosition.bounds.center;
+            bool touchingGround = enemy.collider.TouchingGround();
+            AnimatorStateInfo animationState = enemy.animator.GetCurrentAnimatorStateInfo(0);
+            Vector3 pcPosition = playerPosition.bounds.center;
   
             return new EnemyAiInput
                 (
                     distanceToPC, 
                     playerTouchingGround,
                     touchingGround,
-                    animation,
-                    PCPosition
+                    animationState,
+                   pcPosition
                 );
         }
 
@@ -70,8 +71,6 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
 
         public void SpawnEnemies(EnemyType[] enemies)
         {
-
-          
             foreach (EnemyType enemy in enemies) {
                 if (Constants.instance.enemyPrefabs.TryGetValue(enemy, out GameObject result))
                 {
@@ -102,13 +101,18 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         public EnemyType type;
         public GameObject actor;
         public EnemyAI brain;
+        public Collider collider;
+        public ActionManager actionManager;
+        public Animator animator;
 
         public Enemy(EnemyType type, GameObject actor)
         {
             this.type = type;
             this.actor = actor;
             this.brain = Constants.instance.enemyBrains.TryGetValue(type, out brain) ? brain : null;
-            
+            collider = actor.GetComponent<Collider>();
+            actionManager = actor.GetComponent<ActionManager>();
+            animator = actor.GetComponent<Animator>();
         }
     }
 

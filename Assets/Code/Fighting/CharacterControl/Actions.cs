@@ -18,8 +18,8 @@ namespace Assets.Code.Fighting.CharacterControl
 
     public enum PlayerAction
     {
+        Jump,        
         Block,
-        Jump, 
         MeleeAttack,
         RangeAttack,
         MoveLeft,

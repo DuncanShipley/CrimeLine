@@ -32,8 +32,8 @@ namespace Assets.Code.Fighting
 
         public static bool TouchingGround(this Collider collider)
         {
-            float distToGround = collider.bounds.extents.y;
-            return Physics.Raycast(collider.bounds.center, -Vector3.up, 3.0f);
+            
+            return Physics.Raycast(collider.bounds.center, Vector3.down, collider.bounds.extents.y + 0.1f);
             
         }
 
