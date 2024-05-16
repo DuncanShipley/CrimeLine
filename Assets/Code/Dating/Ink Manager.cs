@@ -127,7 +127,7 @@ public class InkManager : MonoBehaviour
     Button CreateChoiceView(string text)
     {
      // Creates the button from a prefab
-     Button choice = Instantiate(buttonPrefab, new Vector3(475, -305-(BP*TR), 1), Quaternion.identity) as Button;
+     Button choice = Instantiate(buttonPrefab, new Vector3(450, -285-(BP*TR), 1), Quaternion.identity) as Button;
      choice.transform.SetParent(canvas.transform, false);
 
         // Gets the text from the button prefab

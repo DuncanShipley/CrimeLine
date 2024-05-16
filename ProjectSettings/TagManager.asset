@@ -9,6 +9,8 @@ TagManager:
   - Guard
   - Manager
   - Background
+  - Homeless Man
+  - Barrista
   layers:
   - Default
   - TransparentFX

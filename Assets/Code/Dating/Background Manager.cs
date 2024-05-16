@@ -38,4 +38,14 @@ public class BackgroundManager : MonoBehaviour
           iRend.sprite = Backgrounds[2];
           yield return null;
      }
+     IEnumerator CoffeeShop()
+     {
+          iRend.sprite = Backgrounds[3];
+          yield return null;
+     }
+     IEnumerator Rooftop()
+     {
+          iRend.sprite = Backgrounds[4];
+          yield return null;
+     }
 }

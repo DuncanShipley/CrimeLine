@@ -29,6 +29,12 @@ public class CharacterManager : MonoBehaviour
     }
     public void SetSpeaker(){
         if(IKF.CurrentSpeaker!=""){
+            if(IKF.CurrentSpeaker == "Blank"){
+                Debug.Log("Hiding Speaker");
+                foreach(GameObject gO in CharacterList){
+                    gO.SetActive(false);
+                }
+            }
             if(ActiveSpeaker != IKF.CurrentSpeaker){
                 Debug.Log("Setting Speaker to " + IKF.CurrentSpeaker);
                   foreach (GameObject gO in CharacterList){

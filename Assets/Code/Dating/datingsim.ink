@@ -151,6 +151,7 @@ You: Gotta give you credit man that's super impressive.
 
 ==NekoCon==
 You: Are you going to NekoCon?
+~SetEmotion("Sad")
 Guard: No but I really want to. It's too expensive and I wouldn't be able to go because it's on a work day anyways.
 You: Well, keep this between just you and me alright?
 Guard: Sure sure.
@@ -167,6 +168,7 @@ Guard: I can't believe this! it's almost two good to be true. Alright then I'll 
 You: Akane, Easy! She was girl power before girl power. 
 You: Nobody wanted the smoke and for good reason! She slayed like no other could. 
 You: Also Emi teasing her about her crush on Shohei never failed to make me laugh.
+~SetEmotion("Happy")
 Guard: I love her and shohei together. It's so frustrating to follow but it keeps you so invested.
 ->Questions
 
@@ -174,6 +176,7 @@ Guard: I love her and shohei together. It's so frustrating to follow but it keep
 You: I love Emi and honestly the hate is undeserved. She's a little much, but that's important to her character. 
 You: 80% of the comedy comes from her shenanagins. And every good team needs a scamp. 
 You: And you have to admit her Mahouken is easily top 3 coolest.
+~SetEmotion("Happy")
 Guard: I can appreciate a fellow devout for an underrated queen.
 You: You know it. We gotta stick together cause it's us versus the world.
 ->Questions
@@ -182,16 +185,19 @@ You: You know it. We gotta stick together cause it's us versus the world.
 You: Call me basic but Hikari is and will always be best girl. She's too good for the rest of them honestly. 
 You: Every scene is enhanced by her presence and some of the best emotional moments involve her. 
 You: The perfect older sister to the group.
+~SetEmotion("Happy")
 Guard: Sorry, that's basic for sure. Wouldn't be me but, she's popular for a reason right? I'm not knocking your opinion cause she definitely is deserving of that fanbase.
 ->Questions
 
 ==Kohaku==
 You: Oh it's kohaku for sure. Our lesbian queen.
+~SetEmotion("Nuetral")
 Guard: Well I guess, but she's never confirmed to be lesbian.
 You: Uhm yes she basically is, i'm sorry but if you're denying her very clear identity then you're homophobic.
 Guard: What? No no it's nothing like that, I just feel like at least for me. 
 Guard: She is never confirmed to be a lesbian by the creator, none of her interactions with akane are ever explicitly romantic and akane never recipracates. 
-Guard: I believe they're just good friends with a unique bond but nothing more. 
+Guard: I believe they're just good friends with a unique bond but nothing more.
+~SetEmotion("Happy")
 Guard: You can definitely have your own opinion though!
 You: Kohakane is not opinion, it's canon. Either way I love her so much, 
 You: her sheltered clueless rich girl personality perfectly clashes with akane's head first tom boyish character. 
@@ -201,8 +207,9 @@ You: Their dynamic is what got me through all the fillers.
 
 ==Reina==
 You: TEAM REINA FOREVER. "Mahouken, Neptune's wrath UNLIMITTED!" Chills. Still Chills. 
-You: I don't care what anyone says about her because she's just wayyy too cool. 
+You: I don't care what anyone says about her because she's just wayyy too cool.
 You: If you think she isn't top 2 we can never get along. Also she's just too hot, her G1 outfit is PEAK!
+~SetEmotion("Happy")
 Guard: I know right! I love her G1 outfit, her VA literally saves lives with that preformance. 
 You: I KNOW RIGHT!
 ->Questions
@@ -210,6 +217,7 @@ You: I KNOW RIGHT!
 ==Sora==
 You: No disrespect, Sora clears the others E Z. Plus she solos your favorite character, your favorite verse. 
 You: Her Mahouken is so underrated, it's literally an auto win button that's only countered by bullshit plot convinience and toon force. 
+~SetEmotion("Nuetral")
 Guard: Oh really? Than how was dodonzora able to defeat her?
 You: Again plot convinience, If she had just used jetstream-
 Guard: But she did! She was speed blitzed and overpowered. There's no excuse there.
@@ -238,6 +246,7 @@ You: The piano musical theme being so subtle and quiet plays so well into this s
 You: Hatred, pain, and war are the emotions that govern people which destoys them and the world. 
 You: Fumie's character arc teaches us to love our fellow people, friends, family, especially those who live on earth with us.
 You: We are not the only ones who live on earth. Be loving and considerate to them as well. 
+~SetEmotion("Happy")
 Guard: *sniff* that was beautiful, I'm honestly moved and so glad I could meet another like minded individual.
 ->Questions
 
@@ -251,20 +260,19 @@ Guard: *sniff* that was beautiful, I'm honestly moved and so glad I could meet a
     *[Ask another Neko Princess Rangers question]-> NekoQ
 }
 
-
-
 ==Management==
-~SetBackground("InsideBank")
-~SetCharacter("Manager")
 You: Is this how you normally treat patrons of this establishment? If so I must inform the management of the poor treatment of us customers
-Guard: Hey listen we don’t have to go there, i’m sorry if I offended you, i’m just doin my job here.
+Guard: Hey listen we don’t have to go there, I’m sorry if I offended you, I’m just doin my job here.
 *[Threaten Management]->ThreatenM
 
 ==ThreatenP==
 You: Then I'll be taking this issue up with the general public.
+You: I'll make sure your bank gets one star reviews. Unless you do what I want.
 ->END
 
 ==ThreatenM==
+~SetBackground("InsideBank")
+~SetCharacter("Manager")
 You: Then I’ll be taking this issue up with Management. 
 You: Excuse me! May I speak to the Manager of this establishment?
 Manager: What’s the issue here?
@@ -304,6 +312,7 @@ How do you want to flirt?
 You: Clearly your a very intelligent man, you've climbed the ranks of the corporate ladder and established yourself as worthy of a prestigious position. 
 You: Tell me based on your superior insight do you believe that someone who came to a bank to do business would lie about their intentions? 
 You: I merely tried to make small talk before carrying on and am now facing unjust infrigment of my rights from your fine employee here.
+~SetEmotion("Happy")
 Manager: Well when you put it like that, I can't dispute it. Excuse my employee's behavior, to slander you with language like "loitering" is not representative of our business. Please by all means carry on.
 ->END
 
@@ -329,12 +338,18 @@ Manager: Well hehe, I suppose that's all true, I do take pride in my cleanliness
 
 ==Fire== 
 You: Isn't it obvious. His position as a guard must be terminated at once.
-Guard: Please. That's absurd.
+~SetCharacter("Guard")
+Guard: Please. That's absurd.'
+~SetCharacter("Manager")
 Manager: Well hold on
+~SetCharacter("Guard")
 Guard: WHAT! BOSS???
+~SetCharacter("Manager")
 Manager: Well some assesment can't hurt. It's of the utmost importance that my employee's take their job as seriously as I take mine.
+~SetCharacter("Guard")
 Guard: Listen, with all do respect you're entertaining the idea of a miscreant customer. Do you hear yourself?
 You: Miscreant? Excuse me, You are most definitely in need of assesment.
+~SetCharacter("Manager")
 Manager: Precisely. Now then how should we carry out this assesment.
 *[Test their general knowledge]->quiz
 *[Test their morality]->morality
@@ -343,6 +358,7 @@ Manager: Precisely. Now then how should we carry out this assesment.
 
 ==morality==
 You: Let's test you're morality shall we?
+~SetCharacter("Manager")
 Manager: Splendid idea, this will help illuminate your character and expose any flaws.
 You: The trolley problem goes as follows:
 You: There is a runaway trolley barreling down the railway tracks. 
@@ -355,23 +371,32 @@ You: Do nothing, in which case the trolley will kill the five people on the main
 You: or,
 You: Pull the lever, diverting the trolley onto the side track where it will kill one person.
 You: What do you do?
+~SetCharacter("Guard")
 Guard: The people's lives are of the upmost importance. I will pull the lever even if there's blood on my hands to save the lives of more people.
+~SetCharacter("Manager")
 Manager: Ah ha, here we see the character flaws begin to shine through, obviously the correct answer is to abstain from pulling the lever, 
+~SetCharacter("Manager")
 Manager: In doing so, the blood is on your hands, society will not be able to see past it.
 You: Precisely.
+~SetCharacter("Guard")
 Guard: Your kidding!
+~SetCharacter("Manager")
 Manager: What else should we test him on?
 //*[]
 //*[]
 ->END
 
 ==Apprehend==
+~SetCharacter("Manager")
 Manager: Interesting. That would be relevant to their abillity to provide value to the company. How do you suppose we test this?
 You: It's simple, given a 5 second head start I will attempt to get away from the bank, you must be able to catch me within the hour timer.
 You: Failure to do so and you will be terminated. Make sense?
+~SetCharacter("Guard")
 Guard: Please, this is absurd. Also you don't truly believe you can escape from me can you? I mean, it is literally my job.
 You: Oh ho? Let's see you put your money where your mouth is.
+~SetCharacter("Guard")
 Guard: Ha! You're gonna regret ever challenging my authority.
+~SetCharacter("Manager")
 Manager: Well that settles it, on the count of 3.
 Manager: 3..
 Manager: 2..
@@ -435,6 +460,7 @@ You: Ok ok i'll get out of your space, my bad man.
 
 ==HelpH==
 You: Someone please! Help me!
+~SetCharacter("Homeless Man")
 Homeless Man: Ohhhhh no, n-no no no. You're not going anywhere.
 ~SetCharacter("Guard")
 ~SetCharacter("Nuetral")
@@ -443,10 +469,12 @@ You: I'm sorry I ever doubted you, I need you.
 Guard: Uh hehe, wow, I-I suppose so, looks to me like you could use a hand.
 You: Please help me I'll do anything.
 Guard: Anything!? Well when you make a face like that how can I refuse, this does mean that I win though alright? Don't get the wrong idea or whatever.
+~SetCharacter("Homeless Man")
 Homeless Man: YOU'LL NEVER TAKE ME!
 Guard: Right, the situation at hand. 
 /*Punch*/
 You: Thank you so much. You're my hero, you really saved me!
+~SetCharacter("Guard")
 Guard: Please, i'm just doing my job here.
 You: What can I do to make it up to you?
 ->END
@@ -466,16 +494,21 @@ You: Shit why's he over here?? And moreover why is he coming this way?
 ->END
 
 ==Coffee==
+~SetBackground("Coffee Shop")
 You: The guard should be on the hunt now.
+~SetCharacter("Barista")
 Barista: Welcome, how can I help you?
 *[Order a drink]->Order
 //*[Bribe to switch outfits/places]->Disguise*[Hide in the bathroom]->Bathroom//
 ==RoofHide==
+~SetCharacter("Blank")
+~SetBackground("Rooftop")
 You: The guard should be on the hunt now.
 ->END
 
 ==Traffic==
 You: The guard should be on the hunt now.
+~SetCharacter("Guard")
 Guard: Stop there!
 You: Excuse me
 /*Cars Honk*/
@@ -484,22 +517,26 @@ You: I'm winning though aren't I?
 ->END
 
 ==Rooftops==
+~SetCharacter("Blank")
+~SetBackground("Rooftop")
 You: The guard should be on the hunt now.
 ->END
 
 ==Order==
 You: Yeah tell you what, can I get a grande, flat white, with an extra shot?
-Cashier: Yeah that'll be 5.99$
-Cashier: And what name should I call for your order?
-You: Kennedy.
-Cashier: Would you like to leave a tip?
+Barrista: Yeah that'll be 5.99$
+Barrista: And what name should I call for your order?
+You: Kennedy
+Barrista: Would you like to leave a tip?
 You: Here's a dollar.
-Cashier: Thank you, your order will be right on it's way.
+Barrista: Thank you, your order will be right on it's way.
 You: Perfect. Hide where he'll least expect it. Plain sight.
 ->END
 
 ==Caught==
 You: Shit I gotta go! 
+~SetCharacter("Guard")
+~SetEmotion("Happy")
 Guard: Gotcha! Don't fight back.
 You: Not bad, that's a clean rear naked choke hold, you seem to know what you're doing. 
 You: Although I'm not so sure the law lets security guards put people in choke holds, I'll let you because admittdley you've bested me.
@@ -515,6 +552,7 @@ You: Hey listen we can work something out,
 You: We don't have to go back, 
 You: how about a little treat shows up in your venmoe,
 You: I get out of your hair and we never have to cross paths again. Huh? Not so bad right?
+~SetEmotion("Nuetral")
 Guard: How much are we talking? Cause to put it lightly the bidding starts very high. I'm not about to stake my job for nothing.
 *[50$]->Fifty
 *[100$]->Hundred
@@ -522,7 +560,9 @@ Guard: How much are we talking? Cause to put it lightly the bidding starts very 
 
 ==Fifty==
 You: 50$ call it good?
+~SetEmotion("Annoyed")
 Guard: HAH that's rich,
+~SetEmotion("Nuetral")
 Guard: Now let's get this over with and head back.
 *[100$]->Hundred
 *[1000$]->Thousand
@@ -534,6 +574,7 @@ Guard: Now let's get this over with and head back.
 You: Tell ya what a whole hundred and we go our seperate ways.
 Guard: Getting fired is gonna cost me a whole lot more than a hundred dollars.
 You: How do you know your getting fired? It's really not that deep and i'm sure your boss is a sensible man.
+~SetEmotion("Annoyed")
 Guard: Then clearly you don't know him well enough,
 Guard: No disrespect to him.
 *[1000$]->Thousand
@@ -543,6 +584,7 @@ Guard: No disrespect to him.
 
 ==Thousand==
 You: Thousand dollars final offer.
+~SetEmotion("Nuetral")
 Guard: How do I know you even got a thousand dollars lying around, go ahead lets see that stack.
 You: Now hold on, I don't got it on me, maybe I give you my contact info, we figure this out when I've withdrawn that money.
 Guard: Well if you're in such a rush why don't we head back to the bank and withdraw it there?
@@ -555,6 +597,7 @@ You: But will he expect this?
 /*Fighting game noise*/
 /*Pause*/
 ...
+~SetEmotion("Annoyed")
 Guard: That was mighty slick there chief, you've crossed the line though.
 Guard: We're headed back,
 Guard: And don't even think about trying anything funny.
@@ -566,12 +609,12 @@ Guard: ...
 ==Seduce==
 You: Hold on now we can work something out, 
 You: We're in no rush to be anywhere.
+~SetEmotion("Neutral")
 Guard: That's just not true.
 You: Maybe I provide you a special little service, you leave me be, we go our seperate ways huh? 
 You: After all this tight grip has got me feeling a certain sorta way. You don't feel that?
 Guard: ... I uh
 Guard: AhEm uh, hehe...  what sorta service do you have in mind?
 You: Whatever your in the mood for darling.
-Guard:
 ->END
 
