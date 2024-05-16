@@ -17,12 +17,10 @@ public class doorcodeMain : MonoBehaviour
     bool opening = false;
     float movequeue = 0;
     float speed = 10;
-    private InputControllerMain input;
 
     // Colider
     private void Start()
     {
-        input = GameObject.Find("ScreenUI").GetComponent<InputControllerMain>();
         keychain = GameObject.Find("Player").GetComponent<KeychainMain>();
         textbox = GameObject.Find("bigTextbox").GetComponent<bigTextboxMain>();
     }
@@ -40,8 +38,9 @@ public class doorcodeMain : MonoBehaviour
     private void Update()
     {
 
-        if (input.GetKeyLimited("z") && touch && movequeue == 0 && !opening)
+        if (Input.GetKeyDown(KeyCode.Z) && touch && movequeue == 0 && !opening)
         {
+            /*
             switch (lockType)
             {
                 case "key":
@@ -97,7 +96,18 @@ public class doorcodeMain : MonoBehaviour
                     opening = true;
                     break;
             }
-            
+            */
+
+            if (open)
+            {
+                open = false;
+            }
+            else
+            {
+                open = true;
+            }
+            movequeue += 10;
+            opening = true;
             
         }
 

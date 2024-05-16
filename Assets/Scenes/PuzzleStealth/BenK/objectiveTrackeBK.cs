@@ -27,7 +27,7 @@ public class objectiveTrackerBK : MonoBehaviour
     void Start()
     {
         objectiveTrackerBK.currentObjective = gameObject.GetComponent<objectiveTrackerBK>();
-        input = GameObject.Find("UI").GetComponent<InputControllerBK>();
+        input = GameObject.Find("ScreenUI").GetComponent<InputControllerBK>();
 
 
         allObjectives[objStage] = gameObject;
@@ -57,11 +57,9 @@ public class objectiveTrackerBK : MonoBehaviour
             // Create the next objective if there's one left
             if (objStage + 1 < lines.Length)
             {
-                cloneObj = Object.Instantiate(gameObject, GameObject.Find("UI").transform);
-                cloneText = Object.Instantiate(thisText, GameObject.Find("UI").transform);
+                cloneObj = Object.Instantiate(gameObject, GameObject.Find("ScreenUI").transform);
 
                 cloneObj.GetComponent<Image>().sprite = off;
-                cloneObj.GetComponent<objectiveTrackerBK>().thisText = cloneText;
                 cloneObj.GetComponent<objectiveTrackerBK>().objStage++;
 
                 for (int i = 0; i < allObjectives.Length; i++)
@@ -76,7 +74,6 @@ public class objectiveTrackerBK : MonoBehaviour
                 {
                     if (allTexts[i] != null)
                     {
-                        allTexts[i].transform.position = new Vector3(allTexts[i].transform.position.x, allTexts[i].transform.position.y - 50f, allTexts[i].transform.position.z);
                         allTexts[i].GetComponent<TextMeshProUGUI>().color = new Color(1f, 1f, 1f, allTexts[i].GetComponent<TextMeshProUGUI>().color.a - 0.25f);
                     }
                 }

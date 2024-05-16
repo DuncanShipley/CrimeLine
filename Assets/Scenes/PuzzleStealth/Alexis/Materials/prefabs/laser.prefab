@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1036650628770426492}
   - component: {fileID: 430963799723523467}
   - component: {fileID: 3833070888125918435}
+  - component: {fileID: 7585163842678888096}
   m_Layer: 0
   m_Name: laser
   m_TagString: Untagged
@@ -178,3 +179,17 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &7585163842678888096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342761085880337715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76cbbda561c7c4757a1cdf3f26d69e4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moving: 0
+  waypoints: []

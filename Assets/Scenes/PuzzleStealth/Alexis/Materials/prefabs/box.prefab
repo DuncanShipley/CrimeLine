@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3143923103044720249}
   - component: {fileID: 920817234234643313}
   - component: {fileID: 1827469215249459024}
-  - component: {fileID: 4376961879890850059}
+  - component: {fileID: 7048785461982506689}
   m_Layer: 0
   m_Name: box
   m_TagString: movable
@@ -232,11 +232,11 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 36140
+  m_InstanceId: 49732
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
---- !u!114 &4376961879890850059
+--- !u!114 &7048785461982506689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,6 +245,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1747254166569301657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a14f54a05d83346d4bae431e4ef6dd3c, type: 3}
+  m_Script: {fileID: 11500000, guid: a3e94673ff7ed43fe8074724d8856c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -7,63 +7,53 @@ using TMPro;
 public class talkscriptBK : MonoBehaviour
 {
     public string[] lines;
+    public bool key;
     public bool objective;
     public int objectiveStage;
+    public bool item;
+    public GameObject itemObject;
 
     private bool talking = false;
     private int totalLines;
     private int textIndex = 0;
 
-    public static objectiveTrackerBK currentObjective;
-    private InputControllerBK input;
     private TextMeshProUGUI text;
-    private GameObject textobj;
-    private GameObject textbox;
+    private bigTextboxBK textbox;
     private camfollowBK camera;
+    private KeychainBK keychain;
+    private itemSelectorBK inv;
     bool touch = false;
 
     // Start is called before the first frame update
     void Start()
     {
         totalLines = lines.Length;
-        camera = GameObject.Find("Main Camera").GetComponent<camfollowBK>();
-        textobj = GameObject.Find("bigText");
-        textbox = GameObject.Find("bigTextbox");
-        text = textobj.GetComponent<TextMeshProUGUI>();
-
-        input = GameObject.Find("UI").GetComponent<InputControllerBK>();
+        camera = GameObject.Find("BK Camera").GetComponent<camfollowBK>();
+        textbox = GameObject.Find("bigTextbox").GetComponent<bigTextboxBK>();
+        keychain = GameObject.Find("Player").GetComponent<KeychainBK>();
+        inv = GameObject.Find("IScursor").GetComponent<itemSelectorBK>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (input.GetKeyLimited("z") && (touch || false))
+        if (Input.GetKeyDown(KeyCode.Z) && touch && !talking)
         {
-            if (textbox.GetComponent<bigTextboxBK>().enabled)
+            talking = true;
+            textbox.pushText(lines);
+
+            if (objective)
             {
-                textIndex++;
-                if (textIndex >= totalLines)
-                {
-                    if (objective)
-                    {
-                        objectiveTrackerBK.currentObjective.completeObjective(objectiveStage);
-                    }
-                    textbox.GetComponent<bigTextboxBK>().enabled = false;
-                    textobj.GetComponent<bigTextboxBK>().enabled = false;
-                    camera.enable();
-                    textIndex = 0;
-                }
-                else
-                {
-                    text.SetText(lines[textIndex]);
-                }
+                objectiveTrackerBK.currentObjective.completeObjective(objectiveStage);
             }
-            else
+            if (key)
             {
-                textbox.GetComponent<bigTextboxBK>().enabled = true;
-                textobj.GetComponent<bigTextboxBK>().enabled = true;
-                text.SetText(lines[0]);
-                camera.disable();
+                keychain.addKey();
+            }
+            if (item)
+            {
+                Debug.Log(itemObject);
+                inv.AddItem(itemObject);
             }
         }
     }

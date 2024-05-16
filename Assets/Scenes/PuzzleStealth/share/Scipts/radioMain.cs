@@ -28,6 +28,6 @@ public class radioMain : MonoBehaviour
         transform.position = GameObject.Find("Player").transform.position;
         placed = true;
 
-        guardChaseBK.putWaypoint(transform.position, 0, waypoint, true);
+        guardChaseMain.putWaypoint(transform.position, 0, waypoint.transform, true);
     }
 }

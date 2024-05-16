@@ -19,10 +19,10 @@ public class lightSizeMain : MonoBehaviour
     {
         id = gameObject.transform.parent.parent.GetComponent<IDsMain>().GetID();
 
-        myLight.pointLightInnerAngle = WaypointFollowerMain.sus[id] * 45 + 75;
-        myLight.pointLightOuterAngle = WaypointFollowerMain.sus[id] * 45 + 75;
-        myLight.pointLightOuterRadius = WaypointFollowerMain.sus[id] * 2 + 9;
-        myLight.color = Color.Lerp(passiveColor, Color.red, WaypointFollowerMain.sus[id]);
+        myLight.pointLightInnerAngle = guardChaseMain.sus[id] * 45 + 75;
+        myLight.pointLightOuterAngle = guardChaseMain.sus[id] * 45 + 75;
+        myLight.pointLightOuterRadius = guardChaseMain.sus[id] * 2 + 9;
+        myLight.color = Color.Lerp(passiveColor, Color.red, guardChaseMain.sus[id]);
         // these change the light's radius, angle, and color based on the guard's suspicion.
     }
 }
