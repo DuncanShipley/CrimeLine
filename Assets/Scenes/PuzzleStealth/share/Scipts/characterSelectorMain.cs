@@ -10,13 +10,13 @@ public class characterSelectorMain : MonoBehaviour
     public GameObject button3;
 
     private TextMeshProUGUI characterName;
-    private movescriptMain player;
+    private MovescriptMain player;
     private itemSelectorMain inv;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<movescriptMain>();
+        player = GameObject.Find("Player").GetComponent<MovescriptMain>();
         characterName = GameObject.Find("characterName").GetComponent<TextMeshProUGUI>();
 
         inv = GameObject.Find("IScursor").GetComponent<itemSelectorMain>();

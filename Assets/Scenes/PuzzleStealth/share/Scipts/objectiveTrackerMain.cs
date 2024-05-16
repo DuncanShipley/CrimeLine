@@ -57,7 +57,7 @@ public class objectiveTrackerMain : MonoBehaviour
             // Create the next objective if there's one left
             if (objStage + 1 < lines.Length)
             {
-                cloneObj = Object.Instantiate(gameObject, GameObject.Find("ScreenUI").transform);
+                cloneObj = Object.Instantiate(gameObject, GameObject.Find("Screen UI").transform);
 
                 cloneObj.GetComponent<Image>().sprite = off;
                 cloneObj.GetComponent<objectiveTrackerMain>().objStage++;

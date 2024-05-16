@@ -40,7 +40,7 @@ public class doorcodeMain : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z) && touch && movequeue == 0 && !opening)
         {
-            /*
+            
             switch (lockType)
             {
                 case "key":
@@ -96,18 +96,6 @@ public class doorcodeMain : MonoBehaviour
                     opening = true;
                     break;
             }
-            */
-
-            if (open)
-            {
-                open = false;
-            }
-            else
-            {
-                open = true;
-            }
-            movequeue += 10;
-            opening = true;
             
         }
 
