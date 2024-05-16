@@ -1,9 +1,7 @@
-﻿using UnityEditor;
+﻿using System.Collections.Immutable;
 using UnityEngine;
-using System.Collections.Immutable;
-using Unity.VisualScripting.FullSerializer;
 
-namespace Assets.Code.Fighting
+namespace Code.Fighting.Utils
 {
     public static class MathUtils
     {

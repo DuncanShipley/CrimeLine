@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using Code.Fighting.Utils;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
@@ -55,7 +56,6 @@ namespace Assets.Code.Fighting.CharacterControl
             }
             if (!collider.TouchingGround())
             {
-                Debug.Log("we touching grond");
                 vec.y = body.velocity.y;
             }
             return vec;

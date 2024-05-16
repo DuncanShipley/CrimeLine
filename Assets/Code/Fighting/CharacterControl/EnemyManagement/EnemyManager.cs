@@ -1,17 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Assets.Code.Fighting.CharacterControl;
 using Assets.Code.Fighting.CharacterControl.EnemyManagement.EnemyAis;
+using Code.Fighting.Utils;
 
 
 namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
     public class EnemyManager : MonoBehaviour
     {
-        [SerializeField] private readonly Transform SPAWNING_LOCATION = new GameObject().transform;
-
-
+        
         private List<Enemy> ActiveChildren;
         private EnemyType[] InitialEnemies;
 
@@ -26,21 +26,38 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
             
         }
 
+        private void Awake()
+        {
+            ActiveChildren = new List<Enemy>();
+        }
+
+        public EnemyManager()
+        {
+            InitialEnemies = new EnemyType[]
+            {
+                EnemyType.Ryu
+            };
+            
+        }
+
 
         private void Start()
         {
             playerObject = FindObjectOfType<PlayerActionManager>().gameObject;
             playerCollider = playerObject.GetComponent<Collider>();
             SpawnEnemies(InitialEnemies);
+            FindObjectOfType<Cameracontroller>().AddP2(ActiveChildren[0].actor);
+
 
         }
 
         private void Update()
         {
+           print("num active children:" + ActiveChildren.Count);
             foreach (Enemy enemy in ActiveChildren)
             {
                 EnemyAiInput input = BuildInputs(enemy, playerCollider);
-                (AttackAction, MovementAction[]) action = enemy.brain.Output(input);
+                (PlayerAction[], MovementAction[]) action = enemy.brain.Output(input);
                 enemy.actionManager.TryAction(action.Item1);
                 enemy.actionManager.TryMoveAction(action.Item2);
 
@@ -65,10 +82,6 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
                 );
         }
 
-     
-
-
-
         public void SpawnEnemies(EnemyType[] enemies)
         {
             foreach (EnemyType enemy in enemies) {
@@ -76,7 +89,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
                 {
                     ActiveChildren.Add(new Enemy(
                         enemy,
-                        Instantiate(result, SPAWNING_LOCATION, true)
+                        Instantiate(result, gameObject.transform, true)
                      ));
 
                 }
@@ -102,7 +115,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         public GameObject actor;
         public EnemyAI brain;
         public Collider collider;
-        public ActionManager actionManager;
+        public PlayerActionManager actionManager;
         public Animator animator;
 
         public Enemy(EnemyType type, GameObject actor)
@@ -111,7 +124,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
             this.actor = actor;
             this.brain = Constants.instance.enemyBrains.TryGetValue(type, out brain) ? brain : null;
             collider = actor.GetComponent<Collider>();
-            actionManager = actor.GetComponent<ActionManager>();
+            actionManager = actor.GetComponent<PlayerActionManager>();
             animator = actor.GetComponent<Animator>();
         }
     }
