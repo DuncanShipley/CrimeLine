@@ -128,6 +128,7 @@ Manager: What does this mean for him?
     Manager: What!? Please, do you really beleive so? With all do respect the idea seems far fetched. 
     Guard: No it's true.
     Guard: I have NPR to thank for becoming the person I am today.
+    ->Assesment
 }
 {Fire && not History:
 You: Off the top? Very impressive. Perhaps I've misjudged you.
@@ -143,7 +144,7 @@ Manager: Ok well now hold on. Nevermind me let's just stay on track.
 {not Fire: 
 You: Off the top? Very impressive. 
 }
-{oshi: 
+{oshi:  
 You: Off the top? Wow! You truly are who you say you are, a devout Fumie fan.
 }
 -> Questions
@@ -229,7 +230,7 @@ Guard: Gamek?
 You: Plot convinience and she didn't even get beaten by him in combat! She just couldn't stop him from activating the generator.
 Guard: As far as i'm concerned that counts as a loss.
 You: BULLSHIT
-Guard: Whatever you say I guess
+Guard: Whatever you say I guess.
 ->Questions
 ==Fumie==
 You: Much like yourself I believe Fumie is the best written character in the series.
@@ -273,8 +274,9 @@ Manager: What’s the issue here?
 ==IntroFlirt==
 You: Oh hello there, I feel reassured knowing that a capable looking man such as yourself has come to my rescue. <br>I assume you must be the manager because I can’t imagine you having a position any lower. 
 Manager: Astute observation, I am the manager, How may I be of service to you?
-//*[]
-//*[]
+*[Compliment intelligence]->ComplimentIntelligence
+*[Instill confidence]->InstillConfidence
+*[Compliment appearance]->ComplimentAppearance
 ->END
 
 ==GITEMS==
@@ -304,6 +306,9 @@ You: Clearly your a very intelligent man, you've climbed the ranks of the corpor
 You: Tell me based on your superior insight do you believe that someone who came to a bank to do business would lie about their intentions? 
 You: I merely tried to make small talk before carrying on and am now facing unjust infrigment of my rights from your fine employee here.
 Manager: Well when you put it like that, I can't dispute it. Excuse my employee's behavior, to slander you with language like "loitering" is not representative of our business. Please by all means carry on.
+You: Excellent thank you so much for understanding.
+//go on a date with Manager
+//go back to bothering the guard
 ->END
 
 ==InstillConfidence==
@@ -324,6 +329,7 @@ You: it's unbefitting for people like us to be subservient to those beneath us,
 You: let alone those who aren't even capable of grooming their own facial hair.
 You: I mean this is a fine establishment and to have someone like him in charge ordering people like us around is a little ridiculous don't you think?
 Manager: Well hehe, I suppose that's all true, I do take pride in my cleanliness. 
+
 ->END
 ==Fire== 
 You: Isn't it obvious. His position as a guard must be terminated at once.
@@ -334,10 +340,11 @@ Manager: Well some assesment can't hurt. It's of the utmost importance that my e
 Guard: Listen, with all do respect you're entertaining the idea of a miscreant customer. Do you hear yourself?
 You: Miscreant? Excuse me, You are most definitely in need of assesment.
 Manager: Precisely. Now then how should we carry out this assesment.
+->Assesment
+==Assesment==
 *[Test their general knowledge]->quiz
 *[Test their morality]->morality
 *[Test their abillity to apprehend someone]->Apprehend
-->END
 ==morality==
 You: Let's test you're morality shall we?
 Manager: Splendid idea, this will help illuminate your character and expose any flaws.
@@ -568,6 +575,7 @@ Guard: Sweet! Well, without anymore delay let's get back to doing our jobs.
 Manager: Excellent idea!
 Guard: Great. Then i'm gonna have to ask you to leave the premises.
 You: Urk you'll regret that, you will.
+//Bad Ending
 ->END
 ==Conversation==
 You: This view is quite something huh? I envy you getting paid to hangout in this beautiful area of town.
@@ -592,17 +600,20 @@ You: Fat chance.
 Guard: Well we could just head back now if your unwilling to keep your word.
 You: No no no alright fine get whatever.
 Salesman: And what can I get for you?
-*Pistachio
+*[Sorbet]->Sorbet
+*[French Vanilla]->Vanilla
+*[Pistachio]->Pistachio
+==Pistachio==
     {Fumie:Guard: Pistachio huh? We truly have so much in common.}
-    {not oshi:
+    {not Fumie:
     Guard: Listen you don't have to pretend in order to impress me.
     You: What are you even talking about?
     Guard: You copied my order plain and simple.
     You: Pfft hardly, you ordered enough ice cream to make a cow lactose intolerant.
     Guard: Oh shut up.
     }
-    
-*French Vanilla
+->Total
+==Vanilla==
 {Hikari:
 Guard: You're about as basic as they come!
 You: Excuse me? What's that supposed to mean?
@@ -612,21 +623,91 @@ You: Well if they're superior than I see no issue.
 Guard: Of all the wonderful flavors? 
 You: Who's paying again?
 Guard: Fair enough.
-*Sorbet
+->Total
+==Sorbet==
 Guard: Good choice. Maybe I should've gotten that.
 You: I can give you some if you want to try it.
 Guard: If you don't mind uhm I would love to try it.
--
+->Total
+==Total==
 Salesman: Alrighty then that will be 19.35$
 You: Here you are.
 Salesman: Excellent have an amazing rest of your day!
 You: 19.35$? Really?
-{Sorbet:
-Guard: Do you mind if I have a taste of yours?
-You: Sure, here you go.
+Guard: Sorry. But maybe let's not dwell on it so much.
+Guard: I mean after all, we didn't come all this way to sit around and bicker right?
+* {Sorbet} [Share ice cream]
+You: Do you want to try mine?
+Guard: If your ok with it.
+You: Here you go.
 Guard: Oh right off the spoon? 
 You: I'm sorry I-
-Guard: No it's ok I guess I don't mind so much.
+Guard: No it's ok, 
+Guard: ahem! 
+Guard: I uh- I guess I don't really mind.
+->DONE
+* [Respond annoyed] 
+You: Ugh your right but don't think i'm gonna let this go so easily
+Guard: Pfft haha oh man, alright, fair enough. 
+You: I'm glad you think this is funny.
+Guard: Come on don't be like that.
+->DONE
+* [Flirt]
+You: Despite your proffesional demeanor you're quite the scamp aren't you? 
+You: It's cute. I like that about you.
+Guard: ...
+Guard: Thanks. I've never really had anybody say something like that to me.
+You: I'm honored to be your first.
+Guard: Honestly i've never even really dated anybody before.
+    **{oshi}[ask out]->AskOutOshi
+    **{not oshi}[ask out]->AskOut
+    **[Pity]
+    You: Oh man you poor thing.
+    ->DONE
+->END
+==AskOutOshi==
+You: I can change that for you.
+Guard: Excuse me?
+You: I know we just met but I think there's a real chance for this to go somewhere. 
+You: So what do you say will you go out with me?
+{Fumie or Akane or Emi or Hikari or Reina:
+Guard: I-I I don't know what to say.
+Guard: This is all so sudden.
+Guard: *heavy breathing* I uh-
+You: Hey calm down. 
+You: Catch your breath. 
+You: Everything is gonna be alright.
+Guard: phew, thanks. 
+Guard: ... I have made my decision.
+You: ...
+Guard: Yes. I would be happy to go out with you.
 }
+{Kohaku or Sora:
+Guard: I don't know what to say.
+Guard: This is all so sudden.
+Guard: Uh oh gosh
+You: Uhm are you good?
+Guard: Yeah sorry I just had to calm my nerves down there for a second.
+You: So what's it gonna be?
+Guard: ... I have made my decision.
+You: Go ahead.
+Guard: I'm sorry but I'm not intrested.
+}
+->END
+==AskOut==
+You: I can change that for you.
+Guard: Excuse me?
+You: I know we just met but I think there's a real chance for this to go somewhere. 
+Guard: I don't know what to say.
+Guard: This is all so sudden.
+Guard: Uh oh gosh
+You: Uhm are you good?
+Guard: Yeah sorry I just had to calm my nerves down there for a second.
+You: So what's it gonna be?
+Guard: ... I have made my decision.
+You: Go ahead.
+Guard: I'm sorry but I'm not intrested.
+
+
 ->END
 
