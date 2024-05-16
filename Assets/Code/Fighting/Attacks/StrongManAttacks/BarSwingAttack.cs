@@ -8,4 +8,10 @@ public class BarSwingAttack : Attack
     {
         get {return 2;}
     }
+
+    public override Vector3 knockback
+    {
+        get {return new Vector3(350,200,0);}
+    }
 }
+

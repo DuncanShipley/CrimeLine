@@ -16,6 +16,14 @@ namespace Assets.Code.Fighting.CharacterControl
         public bool blocking;
         protected MovementManager manager = new MovementManager(1,1,1);
         protected bool stunned = false;
+
+
+        public void setStun(bool isStunned){
+            stunned = isStunned;
+        }
+        
+        
+
         public void TryAction(PlayerAction[] action)
         {
             dir = manager.DirFacing;

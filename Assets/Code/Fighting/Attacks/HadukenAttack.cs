@@ -21,6 +21,7 @@ public class HadukenAttack : RangedAttack
         get { return new Vector3(500 * dir, 200, 0); }
 
     }
+    
 
     public override int height
     {

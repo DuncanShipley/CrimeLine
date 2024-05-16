@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Code.Fighting.CharacterControl;
 
 public abstract class StagedAttack : MonoBehaviour
 {
@@ -8,24 +9,28 @@ public abstract class StagedAttack : MonoBehaviour
 
     public virtual int Stages {get; set;}
 
+    private PlayerActionManager parent;
+
+
     public void Awake()
     {
         Set();
-        this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+         parent = this.gameObject.transform.parent.GetComponent<PlayerActionManager>();
         Invoke("NextStage", 1);
     }
-
+    
     public void NextStage()
     {
         int stage = FindStage(Stages);
         if (stage == Stages-1)
         {
-            this.gameObject.transform.GetParent.stunned = false;
+            parent.setStun(false);
             Destroy(gameObject);
             return;
         }
-        this.gameObject.transform.GetChild(stage).gameObject.SetActive(false);
-        this.gameObject.transform.GetChild(stage+1).gameObject.SetActive(true);
+        gameObject.transform.GetChild(stage).gameObject.SetActive(false);
+        gameObject.transform.GetChild(stage+1).gameObject.SetActive(true);
         Invoke("NextStage", 1);
     }
 
@@ -34,7 +39,7 @@ public abstract class StagedAttack : MonoBehaviour
 
         for(int i = 0; i<stages; i++)
         {
-            if (this.gameObject.transform.GetChild(i).gameObject.activeSelf)
+            if (gameObject.transform.GetChild(i).gameObject.activeSelf)
             {
                 return i;
             }
@@ -48,7 +53,7 @@ public abstract class StagedAttack : MonoBehaviour
     {
         for(int i = 0; i<Stages; i++)
         {
-            this.gameObject.transform.GetChild(i).gameObject.SetActive(false);
+            gameObject.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 }
