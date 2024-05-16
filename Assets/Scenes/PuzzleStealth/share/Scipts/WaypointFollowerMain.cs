@@ -12,6 +12,7 @@ public class WaypointFollowerMain : MonoBehaviour
     private float atan;
     public bool canMove = true;
     public float distance;
+    private float spinner;
 
     public int id;
 
@@ -47,6 +48,8 @@ public class WaypointFollowerMain : MonoBehaviour
         guard = GetComponent<UnityEngine.AI.NavMeshAgent>();
         guard.updateRotation = false;
         guard.updateUpAxis = false;
+
+        spinner = 0;
     }
 
     private void Update()
@@ -58,6 +61,9 @@ public class WaypointFollowerMain : MonoBehaviour
             if (Vector2.Distance(waypoints[currentPointIndex[id]].transform.position, transform.position) < 1f && guardWait < 2f) // if you're close and you haven't waited
             {
                 guardWait += Time.deltaTime; // wait
+                if (guardChaseMain.endedChase[id]){
+                    spinner = guardWait;
+                }
                 close[id] = true;
             }
             else if (guardWait >= 2f) // once you've waited (and are still close)
@@ -71,6 +77,7 @@ public class WaypointFollowerMain : MonoBehaviour
                 }
                 guardWait = 0; // reset wait timer
                 close[id] = false;
+                guardChaseMain.endedChase[id] = false;
             }
             else if (guardChaseMain.sus[id] == 0 || guardChaseMain.sus[id] == 1)
             {
@@ -146,15 +153,15 @@ public class WaypointFollowerMain : MonoBehaviour
             if (close[id]){
                 if (waypoints[(currentPointIndex[id]+1) % 4].transform.position.y > transform.position.y && waypoints[(currentPointIndex[id]+1) % 4].transform.position.x > transform.position.x) // if the next waypoint is up and to the right of us
                 {
-                    relAngle = Math.Atan((waypoints[(currentPointIndex[id]+1) % 4].transform.position.y - transform.position.y) / (waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x)) * 180 / Math.PI + guardWait * 180;
+                    relAngle = Math.Atan((waypoints[(currentPointIndex[id]+1) % 4].transform.position.y - transform.position.y) / (waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x)) * 180 / Math.PI + spinner * 180;
                 }
                 else if (waypoints[(currentPointIndex[id]+1) % 4].transform.position.x < transform.position.x) // if it's to the left of us
                 {
-                    relAngle = Math.Atan((waypoints[(currentPointIndex[id]+1) % 4].transform.position.y - transform.position.y) / (waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x)) * 180 / Math.PI + 180 + guardWait * 180;
+                    relAngle = Math.Atan((waypoints[(currentPointIndex[id]+1) % 4].transform.position.y - transform.position.y) / (waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x)) * 180 / Math.PI + 180 + spinner * 180;
                 }
                 else // if it's down and to the right of us
                 {
-                    relAngle = Math.Atan((waypoints[(currentPointIndex[id]+1) % 4].transform.position.y - transform.position.y) / (waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x)) * 180 / Math.PI + 360 + guardWait * 180;
+                    relAngle = Math.Atan((waypoints[(currentPointIndex[id]+1) % 4].transform.position.y - transform.position.y) / (waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x)) * 180 / Math.PI + 360 + spinner * 180;
                 }
                 // ^^ these are to take the inverse tangent of the correct 'triangle' ^^
                 if (Mathf.Abs(waypoints[(currentPointIndex[id]+1) % 4].transform.position.x - transform.position.x) > 0.01f)
@@ -197,6 +204,9 @@ public class WaypointFollowerMain : MonoBehaviour
                 {
                     atan = (float)-Math.PI / 2;
                 }
+            }
+            if (close && !guardChaseMain.endedChase[id]){
+                transform.LookAt(waypoints[(currentPointIndex[id]+1) % 4]);
             }
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, ((float)(relAngle) - 90 + movingLeft[id]) % 360); // point towards current waypoint
         }

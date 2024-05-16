@@ -19,6 +19,7 @@ public class guardChaseMain : MonoBehaviour
     public static List<bool> seeing = new List<bool>();
     public static List<int> oldPointIndex = new List<int>();
     public static List<bool> alerting = new List<bool>();
+    public static List<bool> endedChase = new List<bool>();
     
     [SerializeField] public static List<float> speed = new List<float>();
     public static List<float> timesSeen = new List<float>();
@@ -40,6 +41,7 @@ public class guardChaseMain : MonoBehaviour
         Waypoint1 = this.gameObject.transform.parent.GetChild(1);
         startingPosition.Add(Vector3.zero);
         positionList.Add(Vector3.zero);
+        endedChase.Add(false);
 
         baseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesMain>().GetBaseSpeed();
         chaseSpeed = gameObject.transform.parent.GetComponent<GuardVariablesMain>().GetChaseSpeed();
@@ -92,7 +94,7 @@ public class guardChaseMain : MonoBehaviour
                 sus[id] = 1;
                 alerting[id] = true;
                 WaypointFollowerMain.spottedPosition[id] = this.gameObject.transform.position;
-                
+                endedChase[id] = true;
             }
         }
         else if (AlertMain.alerted[id] > -1)
@@ -109,6 +111,7 @@ public class guardChaseMain : MonoBehaviour
             AlertMain.alerted[id] = -1;
             alerting[id] = false;
             seeing[id] = false;
+
         }
         else // if none of those are true, end the chase
         {
