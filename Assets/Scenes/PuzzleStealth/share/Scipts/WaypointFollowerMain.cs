@@ -206,14 +206,10 @@ public class WaypointFollowerMain : MonoBehaviour
                 }
             }
             if (close[id] && !guardChaseMain.endedChase[id]){
-                //this.transform.LookAt(waypoints[(currentPointIndex[id]+1) % currentPointIndex.Count].transform.position, Vector3.up);
-                transform.rotation = Quaternion.LookRotation(Vector3.forward, waypoints[(currentPointIndex[id]+1) % currentPointIndex.Count].transform.position - transform.position);
-                Debug.Log("looking at");
+                transform.rotation = Quaternion.LookRotation(Vector3.forward, waypoints[(currentPointIndex[id]+1) % waypoints.Length].transform.position - transform.position);
             }
             else{
                 transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, ((float)(relAngle) - 90 + movingLeft[id]) % 360); // point towards current waypoint
-                //this.transform.LookAt(waypoints[(currentPointIndex[id]) % currentPointIndex.Count].transform.position, Vector3.up);
-
             }
         }
         else
