@@ -47,8 +47,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
             playerCollider = playerObject.GetComponent<Collider>();
             SpawnEnemies(InitialEnemies);
             FindObjectOfType<Cameracontroller>().AddP2(ActiveChildren[0].actor);
-
-
+            
         }
 
         private void Update()
@@ -60,6 +59,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
                 (PlayerAction[], MovementAction[]) action = enemy.brain.Output(input);
                 enemy.actionManager.TryAction(action.Item1);
                 enemy.actionManager.TryMoveAction(action.Item2);
+                
 
             }
         }
@@ -122,7 +122,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         {
             this.type = type;
             this.actor = actor;
-            this.brain = Constants.instance.enemyBrains.TryGetValue(type, out brain) ? brain : null;
+            brain = Constants.instance.enemyBrains.TryGetValue(type, out brain) ? brain : null;
             collider = actor.GetComponent<Collider>();
             actionManager = actor.GetComponent<PlayerActionManager>();
             animator = actor.GetComponent<Animator>();

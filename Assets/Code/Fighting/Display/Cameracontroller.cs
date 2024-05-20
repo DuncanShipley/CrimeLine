@@ -25,6 +25,7 @@ public class Cameracontroller : MonoBehaviour
     
     void Update()
     {
+        print(p2.transform);
         if (t1.position.x + t2.position.x > 8.7f)
         {
             camypos = 8.7f;
