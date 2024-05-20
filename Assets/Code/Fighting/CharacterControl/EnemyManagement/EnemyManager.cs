@@ -52,7 +52,6 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
 
         private void Update()
         {
-           print("num active children:" + ActiveChildren.Count);
             foreach (Enemy enemy in ActiveChildren)
             {
                 EnemyAiInput input = BuildInputs(enemy, playerCollider);
@@ -71,6 +70,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
             bool touchingGround = enemy.collider.TouchingGround();
             AnimatorStateInfo animationState = enemy.animator.GetCurrentAnimatorStateInfo(0);
             Vector3 pcPosition = playerPosition.bounds.center;
+            Vector3 enemyPosition = enemy.actor.transform.position;
   
             return new EnemyAiInput
                 (
@@ -78,7 +78,8 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
                     playerTouchingGround,
                     touchingGround,
                     animationState,
-                   pcPosition
+                   pcPosition,
+                    enemyPosition
                 );
         }
 
@@ -135,15 +136,16 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         public bool  TouchingGround;
         public AnimatorStateInfo AnimationState;
         public Vector3 PCPosition;
+        public Vector3 MyPosition;
 
-        public EnemyAiInput(float distanceToPC, bool PCCanJump, bool TouchingGround, AnimatorStateInfo animationState, Vector3 PCPosition)
+        public EnemyAiInput(float distanceToPC, bool PCCanJump, bool TouchingGround, AnimatorStateInfo animationState, Vector3 PCPosition, Vector3 EnemyPosition)
         {
             this.DistanceToPC = distanceToPC;
             this.PCCanJump = PCCanJump;
             this.TouchingGround = TouchingGround;
             this.AnimationState = animationState;
             this.PCPosition = PCPosition;
-
+            MyPosition = EnemyPosition;
         }
     }
 
