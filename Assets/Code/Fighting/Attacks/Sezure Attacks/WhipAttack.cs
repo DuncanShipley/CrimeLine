@@ -15,4 +15,8 @@ public class WhipAttack : Attack
         get { return new Vector3(700*(-dir), 100, 0); }
 
     }
+    public override bool Staged
+    {
+        get {return false;}
+    }
 }

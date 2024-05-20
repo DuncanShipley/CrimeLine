@@ -10,9 +10,9 @@ public class HadukenAttack : RangedAttack
         get { return 5; }
 
     }
-    public override int speed
+    public override float speed
     {
-        get { return 10; }
+        get { return 10f * -dir; }
 
     }
 
@@ -36,6 +36,10 @@ public class HadukenAttack : RangedAttack
     {
         get { return false; }
 
+    }
+    public override bool Staged
+    {
+        get {return false;}
     }
 
 

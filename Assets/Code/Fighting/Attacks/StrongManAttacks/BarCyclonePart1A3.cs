@@ -13,4 +13,8 @@ public class BarCyclonePart1A3 : Attack
     {
         get{return new Vector3(0,200,0);}
     }
+    public override bool Staged
+    {
+        get {return true;}
+    }
 }

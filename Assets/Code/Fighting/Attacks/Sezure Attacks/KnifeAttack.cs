@@ -9,9 +9,9 @@ public class KnifeAttack : RangedAttack
         get { return 10; }
 
     }
-    public override int speed
+    public override float speed
     {
-        get { return 18; }
+        get { return 18f * -dir; }
 
     }
 
@@ -34,5 +34,9 @@ public class KnifeAttack : RangedAttack
     {
         get { return true; }
 
+    }
+    public override bool Staged
+    {
+        get {return false;}
     }
 }

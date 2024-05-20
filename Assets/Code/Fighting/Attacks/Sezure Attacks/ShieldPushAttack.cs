@@ -9,9 +9,9 @@ public class ShieldPushAttack : RangedAttack
         get { return 0; }
 
     }
-    public override int speed
+    public override float speed
     {
-        get { return 10; }
+        get { return 10f * -dir; }
 
     }
 
@@ -34,5 +34,9 @@ public class ShieldPushAttack : RangedAttack
     {
         get { return true; }
 
+    }
+    public override bool Staged
+    {
+        get {return false;}
     }
 }

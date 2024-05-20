@@ -12,9 +12,16 @@ public abstract class Attack : MonoBehaviour
 
     public virtual Vector3 knockback { get; set; }
 
+    public virtual bool Staged { get; set;}
+
     public void Start()
     {
-        this.num = gameObject.transform.parent.localScale.x;
+        if (Staged){
+            this.num = gameObject.transform.parent.transform.parent.localScale.x;
+        } else
+        {
+            this.num = gameObject.transform.parent.localScale.x;
+        }
         this.dir = num / Mathf.Abs(num);
     }
     private void OnTriggerEnter(Collider collider)

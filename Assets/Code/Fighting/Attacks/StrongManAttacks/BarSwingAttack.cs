@@ -13,5 +13,10 @@ public class BarSwingAttack : Attack
     {
         get {return new Vector3(350,200,0);}
     }
+
+    public override bool Staged
+    {
+        get {return true;}
+    }
 }
 

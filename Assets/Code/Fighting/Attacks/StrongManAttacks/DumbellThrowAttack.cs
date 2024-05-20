@@ -12,9 +12,9 @@ public class DumbellThrowAttack : RangedAttack
     {
         get{return new Vector3(200,-100,0);}
     }
-    public override int speed
+    public override float speed
     {
-        get {return 10;}
+        get {return 10f * dir;}
     }
     public override int height
     {
@@ -29,5 +29,9 @@ public class DumbellThrowAttack : RangedAttack
     {
         get { return true; }
 
+    }
+    public override bool Staged
+    {
+        get {return false;}
     }
 }
