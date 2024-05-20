@@ -46,7 +46,7 @@ public class WaypointFollowerMain : MonoBehaviour
         startingPosition = transform.position;
 
         guard = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        guard.updateRotation = false;
+        guard.updateRotation = true;
         guard.updateUpAxis = false;
 
         spinner = 0;
@@ -205,10 +205,16 @@ public class WaypointFollowerMain : MonoBehaviour
                     atan = (float)-Math.PI / 2;
                 }
             }
-            if (close && !guardChaseMain.endedChase[id]){
-                transform.LookAt(waypoints[(currentPointIndex[id]+1) % 4]);
+            if (close[id] && !guardChaseMain.endedChase[id]){
+                //this.transform.LookAt(waypoints[(currentPointIndex[id]+1) % currentPointIndex.Count].transform.position, Vector3.up);
+                transform.rotation = Quaternion.LookRotation(Vector3.forward, waypoints[(currentPointIndex[id]+1) % currentPointIndex.Count].transform.position - transform.position);
+                Debug.Log("looking at");
             }
-            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, ((float)(relAngle) - 90 + movingLeft[id]) % 360); // point towards current waypoint
+            else{
+                transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, ((float)(relAngle) - 90 + movingLeft[id]) % 360); // point towards current waypoint
+                //this.transform.LookAt(waypoints[(currentPointIndex[id]) % currentPointIndex.Count].transform.position, Vector3.up);
+
+            }
         }
         else
         {
