@@ -55,7 +55,7 @@ public class InkManager : MonoBehaviour
         // Display all the choices, if there are any!
         if (story.currentChoices.Count > 0)
         {
-            BP = 0; 
+            BP = 0;
             TR = 0;
             for (int i = 0; i < story.currentChoices.Count; i++)
             {
@@ -71,7 +71,7 @@ public class InkManager : MonoBehaviour
         {
             if(story.currentChoices.Count == 0)
             {
-             print("No more choices");
+             StartCoroutine(DisplayLine("You have reached the end of the story, there are no more choices. You will start the fighting or stealth section now."));
             }
         }            
     }
@@ -119,10 +119,6 @@ public class InkManager : MonoBehaviour
         StoryText.transform.SetParent(canvas.transform, false); 
     }
 
-
-    
-    private static int BP = 0;
-    private static int TR = 0;
     // Creates a button showing the choice 
     Button CreateChoiceView(string text)
     {
@@ -140,7 +136,6 @@ public class InkManager : MonoBehaviour
      layoutGroup.childForceExpandHeight = false;
      BP=30;
      TR++;
-
      return choice;
      }
 
@@ -160,19 +155,16 @@ public class InkManager : MonoBehaviour
         int childCount = canvas.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
-            //string Clone = canvas.transform.GetChild(i).gameObject;
             if(canvas.transform.GetChild(i).gameObject.name == "Text(Clone)"){
-            Destroy(canvas.transform.GetChild(i).gameObject);
+                Destroy(canvas.transform.GetChild(i).gameObject);
             }
         }
     }
 
     void RemoveButtons(){
-         int childCount 
-         = canvas.transform.childCount;
+         int childCount = canvas.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
-            //string Clone = canvas.transform.GetChild(i).gameObject;
             if(canvas.transform.GetChild(i).gameObject.name == "Button(Clone)"){
             Destroy(canvas.transform.GetChild(i).gameObject);
             }
@@ -188,7 +180,9 @@ public class InkManager : MonoBehaviour
     private string line;
     private TextMeshProUGUI StoryText;
     private bool skippedPressed;
-    public int counting;
+    private int counting;
+    private int BP = 0;
+    private int TR = 0;
     GameManager gm;
     CharacterManager cm;
     InkExternalFunctions IKF;

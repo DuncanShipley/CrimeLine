@@ -227,6 +227,7 @@ MonoBehaviour:
   - {fileID: 5345753755031983825, guid: 3ace9d2c7b4f58740ba36eddd3034ce2, type: 3}
   - {fileID: 8512334846354789707, guid: 6efadfa0d10584e82b018526242655a1, type: 3}
   - {fileID: 7983352471180951034, guid: b6f2adcf79f184cecac8214270539b07, type: 3}
+  - {fileID: 4883627894231319621, guid: 2cde9d50fb54145bb995ac40c30f5838, type: 3}
   CharacterList: []
   canvas: {fileID: 491119762}
 --- !u!114 &385688794
@@ -258,7 +259,6 @@ MonoBehaviour:
   textPrefab: {fileID: 1212636373746908506, guid: 77181b55049b10f41bc38a21276a7df2, type: 3}
   buttonPrefab: {fileID: 11455116, guid: 37c108a6c38964f79a6621eccb33ddc1, type: 3}
   typingSpeed: 0.04
-  counting: 0
 --- !u!4 &385688796
 Transform:
   m_ObjectHideFlags: 0
