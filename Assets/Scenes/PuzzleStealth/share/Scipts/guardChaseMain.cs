@@ -54,7 +54,6 @@ public class guardChaseMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(GetComponent<Vector3.Magnitude(UnityEngine.AI.NavMeshAgent>().velocity));
         seesPlayer = CheckFor(Player);
         GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed[id];
 
@@ -150,7 +149,7 @@ public class guardChaseMain : MonoBehaviour
     }
     public bool CheckFor(GameObject cf)
     {
-        if (Vector3.Magnitude(rb.velocity) < 2) {
+        if (Vector3.Magnitude(GetComponent<UnityEngine.AI.NavMeshAgent>().velocity) < 2.9f || WaypointFollowerMain.close[id]) {
             seeingRay = Physics2D.Raycast(transform.position, new Vector2((float)-Math.Sin(transform.rotation.eulerAngles.z * Math.PI / 180), (float)Math.Cos(transform.rotation.eulerAngles.z * Math.PI / 180)), (float)Math.Sqrt(detectRadius[id]), Physics.DefaultRaycastLayers, -Mathf.Infinity, Mathf.Infinity);
             Debug.DrawRay(transform.position, new Vector2((float)-Math.Sin(transform.rotation.eulerAngles.z * Math.PI / 180), (float)Math.Cos(transform.rotation.eulerAngles.z * Math.PI / 180)));
             if (seeingRay.collider != null)
