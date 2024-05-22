@@ -17,7 +17,7 @@ public abstract class Attack : MonoBehaviour
     public void Start()
     {
         if (Staged){
-            this.num = gameObject.transform.parent.transform.parent.localScale.x;
+            this.num = gameObject.transform.parent.parent.localScale.x;
         } else
         {
             this.num = gameObject.transform.parent.localScale.x;
