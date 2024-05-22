@@ -5,23 +5,23 @@ using UnityEngine;
 public class Emotions : MonoBehaviour
 {
     //needs a happy, sad, nuetral, and angry sprite for each character
+    InkExternalFunctions IKF;
+    private string ActiveEmotion;
+    public string SpriteOrder = "Nuetral, Happy, Angry, Sad, Annoyed";
     public Sprite[] emotionSprite;
     SpriteRenderer spRend;
-       
+    [SerializeField] CharacterEmotions Mystate;
     //Add Emotions Here
     public enum CharacterEmotions
     {
-        happy,sad,nuetral,angry,annoyed
+        nuetral,happy,angry,sad,annoyed
     }
-
-    [SerializeField]
-    CharacterEmotions Mystate;
-      
-   
     void Awake()
     {
+        IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
         Mystate = CharacterEmotions.nuetral;
         spRend = GetComponent<SpriteRenderer>();
+        changestate("Nuetral");
     }
     public void changestate(string emotionName)
     {
@@ -46,7 +46,7 @@ public class Emotions : MonoBehaviour
         yield return null;
     }
 
-      IEnumerator SadState()
+    IEnumerator SadState()
     {
         spRend.sprite = emotionSprite[3];
         Mystate = CharacterEmotions.sad;
@@ -55,8 +55,8 @@ public class Emotions : MonoBehaviour
 
     IEnumerator AnnoyedState()
     {
-        spRend.sprite = emotionSprite[4];
         Mystate = CharacterEmotions.annoyed;
+        spRend.sprite = emotionSprite[4];    
         yield return null;
     }
 }

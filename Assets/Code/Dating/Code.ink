@@ -1,2 +1,0 @@
-EXTERNAL SetCharacter(CurrentSpeaker)
-EXTERNAL change_emotion(emotion)

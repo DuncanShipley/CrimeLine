@@ -10,24 +10,24 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
 public class InkManager : MonoBehaviour
-{
-    
+{    
     void Awake()
     {  
         cm = GetComponent<CharacterManager>();
         gm = GetComponent<GameManager>();
-        bgm = GetComponent<BackgroundManager>();
         IKF = GameObject.FindGameObjectWithTag("Ink External Functions").GetComponent<InkExternalFunctions>();
-        StartStory();
+        bgm = GameObject.FindGameObjectWithTag("Background").GetComponent<BackgroundManager>();
+        Debug.Log("Starting Story");
+        story = new Story(inkJSONAsset.text);
+        IKF.Bind(story);
+        RefreshView();
     }
-
     private void Update()
     {
         // Displays a new line every time you click unless there is a choice 
-        if(counting == 0){
+        if (counting == 0){
             if (story.canContinue == true) { 
-                if (story.currentChoices.Count == 0)
-                {   
+                if (story.currentChoices.Count == 0){   
                     if (Input.GetMouseButtonDown(0))
                     {
                         RefreshView();
@@ -35,58 +35,27 @@ public class InkManager : MonoBehaviour
                 }   
             }
         }
-        if(counting !=0){
-            if(Input.GetMouseButtonDown(1))
-            {
-                skippedPressed = true;
-            }
+        if(counting !=0)
+        {
+            if(Input.GetMouseButtonDown(1)){ skippedPressed = true;}
         }
     }
-
-    // Creates a new Story object with the compiled story which we can then play!
-    void StartStory()
-    {
-        Debug.Log("Starting Story");
-        story = new Story(inkJSONAsset.text);
-        IKF.Bind(story);
-        RefreshView();
-        cm.SetSpeaker();
-        cm.SetEmotion();
-    }
-
-   
-    
    /// <summary>
    /// Main Function, Destroys old content and choices. Creates new line of dialouge and any choices
    /// </summary>
     void RefreshView()
     {
-        
         RemoveText();
         RemoveButtons();
         //Displays one line of text at a time
-        int LD = 1;
-        while (LD != 0)
-        {
-            cm.SetSpeaker();
-            cm.SetEmotion();
-            if (story.canContinue==true) {
-                // Continue gets the next line of the story
-                
-                //string text = story.Continue();
-                 // This removes any white space from the text.
-                 //text = text.Trim();
-                 // Display the text on screen!
-                 //CreateContentView(text);
-                 StartCoroutine(DisplayLine(story.Continue()));
-                LD --;
-            }
-        }
-
+        if(story.canContinue==true) {StartCoroutine(DisplayLine(story.Continue()));}
+        if(IKF.CurrentBackground != ""){bgm.changeBackground(IKF.CurrentBackground);}
+        if(IKF.CurrentSpeaker != ""){cm.SetSpeaker();}
+        if(IKF.CurrentEmotion != ""){ cm.SetEmotion();}
         // Display all the choices, if there are any!
         if (story.currentChoices.Count > 0)
         {
-            BP = 0; 
+            BP = 0;
             TR = 0;
             for (int i = 0; i < story.currentChoices.Count; i++)
             {
@@ -102,18 +71,16 @@ public class InkManager : MonoBehaviour
         {
             if(story.currentChoices.Count == 0)
             {
-             print("No more choices");
+             StartCoroutine(DisplayLine("You have reached the end of the story, there are no more choices. You will start the fighting or stealth section now."));
             }
         }            
     }
-
     private IEnumerator DisplayLine(string line)
     {
         string text = "";
         RemoveText();
         foreach(char letter in line.ToCharArray())
         {
-            counting++;
             if (skippedPressed == true)  
             {
                 text = line;
@@ -123,18 +90,17 @@ public class InkManager : MonoBehaviour
                 counting = 0;
                 break;
             }
+            counting++;
             text += letter;
             CreateContentView(text);
+            if(counting == line.Length){counting =0;}
             yield return new WaitForSeconds(typingSpeed);
-        }
-        if(counting == line.Length){
-            counting = 0;
         }
     }
 
     // When we click the choice button, tell the story to choose that choice!
     void OnClickChoiceButton (Choice choice) {
-		story.ChooseChoiceIndex (choice.index);
+		story.ChooseChoiceIndex(choice.index);
 		RefreshView();
 	}
 
@@ -153,15 +119,11 @@ public class InkManager : MonoBehaviour
         StoryText.transform.SetParent(canvas.transform, false); 
     }
 
-
-    
-    private static int BP = 0;
-    private static int TR = 0;
     // Creates a button showing the choice 
     Button CreateChoiceView(string text)
     {
      // Creates the button from a prefab
-     Button choice = Instantiate(buttonPrefab, new Vector3(475, -305-(BP*TR), 1), Quaternion.identity) as Button;
+     Button choice = Instantiate(buttonPrefab, new Vector3(450, -285-(BP*TR), 1), Quaternion.identity) as Button;
      choice.transform.SetParent(canvas.transform, false);
 
         // Gets the text from the button prefab
@@ -174,7 +136,6 @@ public class InkManager : MonoBehaviour
      layoutGroup.childForceExpandHeight = false;
      BP=30;
      TR++;
-
      return choice;
      }
 
@@ -194,19 +155,16 @@ public class InkManager : MonoBehaviour
         int childCount = canvas.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
-            //string Clone = canvas.transform.GetChild(i).gameObject;
             if(canvas.transform.GetChild(i).gameObject.name == "Text(Clone)"){
-            Destroy(canvas.transform.GetChild(i).gameObject);
+                Destroy(canvas.transform.GetChild(i).gameObject);
             }
         }
     }
 
     void RemoveButtons(){
-         int childCount 
-         = canvas.transform.childCount;
+         int childCount = canvas.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
-            //string Clone = canvas.transform.GetChild(i).gameObject;
             if(canvas.transform.GetChild(i).gameObject.name == "Button(Clone)"){
             Destroy(canvas.transform.GetChild(i).gameObject);
             }
@@ -222,7 +180,9 @@ public class InkManager : MonoBehaviour
     private string line;
     private TextMeshProUGUI StoryText;
     private bool skippedPressed;
-    public int counting;
+    private int counting;
+    private int BP = 0;
+    private int TR = 0;
     GameManager gm;
     CharacterManager cm;
     InkExternalFunctions IKF;

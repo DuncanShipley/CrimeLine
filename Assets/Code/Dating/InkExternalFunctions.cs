@@ -28,7 +28,6 @@ public class InkExternalFunctions : MonoBehaviour
         });
     }
     
-
     /// <summary>
     /// UnBinds Ink functions
     /// </summary>
