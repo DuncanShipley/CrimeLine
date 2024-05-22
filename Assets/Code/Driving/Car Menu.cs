@@ -18,5 +18,9 @@ public class CarMenu : MonoBehaviour {
         SceneManager.LoadScene(sceneName);
     }
 
+    public void Quit() {
+        Application.Quit();
+    }
+
 }
     
