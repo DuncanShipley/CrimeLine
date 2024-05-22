@@ -661,8 +661,25 @@ You: I'm honored to be your first.
 Guard: Honestly i've never even really dated anybody before.
     **{oshi}[ask out]->AskOutOshi
     **{not oshi}[ask out]->AskOut
-    **[Pity]
-    You: Oh man you poor thing.
+    **[Pity and manipulate]
+    You: Oh dear you poor thing.
+    You: It doesn't have to be that way.
+    Guard: What do you mean by that?
+    You: I can change that for you.
+    Guard: How?
+    You: You can become my date and I will spoil you. I have just one request in return.
+    Guard: Name your condidtion.
+    ***[Ask for the master password to the vault]
+    You: Tell me the master password to the bank's vault.
+    ->END
+    ***[Use the guards phone to ask the Manager for the vault password]
+    You: Allow me to use your phone and talk to the manager.
+    Guard: Why do you need to talk to the manager?
+        ->END
+    ***[Ask for the manager's contact number]
+    You: Give me your manager's number.
+        Guard: Why do you need to talk to the manager?
+        ->END
     ->DONE
 ->END
 ==AskOutOshi==
@@ -681,6 +698,7 @@ Guard: phew, thanks.
 Guard: ... I have made my decision.
 You: ...
 Guard: Yes. I would be happy to go out with you.
+->Date
 }
 {Kohaku or Sora:
 Guard: I don't know what to say.
@@ -692,6 +710,9 @@ You: So what's it gonna be?
 Guard: ... I have made my decision.
 You: Go ahead.
 Guard: I'm sorry but I'm not intrested.
+You: Ugh what? Are you serious? Fine, your loss.
+You walk back in silence...
+->Comply
 }
 ->END
 ==AskOut==
@@ -707,6 +728,11 @@ You: So what's it gonna be?
 Guard: ... I have made my decision.
 You: Go ahead.
 Guard: I'm sorry but I'm not intrested.
+You: That's alright. I understand.
+You walk back in silence...
+->Comply
+==Date==
+Date start!
 
 
 ->END
