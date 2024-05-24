@@ -161,8 +161,15 @@ namespace Assets.Code.Fighting.CharacterControl
             // might what to make movemanger check if blocking before adding kb
         }
 
-        public void DeBlock();
+        public virtual void setStun(bool isStunned)
+        {
+            stunned = isStunned;
+        }
 
+        public virtual void DeBlock()
+        {
+            blocking = false;
+        }
 
     }
 }

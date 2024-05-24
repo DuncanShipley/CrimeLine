@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using Assets.Code.Fighting.CharacterControl;
 using UnityEngine;
 using UnityEngine.UI;
-using Assets.Code.Fighting.CharacterControl;
 
 public class HealthScript : MonoBehaviour
 {
@@ -42,4 +41,7 @@ public class HealthScript : MonoBehaviour
         body.AddForce(vec);
     }
 }
+
+    
+
 
