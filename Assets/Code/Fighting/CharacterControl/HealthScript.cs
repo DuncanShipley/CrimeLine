@@ -7,6 +7,7 @@ public class HealthScript : MonoBehaviour
     public Slider slider;
     Animator anim;
     Rigidbody body;
+    [SerializeField] PlayerActionManager actor;
     public void Start()
     {
         anim = gameObject.GetComponent<Animator>();
@@ -19,18 +20,19 @@ public class HealthScript : MonoBehaviour
     }
     public void SetHealth(int health)
     {
-        //if (PlayerActionManager.blocking)
-        //{
-        slider.value = health;
-        if (health <= 0)
+        if (!actor.blocking)
         {
-            anim.SetTrigger("die");
+            
+            slider.value = health;
+            if (health <= 0)
+            {
+                anim.SetTrigger("die");
+            }
+            else
+            {
+                anim.SetTrigger("hurt");
+            }
         }
-        else
-        {
-            anim.SetTrigger("hurt");
-        }
-        //}
     }
 
     public void TakeKnockback(Vector3 vec)

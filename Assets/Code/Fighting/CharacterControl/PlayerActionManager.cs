@@ -161,6 +161,10 @@ namespace Assets.Code.Fighting.CharacterControl
             // might what to make movemanger check if blocking before adding kb
         }
 
+        public abstract void Block();
+
+        public abstract void DeBlock();
+
 
     }
 }

@@ -14,4 +14,8 @@ public class GroundSpikeAttack : Attack
         get { return 10; }
 
     }
+    public override bool Staged
+    {
+        get {return false;}
+    }
 }

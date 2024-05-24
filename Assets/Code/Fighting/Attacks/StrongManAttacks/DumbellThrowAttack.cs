@@ -2,17 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DumbellThrowAttack : MonoBehaviour
+public class DumbellThrowAttack : RangedAttack
 {
-    // Start is called before the first frame update
-    void Start()
+    public override int damage
     {
-        
+        get {return 3;}
     }
-
-    // Update is called once per frame
-    void Update()
+    public override Vector3 knockback 
     {
-        
+        get{return new Vector3(200,-100,0);}
+    }
+    public override float speed
+    {
+        get {return 10f * dir;}
+    }
+    public override int height
+    {
+        get {return 3;}
+    }
+    public override float time
+    {
+        get { return 5; }
+
+    }
+    public override bool limited 
+    {
+        get { return true; }
+
+    }
+    public override bool Staged
+    {
+        get {return false;}
     }
 }

@@ -1,48 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Code.Fighting.CharacterControl;
 
 public abstract class StagedAttack : MonoBehaviour
 {
-    public virtual GameObject[] Stages {get; set;}
+    //todo get something      dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun dun nah nvmd
+
+    public virtual int Stages {get; set;}
+
+    private PlayerActionManager parent;
+
 
     public void Awake()
     {
-        Reset();
-        Stages[0].SetActive(true);
+        Set();
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        parent = this.gameObject.transform.parent.GetComponent<PlayerActionManager>();
+        Invoke("NextStage", 1);
     }
-
+    
     public void NextStage()
     {
-        int FirstActive = FindFirstAcive(Stages);
-        if (FirstActive == Stages.Length)
+        int stage = FindStage(Stages);
+        if (stage == Stages-1)
         {
-            Reset();
+            parent.setStun(false);
+            Destroy(gameObject);
             return;
         }
-        Stages[FirstActive].SetActive(false);
-        Stages[FirstActive+1].SetActive(true);
+        gameObject.transform.GetChild(stage).gameObject.SetActive(false);
+        gameObject.transform.GetChild(stage+1).gameObject.SetActive(true);
+        Invoke("NextStage", 1);
     }
 
-    public int FindFirstAcive(GameObject[] gameObects)
+    public int FindStage(int stages)
     {
-        int count = 0;
-        foreach(var Object in gameObects)
+
+        for(int i = 0; i<stages; i++)
         {
-            if (Object.activeSelf)
+            if (gameObject.transform.GetChild(i).gameObject.activeSelf)
             {
-                return count;
+                return i;
             }
-            count++;
+
         }
-        return -1;
+        return 0;
     }
 
-    public void Reset()
+
+    public void Set()
     {
-        foreach(var Object in Stages)
+        for(int i = 0; i<Stages; i++)
         {
-            Object.SetActive(false);
+            gameObject.transform.GetChild(i).gameObject.SetActive(false);
         }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        UnityEngine.Debug.unityLogger.Log("PLUHHHHHH");
     }
 }

@@ -6,7 +6,7 @@ public abstract class RangedAttack : Attack
 {
     private Rigidbody rb;
     private Animator anim;
-    public virtual int speed { get; set; }
+    public virtual float speed { get; set; }
     public virtual int height { get; set; }
     public virtual bool limited { get; set; }
     public virtual float time { get; set; }
