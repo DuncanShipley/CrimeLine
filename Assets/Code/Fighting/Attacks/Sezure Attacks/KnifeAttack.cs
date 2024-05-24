@@ -11,7 +11,7 @@ public class KnifeAttack : RangedAttack
     }
     public override float speed
     {
-        get { return 18f * -dir; }
+        get { return 18f; }
 
     }
 

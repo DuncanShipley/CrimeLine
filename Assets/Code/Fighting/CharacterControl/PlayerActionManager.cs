@@ -67,28 +67,34 @@ namespace Assets.Code.Fighting.CharacterControl
                     case PlayerAction.MeleeAttack:
                         switch(dir)
                         {
-                            case 0 || 1:
+                            case <2:
                                 anim.SetTrigger("MeleeSide");
+                                stunned = true;
                                 break;
                             case 2:
                                 anim.SetTrigger("MeleeUp");
+                                stunned = true;
                                 break;
                             case 3:
                                 anim.SetTrigger("MeleeDown");
+                                stunned = true;
                                 break;
                         }
                         break;
                     case PlayerAction.RangeAttack:
                         switch (dir)
                         {
-                            case 0:
+                            case <2:
                                 anim.SetTrigger("RangeSide");
-                                break;
-                            case 1:
-                                anim.SetTrigger("RangeUp");
+                                stunned = true;
                                 break;
                             case 2:
+                                anim.SetTrigger("RangeUp");
+                                stunned = true;
+                                break;
+                            case 3:
                                 anim.SetTrigger("RangeDown");
+                                stunned = true;
                                 break;
                         }
                         break;
@@ -107,48 +113,41 @@ namespace Assets.Code.Fighting.CharacterControl
         {
             SFXManager.instance.PlaySFXClip(MSideSFX, transform, 1f);
             Instantiate(this.MeleeSide, gameObject.transform, false);
-            stunned = true;
         }
 
         public virtual void MeleeDownAttack()
         {
             SFXManager.instance.PlaySFXClip(MDownSFX, transform, 1f);
             Instantiate(this.MeleeDown, gameObject.transform, false);
-            stunned = true;
         }
 
         public virtual void MeleeUpAttack()
         {
             SFXManager.instance.PlaySFXClip(MUpSFX, transform, 1f);
             Instantiate(this.MeleeUp, gameObject.transform, false);
-            stunned = true;
         }
 
         public virtual void RangeSideAttack()
         {
             SFXManager.instance.PlaySFXClip(RSideSFX, transform, 0.3f);
             Instantiate(this.RangeSide, gameObject.transform, false);
-            stunned = true;
         }
 
         public virtual void RangeUpAttack()
         {
             SFXManager.instance.PlaySFXClip(RUpSFX, transform, 0.3f);
             Instantiate(this.RangeUp, gameObject.transform, false);
-            stunned = true;
         }
 
         public virtual void RangeDownAttack()
         {
             SFXManager.instance.PlaySFXClip(RDownSFX, transform, 3f);
             Instantiate(this.RangeDown, gameObject.transform, false);
-            stunned = true;
         }
         private void DelAttack()
         {
             if (gameObject.GetComponentInChildren<Attack>() != null)
                 gameObject.GetComponentInChildren<Attack>().DeleteSelf();
-            stunned = false;
         }
         private void Unstunn()
         {
@@ -164,6 +163,10 @@ namespace Assets.Code.Fighting.CharacterControl
         public virtual void setStun(bool isStunned)
         {
             stunned = isStunned;
+        }
+
+        public int dirFacing(){
+            return (int)manager.DirFacing;
         }
 
         public virtual void DeBlock()

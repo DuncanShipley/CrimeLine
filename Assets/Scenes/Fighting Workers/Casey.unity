@@ -8678,6 +8678,7 @@ MonoBehaviour:
   anim: {fileID: 1467687693}
   body: {fileID: 1467687695}
   blocking: 0
+  collider: {fileID: 1467687694}
   MeleeSide: {fileID: 7811283870713506554, guid: 72f5bcf2e5fcf4b278e17c667e359673, type: 3}
   MeleeUp: {fileID: 2429171381786472593, guid: a2dd2279c8f5e4076aed989abb0bf668, type: 3}
   MeleeDown: {fileID: 949740253307702744, guid: 7950976499fe481409c299625cc1ee10, type: 3}

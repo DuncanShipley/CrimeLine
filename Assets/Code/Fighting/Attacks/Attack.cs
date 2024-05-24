@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-
+using Assets.Code.Fighting.CharacterControl;
 
 
 public abstract class Attack : MonoBehaviour
@@ -17,10 +17,10 @@ public abstract class Attack : MonoBehaviour
     public void Start()
     {
         if (Staged){
-            this.num = gameObject.transform.parent.parent.GetComponent<PlayerActionManager>().manager.DirFacing;
+            this.num = gameObject.transform.parent.parent.GetComponent<PlayerActionManager>().dirFacing();
         } else
         {
-            this.num = gameObject.transform.parent.GetComponent<PlayerActionManager>().manager.DirFacing;
+            this.num = gameObject.transform.parent.GetComponent<PlayerActionManager>().dirFacing();
         }
         this.dir = this.num == 1? -1 : 1;
     }
