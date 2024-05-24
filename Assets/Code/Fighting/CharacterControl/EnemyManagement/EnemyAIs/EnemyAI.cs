@@ -6,7 +6,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement.EnemyAis
 {
     public abstract class EnemyAI
     {
-        public abstract (AttackAction, MovementAction[]) Output(EnemyAiInput input);
+        public abstract (PlayerAction[], MovementAction[]) Output(EnemyAiInput input);
 
     }
 

@@ -1,42 +1,12 @@
 ﻿namespace Assets.Code.Fighting.CharacterControl
 {
 
-    public class KenActionManager :  ActionManager
+    public class KenActionManager : PlayerActionManager
     {
-
-        public override void TryAction(AttackAction action)
+        protected override MovementManager manager
         {
-            switch (action)
-            {
-                case AttackAction.Hadouken:
-                    animator.SetTrigger("Hadook");
-                    break;
-                case AttackAction.KenUppercut:
-                    animator.SetTrigger("uppercoot");
-                    break;
-                case AttackAction.KenPunch:
-                    Punch();
-                    break;
-            }
-
+            get { return new MovementManager(10,3.5f,10.0f);}
         }
-
-        public override void TryMoveAction(MovementAction[] movement)
-        {
-            body.AddForce(manager.GetVector(movement));
-        }
-
-
-
-        void Hadouken()
-        {
-            Instantiate(Constants.instance.Hadouken);
-        }
-
-        void Punch()
-        {
-            Instantiate(Constants.instance.KenPunch);
-        }
-
+        
     }
 }

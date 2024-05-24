@@ -43,15 +43,12 @@ public class PlayerInputManager : MonoBehaviour
             {
                 case PlayerAction.Jump:
                     moveActions.Add(MovementAction.Jump);
-                    UnityEngine.Debug.Log("pluh");
                     break;
                 case PlayerAction.MoveLeft:
                     moveActions.Add(MovementAction.Left);
-                    UnityEngine.Debug.Log("pluh");
                     break;
                 case PlayerAction.MoveRight:
                     moveActions.Add(MovementAction.Right);
-                    UnityEngine.Debug.Log("pluh");
                     break;
                 case PlayerAction.MoveUp:
                     moveActions.Add(MovementAction.Up);

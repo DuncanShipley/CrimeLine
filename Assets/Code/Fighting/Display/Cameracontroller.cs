@@ -17,9 +17,15 @@ public class Cameracontroller : MonoBehaviour
         cam = GetComponent<Transform>();
     }
 
+    public void AddP2(GameObject p2)
+    {
+        this.p2 = p2;
+    }
+
     
     void Update()
     {
+        print(p2.transform);
         if (t1.position.x + t2.position.x > 8.7f)
         {
             camypos = 8.7f;

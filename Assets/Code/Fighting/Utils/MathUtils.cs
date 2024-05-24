@@ -1,8 +1,7 @@
-﻿using UnityEditor;
+﻿using System.Collections.Immutable;
 using UnityEngine;
-using System.Collections.Immutable;
 
-namespace Assets.Code.Fighting
+namespace Code.Fighting.Utils
 {
     public static class MathUtils
     {
@@ -29,12 +28,11 @@ namespace Assets.Code.Fighting
             return Physics.OverlapBox(component.transform.position, component.GetComponents<BoxCollider>()[0].size, component.transform.rotation, 0).ToImmutableList().Count > 0;
         }
 
-
-        public static bool isTouching(this Component component, string tag)
+        public static bool TouchingGround(this Collider collider)
         {
-            return Physics.OverlapBox(component.transform.position, component.GetComponents<BoxCollider>()[0].size, component.transform.rotation, 0)
-                .ToImmutableList()
-                .FindAll(i => i.CompareTag(tag)).Count > 0;
+            
+            return Physics.Raycast(collider.bounds.center, Vector3.down, collider.bounds.extents.y + 0.1f);
+            
         }
 
     }
