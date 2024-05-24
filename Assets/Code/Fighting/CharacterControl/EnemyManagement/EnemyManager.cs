@@ -79,7 +79,8 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
                     touchingGround,
                     animationState,
                    pcPosition,
-                    enemyPosition
+                    enemyPosition,
+                    enemy.body.velocity
                 );
         }
 
@@ -118,6 +119,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         public Collider collider;
         public PlayerActionManager actionManager;
         public Animator animator;
+        public Rigidbody body;
 
         public Enemy(EnemyType type, GameObject actor)
         {
@@ -127,6 +129,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
             collider = actor.GetComponent<Collider>();
             actionManager = actor.GetComponent<PlayerActionManager>();
             animator = actor.GetComponent<Animator>();
+            body = actor.GetComponent<Rigidbody>();
         }
     }
 
@@ -137,8 +140,9 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         public AnimatorStateInfo AnimationState;
         public Vector3 PCPosition;
         public Vector3 MyPosition;
+        public Vector3 MyVelocity; 
 
-        public EnemyAiInput(float distanceToPC, bool PCCanJump, bool TouchingGround, AnimatorStateInfo animationState, Vector3 PCPosition, Vector3 EnemyPosition)
+        public EnemyAiInput(float distanceToPC, bool PCCanJump, bool TouchingGround, AnimatorStateInfo animationState, Vector3 PCPosition, Vector3 EnemyPosition, Vector3 EnemyVelocity)
         {
             this.DistanceToPC = distanceToPC;
             this.PCCanJump = PCCanJump;
@@ -146,6 +150,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
             this.AnimationState = animationState;
             this.PCPosition = PCPosition;
             MyPosition = EnemyPosition;
+            MyVelocity = EnemyVelocity;
         }
     }
 
