@@ -16,7 +16,7 @@ public abstract class StagedAttack : MonoBehaviour
     {
         Set();
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
-         parent = this.gameObject.transform.parent.GetComponent<PlayerActionManager>();
+        parent = this.gameObject.transform.parent.GetComponent<PlayerActionManager>();
         Invoke("NextStage", 1);
     }
     
@@ -55,5 +55,10 @@ public abstract class StagedAttack : MonoBehaviour
         {
             gameObject.transform.GetChild(i).gameObject.SetActive(false);
         }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        UnityEngine.Debug.unityLogger.Log("PLUHHHHHH");
     }
 }

@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2427525349521534420}
-  - component: {fileID: 2725620149647838103}
-  - component: {fileID: 5314909045242979975}
   - component: {fileID: 7849676359183868864}
+  - component: {fileID: 5984197841645570789}
   m_Layer: 0
   m_Name: Bar Swing P1
   m_TagString: Untagged
@@ -34,107 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &2725620149647838103
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8545122047253431868}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.3960454, y: -1.272377}
-      - {x: -0.5659598, y: -1.2305995}
-      - {x: -0.73121965, y: -1.0583068}
-      - {x: -0.8145926, y: -0.722092}
-      - {x: -0.82375944, y: -0.26912105}
-      - {x: -0.7627251, y: 0.022085126}
-      - {x: -0.63820004, y: 0.2606234}
-      - {x: -0.40927255, y: 0.52273285}
-      - {x: -0.21145955, y: 0.6824437}
-      - {x: 0.083912656, y: 0.84994364}
-      - {x: 0.36773252, y: 0.9556874}
-      - {x: 0.69515544, y: 1.0180476}
-      - {x: 1.7098554, y: 1.0301534}
-      - {x: 2.2387643, y: 1.0879712}
-      - {x: 2.6345067, y: 1.1996187}
-      - {x: 3.113637, y: 1.410378}
-      - {x: 3.3446984, y: 1.4795023}
-      - {x: 3.60189, y: 1.412116}
-      - {x: 3.7453628, y: 1.1994307}
-      - {x: 3.7636113, y: 0.97716403}
-      - {x: 3.7277653, y: 0.7582145}
-      - {x: 3.5638208, y: 0.28067672}
-      - {x: 3.3139539, y: -0.22527443}
-      - {x: 3.0140362, y: -0.695356}
-      - {x: 2.7846441, y: -0.96658635}
-      - {x: 2.6871529, y: -1.0638366}
-      - {x: 2.501059, y: -1.1921041}
-      - {x: 2.3103442, y: -1.2475569}
-      - {x: -0.3960454, y: -1.272377}
-  m_UseDelaunayMesh: 0
---- !u!50 &5314909045242979975
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8545122047253431868}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &7849676359183868864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +45,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209f8ab77cc564e38afe19b69608a800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &5984197841645570789
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8545122047253431868}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.6150675, y: 2.1491518, z: 1}
+  m_Center: {x: 1.3075331, y: 0.025295025, z: 0}
