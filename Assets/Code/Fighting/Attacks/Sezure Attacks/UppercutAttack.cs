@@ -15,4 +15,8 @@ public class UppercutAttack : Attack
         get { return new Vector3(200*dir, 800, 0); }
 
     }
+    public override bool Staged
+    {
+        get {return false;}
+    }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9055444248809999705}
   - component: {fileID: -938720892864142688}
   m_Layer: 0
-  m_Name: Bar Swing Attack
+  m_Name: False
   m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

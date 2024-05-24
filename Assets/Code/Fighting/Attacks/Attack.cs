@@ -12,18 +12,16 @@ public abstract class Attack : MonoBehaviour
 
     public virtual Vector3 knockback { get; set; }
 
-    /*
-    public virtual float time { get; set; }
-    public void Start()
-    {
-        Invoke("DeleteSelf", time);
-    }
-    For if we want limited range projectiles
-    */
+    public virtual bool Staged { get; set;}
 
     public void Start()
     {
-        this.num = gameObject.transform.parent.localScale.x;
+        if (Staged){
+            this.num = gameObject.transform.parent.parent.localScale.x;
+        } else
+        {
+            this.num = gameObject.transform.parent.localScale.x;
+        }
         this.dir = num / Mathf.Abs(num);
     }
     private void OnTriggerEnter(Collider collider)
@@ -34,8 +32,6 @@ public abstract class Attack : MonoBehaviour
             int newHealth = (int)(health.slider.value) - damage;
             health.SetHealth(newHealth);
             health.TakeKnockback(knockback);
-            DeleteSelf();
-            
         }
     }
     public void DeleteSelf()

@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldPushAttack : RangedAttack
+public class KnifeAttack : RangedAttack
 {
     public override int damage
     {
-        get { return 0; }
+        get { return 10; }
 
     }
-    public override int speed
+    public override float speed
     {
-        get { return 10; }
+        get { return 18f * -dir; }
 
     }
 
     public override Vector3 knockback
     {
-        get { return new Vector3(500*dir, 0, 0); }
+        get { return new Vector3(100 * dir, 0, 0); }
 
     }
 
@@ -34,5 +34,9 @@ public class ShieldPushAttack : RangedAttack
     {
         get { return true; }
 
+    }
+    public override bool Staged
+    {
+        get {return false;}
     }
 }

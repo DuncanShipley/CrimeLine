@@ -209,7 +209,7 @@ MonoBehaviour:
   RangeSide: {fileID: 489237643490484244, guid: 1e1c9db7b415f054297de743d9492685, type: 3}
   RangeUp: {fileID: 0}
   RangeDown: {fileID: 0}
-  MSideSFX: {fileID: 0}
+  MSideSFX: {fileID: 8300000, guid: 4506377ca929cba42b4de7c141fce0c4, type: 3}
   MDownSFX: {fileID: 0}
   MUpSFX: {fileID: 0}
   RSideSFX: {fileID: 0}

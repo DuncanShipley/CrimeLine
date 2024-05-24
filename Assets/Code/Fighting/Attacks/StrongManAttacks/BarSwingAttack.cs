@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarSwingAttack : MonoBehaviour
+public class BarSwingAttack : Attack
 {
-    // Start is called before the first frame update
-    void Start()
+    public override int damage
     {
-        
+        get {return 2;}
     }
 
-    // Update is called once per frame
-    void Update()
+    public override Vector3 knockback
     {
-        
+        get {return new Vector3(350,200,0);}
+    }
+
+    public override bool Staged
+    {
+        get {return true;}
     }
 }
+

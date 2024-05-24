@@ -1206,59 +1206,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5717979, y: 0.16036355, z: 0.7838839}
   m_Center: {x: 0.011853153, y: -0.19584616, z: 0.108058035}
---- !u!1 &167362946
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 167362947}
-  - component: {fileID: 167362948}
-  m_Layer: 0
-  m_Name: trigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &167362947
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167362946}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 642146436}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &167362948
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167362946}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.7511932, y: 0.2616194, z: 0.7838839}
-  m_Center: {x: -0.005232096, y: -0.3157544, z: 0.108058}
 --- !u!1 &178582890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,59 +2532,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355828869}
   m_CullTransparentMesh: 1
---- !u!1 &362433272
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 362433273}
-  - component: {fileID: 362433274}
-  m_Layer: 0
-  m_Name: trigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &362433273
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362433272}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1467687697}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &362433274
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362433272}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.16036354, z: 0.7838839}
-  m_Center: {x: 0, y: -0.19584616, z: 0.108058035}
 --- !u!1 &373032377
 GameObject:
   m_ObjectHideFlags: 0
@@ -3434,6 +3328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
+  actor: {fileID: 0}
 --- !u!1 &553452783
 GameObject:
   m_ObjectHideFlags: 0
@@ -4180,8 +4075,7 @@ Transform:
   m_LocalPosition: {x: -10, y: 4, z: 2}
   m_LocalScale: {x: -5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 167362947}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &642146437
@@ -4197,6 +4091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 498621779}
+  actor: {fileID: 1467687698}
 --- !u!1 &655384984
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,6 +5009,9 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 1485589506}
   enemyHealthSlider: {fileID: 498621779}
   fadeScript: {fileID: 815886854}
+  funny: {fileID: 0}
+  lore: {fileID: 0}
+  quadaldiggle: {fileID: 0}
 --- !u!114 &815886854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6720,6 +6618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1485589506}
+  actor: {fileID: 0}
 --- !u!114 &1106189740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6732,24 +6631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f515f103539c67348beb078438b58983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SideH: {fileID: 0}
-  SH: {fileID: 2267918565869220087, guid: f3eb416a64b93d24a82811a7e6992ee2, type: 3}
-  WH: {fileID: 0}
-  SideJ: {fileID: 0}
-  SJ: {fileID: 0}
-  WJ: {fileID: 0}
-  stunned: 0
-  canJump: 0
-  blocking: 0
-  groundSpikeSFX: {fileID: 0}
-  uppercutSFX: {fileID: 0}
-  whipSFX: {fileID: 0}
-  knifeSFX: {fileID: 0}
-  shieldPushSFX: {fileID: 0}
-  ballSFX: {fileID: 0}
-  jumpSFX: {fileID: 0}
-  fadeScript: {fileID: 815886854}
-  healthScript: {fileID: 0}
 --- !u!1 &1140407210
 GameObject:
   m_ObjectHideFlags: 0
@@ -8630,6 +8511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1485589506}
+  actor: {fileID: 1467687698}
 --- !u!111 &1467687692
 Animation:
   m_ObjectHideFlags: 0
@@ -8778,8 +8660,7 @@ Transform:
   m_LocalPosition: {x: 9.94, y: 4.17, z: 2}
   m_LocalScale: {x: -3.2236402, y: 7, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 362433273}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1467687698
@@ -8797,7 +8678,7 @@ MonoBehaviour:
   anim: {fileID: 1467687693}
   body: {fileID: 1467687695}
   blocking: 0
-  MeleeSide: {fileID: 2200565641159838218, guid: 16ae2d8b1dcb9b64180e26220ff7033f, type: 3}
+  MeleeSide: {fileID: 7811283870713506554, guid: 72f5bcf2e5fcf4b278e17c667e359673, type: 3}
   MeleeUp: {fileID: 2429171381786472593, guid: a2dd2279c8f5e4076aed989abb0bf668, type: 3}
   MeleeDown: {fileID: 949740253307702744, guid: 7950976499fe481409c299625cc1ee10, type: 3}
   RangeSide: {fileID: 6030688806231460762, guid: 4aa8cebf583428c43b1a679509920f85, type: 3}
@@ -8916,6 +8797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
+  actor: {fileID: 0}
 --- !u!114 &1485589506
 MonoBehaviour:
   m_ObjectHideFlags: 0

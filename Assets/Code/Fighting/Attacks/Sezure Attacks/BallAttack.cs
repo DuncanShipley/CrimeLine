@@ -9,9 +9,9 @@ public class BallAttack : RangedAttack
         get { return 12; }
 
     }
-    public override int speed
+    public override float speed
     {
-        get { return 10; }
+        get { return 10f* -dir; }
 
     }
     public override float time
@@ -33,5 +33,9 @@ public class BallAttack : RangedAttack
     public override int height
     {
         get { return 7; }
+    }
+    public override bool Staged
+    {
+        get {return false;}
     }
 }

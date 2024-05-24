@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
@@ -52,7 +52,6 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
 
         private void Update()
         {
-           print("num active children:" + ActiveChildren.Count);
             foreach (Enemy enemy in ActiveChildren)
             {
                 EnemyAiInput input = BuildInputs(enemy, playerCollider);
@@ -71,6 +70,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
             bool touchingGround = enemy.collider.TouchingGround();
             AnimatorStateInfo animationState = enemy.animator.GetCurrentAnimatorStateInfo(0);
             Vector3 pcPosition = playerPosition.bounds.center;
+            Vector3 enemyPosition = enemy.actor.transform.position;
   
             return new EnemyAiInput
                 (
@@ -78,7 +78,9 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
                     playerTouchingGround,
                     touchingGround,
                     animationState,
-                   pcPosition
+                   pcPosition,
+                    enemyPosition,
+                    enemy.body.velocity
                 );
         }
 
@@ -117,6 +119,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         public Collider collider;
         public PlayerActionManager actionManager;
         public Animator animator;
+        public Rigidbody body;
 
         public Enemy(EnemyType type, GameObject actor)
         {
@@ -126,6 +129,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
             collider = actor.GetComponent<Collider>();
             actionManager = actor.GetComponent<PlayerActionManager>();
             animator = actor.GetComponent<Animator>();
+            body = actor.GetComponent<Rigidbody>();
         }
     }
 
@@ -135,15 +139,18 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement {
         public bool  TouchingGround;
         public AnimatorStateInfo AnimationState;
         public Vector3 PCPosition;
+        public Vector3 MyPosition;
+        public Vector3 MyVelocity; 
 
-        public EnemyAiInput(float distanceToPC, bool PCCanJump, bool TouchingGround, AnimatorStateInfo animationState, Vector3 PCPosition)
+        public EnemyAiInput(float distanceToPC, bool PCCanJump, bool TouchingGround, AnimatorStateInfo animationState, Vector3 PCPosition, Vector3 EnemyPosition, Vector3 EnemyVelocity)
         {
             this.DistanceToPC = distanceToPC;
             this.PCCanJump = PCCanJump;
             this.TouchingGround = TouchingGround;
             this.AnimationState = animationState;
             this.PCPosition = PCPosition;
-
+            MyPosition = EnemyPosition;
+            MyVelocity = EnemyVelocity;
         }
     }
 

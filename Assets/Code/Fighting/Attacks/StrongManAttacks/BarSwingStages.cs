@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarCycloneStages : StagedAttack
+public class BarSwingStages : StagedAttack
 {
     public override int Stages
     {
-        get {return 4;}
+        get {return 2;}
     }
 }
