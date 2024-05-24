@@ -15,13 +15,14 @@ GameObject:
   - component: {fileID: 1603354494321324986}
   - component: {fileID: 5017471932793999927}
   - component: {fileID: 3596704246077270730}
+  - component: {fileID: 1836834866792799981}
   m_Layer: 0
   m_Name: KenEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &558437743348713458
 Transform:
   m_ObjectHideFlags: 0
@@ -99,8 +100,8 @@ Rigidbody:
   m_GameObject: {fileID: 3512347847830118260}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.9
-  m_AngularDrag: 99999
+  m_Drag: 0
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -187,6 +188,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
+--- !u!114 &1836834866792799981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512347847830118260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54a23b56ccaa0e4bafb59a4beb1e15c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  body: {fileID: 0}
+  blocking: 0
+  collider: {fileID: 0}
+  MeleeSide: {fileID: 0}
+  MeleeUp: {fileID: 0}
+  MeleeDown: {fileID: 0}
+  RangeSide: {fileID: 0}
+  RangeUp: {fileID: 0}
+  RangeDown: {fileID: 0}
+  MSideSFX: {fileID: 0}
+  MDownSFX: {fileID: 0}
+  MUpSFX: {fileID: 0}
+  RSideSFX: {fileID: 0}
+  RDownSFX: {fileID: 0}
+  RUpSFX: {fileID: 0}
 --- !u!1 &8375456018704482309
 GameObject:
   m_ObjectHideFlags: 0

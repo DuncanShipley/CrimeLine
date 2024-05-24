@@ -7,11 +7,11 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement.EnemyAis
     class RyuAI : EnemyAI
     {
 
-        public override (AttackAction, MovementAction[]) Output(EnemyAiInput input)
+        public override (PlayerAction[], MovementAction[]) Output(EnemyAiInput input)
         {
-            MovementAction[] movement = input.TouchingGround ? new MovementAction[] { MovementAction.Jump} : new MovementAction[] { };
+            MovementAction[] movement = { MovementAction.Jump };
             
-            return (AttackAction.Hadouken, movement);
+            return (new PlayerAction[] {}, movement);
         }
 
     }

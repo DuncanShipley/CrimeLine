@@ -6,10 +6,10 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement.EnemyAis
 {
     class KenAI : EnemyAI
     {
-        public override (AttackAction, MovementAction[]) Output(EnemyAiInput input)
+        public override (PlayerAction[], MovementAction[]) Output(EnemyAiInput input)
         {
             MovementAction[] movement = input.TouchingGround ? new MovementAction[] { MovementAction.Jump } : new MovementAction[] { };
-            return (AttackAction.Hadouken, movement );
+            return (new PlayerAction[] { PlayerAction.RangeAttack }, movement );
         }
 
     }

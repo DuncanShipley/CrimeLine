@@ -5,38 +5,11 @@ using UnityEngine;
 namespace Assets.Code.Fighting.CharacterControl
 {
 
-    public class RyuActionManager : ActionManager
+    public class RyuActionManager : PlayerActionManager
     {
-
-        public override void TryAction(AttackAction action)
+        protected override MovementManager manager
         {
-            switch (action)
-            {
-                case AttackAction.Hadouken:
-                    animator.SetTrigger("hadouken");
-                    break;
-                case AttackAction.RyuUppercut:
-                    animator.SetTrigger("punch");
-                    break;
-                case AttackAction.RyuPunch:
-                    break;
-            }
-        }
-
-        public override void TryMoveAction(MovementAction[] movement)
-        {
-
-        }
-
-        private void Hadouken()
-        {
-            Instantiate(Constants.instance.Hadouken);
-        }
-
-        private void Punch()
-        {
-            Instantiate(Constants.instance.RyuPunch);
-        }
-
+            get { return new MovementManager(10,3.5f,10.0f);}
+        } 
     }
 }

@@ -8,7 +8,7 @@ namespace Assets.Code.Fighting.CharacterControl.EnemyManagement
     {
         private void Awake()
         {
-            slider =Constants.instance.EnemySlider;
+            slider = Constants.instance.EnemySlider;
         }
 
         
