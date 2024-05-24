@@ -42,15 +42,15 @@ namespace Assets.Code.Fighting.CharacterControl
                         break;
                     case MovementAction.Left:
                         vec.x = -WalkSpeed;
-                        DirFacing = 0;
+                        DirFacing = 1;
                         break;
                     case MovementAction.Up:
                         //how do we want to do crouching and like looking up or smth
-                        DirFacing = 1;
+                        DirFacing = 2;
                         break;
                     case MovementAction.Down:
                         //crouch
-                        DirFacing = 2;
+                        DirFacing = 3;
                         break;
                 }
             }

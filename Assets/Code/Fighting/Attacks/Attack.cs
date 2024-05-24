@@ -17,12 +17,12 @@ public abstract class Attack : MonoBehaviour
     public void Start()
     {
         if (Staged){
-            this.num = gameObject.transform.parent.parent.localScale.x;
+            this.num = gameObject.transform.parent.parent.GetComponent<PlayerActionManager>().manager.DirFacing;
         } else
         {
-            this.num = gameObject.transform.parent.localScale.x;
+            this.num = gameObject.transform.parent.GetComponent<PlayerActionManager>().manager.DirFacing;
         }
-        this.dir = num / Mathf.Abs(num);
+        this.dir = this.num == 1? -1 : 1;
     }
     private void OnTriggerEnter(Collider collider)
     {

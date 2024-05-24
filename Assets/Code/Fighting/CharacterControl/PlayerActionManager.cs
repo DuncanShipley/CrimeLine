@@ -67,13 +67,13 @@ namespace Assets.Code.Fighting.CharacterControl
                     case PlayerAction.MeleeAttack:
                         switch(dir)
                         {
-                            case 0:
+                            case 0 || 1:
                                 anim.SetTrigger("MeleeSide");
                                 break;
-                            case 1:
+                            case 2:
                                 anim.SetTrigger("MeleeUp");
                                 break;
-                            case 2:
+                            case 3:
                                 anim.SetTrigger("MeleeDown");
                                 break;
                         }
@@ -161,9 +161,7 @@ namespace Assets.Code.Fighting.CharacterControl
             // might what to make movemanger check if blocking before adding kb
         }
 
-        public abstract void Block();
-
-        public abstract void DeBlock();
+        public void DeBlock();
 
 
     }
