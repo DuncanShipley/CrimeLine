@@ -8,7 +8,7 @@ public class doorcodeAlexis : MonoBehaviour
     public int keyID;
     public string dir;
 
-    private KeychainAlexis keychain;
+    private KeychainMain keychain;
     private bigTextboxAlexis textbox;
 
     bool faceActive = false;
@@ -21,7 +21,7 @@ public class doorcodeAlexis : MonoBehaviour
     // Colider
     private void Start()
     {
-        keychain = GameObject.Find("Player").GetComponent<KeychainAlexis>();
+        keychain = GameObject.Find("Player").GetComponent<KeychainMain>();
         textbox = GameObject.Find("bigTextbox").GetComponent<bigTextboxAlexis>();
     }
     private void OnTriggerEnter2D(Collider2D other)

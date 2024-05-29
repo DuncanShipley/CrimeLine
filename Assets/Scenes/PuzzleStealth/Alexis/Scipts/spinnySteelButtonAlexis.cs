@@ -6,15 +6,19 @@ public class spinnySteelButtonAlexis : MonoBehaviour
 {
     public Sprite on;
     public Sprite off;
-    private GameObject[] buttons;
-    private GameObject[] spinnySteels;
+    private GameObject[] buttons1;
+    private GameObject[] spinnySteels1;
+    private GameObject[] buttons2;
+    private GameObject[] spinnySteels2;
     private bool touch;
 
     // Start is called before the first frame update
     void Start()
     {
-        buttons = GameObject.FindGameObjectsWithTag("button");
-        spinnySteels = GameObject.FindGameObjectsWithTag("spinnySteel");
+        buttons1 = GameObject.FindGameObjectsWithTag("button1");
+        spinnySteels1 = GameObject.FindGameObjectsWithTag("spinnySteel1");
+        buttons2 = GameObject.FindGameObjectsWithTag("button2");
+        spinnySteels2 = GameObject.FindGameObjectsWithTag("spinnySteel2");
     }
 
     // Update is called once per frame
@@ -22,31 +26,59 @@ public class spinnySteelButtonAlexis : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Z) && touch)
         {
-            for(int i = 0; i < buttons.Length; i++)
+            if(gameObject.tag == "button1")
             {
-                if(buttons[i].GetComponent<SpriteRenderer>().sprite == on)
+                for(int i = 0; i < buttons1.Length; i++)
                 {
-                    buttons[i].GetComponent<SpriteRenderer>().sprite = off;
-                }
-                else
-                {
-                    buttons[i].GetComponent<SpriteRenderer>().sprite = on;
+                    if(buttons1[i].GetComponent<SpriteRenderer>().sprite == on)
+                    {
+                        buttons1[i].GetComponent<SpriteRenderer>().sprite = off;
+                    }
+                    else
+                    {
+                        buttons1[i].GetComponent<SpriteRenderer>().sprite = on;
+                    }
                 }
 
-                
+                for(int i = 0; i < spinnySteels1.Length; i++)
+                {
+                    if(spinnySteels1[i].transform.rotation.z >= 270)
+                    {
+                        spinnySteels1[i].transform.Rotate(0, 0, -270, Space.Self);
+                    }
+                    else
+                    {
+                        spinnySteels1[i].transform.Rotate(0, 0, 90, Space.Self);
+                    }
+                }
             }
-
-            for(int i = 0; i < spinnySteels.Length; i++)
+            else if (gameObject.tag == "button2")
             {
-                if(spinnySteels[i].transform.rotation.z >= 270)
+                for(int i = 0; i < buttons2.Length; i++)
                 {
-                    spinnySteels[i].transform.Rotate(0, 0, -270, Space.Self);
+                    if(buttons2[i].GetComponent<SpriteRenderer>().sprite == on)
+                    {
+                        buttons2[i].GetComponent<SpriteRenderer>().sprite = off;
+                    }
+                    else
+                    {
+                        buttons2[i].GetComponent<SpriteRenderer>().sprite = on;
+                    }
                 }
-                else
+
+                for(int i = 0; i < spinnySteels2.Length; i++)
                 {
-                    spinnySteels[i].transform.Rotate(0, 0, 90, Space.Self);
+                    if(spinnySteels2[i].transform.rotation.z >= 270)
+                    {
+                        spinnySteels2[i].transform.Rotate(0, 0, -270, Space.Self);
+                    }
+                    else
+                    {
+                        spinnySteels2[i].transform.Rotate(0, 0, 90, Space.Self);
+                    }
                 }
             }
+            
         }
     }
 
