@@ -12,9 +12,12 @@ TagManager:
   - movable
   - camera
   - button
-  - spinnySteel
   - spinnySteel2
   - spinnySteel1
+  - button2
+  - button1
+  - NPC
+  - laser
   layers:
   - Default
   - TransparentFX

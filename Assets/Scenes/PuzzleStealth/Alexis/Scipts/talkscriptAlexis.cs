@@ -20,7 +20,7 @@ public class talkscriptAlexis : MonoBehaviour
     private TextMeshProUGUI text;
     private bigTextboxAlexis textbox;
     private camfollowAlexis camera;
-    private KeychainAlexis keychain;
+    private KeychainMain keychain;
     private itemSelectorAlexis inv;
     bool touch = false;
 
@@ -30,7 +30,7 @@ public class talkscriptAlexis : MonoBehaviour
         totalLines = lines.Length;
         camera = GameObject.Find("Main Camera").GetComponent<camfollowAlexis>();
         textbox = GameObject.Find("bigTextbox").GetComponent<bigTextboxAlexis>();
-        keychain = GameObject.Find("Player").GetComponent<KeychainAlexis>();
+        keychain = GameObject.Find("Player").GetComponent<KeychainMain>();
         inv = GameObject.Find("IScursor").GetComponent<itemSelectorAlexis>();
     }
 
