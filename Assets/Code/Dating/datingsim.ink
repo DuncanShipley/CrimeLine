@@ -1,7 +1,6 @@
 EXTERNAL SetCharacter(CurrentCharacter)
 EXTERNAL SetEmotion(Emotion)
 EXTERNAL SetBackground(Background)
-
 ~SetBackground("OutsideBank")
 Skopje Macedonia, 2023 <br>Komercijalna Bank
 ~SetCharacter("Guard")
@@ -9,30 +8,21 @@ Skopje Macedonia, 2023 <br>Komercijalna Bank
 
 ==Bank==
 You: Hey mister! You got some time to spare?
-Guard: No
-*[Nag him]-> Nag
-*[Elude to more]-> Elude
+Guard: No.
+-> Nag
 
 ==Nag==
 You: Oh come on, not even 5 minutes? There's other guards here, nothing is going to happen.
 ~SetEmotion("Annoyed")
 Guard: Excuse me if you aren’t here for business, I'm gonna have to ask you to leave.
 *[Nag him]-> Nag2
-*[Elude to more]-> Elude
 *[Question authority]-> Question
-->END
 
 ==Nag2==
 You: You can’t even answer my questions?
 Guard: No, I'm working. I'm going to ask you again to leave the premise. 
 You: Pleaseeeee, it's just a few questions. I'm from out of town. I just want to know if there is anywhere specific I should visit.
 ->Question
-->END
-
-==Elude==
-You: I have something cool to show you, come with me.
-Guard: I'm not going to follow, please leave.
-->END
 
 ==Question==
 You: Is this how you normally treat patrons of this establishment? If so I must inform
@@ -43,7 +33,6 @@ You: Is this how you normally treat patrons of this establishment? If so I must 
 You: Is this how you normally treat patrons of this establishment? If so I must inform the general public of the poor treatment of us customers.
 Guard: Please leave the property.
 *[Threaten]->ThreatenP
-*[Seek Pity]->END
 *[Think fast]->quiz
 
 ==quiz==
@@ -94,6 +83,7 @@ Manager: Precisely.
 ->quizQ
 -else:
 Guard: Alright step outside now.
+And so with no other options you were forced to comply and return to the squad with bad news in tow.
 -> END
 }
 ==Pop==
@@ -104,7 +94,6 @@ You: Correct!
 *[History question]-> History
 *[Ask how he knew]-> Fandom
 *[Ask another Neko Princess Rangers question] ->NekoQ
-->END
 
 ==Fandom==
 how did you know the answer? And so fast. Are you an NPR fan?
@@ -194,8 +183,8 @@ You: Look I have the Vip pass right here, if I can let one more person come alon
 ~SetEmotion("Happy")
 Guard: *sniff* I can't thank you enough are you really sure? I can driv us there if you need.
 You: Yes thats perfect! Let's get going it starts in 3 hours!
-{not Fire:Guard: I can't believe this! it's almost two good to be true. Alright then I'll tell my boss I have to leave for a family emergency.}
-{Fire:Manager: Go where exactly?} //convinceM
+Guard: I can't believe this! it's almost two good to be true. Alright then I'll tell my boss I have to leave for a family emergency.
+And so the two stans drove off into the sunset and enjoyed NekoCon to the fullest extent, leaving the bank totally unguarded.
 ->END
 
 ==Akane==
@@ -301,8 +290,9 @@ Guard: Hey listen we don’t have to go there, I’m sorry if I offended you, I�
 ==ThreatenP==
 You: Then I'll be taking this issue up with the general public.
 You: I'll make sure your bank gets one star reviews. Unless you do what I want.
-->END
-
+Guard: Sure, I don't get paid enough to care anyways. Now step outside.
+*[Think fast]->quiz
+*[Then I must take this up with the management]->Management
 ==ThreatenM==
 ~SetBackground("InsideBank")
 ~SetCharacter("Manager")
@@ -318,7 +308,6 @@ Manager: Astute observation, I am the manager, How may I be of service to you?
 *[Compliment intelligence]->ComplimentIntelligence
 *[Instill confidence]->InstillConfidence
 *[Compliment appearance]->ComplimentAppearance
-->END
 
 ==GITEMS==
 You: Excuse me, are you the manager?
@@ -333,14 +322,20 @@ Guard: hey listen I just told them they cant be loitering on bank grounds.
 You: As I recall, you refused me service because I just wanted to have a conversation and admire this beautiful building.<br>My original intentions were never to loiter.
 Manager: You can admire the building, but please don't distract my workers.
 You: I'm sorry, I was just trying to ask some questions. I'm from out of town.<br>I was wondering what places I should visit. Your guard told me to leave before I could even ask.
-->END
-
+Manager: Oh but of course! Have you seen the canal nearby? The waterfront view is lovely and the walk has plenty of attractions to placate yourself.
+You: That sounds lovely! There's just one problem.
+You: I can't go because i'm scared. I would need someone to walk with me and keep me safe. 
+You: It's a real shame too... I wanted to see it so badly.
+Manager: Fear not! It's simple really I'll just have my lovely Guard accompany you.
+Guard: Excuse me?? 
+Manager: Do as your told now hurry along you have places to go no?
+You: OH Thank you so much! I'm so excited. Well then let's not waste anymore time. 
+[Head to the water front]->Conversation
 ==Flirt==
 How do you want to flirt?
 *[Compliment intelligence]->ComplimentIntelligence
 *[Instill confidence]->InstillConfidence
 *[Compliment appearance]->ComplimentAppearance
-->END
 
 ==ComplimentIntelligence==
 You: Clearly your a very intelligent man, you've climbed the ranks of the corporate ladder and established yourself as worthy of a prestigious position. 
@@ -360,9 +355,6 @@ Manager: How would you suggest I go about doing so?
 Guard: Hey uh are we being serious right now?
 Manger: Silence, customers come first
 *[Fire that man]->Fire
-//*[]
-//*[]
-->END
 
 ==ComplimentAppearance==
 You: I see your a fine gentleman of culture as your appearance is very well kept and most certanly cultured. 
@@ -515,6 +507,17 @@ You: Thank you so much. You're my hero, you really saved me!
 ~SetCharacter("Guard")
 Guard: Please, i'm just doing my job here.
 You: What can I do to make it up to you?
+Guard: Let's head back to the bank and make sure I don't get fired. That will make it up to me.
+    **{oshi}[ask out]
+    You: Are you single?
+    Guard: Uh? I mean yes? I don't see how that's relevant
+    ->AskOutOshi
+    **{not oshi}[ask out]
+        You: Are you single?
+    Guard: Uh? I mean yes? I don't see how that's relevant
+    ->AskOut
+    **[Head back]->WalkBack
+    
 ->END
 
 ==ServiceH==
@@ -529,7 +532,7 @@ You: There we go, he should be out for the count now.
 You: Shit why's he over here?? And moreover why is he coming this way?
 *[Run]->Caught
 //*[Hide]->HideBridge*[Hide the body]->Body//
-->END
+
 
 ==Coffee==
 ~SetBackground("Coffee Shop")
@@ -641,9 +644,7 @@ Guard: We're headed back,
 Guard: And don't even think about trying anything funny.
 You: That's quite the tight grip there mister.
 Guard: ...
-//*[Walk back]->
-
-[WalkBack]->WalkBack
+WalkBack->WalkBack
 ==CounteratkG==
 You: But will he expect this?
 /*Fighting game noise*/
@@ -682,6 +683,7 @@ Manager: Excellent idea!
 Guard: Great. Then i'm gonna have to ask you to leave the premises.
 You: Urk you'll regret that, you will.
 //Bad Ending
+And so with no other options you were forced to comply and return to the squad with bad news in tow.
 ->END
 ==Conversation==
 You: This view is quite something huh? I envy you getting paid to hangout in this beautiful area of town.
@@ -777,16 +779,13 @@ Guard: Honestly i've never even really dated anybody before.
     Guard: Name your condidtion.
     ***[Ask for the master password to the vault]
     You: Tell me the master password to the bank's vault.
-    ->END
-    ***[Use the guards phone to ask the Manager for the vault password]
-    You: Allow me to use your phone and talk to the manager.
-    Guard: Why do you need to talk to the manager?
-        ->END
-    ***[Ask for the manager's contact number]
-    You: Give me your manager's number.
-        Guard: Why do you need to talk to the manager?
-        ->END
-    ->DONE
+    Guard: Well I don't know that I can do that.
+    You: Oh you can and this can all be yours.
+    Guard: You promise you won't do anything with it?
+    You: Of course not! Now, the code.
+    Guard: The code is 235126.
+    You: Thank you dear.
+    And so the two new love birds waltzed off into the sunset and lived happily ever after leaving the bank totally unguarded.
 ->END
 ==AskOutOshi==
 You: I can change that for you.
@@ -838,8 +837,6 @@ You: That's alright. I understand.
 You walk back in silence...
 ->Comply
 ==Date==
-Date start!
-
-
+And so the two new love birds waltzed off into the sunset and lived happily ever after leaving the bank totally unguarded.
 ->END
 
